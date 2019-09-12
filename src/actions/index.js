@@ -1,13 +1,11 @@
 import { filterPosts } from '../helpers'
 
 import {
-  SELECT_SUBREDDIT,
-  INVALIDATE_SUBREDDIT,
-  RECEIVE_POSTS,
-  REQUEST_POSTS,
-  SELECT_POST,
-  NEXT_POST,
-  PREVIOUS_POST} from '../constants'
+  SELECT_SUBREDDIT, INVALIDATE_SUBREDDIT,
+  REQUEST_POSTS, RECEIVE_POSTS, SELECT_POST,
+  DEFAULT_SUBREDDITS, NEXT_POST, PREVIOUS_POST,
+  MEDIA_FALLBACK
+} from '../constants'
 
 export const selectSubreddit = subreddit => ({
   type: SELECT_SUBREDDIT,
@@ -31,22 +29,29 @@ export const receivePosts = (subreddit, json) => ({
   receivedAt: Date.now()
 })
 
-export const selectPost = post => ({
+export const selectPost = (post, index) => ({
   type: SELECT_POST,
-  post
+  post,
+  index
 })
 
-export const nextPost = () => ({
+export const nextPost = (posts) => ({
   type: NEXT_POST,
+  posts
 })
 
-export const previousPost = () => ({
+export const previousPost = (posts) => ({
   type: PREVIOUS_POST,
+  posts
+})
+
+export const mediaFallback = () => ({
+  type: MEDIA_FALLBACK
 })
 
 const fetchPosts = subreddit => dispatch => {
   dispatch(requestPosts(subreddit))
-  return fetch(`https://www.reddit.com/r/${subreddit}.json`)
+  return fetch(`https://www.reddit.com/r/${subreddit}.json?limit=1000`)
     .then(response => response.json())
     .then(json => dispatch(receivePosts(subreddit, json)))
 }

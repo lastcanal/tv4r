@@ -10,10 +10,7 @@ import {isVideo} from '../helpers'
 import ReactHtmlParser from 'react-html-parser';
 import ReactPlayer from 'react-player'
 
-
-function Iframe(props) {
-  return (<div dangerouslySetInnerHTML={ {__html:  props.iframe ? props.iframe : ''}} />);
-}
+import { nextPost, previousPost, mediaFallback } from '../actions'
 
 class Post extends Component {
 
@@ -32,17 +29,49 @@ class Post extends Component {
     }
   }
 
-  renderMedia() {
+  renderMediaPlayer() {
+    const { post } = this.props
     return <ReactPlayer
-      url={this.props.post.url}
-      controls={true}
-      light={true} />
+      playing
+      url={post.url}
+      height={post.media.oembed.height}
+      height="800px"
+      width="100%"
+      onEnded={this.onMediaEnded.bind(this)}
+      onError={this.onMediaError.bind(this)}
+      controls={true} />
+  }
+
+  renderMedia() {
+    const { post, media_fallback } = this.props
+    if (media_fallback) {
+      return this.renderMediaEmbed()
+    } else {
+      return this.renderMediaPlayer()
+    }
+  }
+
+  onMediaEnded() {
+    const { dispatch, posts } = this.props
+    dispatch(nextPost(posts))
+  }
+
+  onMediaError(error) {
+    console.log('media error', error)
+    const { dispatch } = this.props
+    dispatch(mediaFallback())
   }
 
   render() {
-    return <Container fixed className={this.props.classes.root}>
-      <div>{this.props.post ? this.props.post.title : 'unknown'}</div>
+    const { classes, post } = this.props
+    return <Container maxWidth="xl" className={classes.root}>
       <div>{this.renderMedia()}</div>
+      <h1>
+         {post ? post.title : 'unknown'}
+      </h1>
+      <a target="_BLANK" href={"https://reddit.com" + post.permalink}>
+        {post.num_comments} Comment{post.num_comments > 0 ? 's' : ''}
+      </a>
     </Container>
   }
 }
@@ -69,7 +98,8 @@ const mapStateToProps = state => {
   return {
     dispatch,
     posts,
-    post: selectedPost,
+    post: selectedPost.post,
+    media_fallback: selectedPost.media_fallback
   }
 }
 

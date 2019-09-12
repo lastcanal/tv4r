@@ -20,22 +20,24 @@ class App extends Component {
   }
 
   handleKeyDown(e) {
-    console.log('key',e)
-    const { dispatch } = this.props
+    const { dispatch, posts} = this.props
 
     switch (e.key) {
       case 'ArrowRight':
-        return dispatch(nextPost());
+        return dispatch(nextPost(posts));
       case 'ArrowLeft':
-        return dispatch(previousPost());
+        return dispatch(previousPost(posts));
       default:
         return;
     }
   }
 
   componentDidMount() {
-    const { dispatch, selectedSubreddit } = this.props
-    dispatch(fetchPostsIfNeeded(selectedSubreddit))
+    const { dispatch, selectedSubreddit, match} = this.props
+    const nextSubreddit = match ? match.params.subreddit : selectedSubreddit
+    const subreddit = nextSubreddit || DEFAULT_SUBREDDITS[0]
+    dispatch(invalidateSubreddit(subreddit))
+    dispatch(fetchPostsIfNeeded(subreddit))
     document.addEventListener('keydown', this.handleKeyDown.bind(this));
   }
 
@@ -101,7 +103,6 @@ const mapStateToProps = state => {
     isFetching,
     lastUpdated,
     items: posts,
-    post
   } = postsBySubreddit[selectedSubreddit] || {
     isFetching: true,
     items: []
@@ -110,7 +111,6 @@ const mapStateToProps = state => {
   return {
     selectedSubreddit,
     posts,
-    post: selectedPost,
     isFetching,
     lastUpdated
   }

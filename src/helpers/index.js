@@ -4,7 +4,6 @@ export const SUPPORTED_VIDEO_MEDIA = []
 export const SUPPORTED_IMAGE_MEDIA = []
 
 export function filterPosts(posts) {
-  console.log(posts)
   return filterVideo(posts)
 //switch (mediaType) {
 //  case MEDIA_VIDEO:
@@ -31,7 +30,9 @@ export function filterVideoImage(posts) {
 }
 
 export function isVideo(post) {
-  return !!post.secure_media_embed.media_domain_url
+  const media = post.secure_media || post.media
+  return (media && media.oembed.type === 'video')
+
 }
 export function isImage(post) {
   return !!(post.thumbnail &&

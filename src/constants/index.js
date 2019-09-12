@@ -10,5 +10,6 @@ export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT'
 export const NEXT_POST = 'NEXT_POST'
 export const PREVIOUS_POST = 'PREVIOUS_POST'
 export const SELECT_POST = 'SELECT_POST'
+export const MEDIA_FALLBACK = 'MEDIA_FALLBACK'
 
 export const DEFAULT_SUBREDDITS = ['documentaries', 'videos', 'images', ]

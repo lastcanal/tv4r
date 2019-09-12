@@ -14,11 +14,11 @@ import Post from './Post'
 class Posts extends Component {
 //const Posts = ({posts}) => {
 
-  onSelectPost(nextPost, e) {
+  onSelectPost(nextPost, index, e) {
     e.preventDefault()
 
     const { dispatch } = this.props
-    this.props.dispatch(selectPost(nextPost))
+    this.props.dispatch(selectPost(nextPost, index))
   }
 
   render() {
@@ -26,9 +26,9 @@ class Posts extends Component {
     return (
       <div className={classes.root}>
         <Post />
-        <GridList className={classes.gridList} cols={7} cellHeight={140}>
-          {posts.map(post => (
-            <GridListTile key={post.id} onClick={this.onSelectPost.bind(this, post)}>
+        <GridList className={classes.gridList} cols={7.7} >
+          {posts.map((post, index) => {
+            return <GridListTile key={post.id} onClick={this.onSelectPost.bind(this, post, index)}>
               <img src={post.thumbnail} alt={post.title} />
               <GridListTileBar
                 title={post.title}
@@ -41,7 +41,7 @@ class Posts extends Component {
                 }
               />
             </GridListTile>
-          ))}
+          })}
         </GridList>
       </div>
     );

@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import { HashRouter } from 'react-router-dom'
+import { HashRouter, Route } from 'react-router-dom';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk'
 import reducer from './reducers'
@@ -20,7 +20,8 @@ console.log('store', store)
 render(
   <Provider store={store}>
     <HashRouter hashType="noslash">
-      <App />
+      <Route exact path="/" component={App} />
+      <Route exact path="/r/:subreddit" component={App} />
     </HashRouter>
   </Provider>,
   document.getElementById('root')

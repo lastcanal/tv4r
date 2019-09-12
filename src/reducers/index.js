@@ -2,7 +2,8 @@ import { combineReducers } from 'redux'
 import {
   SELECT_SUBREDDIT, INVALIDATE_SUBREDDIT,
   REQUEST_POSTS, RECEIVE_POSTS, SELECT_POST,
-  DEFAULT_SUBREDDITS, NEXT_POST, PREVIOUS_POST
+  DEFAULT_SUBREDDITS, NEXT_POST, PREVIOUS_POST,
+  MEDIA_FALLBACK
 } from '../constants'
 
 import { filterPosts } from '../helpers'
@@ -64,13 +65,43 @@ const postsBySubreddit = (state = { }, action) => {
 const selectedPost = (state = { }, action) => {
   switch (action.type) {
     case RECEIVE_POSTS:
-      return action.posts[0]
+      return {
+        ...state,
+        index: 0,
+        post: action.posts[0],
+        media_fallback: false
+      }
     case SELECT_POST:
-      return action.post
+      return {
+        ...state,
+        index: action.index,
+        post: action.post,
+        media_fallback: false
+      }
     case NEXT_POST:
-      return state
+      const next_index = state.index + 1
+      const next_post = action.posts[next_index]
+
+      return {
+        ...state,
+        index: next_post ? next_index : 0,
+        post: next_post ? next_post : action.posts[0],
+        media_fallback: false
+      }
     case PREVIOUS_POST:
-      return state
+      const previous_index = state.index - 1 >= 0 ?
+        state.index - 1 : action.posts.length - 1
+      return {
+        ...state,
+        index: previous_index,
+        post: action.posts[previous_index],
+        media_fallback: false
+      }
+    case MEDIA_FALLBACK:
+      return {
+        ...state,
+        media_fallback: true
+      }
     default:
       return state
   }
