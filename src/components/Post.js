@@ -8,6 +8,8 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import {isVideo} from '../helpers'
 import ReactHtmlParser from 'react-html-parser';
+import ReactPlayer from 'react-player'
+
 
 function Iframe(props) {
   return (<div dangerouslySetInnerHTML={ {__html:  props.iframe ? props.iframe : ''}} />);
@@ -15,19 +17,26 @@ function Iframe(props) {
 
 class Post extends Component {
 
-  mediaContent() {
+  mediaEmbedContent() {
     return new DOMParser().
       parseFromString(this.props.post.media_embed.content, "text/html").
       documentElement.
       textContent;
   }
 
-  renderMedia() {
+  renderMediaEmbed() {
     if (this.props.post && isVideo(this.props.post)) {
-      return <div>{ ReactHtmlParser(this.mediaContent()) }</div>;
+      return <div>{ ReactHtmlParser(this.mediaEmbedContent()) }</div>;
     } else {
       return <div></div>
     }
+  }
+
+  renderMedia() {
+    return <ReactPlayer
+      url={this.props.post.url}
+      controls={true}
+      light={true} />
   }
 
   render() {
@@ -53,7 +62,6 @@ const mapStateToProps = state => {
   const { dispatch, selectedSubreddit, postsBySubreddit, selectedPost } = state
   const {
     items: posts,
-    post
   } = postsBySubreddit[selectedSubreddit] || {
     items: []
   }

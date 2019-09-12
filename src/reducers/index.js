@@ -40,14 +40,7 @@ const posts = (state = {
         isFetching: false,
         didInvalidate: false,
         items: items,
-        cursor: 0,
-        post: items[0],
         lastUpdated: action.receivedAt
-      }
-    case SELECT_POST:
-      return {
-        ...state,
-        post: action.post
       }
     default:
       return state
@@ -68,14 +61,13 @@ const postsBySubreddit = (state = { }, action) => {
   }
 }
 
-const selectedPost = (state = null, action) => {
+const selectedPost = (state = { }, action) => {
   switch (action.type) {
     case RECEIVE_POSTS:
       return action.posts[0]
     case SELECT_POST:
       return action.post
     case NEXT_POST:
-      console.log('next', state, action)
       return state
     case PREVIOUS_POST:
       return state

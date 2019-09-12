@@ -80,7 +80,6 @@ const mapStateToProps = state => {
   const { dispatch, selectedSubreddit, postsBySubreddit, selectedPost } = state
   const {
     items: posts,
-    post
   } = postsBySubreddit[selectedSubreddit] || {
     items: []
   }
