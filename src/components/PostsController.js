@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -13,48 +12,6 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 
 import { DEFAULT_SUBREDDITS } from '../constants'
 import Picker from './Picker'
-
-const PostsController = ({parent}) => {
-  const {dispach, selectedSubreddit, post} = parent.props
-  const classes = useStyles();
-
-  return (
-    <Card className={classes.card}>
-      <div className={classes.details}>
-        <div className={classes.controls}>
-          <IconButton aria-label="previous" color="inherit" onClick={parent.handlePreviousClick}>
-            <SkipPreviousIcon />
-          </IconButton>
-          <IconButton aria-label="refresh" color="inherit" onClick={parent.handleRefreshClick}>
-            <RefreshIcon />
-          </IconButton>
-          <IconButton aria-label="next" color="inherit" onClick={parent.handleNextClick}>
-            <SkipNextIcon />
-          </IconButton>
-          <Picker value={selectedSubreddit}
-                  onChange={parent.handleChangeSubreddit}
-                  options={DEFAULT_SUBREDDITS} />
-        </div>
-        <CardContent className={classes.content}>
-          {post
-            ? <div class={classes.titleContainer}>
-                <span class={classes.title}>
-                  {post ? post.title : ''}
-                </span>
-                <a target="_BLANK" href={"https://reddit.com" + post.permalink}>
-                  <span class={classes.comments}>{post.num_comments} Comment{post.num_comments > 0 ? 's' : ''}</span>
-                </a>
-              </div>
-            : ''}
-          <Typography variant="subtitle1" color="textSecondary">
-            {post && post.author_fullname}
-          </Typography>
-        </CardContent>
-      </div>
-    </Card>
-  );
-}
-
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -95,6 +52,47 @@ const useStyles = makeStyles(theme => ({
   titleContainer: {
   }
 }));
+
+const PostsController = ({parent}) => {
+  const { selectedSubreddit, post } = parent.props
+  const classes = useStyles();
+
+  return (
+    <Card className={classes.card}>
+      <div className={classes.details} style={{ flex: 1 }}>
+        <div className={classes.controls}>
+          <IconButton aria-label="previous" color="inherit" onClick={parent.handlePreviousClick}>
+            <SkipPreviousIcon />
+          </IconButton>
+          <IconButton aria-label="refresh" color="inherit" onClick={parent.handleRefreshClick}>
+            <RefreshIcon />
+          </IconButton>
+          <IconButton aria-label="next" color="inherit" onClick={parent.handleNextClick}>
+            <SkipNextIcon />
+          </IconButton>
+          <Picker value={selectedSubreddit}
+                  onChange={parent.handleChangeSubreddit}
+                  options={DEFAULT_SUBREDDITS} />
+        </div>
+        <CardContent className={classes.content}>
+          {post
+            ? <div class={classes.titleContainer}>
+                <span class={classes.title}>
+                  {post ? post.title : ''}
+                </span>
+                <a target="_BLANK" rel="noopener noreferrer" href={"https://reddit.com" + post.permalink}>
+                  <span class={classes.comments}>{post.num_comments} Comment{post.num_comments > 0 ? 's' : ''}</span>
+                </a>
+              </div>
+            : ''}
+          <Typography variant="subtitle1" color="textSecondary">
+            {post && post.author_fullname}
+          </Typography>
+        </CardContent>
+      </div>
+    </Card>
+  );
+}
 
 export default PostsController
 

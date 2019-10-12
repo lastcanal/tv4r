@@ -2,19 +2,56 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import PropTypes from 'prop-types'
-import {Box, Grid} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import { selectPost } from '../actions'
 
+const tileStyle = {
+  marginTop: 24,
+  marginBottom: 60,
+  marginLeft: 12,
+  marginRight: 12,
+  backgroundColor: 'black',
+  overflow: 'hidden',
+  borderRadius: 26,
+}
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+  },
+  gridList: {
+    flexWrap: 'nowrap',
+    transform: 'translateZ(0)',
+  },
+  title: {
+    color: '#eee',
+  },
+  titleBar: {
+    background:
+      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+  },
+  tileSelected: {
+    opacity: 1,
+    border: "7px solid #000",
+    ...tileStyle
+  },
+  tile: {
+    opacity: 0.8,
+    border: "7px solid #eee",
+    ...tileStyle
+  }
+});
+
 class Posts extends Component {
 
   onSelectPost(nextPost, index, e) {
     e.preventDefault()
-
-    const { dispatch } = this.props
     this.props.dispatch(selectPost(nextPost, index))
   }
 
@@ -37,7 +74,7 @@ class Posts extends Component {
     const {posts, selectedPost, classes} = this.props
     return (
       <div ref={node => this['posts-ref'] = node} className={classes.root}>
-        <GridList className={classes.gridList} cols={7.7} >
+        <GridList className={classes.gridList} cols={4.38} >
           {posts.map((post, index) => {
             return <GridListTile
               className={classNameForTile(selectedPost, post, classes)}
@@ -74,46 +111,6 @@ Posts.propTypes = {
   posts: PropTypes.array.isRequired,
   selectedPost: PropTypes.object.isRequired,
 }
-
-const tile = {
-  marginTop: 24,
-  marginBottom: 60,
-  marginLeft: 12,
-  marginRight: 12,
-  backgroundColor: 'black',
-  overflow: 'hidden',
-  borderRadius: 26,
-}
-
-const styles = theme => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-  },
-  gridList: {
-    flexWrap: 'nowrap',
-    transform: 'translateZ(0)',
-  },
-  title: {
-    color: '#eee',
-  },
-  titleBar: {
-    background:
-      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-  },
-  tileSelected: {
-    opacity: 1,
-    border: "7px solid #000",
-    ...tile
-  },
-  tile: {
-    opacity: 0.8,
-    border: "7px solid #eee",
-    ...tile
-  }
-});
 
 const mapStateToProps = state => {
   const { dispatch, selectedSubreddit, postsBySubreddit, selectedPost } = state

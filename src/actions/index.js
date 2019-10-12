@@ -3,7 +3,7 @@ import { extractPosts, filterPosts } from '../helpers'
 import {
   SELECT_SUBREDDIT, INVALIDATE_SUBREDDIT,
   REQUEST_POSTS, RECEIVE_POSTS, SELECT_POST,
-  DEFAULT_SUBREDDITS, NEXT_POST, PREVIOUS_POST,
+  NEXT_POST, PREVIOUS_POST,
   MEDIA_FALLBACK
 } from '../constants'
 

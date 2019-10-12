@@ -1,24 +1,35 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import {Box, Grid, Container} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import {isVideo} from '../helpers'
+import Container from '@material-ui/core/Container';
+import { isVideo } from '../helpers'
 import ReactHtmlParser from 'react-html-parser';
 import ReactPlayer from 'react-player'
 
-import { nextPost, previousPost, mediaFallback } from '../actions'
+import { nextPost, mediaFallback } from '../actions'
+
+const styles = theme => ({
+  root: {
+    backgroundColor: 'black',
+    margin: 0,
+    padding: 0,
+  },
+  playerWrapper: {},
+  reactPlayer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+  }
+});
 
 class Post extends Component {
 
   mediaEmbedContent() {
-    return new DOMParser().
-      parseFromString(this.props.post.media_embed.content, "text/html").
-      documentElement.
-      textContent;
+    return new DOMParser()
+      .parseFromString(this.props.post.media_embed.content, "text/html")
+      .documentElement
+      .textContent;
   }
 
   renderMediaEmbed() {
@@ -56,7 +67,7 @@ class Post extends Component {
   }
 
   renderMedia() {
-    const { post, media_fallback } = this.props
+    const { media_fallback } = this.props
     if (media_fallback) {
       return this.renderMediaEmbed()
     } else {
@@ -74,11 +85,26 @@ class Post extends Component {
     dispatch(mediaFallback())
   }
 
+  renderLoading() {
+    const { isFetching } = this.props
+    if (isFetching) {
+      return <h2>Loading...</h2>
+    } else {
+      return <h2>Empty.</h2>
+    }
+  }
+
   render() {
-    const { classes, post } = this.props
-    return <Container maxWidth={false} className={classes.root}>
-      <div>{this.renderMedia()}</div>
-    </Container>
+    const { classes, posts, isFetching } = this.props
+    if (posts.length === 0) {
+      return this.renderLoading()
+    } else {
+      return <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+        <Container maxWidth={false} className={classes.root}>
+          <div>{this.renderMedia()}</div>
+        </Container>
+      </div>
+    }
   }
 }
 
@@ -86,23 +112,15 @@ Post.propTypes = {
   post: PropTypes.object.isRequired
 }
 
-const styles = theme => ({
-  root: {
-    backgroundColor: 'black',
-    margin: 0,
-    padding: 0,
-  },
-  playerWrapper: {},
-  reactPlayer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-  }
-});
-
 const mapStateToProps = state => {
-  const { dispatch, selectedSubreddit, postsBySubreddit, selectedPost } = state
   const {
+    dispatch,
+    selectedSubreddit,
+    postsBySubreddit,
+    selectedPost } = state
+
+  const {
+    isFetching,
     items: posts,
   } = postsBySubreddit[selectedSubreddit] || {
     items: []
@@ -111,6 +129,7 @@ const mapStateToProps = state => {
   return {
     dispatch,
     posts,
+    isFetching,
     post: selectedPost.post,
     media_fallback: selectedPost.media_fallback
   }

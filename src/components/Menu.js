@@ -1,24 +1,33 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
 import ToolBar from '@material-ui/core/ToolBar';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 
 import { selectSubreddit, fetchPostsIfNeeded, invalidateSubreddit,
          nextPost, previousPost } from '../actions'
 
-         import Picker from './Picker'
 import Posts from './Posts'
-import Post from './Post'
 import HideOnScroll from './HideFootBar'
 import PostsController from './PostsController'
 
 import { DEFAULT_SUBREDDITS } from '../constants'
+
+const styles = (theme) => ({
+  root: {
+    position: 'fixed',
+    left: 0,
+    bottom: 0,
+    width: '100%',
+    padding: 0,
+  },
+  footbar: {
+    root: {
+      backgroundColor: 'red'
+    }
+  },
+});
 
 class Menu extends Component {
   static propTypes = {
@@ -86,9 +95,6 @@ class Menu extends Component {
 
   render() {
     const { classes } = this.props;
-    const { selectedSubreddit, posts, post,
-            isFetching, lastUpdated, dispatch } = this.props
-    const isEmpty = posts.length === 0
     return (
       <Container fluid classes={classes} maxWidth={false}>
         <HideOnScroll classes={classes.footbar} threshold={1}>
@@ -103,21 +109,6 @@ class Menu extends Component {
     )
   }
 }
-
-const styles = (theme) => ({
-  root: {
-    position: 'fixed',
-    left: 0,
-    bottom: 0,
-    width: '100%',
-    padding: 0,
-  },
-  footbar: {
-    root: {
-      backgroundColor: 'red'
-    }
-  },
-});
 
 const mapStateToProps = state => {
   const { selectedSubreddit, postsBySubreddit, selectedPost } = state

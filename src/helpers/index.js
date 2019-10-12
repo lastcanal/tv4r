@@ -1,4 +1,4 @@
-import { MEDIA_VIDEO, MEDIA_IMAGE, MEDIA_IMAGE_VIDEO } from '../constants'
+import { MEDIA_VIDEO, MEDIA_IMAGE } from '../constants'
 
 export const SUPPORTED_VIDEO_MEDIA = []
 export const SUPPORTED_IMAGE_MEDIA = []

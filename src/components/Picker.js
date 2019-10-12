@@ -1,12 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
+import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import InputBase from '@material-ui/core/InputBase';
+
+const useStyles = makeStyles(theme => ({
+  container: {
+      backgroundColor: 'white',
+      margin: 10
+  },
+  select: {
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      backgroundColor: 'white'
+    },
+    margin: {
+      margin: theme.spacing(1),
+    },
+  }
+}));
 
 const Picker = ({ value, onChange, options }) => {
   const classes = useStyles()
@@ -27,22 +40,5 @@ Picker.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired
 }
-
-const useStyles = makeStyles(theme => ({
-  container: {
-      backgroundColor: 'white',
-      margin: 10
-  },
-  select: {
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      backgroundColor: 'white'
-    },
-    margin: {
-      margin: theme.spacing(1),
-    },
-  }
-}));
 
 export default Picker
