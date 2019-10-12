@@ -8,29 +8,25 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import { selectPost } from '../actions'
 
-const tileStyle = {
-  marginTop: 24,
-  marginBottom: 60,
-  marginLeft: 12,
-  marginRight: 12,
-  backgroundColor: 'black',
+const tileStyles = theme => ({
+  margin: theme.spacing(2),
   overflow: 'hidden',
-  borderRadius: 26,
-}
+  borderRadius: theme.shape.borderRadius,
+})
 
 const styles = theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    overflow: 'hidden',
+    overflow: 'hidden'
   },
   gridList: {
     flexWrap: 'nowrap',
     transform: 'translateZ(0)',
   },
   title: {
-    color: '#eee',
+    color: theme.palette.primary.contrastText,
   },
   titleBar: {
     background:
@@ -38,13 +34,12 @@ const styles = theme => ({
   },
   tileSelected: {
     opacity: 1,
-    border: "7px solid #000",
-    ...tileStyle
+    border: `2px solid ${theme.palette.primary.main}`,
+    ...tileStyles(theme)
   },
   tile: {
     opacity: 0.8,
-    border: "7px solid #eee",
-    ...tileStyle
+    ...tileStyles(theme)
   }
 });
 
@@ -88,9 +83,6 @@ class Posts extends Component {
                   root: classes.titleBar,
                   title: classes.title,
                 }}
-                actionIcon={
-                  <div>"hi"</div>
-                }
               />
             </GridListTile>
           })}

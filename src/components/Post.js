@@ -11,7 +11,6 @@ import { nextPost, mediaFallback } from '../actions'
 
 const styles = theme => ({
   root: {
-    backgroundColor: 'black',
     margin: 0,
     padding: 0,
   },
@@ -20,6 +19,9 @@ const styles = theme => ({
     position: 'absolute',
     top: 0,
     left: 0,
+  },
+  spacer: {
+    height: '100vh'
   }
 });
 
@@ -86,23 +88,25 @@ class Post extends Component {
   }
 
   renderLoading() {
-    const { isFetching } = this.props
-    if (isFetching) {
-      return <h2>Loading...</h2>
-    } else {
-      return <h2>Empty.</h2>
-    }
+    return <h2>Loading...</h2>
+  }
+
+  renderEmpty() {
+    return <h2>No TV Found.</h2>
   }
 
   render() {
     const { classes, posts, isFetching } = this.props
-    if (posts.length === 0) {
+    if (isFetching) {
       return this.renderLoading()
+    } else if (posts.length === 0) {
+      return this.renderEmpty()
     } else {
       return <div style={{ opacity: isFetching ? 0.5 : 1 }}>
         <Container maxWidth={false} className={classes.root}>
           <div>{this.renderMedia()}</div>
         </Container>
+        <div class={classes.spacer}></div>
       </div>
     }
   }

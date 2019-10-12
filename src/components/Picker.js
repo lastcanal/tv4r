@@ -4,19 +4,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(({spacing}) => ({
   container: {
-      backgroundColor: 'white',
-      margin: 10
+      margin: spacing(2)
   },
   select: {
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-      backgroundColor: 'white'
     },
     margin: {
-      margin: theme.spacing(1),
+      margin: spacing(1),
     },
   }
 }));
@@ -27,7 +25,7 @@ const Picker = ({ value, onChange, options }) => {
   return <span class={classes.container}>
     <Select classes={classes.select} onChange={e => onChange(e.target.value)} value={value}>
       {options.map(option =>
-        <MenuItem value={option} key={option}>{option}</MenuItem>
+        <MenuItem value={option} key={option}>r/{option}</MenuItem>
       )}
     </Select>
   </span>

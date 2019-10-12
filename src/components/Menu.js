@@ -4,28 +4,26 @@ import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import ToolBar from '@material-ui/core/ToolBar';
+import Paper from '@material-ui/core/Paper';
 
 import { selectSubreddit, fetchPostsIfNeeded, invalidateSubreddit,
          nextPost, previousPost } from '../actions'
 
-import Posts from './Posts'
-import HideOnScroll from './HideFootBar'
-import PostsController from './PostsController'
-
 import { DEFAULT_SUBREDDITS } from '../constants'
 
-const styles = (theme) => ({
+import Posts from './Posts'
+import Picker from './Picker'
+import Controls from './Controls'
+import Title from './Title'
+
+const styles = ({ palette, spacing, typography }) => ({
   root: {
     position: 'fixed',
     left: 0,
     bottom: 0,
-    width: '100%',
     padding: 0,
-  },
-  footbar: {
-    root: {
-      backgroundColor: 'red'
-    }
+    width: '100%',
+    backgroundColor: palette.background.default,
   },
 });
 
@@ -70,43 +68,27 @@ class Menu extends Component {
     }
   }
 
-  handleChangeSubreddit = (nextSubreddit) => {
+  changeSubreddit(nextSubreddit) {
     this.props.dispatch(selectSubreddit(nextSubreddit))
   }
 
-  handleRefreshClick = (e) => {
-    e.preventDefault()
-    const { dispatch, selectedSubreddit } = this.props
-    dispatch(invalidateSubreddit(selectedSubreddit))
-    dispatch(fetchPostsIfNeeded(selectedSubreddit))
-  }
-
-  handleNextClick = (e) => {
-    e.preventDefault()
-    const { dispatch, posts } = this.props
-    dispatch(nextPost(posts))
-  }
-
-  handlePreviousClick = (e) => {
-    e.preventDefault()
-    const { dispatch, posts } = this.props
-    dispatch(previousPost(posts))
-  }
-
   render() {
-    const { classes } = this.props;
-    return (
+    const { classes, dispatch, post, posts, selectedSubreddit } = this.props;
+    return <Paper classes={classes.paper}>
       <Container fluid classes={classes} maxWidth={false}>
-        <HideOnScroll classes={classes.footbar} threshold={1}>
-          <ToolBar>
-            <PostsController parent={this} />
-          </ToolBar>
-          <ToolBar>
-            <Posts />
-          </ToolBar>
-        </HideOnScroll>
+        <ToolBar>
+          <Posts />
+        </ToolBar>
+        <ToolBar>
+          <Controls dispatch={dispatch} posts={posts}
+                    selectedSubreddit={selectedSubreddit} />
+          <Picker value={selectedSubreddit}
+                  onChange={this.changeSubreddit.bind(this)}
+                  options={DEFAULT_SUBREDDITS} />
+          <Title post={post} />
+        </ToolBar>
       </Container>
-    )
+    </Paper>
   }
 }
 
