@@ -3,16 +3,24 @@ import { MEDIA_VIDEO, MEDIA_IMAGE, MEDIA_IMAGE_VIDEO } from '../constants'
 export const SUPPORTED_VIDEO_MEDIA = []
 export const SUPPORTED_IMAGE_MEDIA = []
 
-export function filterPosts(posts) {
-  return filterVideo(posts)
-//switch (mediaType) {
-//  case MEDIA_VIDEO:
-//    return filterVideo(posts)
-//  case MEDIA_IMAGE:
-//    return filterImage(posts)
-//  default:
-//    return filterVideoImage(posts)
-//}
+export function extractPosts(json) {
+  // json.data?.children? ?? []
+  const children = (json && json.data && json.data.children) || []
+  return children.length === 0 ? [] : children.reduce((acc, child) => {
+    if (child && child.data) { acc.push(child.data) }
+    return acc
+  }, [])
+}
+
+export function filterPosts(posts, mediaType = MEDIA_VIDEO) {
+  switch (mediaType) {
+    case MEDIA_VIDEO:
+      return filterVideo(posts)
+    case MEDIA_IMAGE:
+      return filterImage(posts)
+    default:
+      return filterVideoImage(posts)
+  }
 }
 
 export function filterVideo(posts) {
@@ -38,3 +46,5 @@ export function isImage(post) {
   return !!(post.thumbnail &&
     !(post.thumbnail === 'self' || post.thumbnail === 'default'))
 }
+
+

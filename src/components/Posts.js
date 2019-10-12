@@ -9,10 +9,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import { selectPost } from '../actions'
 
-import Post from './Post'
-
 class Posts extends Component {
-//const Posts = ({posts}) => {
 
   onSelectPost(nextPost, index, e) {
     e.preventDefault()
@@ -21,14 +18,32 @@ class Posts extends Component {
     this.props.dispatch(selectPost(nextPost, index))
   }
 
+  componentWillReceiveProps(nextProps) {
+    const post = nextProps.selectedPost.post
+    if (!post || (post.id === null && typeof(post.id) === 'undefined'))
+      return false;
+    this.scrollIntoView(post)
+  }
+
+  scrollIntoView(post) {
+    const element = this['post-' + post.id]
+    if (element) {
+      const box = element.parentNode.getBoundingClientRect()
+      element.parentNode.scrollLeft = element.offsetLeft - (box.width / Math.PI)
+    }
+  }
+
   render() {
-    const {posts, classes} = this.props
+    const {posts, selectedPost, classes} = this.props
     return (
-      <div className={classes.root}>
-        <Post />
+      <div ref={node => this['posts-ref'] = node} className={classes.root}>
         <GridList className={classes.gridList} cols={7.7} >
           {posts.map((post, index) => {
-            return <GridListTile key={post.id} onClick={this.onSelectPost.bind(this, post, index)}>
+            return <GridListTile
+              className={classNameForTile(selectedPost, post, classes)}
+              key={post.id}
+              ref={node => this['post-' + post.id] = node}
+              onClick={this.onSelectPost.bind(this, post, index)}>
               <img src={post.thumbnail} alt={post.title} />
               <GridListTileBar
                 title={post.title}
@@ -46,12 +61,28 @@ class Posts extends Component {
       </div>
     );
   }
+}
 
+const classNameForTile = (selectedPost, post, classes) => {
+  if (!selectedPost || !selectedPost.post || !post.id) return classes.tile
+  return selectedPost.post.id === post.id
+    ? classes.tileSelected
+    : classes.tile
 }
 
 Posts.propTypes = {
   posts: PropTypes.array.isRequired,
-  post: PropTypes.object.isRequired,
+  selectedPost: PropTypes.object.isRequired,
+}
+
+const tile = {
+  marginTop: 24,
+  marginBottom: 60,
+  marginLeft: 12,
+  marginRight: 12,
+  backgroundColor: 'black',
+  overflow: 'hidden',
+  borderRadius: 26,
 }
 
 const styles = theme => ({
@@ -60,20 +91,28 @@ const styles = theme => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
   },
   gridList: {
     flexWrap: 'nowrap',
-    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: 'translateZ(0)',
   },
   title: {
-    color: 'white'
+    color: '#eee',
   },
   titleBar: {
     background:
       'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
+  tileSelected: {
+    opacity: 1,
+    border: "7px solid #000",
+    ...tile
+  },
+  tile: {
+    opacity: 0.8,
+    border: "7px solid #eee",
+    ...tile
+  }
 });
 
 const mapStateToProps = state => {
@@ -87,7 +126,8 @@ const mapStateToProps = state => {
   return {
     dispatch,
     posts,
-    post: selectedPost,
+    selectedPost,
+    visible: true
   }
 }
 

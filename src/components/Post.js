@@ -22,24 +22,37 @@ class Post extends Component {
   }
 
   renderMediaEmbed() {
-    if (this.props.post && isVideo(this.props.post)) {
-      return <div>{ ReactHtmlParser(this.mediaEmbedContent()) }</div>;
+    const { post, classes } = this.props
+    if (post && isVideo(post)) {
+      const transform = (node, index) => {
+        if(node.type === 'tag' && node.name === 'iframe') {
+          node.attribs.height = "100%"
+          node.attribs.width = "100%"
+          node.attribs.class = classes.reactPlayer
+        }
+      }
+      return <div class={classes.playerWrapper}>
+        {ReactHtmlParser(this.mediaEmbedContent(), {transform})}
+      </div>;
     } else {
       return <div></div>
     }
   }
 
   renderMediaPlayer() {
-    const { post } = this.props
-    return <ReactPlayer
-      playing
-      url={post.url}
-      height={post.media.oembed.height}
-      height="800px"
-      width="100%"
-      onEnded={this.onMediaEnded.bind(this)}
-      onError={this.onMediaError.bind(this)}
-      controls={true} />
+    const { post, classes } = this.props
+    return <div class={classes.playerWrapper}>
+      <ReactPlayer
+        ref={node => this.player = node}
+        playing
+        url={post.url}
+        className={classes.reactPlayer}
+        width='100%'
+        height='100%'
+        onEnded={this.onMediaEnded.bind(this)}
+        onError={this.onMediaError.bind(this)}
+        controls={true} />
+    </div>
   }
 
   renderMedia() {
@@ -57,21 +70,14 @@ class Post extends Component {
   }
 
   onMediaError(error) {
-    console.log('media error', error)
     const { dispatch } = this.props
     dispatch(mediaFallback())
   }
 
   render() {
     const { classes, post } = this.props
-    return <Container maxWidth="xl" className={classes.root}>
+    return <Container maxWidth={false} className={classes.root}>
       <div>{this.renderMedia()}</div>
-      <h1>
-         {post ? post.title : 'unknown'}
-      </h1>
-      <a target="_BLANK" href={"https://reddit.com" + post.permalink}>
-        {post.num_comments} Comment{post.num_comments > 0 ? 's' : ''}
-      </a>
     </Container>
   }
 }
@@ -82,9 +88,16 @@ Post.propTypes = {
 
 const styles = theme => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
-    border: "10px solid black",
+    backgroundColor: 'black',
+    margin: 0,
+    padding: 0,
   },
+  playerWrapper: {},
+  reactPlayer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+  }
 });
 
 const mapStateToProps = state => {
@@ -103,7 +116,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default  connect(mapStateToProps)(withStyles(styles)(Post))
+export default connect(mapStateToProps)(withStyles(styles)(Post))
 
 
 

@@ -12,4 +12,9 @@ export const PREVIOUS_POST = 'PREVIOUS_POST'
 export const SELECT_POST = 'SELECT_POST'
 export const MEDIA_FALLBACK = 'MEDIA_FALLBACK'
 
-export const DEFAULT_SUBREDDITS = ['documentaries', 'videos', 'images', ]
+export const DEFAULT_SUBREDDITS = [
+  'videos',
+  'documentaries',
+  'politicalvideos',
+  'artisanvideos'
+]

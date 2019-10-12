@@ -6,7 +6,7 @@ import { HashRouter, Route } from 'react-router-dom';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk'
 import reducer from './reducers'
-import App from './containers/App'
+import App from './App'
 
 const middleware = [ thunk ]
 
@@ -14,8 +14,6 @@ const store = createStore(
   reducer,
   composeWithDevTools(applyMiddleware(...middleware))
 )
-
-console.log('store', store)
 
 render(
   <Provider store={store}>

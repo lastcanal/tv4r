@@ -8,7 +8,7 @@ import {
 
 import { filterPosts } from '../helpers'
 
-const selectedSubreddit = (state = DEFAULT_SUBREDDITS[0], action) => {
+export const selectedSubreddit = (state = DEFAULT_SUBREDDITS[0], action) => {
   switch (action.type) {
     case SELECT_SUBREDDIT:
       return action.subreddit
@@ -22,6 +22,7 @@ const posts = (state = {
   didInvalidate: false,
   items: []
 }, action) => {
+  /* istanbul ignore next */
   switch (action.type) {
     case INVALIDATE_SUBREDDIT:
       return {
@@ -44,11 +45,12 @@ const posts = (state = {
         lastUpdated: action.receivedAt
       }
     default:
+      /* istanbul ignore next */
       return state
   }
 }
 
-const postsBySubreddit = (state = { }, action) => {
+export const postsBySubreddit = (state = { }, action) => {
   switch (action.type) {
     case INVALIDATE_SUBREDDIT:
     case RECEIVE_POSTS:
@@ -62,7 +64,7 @@ const postsBySubreddit = (state = { }, action) => {
   }
 }
 
-const selectedPost = (state = { }, action) => {
+export const selectedPost = (state = { }, action) => {
   switch (action.type) {
     case RECEIVE_POSTS:
       return {

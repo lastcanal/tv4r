@@ -1,4 +1,4 @@
-import { filterPosts } from '../helpers'
+import { extractPosts, filterPosts } from '../helpers'
 
 import {
   SELECT_SUBREDDIT, INVALIDATE_SUBREDDIT,
@@ -25,7 +25,7 @@ export const requestPosts = subreddit => ({
 export const receivePosts = (subreddit, json) => ({
   type: RECEIVE_POSTS,
   subreddit,
-  posts: filterPosts(json.data.children.map(child => child.data)),
+  posts: filterPosts(extractPosts(json)),
   receivedAt: Date.now()
 })
 
@@ -53,7 +53,7 @@ const fetchPosts = subreddit => dispatch => {
   dispatch(requestPosts(subreddit))
   return fetch(`https://www.reddit.com/r/${subreddit}.json?limit=1000`)
     .then(response => response.json())
-    .then(json => dispatch(receivePosts(subreddit, json)))
+    .then(response => dispatch(receivePosts(subreddit, response)))
 }
 
 const shouldFetchPosts = (state, subreddit) => {
@@ -72,3 +72,5 @@ export const fetchPostsIfNeeded = subreddit => (dispatch, getState) => {
     return dispatch(fetchPosts(subreddit))
   }
 }
+
+
