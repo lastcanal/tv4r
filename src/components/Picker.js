@@ -25,9 +25,12 @@ const useSelectStyles = makeStyles(({ spacing }) => ({
 
 const Picker = ({ value, onChange, options }) => {
   const classes = useStyles()
+  const onChangeWrapper = e => onChange(e.target.value)
 
   return <span className={classes.container}>
-    <Select classes={useSelectStyles()} onChange={e => onChange(e.target.value)} value={value}>
+    <Select
+      classes={useSelectStyles()}
+      onChange={onChangeWrapper} value={value}>
       {options.map(option =>
         <MenuItem value={option} key={option}>r/{option}</MenuItem>
       )}
@@ -39,7 +42,7 @@ Picker.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.string.isRequired
   ).isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   onChange: PropTypes.func.isRequired
 }
 

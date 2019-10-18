@@ -120,3 +120,4 @@ const mapStateToProps = state => {
 
 export default  connect(mapStateToProps)(withStyles(styles)(Posts))
 
+

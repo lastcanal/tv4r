@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux'
 import {
   SELECT_SUBREDDIT, INVALIDATE_SUBREDDIT,
-  REQUEST_POSTS, RECEIVE_POSTS, SELECT_POST,
-  DEFAULT_SUBREDDITS, NEXT_POST, PREVIOUS_POST,
-  MEDIA_FALLBACK
+  REQUEST_POSTS, RECEIVE_POSTS, RECEIVE_POSTS_ERROR,
+  SELECT_POST, NEXT_POST, PREVIOUS_POST, MEDIA_FALLBACK,
+  DEFAULT_SUBREDDIT,
 } from '../constants'
 
 import { filterPosts } from '../helpers'
 
-export const selectedSubreddit = (state = DEFAULT_SUBREDDITS[0], action) => {
+export const selectedSubreddit = (state = DEFAULT_SUBREDDIT, action) => {
   switch (action.type) {
     case SELECT_SUBREDDIT:
       return action.subreddit
@@ -22,7 +22,6 @@ const posts = (state = {
   didInvalidate: false,
   items: []
 }, action) => {
-  /* istanbul ignore next */
   switch (action.type) {
     case INVALIDATE_SUBREDDIT:
       return {
@@ -33,7 +32,8 @@ const posts = (state = {
       return {
         ...state,
         isFetching: true,
-        didInvalidate: false
+        didInvalidate: false,
+        error: null
       }
     case RECEIVE_POSTS:
       const items = filterPosts(action.posts)
@@ -44,6 +44,14 @@ const posts = (state = {
         items: items,
         lastUpdated: action.receivedAt
       }
+    case RECEIVE_POSTS_ERROR:
+      return {
+        ...state,
+        isFetching: false,
+        didInvalidate: false,
+        items: [],
+        error: action.error
+      }
     default:
       /* istanbul ignore next */
       return state
@@ -53,8 +61,9 @@ const posts = (state = {
 export const postsBySubreddit = (state = { }, action) => {
   switch (action.type) {
     case INVALIDATE_SUBREDDIT:
-    case RECEIVE_POSTS:
     case REQUEST_POSTS:
+    case RECEIVE_POSTS:
+    case RECEIVE_POSTS_ERROR:
       return {
         ...state,
         [action.subreddit]: posts(state[action.subreddit], action)

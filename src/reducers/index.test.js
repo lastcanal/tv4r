@@ -90,10 +90,26 @@ describe('reducers', () => {
     }))
   })
 
+  it('should receive errors for fetch posts from subreddit', () => {
+    fc.assert(fc.property(fc.string(), fc.string(), (subreddit, error) => {
+      const action = {
+        type: types.RECEIVE_POSTS_ERROR,
+        subreddit,
+        error
+      }
+
+      const response = root(undefined, action)
+      expect(response.postsBySubreddit[subreddit].error).toBe(error);
+    }))
+  })
+
   it('should select next and previous post', () => {
     fc.assert(fc.property(fc.string(), fc.array(fc.object(), 100), fc.integer(0, 99), (subreddit, objects, index) => {
       const posts = objects.map(injectMedia('secure_media'))
       const post = posts[index]
+
+      if (!post) return null
+
       const setupAction = {
         type: types.RECEIVE_POSTS,
         posts,
@@ -113,16 +129,19 @@ describe('reducers', () => {
         posts
       }
       const nextResponse = root(undefined, nextAction)
-      if (post) expect(nextResponse.selectedPost.post).not.toBeNull();
+      expect(nextResponse.selectedPost.post).not.toBeNull();
 
       const prevAction = {
         type: types.PREVIOUS_POST,
         posts
       }
       var prevResponse = root(undefined, prevAction)
-      if (post) expect(prevResponse.selectedPost.post).not.toBeNull();
+      expect(prevResponse.selectedPost.post).not.toBeNull();
+
       prevResponse = root(undefined, prevAction)
-      if (post) expect(prevResponse.selectedPost.post).not.toBeNull();
+      expect(prevResponse.selectedPost.post).not.toBeNull();
+      expect(prevResponse.selectedPost.post)
+        .not.toBe(nextResponse.selectedPost.post);
     }))
   })
 
@@ -152,6 +171,7 @@ describe('reducers', () => {
       expect(root(undefined, action).selectedPost.media_fallback).toBeTruthy()
     }))
   })
+
   it('should ignore defaults', () => {
     fc.assert(fc.property(fc.string(), (type) => {
       const action = {

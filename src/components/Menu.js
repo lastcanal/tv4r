@@ -29,22 +29,21 @@ const styles = ({ palette }) => ({
 
 class Menu extends Component {
   static propTypes = {
-    selectedSubreddit: PropTypes.string.isRequired,
-    posts: PropTypes.array.isRequired,
+    selectedSubreddit: PropTypes.string,
+    posts: PropTypes.array,
     isFetching: PropTypes.bool.isRequired,
     lastUpdated: PropTypes.number,
     dispatch: PropTypes.func.isRequired
   }
 
   componentDidMount() {
-    const { dispatch, selectedSubreddit, match} = this.props
-    const nextSubreddit = match ? match.params.subreddit : selectedSubreddit
-    const subreddit = nextSubreddit || DEFAULT_SUBREDDITS[0]
-    dispatch(invalidateSubreddit(subreddit))
-    dispatch(fetchPostsIfNeeded(subreddit))
-    document.addEventListener('keydown', this.handleKeyDown.bind(this));
+    const { dispatch, selectedSubreddit } = this.props
+    dispatch(invalidateSubreddit(selectedSubreddit))
+    dispatch(fetchPostsIfNeeded(selectedSubreddit))
+    document.body.addEventListener('keydown', this.handleKeyDown.bind(this));
   }
 
+  // istanbul ignore next //
   componentDidUpdate(prevProps) {
     if (prevProps.selectedSubreddit !== this.props.selectedSubreddit) {
       const { dispatch, selectedSubreddit } = this.props
@@ -52,10 +51,12 @@ class Menu extends Component {
     }
   }
 
+  // istanbul ignore next //
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyDown);
+    document.body.removeEventListener('keydown', this.handleKeyDown);
   }
 
+  // istanbul ignore next //
   handleKeyDown(e) {
     const { dispatch, posts } = this.props
     switch (e.key) {
@@ -68,6 +69,7 @@ class Menu extends Component {
     }
   }
 
+  // istanbul ignore next //
   changeSubreddit(nextSubreddit) {
     this.props.dispatch(selectSubreddit(nextSubreddit))
   }

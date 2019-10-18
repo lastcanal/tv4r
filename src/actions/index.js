@@ -1,9 +1,10 @@
 import { extractPosts, filterPosts } from '../helpers'
+import reddit from '../helpers/reddit'
 
 import {
   SELECT_SUBREDDIT, INVALIDATE_SUBREDDIT,
-  REQUEST_POSTS, RECEIVE_POSTS, SELECT_POST,
-  NEXT_POST, PREVIOUS_POST,
+  REQUEST_POSTS, RECEIVE_POSTS, RECEIVE_POSTS_ERROR,
+  SELECT_POST, NEXT_POST, PREVIOUS_POST,
   MEDIA_FALLBACK
 } from '../constants'
 
@@ -26,8 +27,16 @@ export const receivePosts = (subreddit, json) => ({
   type: RECEIVE_POSTS,
   subreddit,
   posts: filterPosts(extractPosts(json)),
+  error: null,
   receivedAt: Date.now()
 })
+
+export const receivePostsError = (subreddit, error) => ({
+  type: RECEIVE_POSTS_ERROR,
+  subreddit,
+  error
+})
+
 
 export const selectPost = (post, index) => ({
   type: SELECT_POST,
@@ -51,9 +60,10 @@ export const mediaFallback = () => ({
 
 const fetchPosts = subreddit => dispatch => {
   dispatch(requestPosts(subreddit))
-  return fetch(`https://www.reddit.com/r/${subreddit}.json?limit=1000`)
+  return reddit.fetchPosts(subreddit)
     .then(response => response.json())
     .then(response => dispatch(receivePosts(subreddit, response)))
+    .catch(error => dispatch(receivePostsError(subreddit, error)))
 }
 
 const shouldFetchPosts = (state, subreddit) => {
@@ -72,5 +82,4 @@ export const fetchPostsIfNeeded = subreddit => (dispatch, getState) => {
     return dispatch(fetchPosts(subreddit))
   }
 }
-
 

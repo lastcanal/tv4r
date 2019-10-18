@@ -44,7 +44,7 @@ class Post extends Component {
           node.attribs.class = classes.reactPlayer
         }
       }
-      return <div class={classes.playerWrapper}>
+      return <div className={classes.playerWrapper}>
         {ReactHtmlParser(this.mediaEmbedContent(), {transform})}
       </div>;
     } else {
@@ -54,7 +54,7 @@ class Post extends Component {
 
   renderMediaPlayer() {
     const { post, classes } = this.props
-    return <div class={classes.playerWrapper}>
+    return <div className={classes.playerWrapper}>
       <ReactPlayer
         ref={node => this.player = node}
         playing
@@ -77,11 +77,13 @@ class Post extends Component {
     }
   }
 
+  // istanbul ignore next //
   onMediaEnded() {
     const { dispatch, posts } = this.props
     dispatch(nextPost(posts))
   }
 
+  // istanbul ignore next //
   onMediaError(error) {
     const { dispatch } = this.props
     dispatch(mediaFallback())
@@ -106,7 +108,7 @@ class Post extends Component {
         <Container maxWidth={false} className={classes.root}>
           <div>{this.renderMedia()}</div>
         </Container>
-        <div class={classes.spacer}></div>
+        <div className={classes.spacer}></div>
       </div>
     }
   }
@@ -140,6 +142,4 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(withStyles(styles)(Post))
-
-
 

@@ -55,3 +55,4 @@ const Controls = ({ dispatch, posts, selectedSubreddit }) => {
 }
 
 export default Controls
+

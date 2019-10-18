@@ -20,11 +20,12 @@ const Title = ({ post }) => {
   const classes = useStyles()
   if (!post) return ''
 
-  return <div class={classes.root}>
-    <a class={classes.title} target="_BLANK" rel="noopener noreferrer" href={"https://reddit.com" + post.permalink}>
-        {post ? post.title : ''}
+  return <div className={classes.root}>
+    <a className={classes.title} target="_BLANK" rel="noopener noreferrer" href={"https://reddit.com" + post.permalink}>
+        {post.title ? post.title : ''}
     </a>
   </div>
 }
 
 export default Title
+

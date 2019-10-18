@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Title should render Title 1`] = `ReactWrapper {}`;
+
+exports[`Title should render without post 1`] = `ReactWrapper {}`;
+
+exports[`Title should render without title 1`] = `ReactWrapper {}`;
