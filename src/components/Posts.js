@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react';
+
 import { connect } from 'react-redux'
 
 import PropTypes from 'prop-types'
@@ -8,10 +9,10 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import { selectPost } from '../actions'
 
-const tileStyles = theme => ({
-  margin: theme.spacing(2),
+const tileStyles = ({spacing, shape}) => ({
+  margin: spacing(2),
   overflow: 'hidden',
-  borderRadius: theme.shape.borderRadius,
+  borderRadius: shape.borderRadius,
 })
 
 const styles = theme => ({
@@ -43,65 +44,62 @@ const styles = theme => ({
   }
 });
 
-class Posts extends Component {
+const Posts = ({ posts, selected, classes, dispatch }) => {
 
-  onSelectPost(nextPost, index, e) {
+  const refs = {}
+
+  const onSelectPost = (nextPost, index, e) => {
     e.preventDefault()
-    this.props.dispatch(selectPost(nextPost, index))
+    dispatch(selectPost(nextPost, index))
   }
 
-  componentWillReceiveProps(nextProps) {
-    const post = nextProps.selectedPost.post
-    if (!post || (post.id === null && typeof(post.id) === 'undefined'))
-      return false;
-    this.scrollIntoView(post)
-  }
-
-  scrollIntoView(post) {
-    const element = this['post-' + post.id]
-    if (element) {
-      const box = element.parentNode.getBoundingClientRect()
-      element.parentNode.scrollLeft = element.offsetLeft - (box.width / Math.PI)
+  const scrollIntoView = () => {
+    if (selected && selected.post && selected.post.id) {
+      const element = refs['post-' + selected.post.id]
+      if (element) {
+        const box = element.parentNode.getBoundingClientRect()
+        element.parentNode.scrollLeft = element.offsetLeft - (box.width / Math.PI)
+      }
     }
   }
 
-  render() {
-    const {posts, selectedPost, classes} = this.props
-    return (
-      <div ref={node => this['posts-ref'] = node} className={classes.root}>
-        <GridList className={classes.gridList} cols={4.38} >
-          {posts.map((post, index) => {
-            return <GridListTile
-              className={classNameForTile(selectedPost, post, classes)}
-              key={post.id}
-              ref={node => this['post-' + post.id] = node}
-              onClick={this.onSelectPost.bind(this, post, index)}>
-              <img src={post.thumbnail} alt={post.title} />
-              <GridListTileBar
-                title={post.title}
-                classes={{
-                  root: classes.titleBar,
-                  title: classes.title,
-                }}
-              />
-            </GridListTile>
-          })}
-        </GridList>
-      </div>
-    );
-  }
+  useEffect(scrollIntoView, [selected])
+
+  return (
+    <div ref={node => refs['posts-ref'] = node} className={classes.root}>
+      <GridList className={classes.gridList} cols={4.38} >
+        {posts.map((post, index) => {
+          return <GridListTile
+            className={classNameForTile(selected, post, classes)}
+            key={post.id}
+            ref={node => refs['post-' + post.id] = node}
+            onClick={onSelectPost.bind(this, post, index)}>
+            <img src={post.thumbnail} alt={post.title} />
+            <GridListTileBar
+              title={post.title}
+              classes={{
+                root: classes.titleBar,
+                title: classes.title,
+              }}
+            />
+          </GridListTile>
+        })}
+      </GridList>
+    </div>
+  )
+
 }
 
-const classNameForTile = (selectedPost, post, classes) => {
-  if (!selectedPost || !selectedPost.post || !post.id) return classes.tile
-  return selectedPost.post.id === post.id
+const classNameForTile = (selected, post, classes) => {
+  if (!selected || !selected.post || !post.id) return classes.tile
+  return selected.post.id === post.id
     ? classes.tileSelected
     : classes.tile
 }
 
 Posts.propTypes = {
   posts: PropTypes.array.isRequired,
-  selectedPost: PropTypes.object.isRequired,
+  selected: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => {
@@ -115,7 +113,7 @@ const mapStateToProps = state => {
   return {
     dispatch,
     posts,
-    selectedPost,
+    selected: selectedPost,
     visible: true
   }
 }

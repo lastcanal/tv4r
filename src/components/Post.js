@@ -113,7 +113,7 @@ class Post extends Component {
 }
 
 Post.propTypes = {
-  post: PropTypes.object.isRequired
+  post: PropTypes.object
 }
 
 const mapStateToProps = state => {

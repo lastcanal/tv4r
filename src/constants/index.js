@@ -18,3 +18,5 @@ export const DEFAULT_SUBREDDITS = [
   'politicalvideos',
   'artisanvideos'
 ]
+
+export const DEFAULT_SUBREDDIT = DEFAULT_SUBREDDITS[0]

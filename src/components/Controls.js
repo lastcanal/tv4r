@@ -41,7 +41,7 @@ const Controls = ({ dispatch, posts, selectedSubreddit }) => {
 
   const classes = useStyles()
 
-  return <div class={classes.controls}>
+  return <div className={classes.controls}>
     <IconButton aria-label="previous" color="inherit" onClick={handlePreviousClick}>
       <SkipPreviousIcon />
     </IconButton>

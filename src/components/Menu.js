@@ -16,7 +16,7 @@ import Picker from './Picker'
 import Controls from './Controls'
 import Title from './Title'
 
-const styles = ({ palette, spacing, typography }) => ({
+const styles = ({ palette }) => ({
   root: {
     position: 'fixed',
     left: 0,
@@ -74,8 +74,8 @@ class Menu extends Component {
 
   render() {
     const { classes, dispatch, post, posts, selectedSubreddit } = this.props;
-    return <Paper classes={classes.paper}>
-      <Container fluid classes={classes} maxWidth={false}>
+    return <Paper>
+      <Container classes={classes} maxWidth={false}>
         <ToolBar>
           <Posts />
         </ToolBar>

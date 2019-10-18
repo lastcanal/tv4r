@@ -27,7 +27,7 @@ class App extends Component {
     const { classes } = this.props;
     return (
       <MuiThemeProvider theme={theme}>
-        <Container fluid="true" classes={classes} maxWidth={false}>
+        <Container classes={classes} maxWidth={false}>
           <Menu />
           <Post />
         </Container>
