@@ -29,7 +29,7 @@ export const selectedSubreddit = (state = DEFAULT_SUBREDDIT, action) => {
   }
 }
 
-const posts = (state = {
+const selectedPosts = (state = {
   isFetching: false,
   didInvalidate: false,
   items: []
@@ -90,7 +90,7 @@ export const postsBySubreddit = (state = { cursor: {} }, action) => {
     case RECEIVE_POSTS_ERROR:
       return {
         ...state,
-        [action.subreddit]: posts(state[action.subreddit], action),
+        [action.subreddit]: selectedPosts(state[action.subreddit], action),
         cursor: selectedPost(state.cursor || {}, action)
       }
     case SELECT_POST:
@@ -103,11 +103,12 @@ export const postsBySubreddit = (state = { cursor: {} }, action) => {
       }
     case LOCATION_CHANGE:
       const subreddit = getNewSubredditFromPath(null, action)
+      const posts = state[subreddit] ? state[subreddit].items : []
       if (subreddit) {
         return {
           ...state,
-          [subreddit]: posts((state[subreddit] || {}), { ...action, subreddit }),
-          cursor: selectedPost(state.cursor || {}, { ...action, subreddit })
+          [subreddit]: selectedPosts((state[subreddit] || {}), { ...action, posts, subreddit }),
+          cursor: selectedPost(state.cursor || {}, { ...action, posts, subreddit })
         }
       } else {
         return state
@@ -157,21 +158,14 @@ export const selectedPost = (state = { }, action) => {
       }
     case LOCATION_CHANGE:
       const match = matchRedditPath(action.payload.location.pathname)
-      if (match) {
-        const { postId } = match.params
-        if (!state.post || (postId !== state.post.id)) {
-          return {
-            ...state,
-            post: {
-              id: postId,
-            }
-          }
-        } else {
-          console.error('need posts for history change!', state, action)
+      if (match && (!state.post || (match.params.postId !== state.post.id))) {
+        return {
+          ...state,
+          ...findPostById(match.params.postId, action.posts)
         }
+      } else {
+        return state
       }
-
-      return state
     default:
       return state
   }
