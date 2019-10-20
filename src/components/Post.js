@@ -122,8 +122,9 @@ const mapStateToProps = state => {
   const {
     dispatch,
     selectedSubreddit,
-    postsBySubreddit,
-    selectedPost } = state
+    postsBySubreddit } = state
+
+  const selectedPost = postsBySubreddit.cursor || {}
 
   const {
     isFetching,

@@ -14,10 +14,10 @@ export const SELECT_POST = 'SELECT_POST'
 export const MEDIA_FALLBACK = 'MEDIA_FALLBACK'
 
 export const DEFAULT_SUBREDDITS = [
-  'videos',
-  'documentaries',
-  'politicalvideos',
-  'artisanvideos'
+  'Videos',
+  'Documentaries',
+  'PoliticalVideos',
+  'ArtisanVideos'
 ]
 
 export const DEFAULT_SUBREDDIT = DEFAULT_SUBREDDITS[0]

@@ -27,10 +27,10 @@ describe('Post', () => {
           items: [ post ],
           isFetching: false,
           didInvalidate: false
-        }
+        },
+        cursor: { post }
       },
       selectedSubreddit: 'foo',
-      selectedPost: { post }
     })
 
 
@@ -63,10 +63,10 @@ describe('Post', () => {
           items: [ post ],
           isFetching: false,
           didInvalidate: false
-        }
+        },
+        cursor: { post, media_fallback: true }
       },
       selectedSubreddit: 'foo',
-      selectedPost: { post, media_fallback: true }
     })
 
 
@@ -96,10 +96,10 @@ describe('Post', () => {
           items: [ post ],
           isFetching: false,
           didInvalidate: false
-        }
+        },
+        cursor: { post, media_fallback: true }
       },
       selectedSubreddit: 'foo',
-      selectedPost: { post, media_fallback: true }
     })
 
 
@@ -119,10 +119,10 @@ describe('Post', () => {
           items: [  ],
           isFetching: true,
           didInvalidate: false
-        }
+        },
+        cursor: {  }
       },
       selectedSubreddit: 'foo',
-      selectedPost: {  }
     })
 
 
@@ -152,10 +152,10 @@ describe('Post', () => {
           items: [ post1, post2 ],
           isFetching: false,
           didInvalidate: false
-        }
+        },
+        cursor: { post: post1 }
       },
       selectedSubreddit: 'foo',
-      selectedPost: { post: post1 }
     })
 
 
@@ -182,10 +182,10 @@ describe('Post', () => {
           items: [ post ],
           isFetching: true,
           didInvalidate: true
-        }
+        },
+        cursor: { post }
       },
       selectedSubreddit: 'foo',
-      selectedPost: { post }
     })
 
 

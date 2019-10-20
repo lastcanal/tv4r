@@ -86,8 +86,8 @@ describe('reducers', () => {
 
       root(undefined, setupAction)
       const response = root(undefined, action)
-      if (post) expect(response.selectedPost.post).toMatchObject(post);
-      expect(response.selectedPost.index).toEqual(index);
+      if (post) expect(response.postsBySubreddit.cursor.post).toMatchObject(post);
+      expect(response.postsBySubreddit.cursor.index).toEqual(index);
 
     }))
   })
@@ -131,19 +131,19 @@ describe('reducers', () => {
         posts
       }
       const nextResponse = root(undefined, nextAction)
-      expect(nextResponse.selectedPost.post).not.toBeNull();
+      expect(nextResponse.postsBySubreddit.cursor.post).not.toBeNull();
 
       const prevAction = {
         type: types.PREVIOUS_POST,
         posts
       }
       var prevResponse = root(undefined, prevAction)
-      expect(prevResponse.selectedPost.post).not.toBeNull();
+      expect(prevResponse.postsBySubreddit.cursor.post).not.toBeNull();
 
       prevResponse = root(undefined, prevAction)
-      expect(prevResponse.selectedPost.post).not.toBeNull();
-      expect(prevResponse.selectedPost.post)
-        .not.toBe(nextResponse.selectedPost.post);
+      expect(prevResponse.postsBySubreddit.cursor.post).not.toBeNull();
+      expect(prevResponse.postsBySubreddit.cursor.post)
+        .not.toBe(nextResponse.postsBySubreddit.cursor.post);
     }))
   })
 
@@ -170,7 +170,7 @@ describe('reducers', () => {
         type: types.MEDIA_FALLBACK
       }
 
-      expect(root(undefined, action).selectedPost.media_fallback).toBeTruthy()
+      expect(root(undefined, action).postsBySubreddit.cursor.media_fallback).toBeTruthy()
     }))
   })
 

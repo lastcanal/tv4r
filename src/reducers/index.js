@@ -82,7 +82,7 @@ const posts = (state = {
   }
 }
 
-export const postsBySubreddit = (state = { }, action) => {
+export const postsBySubreddit = (state = { cursor: {} }, action) => {
   switch (action.type) {
     case INVALIDATE_SUBREDDIT:
     case REQUEST_POSTS:
@@ -90,14 +90,24 @@ export const postsBySubreddit = (state = { }, action) => {
     case RECEIVE_POSTS_ERROR:
       return {
         ...state,
-        [action.subreddit]: posts(state[action.subreddit], action)
+        [action.subreddit]: posts(state[action.subreddit], action),
+        cursor: selectedPost(state.cursor || {}, action)
+      }
+    case SELECT_POST:
+    case NEXT_POST:
+    case PREVIOUS_POST:
+    case MEDIA_FALLBACK:
+      return {
+        ...state,
+        cursor: selectedPost(state.cursor || {}, action)
       }
     case LOCATION_CHANGE:
       const subreddit = getNewSubredditFromPath(null, action)
       if (subreddit) {
         return {
           ...state,
-          [subreddit]: posts((state[subreddit] || {}), { ...action, subreddit })
+          [subreddit]: posts((state[subreddit] || {}), { ...action, subreddit }),
+          cursor: selectedPost(state.cursor || {}, { ...action, subreddit })
         }
       } else {
         return state
@@ -171,7 +181,6 @@ const createRootReducer = (history) => {
   return combineReducers({
     postsBySubreddit,
     selectedSubreddit,
-    selectedPost,
     router: connectRouter(history)
   })
 }

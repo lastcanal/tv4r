@@ -84,7 +84,10 @@ class Menu extends Component {
 }
 
 const mapStateToProps = state => {
-  const { selectedSubreddit, postsBySubreddit, selectedPost } = state
+  const { selectedSubreddit, postsBySubreddit } = state
+
+  const selectedPost = postsBySubreddit.cursor || {}
+
   const {
     isFetching,
     lastUpdated,

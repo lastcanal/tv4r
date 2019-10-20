@@ -103,7 +103,10 @@ Posts.propTypes = {
 }
 
 const mapStateToProps = state => {
-  const { dispatch, selectedSubreddit, postsBySubreddit, selectedPost } = state
+  const { dispatch, selectedSubreddit, postsBySubreddit } = state
+
+  const selectedPost = postsBySubreddit.cursor || {}
+
   const {
     items: posts,
   } = postsBySubreddit[selectedSubreddit] || {

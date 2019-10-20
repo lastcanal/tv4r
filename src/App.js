@@ -26,7 +26,7 @@ const theme = createMuiTheme({
   },
 });
 
-const App = ({ selectedSubreddit, selectedPost,
+const App = ({ selectedSubreddit, postsBySubreddit,
                dispatch, classes, router}) => {
 
   useEffect(() => {
@@ -35,12 +35,12 @@ const App = ({ selectedSubreddit, selectedPost,
   }, [ selectedSubreddit, dispatch, router])
 
   useEffect(() => {
-    if (selectedPost.post) {
-      const permalink = selectedPost.post.permalink
+    if (postsBySubreddit.cursor && postsBySubreddit.cursor.post) {
+      const permalink = postsBySubreddit.cursor.post.permalink
       if (permalink && permalink !== router.location.pathname)
         dispatch(push(permalink))
     }
-  }, [ selectedPost, dispatch, router])
+  }, [ postsBySubreddit, dispatch, router])
 
   return (
     <MuiThemeProvider theme={theme}>
@@ -53,8 +53,8 @@ const App = ({ selectedSubreddit, selectedPost,
 }
 
 const mapStateToProps = ({
-  selectedSubreddit, selectedPost, router }) => ({
-  selectedSubreddit, selectedPost, router
+  selectedSubreddit, postsBySubreddit, router }) => ({
+  selectedSubreddit, postsBySubreddit, router
 })
 
 export default connect(mapStateToProps)(withStyles(styles)(App))
