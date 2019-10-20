@@ -1,3 +1,4 @@
+import { matchPath } from 'react-router-dom';
 import { MEDIA_VIDEO, MEDIA_IMAGE } from '../constants'
 
 export const SUPPORTED_VIDEO_MEDIA = []
@@ -47,4 +48,58 @@ export function isImage(post) {
     !(post.thumbnail === 'self' || post.thumbnail === 'default'))
 }
 
+const matchSubredditPath = (pathname) => (
+  matchPath(pathname, "/r/:subreddit")
+)
+
+const matchPostPath = (pathname) => (
+  matchPath(pathname, "/r/:subreddit/comments/:postId/:slug")
+)
+
+export const matchRedditPath = (pathname) => (
+  matchPostPath(pathname) || matchSubredditPath(pathname)
+)
+
+export const getNewSubredditFromPath = (state, action) => {
+  const match = matchRedditPath(action.payload.location.pathname)
+
+  return match
+    && match.isExact
+    && state !== match.params.subreddit
+    ? match.params.subreddit
+    : state
+}
+
+export const didInvalidateSubredditFromPath = (state, action) => {
+  const match = matchRedditPath(action.payload.location.pathname)
+
+  return match
+    && match.isExact
+    && state !== match.params.subreddit
+}
+
+export const findPostById = (postId, posts) => {
+  const index = posts.findIndex(
+    (post) => (post.id === postId))
+
+  if (index >= 0) {
+    return {index, post: posts[index]}
+  } else {
+    return {index: 0, post: posts[0]}
+  }
+}
+
+export const extractPost = (state, action) => {
+  if (action.index >= 0) {
+    return {index: action.index, post: action.post}
+  } else if (action.posts && state.post && state.post.id) {
+    return findPostById(state.post.id, action.posts)
+  } else if (action.post) {
+    return {index: -1, post: action.post}
+  } else if (action.posts) {
+    return {index: 0, post: action.posts[0]}
+  } else {
+    return {index: -1, post: null}
+  }
+}
 

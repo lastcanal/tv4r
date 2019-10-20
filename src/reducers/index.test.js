@@ -1,9 +1,11 @@
-import root from './index.js'
+import rootReducer from './index.js'
 import * as types from '../constants'
 import * as helpers from '../helpers'
-import fc from 'fast-check'
+
+import { history } from '../configureStore'
 
 describe('reducers', () => {
+  const root = rootReducer(history)
 
   it('should SELECT_SUBREDDIT', () => {
     fc.assert(fc.property(fc.string(), (subreddit) => {

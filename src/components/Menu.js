@@ -37,18 +37,7 @@ class Menu extends Component {
   }
 
   componentDidMount() {
-    const { dispatch, selectedSubreddit } = this.props
-    dispatch(invalidateSubreddit(selectedSubreddit))
-    dispatch(fetchPostsIfNeeded(selectedSubreddit))
     document.body.addEventListener('keydown', this.handleKeyDown.bind(this));
-  }
-
-  // istanbul ignore next //
-  componentDidUpdate(prevProps) {
-    if (prevProps.selectedSubreddit !== this.props.selectedSubreddit) {
-      const { dispatch, selectedSubreddit } = this.props
-      dispatch(fetchPostsIfNeeded(selectedSubreddit))
-    }
   }
 
   // istanbul ignore next //

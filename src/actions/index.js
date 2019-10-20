@@ -1,4 +1,4 @@
-import { extractPosts, filterPosts } from '../helpers'
+import { extractPosts, filterPosts, matchRedditPath } from '../helpers'
 import reddit from '../helpers/reddit'
 
 import {
@@ -37,7 +37,6 @@ export const receivePostsError = (subreddit, error) => ({
   error
 })
 
-
 export const selectPost = (post, index) => ({
   type: SELECT_POST,
   post,
@@ -66,8 +65,8 @@ const fetchPosts = subreddit => dispatch => {
     .catch(error => dispatch(receivePostsError(subreddit, error)))
 }
 
-const shouldFetchPosts = (state, subreddit) => {
-  const posts = state.postsBySubreddit[subreddit]
+const shouldFetchPosts = ({ postsBySubreddit }, subreddit) => {
+  const posts = postsBySubreddit[subreddit]
   if (!posts) {
     return true
   }
@@ -83,3 +82,14 @@ export const fetchPostsIfNeeded = subreddit => (dispatch, getState) => {
   }
 }
 
+const shouldInvalidateSubreddit = ({ router, postsBySubreddit }, subreddit) => {
+  const match = matchRedditPath(router.location.pathname)
+  const posts = postsBySubreddit[subreddit]
+  return !posts || posts.items.length === 0 || (match && match.subreddit === subreddit)
+}
+
+export const invalidateSubredditIfNeeded = subreddit => (dispatch, getState) => {
+  if (shouldInvalidateSubreddit(getState(), subreddit)) {
+    return dispatch(invalidateSubreddit(subreddit))
+  }
+}

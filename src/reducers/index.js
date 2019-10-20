@@ -1,4 +1,10 @@
 import { combineReducers } from 'redux'
+import { connectRouter } from 'connected-react-router'
+
+import {
+  LOCATION_CHANGE, CALL_HISTORY_METHOD
+} from 'connected-react-router'
+
 import {
   SELECT_SUBREDDIT, INVALIDATE_SUBREDDIT,
   REQUEST_POSTS, RECEIVE_POSTS, RECEIVE_POSTS_ERROR,
@@ -6,12 +12,18 @@ import {
   DEFAULT_SUBREDDIT,
 } from '../constants'
 
-import { filterPosts } from '../helpers'
+import {
+  filterPosts, matchRedditPath, findPostById, extractPost,
+  getNewSubredditFromPath, didInvalidateSubredditFromPath
+} from '../helpers'
+
 
 export const selectedSubreddit = (state = DEFAULT_SUBREDDIT, action) => {
   switch (action.type) {
     case SELECT_SUBREDDIT:
       return action.subreddit
+    case LOCATION_CHANGE:
+      return getNewSubredditFromPath(state, action)
     default:
       return state
   }
@@ -52,6 +64,18 @@ const posts = (state = {
         items: [],
         error: action.error
       }
+    case LOCATION_CHANGE:
+      const didInvalidate =
+        didInvalidateSubredditFromPath(action.subreddit, action)
+
+      return {
+        ...state,
+        didInvalidate,
+        isFetching: false,
+        items: state.items || [],
+        error: null
+      }
+
     default:
       /* istanbul ignore next */
       return state
@@ -68,6 +92,16 @@ export const postsBySubreddit = (state = { }, action) => {
         ...state,
         [action.subreddit]: posts(state[action.subreddit], action)
       }
+    case LOCATION_CHANGE:
+      const subreddit = getNewSubredditFromPath(null, action)
+      if (subreddit) {
+        return {
+          ...state,
+          [subreddit]: posts((state[subreddit] || {}), { ...action, subreddit })
+        }
+      } else {
+        return state
+      }
     default:
       return state
   }
@@ -78,15 +112,13 @@ export const selectedPost = (state = { }, action) => {
     case RECEIVE_POSTS:
       return {
         ...state,
-        index: 0,
-        post: action.posts[0],
+        ...extractPost(state, action),
         media_fallback: false
       }
     case SELECT_POST:
       return {
         ...state,
-        index: action.index,
-        post: action.post,
+        ...extractPost(state, action),
         media_fallback: false
       }
     case NEXT_POST:
@@ -113,15 +145,35 @@ export const selectedPost = (state = { }, action) => {
         ...state,
         media_fallback: true
       }
+    case LOCATION_CHANGE:
+      const match = matchRedditPath(action.payload.location.pathname)
+      if (match) {
+        const { postId } = match.params
+        if (!state.post || (postId !== state.post.id)) {
+          return {
+            ...state,
+            post: {
+              id: postId,
+            }
+          }
+        } else {
+          console.error('need posts for history change!', state, action)
+        }
+      }
+
+      return state
     default:
       return state
   }
 }
 
-const rootReducer = combineReducers({
-  postsBySubreddit,
-  selectedSubreddit,
-  selectedPost
-})
+const createRootReducer = (history) => {
+  return combineReducers({
+    postsBySubreddit,
+    selectedSubreddit,
+    selectedPost,
+    router: connectRouter(history)
+  })
+}
 
-export default rootReducer
+export default createRootReducer
