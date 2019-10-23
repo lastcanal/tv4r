@@ -37,15 +37,15 @@ class Menu extends Component {
   }
 
   componentDidMount() {
-    document.body.addEventListener('keydown', this.handleKeyDown.bind(this));
+    document.body.addEventListener(
+      'keydown', this.handleKeyDown.bind(this));
   }
 
-  // istanbul ignore next //
   componentWillUnmount() {
-    document.body.removeEventListener('keydown', this.handleKeyDown);
+    document.body.removeEventListener(
+      'keydown', this.handleKeyDown);
   }
 
-  // istanbul ignore next //
   handleKeyDown(e) {
     const { dispatch, posts } = this.props
     switch (e.key) {
@@ -58,13 +58,15 @@ class Menu extends Component {
     }
   }
 
-  // istanbul ignore next //
   changeSubreddit(nextSubreddit) {
     this.props.dispatch(selectSubreddit(nextSubreddit))
   }
 
   render() {
-    const { classes, dispatch, post, posts, selectedSubreddit } = this.props;
+    const {
+      classes, dispatch, post, posts, selectedSubreddit
+    } = this.props;
+
     return <Paper>
       <Container classes={classes} maxWidth={false}>
         <ToolBar>
@@ -85,9 +87,7 @@ class Menu extends Component {
 
 const mapStateToProps = state => {
   const { selectedSubreddit, postsBySubreddit } = state
-
   const selectedPost = postsBySubreddit.cursor || {}
-
   const {
     isFetching,
     lastUpdated,
@@ -107,5 +107,3 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(withStyles(styles)(Menu))
-
-

@@ -49,7 +49,7 @@ const Posts = ({ posts, selected, classes, dispatch }) => {
     dispatch(selectPost(nextPost, index))
   }
 
-  const scrollIntoView = () => {
+  useEffect(() => {
     if (selected && selected.post && selected.post.id) {
       const element = refs['post-' + selected.post.id]
       if (element) {
@@ -57,9 +57,7 @@ const Posts = ({ posts, selected, classes, dispatch }) => {
         element.parentNode.scrollLeft = element.offsetLeft - (box.width / Math.PI)
       }
     }
-  }
-
-  useEffect(scrollIntoView, [selected])
+  }, [selected])
 
   return (
     <div ref={node => refs['posts-ref'] = node} className={classes.root}>
