@@ -36,22 +36,21 @@ const App = ({ selectedSubreddit, postsBySubreddit,
       if (permalink && permalink !== router.location.pathname)
         dispatch(push(permalink))
     }
+
   }, [ postsBySubreddit, dispatch, router])
 
   const prefersLightMode = useMediaQuery('(prefers-color-scheme: light)');
 
-  const theme = useMemo(
-    () =>
-      createMuiTheme({
-        palette: {
-          type: prefersLightMode ? 'light' : 'dark',
-          primary: grey,
-          secondary: brown,
-          contrastThreshold: (prefersLightMode ? 6 : 3)
-        },
-      }),
-    [prefersLightMode],
-  );
+  const theme = useMemo(() => (
+    createMuiTheme({
+      palette: {
+        type: prefersLightMode ? 'light' : 'dark',
+        primary: grey,
+        secondary: brown,
+        contrastThreshold: (prefersLightMode ? 6 : 3)
+      },
+    })
+  ), [prefersLightMode])
 
   return (
     <MuiThemeProvider theme={theme}>

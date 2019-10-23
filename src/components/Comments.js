@@ -34,14 +34,10 @@ const styles = ({ spacing, palette, shape }) => ({
     flexGrow: 1,
   },
   spacer: {
-    marginTop: ({ subreddit }) => (
-      subreddit.isFetchingComments ? '200vh' : '100vh'
-    )
+    marginTop: '100vh'
   },
   spacerBottom: {
-    marginBottom: ({ subreddit }) => (
-      subreddit.isFetchingComments ? '0vh' : '100vh'
-    ),
+    marginBottom: 260,
     paddingBottom: 1,
   }
 })
@@ -75,6 +71,13 @@ const commentStyles = makeStyles(({ palette, spacing, shape }) => ({
     margin: spacing(1),
     display: 'block',
   },
+  loading: {
+    backgroundColor: palette.background.default,
+    borderRadius: shape.borderRadius,
+    margin: spacing(1),
+    padding: spacing(1),
+    minHeight: 400
+  }
 
 }))
 
@@ -101,7 +104,7 @@ const Comments = ({ postsBySubreddit, selectedSubreddit,
       const target = document.getElementById('comments');
       const options = {
         root: null,
-        rootMargin: '280px',
+        rootMargin: '0px',
         threshold: 1.0
       }
       const onIntersection = (elements) => {
@@ -120,19 +123,28 @@ const Comments = ({ postsBySubreddit, selectedSubreddit,
 
   const item = postsBySubreddit[selectedSubreddit]
     && postsBySubreddit[selectedSubreddit].items[selected.index]
-  const comments = (item && item.comments) || []
+  const comments = (item && item.comments)
+
+  if (!comments || item.isLoadingComments) {
+    return <div>
+      <div id="comments" className={classes.spacer}>
+        <Box className={classes.loading} boxShadow={3}>
+          Loading Comments....
+        </Box>
+      </div>
+      <div className={classes.spacerBottom}></div>
+    </div>
+  }
 
   return <div>
     <div className={classes.spacer}>
       <div id="comments" className={classes.comments}>
-        <div className={classes.root}>
+        <div className={`${classes.comment_container} ${classes.root}`}>
           {comments.map((post) => <CommentTree post={post} />)}
         </div>
       </div>
     </div>
-    <div className={classes.spacerBottom}>
-      <h1>Loading Comments...</h1>
-    </div>
+    <div className={classes.spacerBottom}></div>
   </div>
 }
 
@@ -149,7 +161,7 @@ const Comment = ({ comment, depth }) => {
       : `${classes.comment} ${classes.comment_container_alt}`
   )
 
-  return <Box boxShadow={(depth > 5 ? 5 : depth)}
+  return <Box boxShadow={(depth >= 5 ? 5 : depth + 1 )}
               className={classForDepth(depth)}>
     <Reply reply={comment} depth={depth}/>
     <ReplyTree replies={comment.data.replies} depth={depth + 1} />
