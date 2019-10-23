@@ -23,13 +23,6 @@ const styles = theme => ({
     top: 0,
     left: 0,
   },
-  spacer: {
-    marginTop: '100vh',
-  },
-  spacerBottom: {
-    marginBottom: '99vh',
-    paddingBottom: '1vh',
-  }
 });
 
 class Post extends Component {
@@ -64,8 +57,7 @@ class Post extends Component {
     return <div className={classes.playerWrapper}>
       <ReactPlayer
       ref={node => this.player = node}
-        playing
-        light={true}
+      //  playing
         url={post.url}
         className={classes.reactPlayer}
         width='100%'
@@ -114,11 +106,7 @@ class Post extends Component {
         <Container maxWidth={false} className={classes.root}>
           <div>{this.renderMedia()}</div>
         </Container>
-        <div className={classes.spacer}>
-          <Comments />
-        </div>
-        <div className={classes.spacerBottom} />
-
+        <Comments />
       </div>
     }
   }

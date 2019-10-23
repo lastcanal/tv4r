@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import { makeStyles } from '@material-ui/core/styles';
 import ToolBar from '@material-ui/core/ToolBar';
+import Box from '@material-ui/core/Box';
 
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles';
@@ -16,47 +17,56 @@ import { fetchCommentsIfNeeded } from '../actions'
 import Menu from './Menu'
 import Posts from './Posts'
 
-const styles = ({ spacing, palette }) => ({
-  spacer: {
-    height: '100vh'
-  },
+const styles = ({ spacing, palette, shape }) => ({
   comments: {
-    zIndex: 1
+    zIndex: 1,
   },
   root: {
+    borderRadius: shape.borderRadius,
     backgroundColor: palette.background.default,
     flexGrow: 1,
+    margin: 0
   },
   menuButton: {
     marginRight: spacing(2),
   },
   title: {
     flexGrow: 1,
+  },
+  spacer: {
+    marginTop: ({ subreddit }) => (
+      subreddit.isFetchingComments ? '200vh' : '100vh'
+    )
+  },
+  spacerBottom: {
+    marginBottom: ({ subreddit }) => (
+      subreddit.isFetchingComments ? '0vh' : '100vh'
+    ),
+    paddingBottom: 1,
   }
 })
 
 
-const commentStyles = makeStyles(({ palette, spacing }) => ({
+const commentStyles = makeStyles(({ palette, spacing, shape }) => ({
   comment: {
-    margin: spacing(0.5),
+    borderRadius: shape.borderRadius,
+    margin: spacing(1),
     padding: spacing(1),
     paddingRight: 0,
     marginRight: spacing(0.5),
+    color: palette.primary.contrastText
   },
   comment_container: {
-    borderLeft: `1px solid ${palette.primary[800]}`,
-    borderBottom: `1px solid ${palette.primary[800]}`,
-    backgroundColor: palette.background.paper,
-    color: palette.primary.light
+    backgroundColor: palette.background.default,
+    borderTop: `2px solid ${palette.background.paper}`,
   },
   comment_container_alt: {
-    borderLeft: `1px solid ${palette.primary[900]}`,
-    borderBottom: `1px solid ${palette.primary[900]}`,
-    backgroundColor: palette.background.default,
-    color: palette.primary.light
+    backgroundColor: palette.background.paper,
+    borderBottom: `2px solid ${palette.background.default}`,
   },
   commentBody: {
-    margin: spacing(1)
+    margin: spacing(1),
+    marginBottom: spacing(2)
   },
   selfPostBody: {
     margin: spacing(1)
@@ -64,12 +74,12 @@ const commentStyles = makeStyles(({ palette, spacing }) => ({
   commentAuthor: {
     margin: spacing(1),
     display: 'block',
-  }
+  },
 
 }))
 
 const Comments = ({ postsBySubreddit, selectedSubreddit,
-                    selected, classes, dispatch }) => {
+                    selected, dispatch, classes }) => {
 
   const [visible, setVisible] = useState(false)
 
@@ -91,7 +101,7 @@ const Comments = ({ postsBySubreddit, selectedSubreddit,
       const target = document.getElementById('comments');
       const options = {
         root: null,
-        rootMargin: '0px',
+        rootMargin: '280px',
         threshold: 1.0
       }
       const onIntersection = (elements) => {
@@ -113,16 +123,22 @@ const Comments = ({ postsBySubreddit, selectedSubreddit,
   const comments = (item && item.comments) || []
 
   return <div>
-    <div id="comments" className={classes.comments}>
-      <div className={classes.root}>
-        {comments.map((post) => <CommentTree post={post} />)}
+    <div className={classes.spacer}>
+      <div id="comments" className={classes.comments}>
+        <div className={classes.root}>
+          {comments.map((post) => <CommentTree post={post} />)}
+        </div>
       </div>
+    </div>
+    <div className={classes.spacerBottom}>
+      <h1>Loading Comments...</h1>
     </div>
   </div>
 }
 
 const CommentTree = ({ post }) => {
-  return post.data.children.map(child => <Comment comment={child} depth={0} />)
+  return post.data.children.map(
+    child => <Comment comment={child} depth={0} />)
 }
 
 const Comment = ({ comment, depth }) => {
@@ -133,10 +149,11 @@ const Comment = ({ comment, depth }) => {
       : `${classes.comment} ${classes.comment_container_alt}`
   )
 
-  return <div className={classForDepth(depth)}>
+  return <Box boxShadow={(depth > 5 ? 5 : depth)}
+              className={classForDepth(depth)}>
     <Reply reply={comment} depth={depth}/>
     <ReplyTree replies={comment.data.replies} depth={depth + 1} />
-  </div>
+  </Box>
 }
 
 const ReplyTree = ({ replies, depth }) => {
@@ -163,7 +180,7 @@ const Reply = ({ reply, depth }) => {
     case 't3':
       return <div className={classes.selfPostBody}><h2>{reply.data.title}</h2></div>
     default:
-      return <div />
+      return <div>DEBUG:{reply.kind}</div>
   }
 }
 

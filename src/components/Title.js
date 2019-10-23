@@ -10,6 +10,9 @@ const useStyles = makeStyles(({typography, spacing, palette}) => ({
     textDecoration: 'none',
     cursor: 'pointer',
     color: palette.text.primary,
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
   },
 }));
 
