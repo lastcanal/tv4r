@@ -9,6 +9,7 @@ import {
   SELECT_SUBREDDIT, INVALIDATE_SUBREDDIT,
   REQUEST_POSTS, RECEIVE_POSTS, RECEIVE_POSTS_ERROR,
   SELECT_POST, NEXT_POST, PREVIOUS_POST, MEDIA_FALLBACK,
+  REQUEST_COMMENTS, RECEIVE_COMMENTS, RECEIVE_COMMENTS_ERROR,
   DEFAULT_SUBREDDIT,
 } from '../constants'
 
@@ -75,6 +76,24 @@ const selectedPosts = (state = {
         items: state.items || [],
         error: null
       }
+    case REQUEST_COMMENTS:
+      return {
+        ...state,
+        isFetchingComments: true,
+        error: null
+      }
+    case RECEIVE_COMMENTS:
+      action.post.comments = action.comments
+      return {
+        ...state,
+        isFetchingComments: false,
+      }
+    case RECEIVE_COMMENTS_ERROR:
+      return {
+        ...state,
+        isFetchingComments: false,
+        error: action.error
+      }
 
     default:
       /* istanbul ignore next */
@@ -88,6 +107,9 @@ export const postsBySubreddit = (state = { cursor: {} }, action) => {
     case REQUEST_POSTS:
     case RECEIVE_POSTS:
     case RECEIVE_POSTS_ERROR:
+    case REQUEST_COMMENTS:
+    case RECEIVE_COMMENTS:
+    case RECEIVE_COMMENTS_ERROR:
       return {
         ...state,
         [action.subreddit]: selectedPosts(state[action.subreddit], action),

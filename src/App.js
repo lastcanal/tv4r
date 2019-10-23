@@ -3,6 +3,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { createMuiTheme } from '@material-ui/core/styles';
+import grey from '@material-ui/core/colors/grey';
+import brown from '@material-ui/core/colors/brown';
 import { connect } from 'react-redux'
 import { push, replace } from 'connected-react-router'
 
@@ -16,13 +18,14 @@ const styles = (theme) => ({
     paddingLeft: 0,
     paddingRight: 0,
     marginTop: theme.spacing(3),
-    minHeight: '200vh'
   }
 });
 
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
+    primary: grey,
+    secondary: brown
   },
 });
 

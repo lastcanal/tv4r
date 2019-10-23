@@ -10,7 +10,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import { selectPost } from '../actions'
 
 const tileStyles = ({spacing, shape}) => ({
-  margin: spacing(2),
+  margin: spacing(1),
   overflow: 'hidden',
   borderRadius: shape.borderRadius,
 })
@@ -28,10 +28,6 @@ const styles = theme => ({
   },
   title: {
     color: theme.palette.primary.contrastText,
-  },
-  titleBar: {
-    background:
-      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
   tileSelected: {
     opacity: 1,
@@ -67,9 +63,10 @@ const Posts = ({ posts, selected, classes, dispatch }) => {
 
   return (
     <div ref={node => refs['posts-ref'] = node} className={classes.root}>
-      <GridList className={classes.gridList} cols={4.38} >
+      <GridList className={classes.gridList} cols={6.1} >
         {posts.map((post, index) => {
           return <GridListTile
+            rows={1}
             className={classNameForTile(selected, post, classes)}
             key={post.id}
             ref={node => refs['post-' + post.id] = node}

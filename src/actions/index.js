@@ -4,8 +4,8 @@ import reddit from '../helpers/reddit'
 import {
   SELECT_SUBREDDIT, INVALIDATE_SUBREDDIT,
   REQUEST_POSTS, RECEIVE_POSTS, RECEIVE_POSTS_ERROR,
-  SELECT_POST, NEXT_POST, PREVIOUS_POST,
-  MEDIA_FALLBACK
+  SELECT_POST, NEXT_POST, PREVIOUS_POST, MEDIA_FALLBACK,
+  REQUEST_COMMENTS, RECEIVE_COMMENTS, RECEIVE_COMMENTS_ERROR,
 } from '../constants'
 
 export const selectSubreddit = subreddit => ({
@@ -91,5 +91,42 @@ const shouldInvalidateSubreddit = ({ router, postsBySubreddit }, subreddit) => {
 export const invalidateSubredditIfNeeded = subreddit => (dispatch, getState) => {
   if (shouldInvalidateSubreddit(getState(), subreddit)) {
     return dispatch(invalidateSubreddit(subreddit))
+  }
+}
+
+const requestComments = (post, subreddit) => ({
+  type: REQUEST_COMMENTS,
+  post,
+  subreddit
+})
+
+const receiveComments = (post, subreddit, response) => ({
+  type: RECEIVE_COMMENTS,
+  post,
+  subreddit,
+  comments: response
+})
+
+const receiveCommentsError = (post, subreddit, error) => ({
+  type: RECEIVE_COMMENTS_ERROR,
+  post,
+  subreddit,
+  error
+})
+
+const fetchComments = (post, selectedSubreddit) => (dispatch) => {
+  dispatch(requestComments(post, selectedSubreddit))
+  return reddit.fetchPost(post.permalink)
+    .then(response => response.json())
+    .then(response => dispatch(receiveComments(post, selectedSubreddit, response)))
+    .catch(error => dispatch(receiveCommentsError(post, selectedSubreddit, error)))
+}
+
+export const fetchCommentsIfNeeded = () => (dispatch, getState) => {
+  const { postsBySubreddit, selectedSubreddit } = getState()
+  const { index } = postsBySubreddit.cursor
+  const posts = postsBySubreddit[selectedSubreddit].items
+  if (posts[index] && !posts[index].comments) {
+    dispatch(fetchComments(posts[index], selectedSubreddit))
   }
 }

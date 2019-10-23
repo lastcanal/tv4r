@@ -13,6 +13,10 @@ export const PREVIOUS_POST = 'PREVIOUS_POST'
 export const SELECT_POST = 'SELECT_POST'
 export const MEDIA_FALLBACK = 'MEDIA_FALLBACK'
 
+export const REQUEST_COMMENTS = 'REQUEST_COMMENTS'
+export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
+export const RECEIVE_COMMENTS_ERROR = 'RECEIVE_COMMENTS_ERROR'
+
 export const DEFAULT_SUBREDDITS = [
   'Videos',
   'Documentaries',
