@@ -25,25 +25,35 @@ module.exports = {
   },
 
   "extends": [
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:jest/recommended"
   ],
 
   "env": {
     "es6": true,
     "node": true,
     "browser": true,
+    "jest/globals": true
   },
 
   "plugins": [
     "react",
+    "jest"
   ],
 
   "globals": {
     "document": false,
     "navigator": false,
     "window": false,
-    "$": false,
-    "QUnit": false
+    "fetch": true,
+    "fetchMock": true,
+    "shallow": true,
+    "render": true,
+    "mount": true,
+    "React": true,
+    "mockStore": true,
+    "makeStore": true,
+    "fc": true
   },
 
   "rules": {
@@ -167,5 +177,10 @@ module.exports = {
     "yield-star-spacing": [2, "both"],
     "yoda": [2, "never"],
     "prefer-const": 2,
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error"
   }
 }

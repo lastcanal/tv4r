@@ -1,14 +1,13 @@
 import { Provider } from 'react-redux'
 
 import Comments from './Comments'
-import * as actions from '../actions'
+import * as fixtures from '../testFixtures'
 
-
-describe('Comments', () => {
+describe('comments', () => {
   it('should render empty Comments', () => {
     const wrapper = mount(
-      <Provider store={
-        makeStore({
+      <Provider
+        store={makeStore({
           postsBySubreddit: {
             foo: {
               items: [],
@@ -18,57 +17,17 @@ describe('Comments', () => {
             cursor: { index: 0 },
           },
           selectedSubreddit: 'foo',
-        }
-        )}>
+        })}
+      >
         <Comments />
-      </Provider>,
+      </Provider>
     )
 
-    expect(wrapper).toMatchSnapshot()
+    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
   })
 
-
   it('should render Post', () => {
-    const post = {
-      id: 1,
-      url: 'https://example.com/video',
-      comments: [{
-        kind: 'Listing',
-        data: {
-          children: [{
-            kind: 't3',
-            data: {
-              title: 'foo',
-            },
-          }],
-        },
-      }, {
-        kind: 'Listing',
-        data: {
-          children: [{
-            kind: 't1',
-            data: {
-              body: 'bar',
-              replies: {
-                kind: 'Listing',
-                data: {
-                  children: [{
-                    kind: 't2',
-                    data: {
-                      body: 'baz',
-                    },
-                  }, {
-                    kind: 'more',
-                    data: 'AAAAAAA',
-                  }],
-                },
-              },
-            },
-          }],
-        },
-      }],
-    }
-
+    const post = fixtures.postWithComments()
     const store = mockStore({
       postsBySubreddit: {
         foo: {
@@ -84,9 +43,9 @@ describe('Comments', () => {
     const wrapper = mount(
       <Provider store={store}>
         <Comments />
-      </Provider>,
+      </Provider>
     )
 
-    expect(wrapper).toMatchSnapshot()
+    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
   })
 })

@@ -1,6 +1,5 @@
 import rootReducer from './index.js'
 import * as types from '../constants'
-import * as helpers from '../helpers'
 
 import { history } from '../configureStore'
 
@@ -105,7 +104,7 @@ describe('reducers', () => {
           root(undefined, setupAction)
           const response = root(undefined, action)
           if (post) { expect(response.postsBySubreddit.cursor.post).toMatchObject(post) }
-          expect(response.postsBySubreddit.cursor.index).toEqual(index)
+          expect(response.postsBySubreddit.cursor.index).toStrictEqual(index)
         },
       ),
     )
@@ -212,15 +211,4 @@ describe('reducers', () => {
     )
   })
 
-  it('should ignore defaults', () => {
-    fc.assert(
-      fc.property(fc.string(), type => {
-        const action = {
-          type,
-        }
-
-        expect(root(undefined, action))
-      }),
-    )
-  })
 })

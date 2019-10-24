@@ -1,21 +1,20 @@
 import { Provider } from 'react-redux'
 
 import Menu from './Menu'
-import * as actions from '../actions'
 
-describe('Menu', () => {
+describe('menu', () => {
   it('should render empty menu', () => {
     const wrapper = mount(
       <Provider store={makeStore()}>
         <Menu />
-      </Provider>,
+      </Provider>
     )
 
-    expect(wrapper).toMatchSnapshot()
+    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
   })
 })
 
-it('should render new subreddit', () => {
+test('should render new subreddit', () => {
   const store = mockStore({
     postsBySubreddit: {
       foo: {
@@ -36,12 +35,12 @@ it('should render new subreddit', () => {
   const wrapper = mount(
     <Provider store={store}>
       <Menu />
-    </Provider>,
+    </Provider>
   )
 
   wrapper.setProps({ selectedSubreddit: 'bar' })
 
   wrapper.update()
 
-  expect(wrapper).toMatchSnapshot()
+  expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
 })

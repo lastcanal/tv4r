@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Comments should render Post 1`] = `ReactWrapper {}`;
-
-exports[`Comments should render empty Comments 1`] = `ReactWrapper {}`;

@@ -74,6 +74,7 @@
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-jest": "^22.20.0",
     "eslint-plugin-prettier": "^3.1.1",
     "fast-check": "^1.17.0",
     "jest-fetch-mock": "^2.1.2",

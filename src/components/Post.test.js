@@ -3,15 +3,15 @@ import { Provider } from 'react-redux'
 import Post from './Post'
 import * as actions from '../actions'
 
-describe('Post', () => {
+describe('post', () => {
   it('should render empty Post', () => {
     const wrapper = mount(
       <Provider store={makeStore()}>
         <Post />
-      </Provider>,
+      </Provider>
     )
 
-    expect(wrapper).toMatchSnapshot()
+    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
   })
 
   it('should render Post', () => {
@@ -35,10 +35,10 @@ describe('Post', () => {
     const wrapper = mount(
       <Provider store={store}>
         <Post />
-      </Provider>,
+      </Provider>
     )
 
-    expect(wrapper).toMatchSnapshot()
+    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
   })
 
   it('should render media fallback', () => {
@@ -71,10 +71,10 @@ describe('Post', () => {
     const wrapper = mount(
       <Provider store={store}>
         <Post />
-      </Provider>,
+      </Provider>
     )
 
-    expect(wrapper).toMatchSnapshot()
+    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
   })
 
   it('should not render media fallback for non-videos', () => {
@@ -103,10 +103,10 @@ describe('Post', () => {
     const wrapper = mount(
       <Provider store={store}>
         <Post />
-      </Provider>,
+      </Provider>
     )
 
-    expect(wrapper).toMatchSnapshot()
+    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
   })
 
   it('should render Post is loading', () => {
@@ -125,10 +125,10 @@ describe('Post', () => {
     const wrapper = mount(
       <Provider store={store}>
         <Post />
-      </Provider>,
+      </Provider>
     )
 
-    expect(wrapper).toMatchSnapshot()
+    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
   })
 
   it('should render next post', () => {
@@ -157,11 +157,11 @@ describe('Post', () => {
     const wrapper = mount(
       <Provider store={store}>
         <Post />
-      </Provider>,
+      </Provider>
     )
 
     store.dispatch(actions.nextPost())
-    expect(wrapper).toMatchSnapshot()
+    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
   })
 
   it('should show loading when isFetching', () => {
@@ -185,10 +185,10 @@ describe('Post', () => {
     const wrapper = mount(
       <Provider store={store}>
         <Post />
-      </Provider>,
+      </Provider>
     )
 
     store.dispatch(actions.nextPost())
-    expect(wrapper).toMatchSnapshot()
+    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
   })
 })

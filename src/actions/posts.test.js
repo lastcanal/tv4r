@@ -1,6 +1,5 @@
 import * as actions from './index.js'
 import * as types from '../constants'
-import * as helpers from '../helpers'
 import fc from 'fast-check'
 
 describe('actions', () => {
@@ -12,7 +11,7 @@ describe('actions', () => {
           subreddit,
         }
 
-        expect(actions.selectSubreddit(subreddit)).toEqual(action)
+        expect(actions.selectSubreddit(subreddit)).toStrictEqual(action)
       }),
     )
   })
@@ -25,7 +24,7 @@ describe('actions', () => {
           subreddit,
         }
 
-        expect(actions.invalidateSubreddit(subreddit)).toEqual(action)
+        expect(actions.invalidateSubreddit(subreddit)).toStrictEqual(action)
       }),
     )
   })
@@ -38,7 +37,7 @@ describe('actions', () => {
           subreddit,
         }
 
-        expect(actions.requestPosts(subreddit)).toEqual(action)
+        expect(actions.requestPosts(subreddit)).toStrictEqual(action)
       }),
     )
   })
@@ -47,16 +46,16 @@ describe('actions', () => {
     fc.assert(
       fc.property(fc.string(), fc.array(fc.object()), (subreddit, posts) => {
         const response = actions.receivePosts(subreddit, posts)
-        expect(response.type).toEqual(types.RECEIVE_POSTS)
+        expect(response.type).toStrictEqual(types.RECEIVE_POSTS)
         expect(+response.receivedAt).toBeLessThanOrEqual(+new Date())
-        expect(response.posts.length).toEqual(0)
+        expect(response.posts).toHaveLength(0)
       }),
     )
   })
 
   const injectMedia = key => {
     return data => {
-      data.secure_media = {
+      data[key] = {
         oembed: { type: 'video' },
       }
 
@@ -74,9 +73,9 @@ describe('actions', () => {
           const response = actions.receivePosts(subreddit, {
             data: { children: posts },
           })
-          expect(response.type).toEqual(types.RECEIVE_POSTS)
+          expect(response.type).toStrictEqual(types.RECEIVE_POSTS)
           expect(+response.receivedAt).toBeLessThanOrEqual(+new Date())
-          expect(response.posts.length).toEqual(posts.length)
+          expect(response.posts).toHaveLength(posts.length)
         },
       ),
     )
@@ -92,9 +91,9 @@ describe('actions', () => {
           const response = actions.receivePosts(subreddit, {
             data: { children: posts },
           })
-          expect(response.type).toEqual(types.RECEIVE_POSTS)
+          expect(response.type).toStrictEqual(types.RECEIVE_POSTS)
           expect(+response.receivedAt).toBeLessThanOrEqual(+new Date())
-          expect(response.posts.length).toEqual(posts.length)
+          expect(response.posts).toHaveLength(posts.length)
         },
       ),
     )
@@ -112,9 +111,9 @@ describe('actions', () => {
             { data: { children: posts } },
             types.MEDIA_IMAGE,
           )
-          expect(response.type).toEqual(types.RECEIVE_POSTS)
+          expect(response.type).toStrictEqual(types.RECEIVE_POSTS)
           expect(+response.receivedAt).toBeLessThanOrEqual(+new Date())
-          expect(response.posts.length).toEqual(posts.length)
+          expect(response.posts).toHaveLength(posts.length)
         },
       ),
     )

@@ -4,17 +4,17 @@ import { Provider } from 'react-redux'
 import Posts from './Posts'
 import * as actions from '../actions'
 
-describe('Posts', () => {
+describe('posts', () => {
   const posts = [{ id: 1 }, { id: 2 }]
 
   it('should render empty Posts', () => {
     const wrapper = mount(
       <Provider store={makeStore()}>
         <Posts />
-      </Provider>,
+      </Provider>
     )
 
-    expect(wrapper).toMatchSnapshot()
+    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
   })
 
   it('should render Posts', () => {
@@ -33,10 +33,10 @@ describe('Posts', () => {
     const wrapper = mount(
       <Provider store={store}>
         <Posts />
-      </Provider>,
+      </Provider>
     )
 
-    expect(wrapper).toMatchSnapshot()
+    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
   })
 
   it('should navigate Posts', () => {
@@ -56,7 +56,7 @@ describe('Posts', () => {
     const wrapper = mount(
       <Provider store={{ ...store, dispatch }}>
         <Posts />
-      </Provider>,
+      </Provider>
     )
 
     wrapper
@@ -65,7 +65,7 @@ describe('Posts', () => {
       .simulate('click')
     wrapper.update()
 
-    expect(dispatch).toBeCalledWith(actions.selectPost(posts[1], 1))
-    expect(wrapper).toMatchSnapshot()
+    expect(dispatch).toHaveBeenCalledWith(actions.selectPost(posts[1], 1))
+    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
   })
 })
