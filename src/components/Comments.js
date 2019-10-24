@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import Box from '@material-ui/core/Box'
 import PropTypes from 'prop-types'
 import { withStyles, makeStyles } from '@material-ui/core/styles'
+import LinearProgress from '@material-ui/core/LinearProgress'
 
 import { fetchCommentsIfNeeded } from '../actions'
 
 const styles = ({ spacing, palette, shape }) => ({
   comments: {
-    zIndex: 1,
   },
   root: {
     borderRadius: shape.borderRadius,
@@ -26,8 +26,14 @@ const styles = ({ spacing, palette, shape }) => ({
     marginTop: '100vh',
   },
   spacerBottom: {
-    marginBottom: 260,
+    marginBottom: '92vh',
     paddingBottom: 1,
+  },
+  loading: {
+    borderRadius: shape.borderRadius,
+    backgroundColor: palette.background.default,
+    flexGrow: 1,
+    margin: spacing(2),
   },
 })
 
@@ -59,13 +65,6 @@ const commentStyles = makeStyles(({ palette, spacing, shape }) => ({
     margin: spacing(1),
     display: 'block',
   },
-  loading: {
-    backgroundColor: palette.background.default,
-    borderRadius: shape.borderRadius,
-    margin: spacing(1),
-    padding: spacing(1),
-    minHeight: 400,
-  },
 }))
 
 const Comments = ({
@@ -95,10 +94,10 @@ const Comments = ({
       return
     } else {
       /* istanbul ignore next */
-      const target = document.getElementById('comments')
+      const target = document.getElementById('scroll_beacon')
       const options = {
         root: null,
-        rootMargin: '0px',
+        rootMargin: '400px',
         threshold: 1.0,
       }
       const onIntersection = elements => {
@@ -111,9 +110,10 @@ const Comments = ({
 
       const observer = new IntersectionObserver(onIntersection, options)
       observer.observe(target)
-      return observer.unobserve
+
+      return () => observer.unobserve(target)
     }
-  }, [])
+  }, [selectedSubreddit])
 
   const item =
     postsBySubreddit[selectedSubreddit] &&
@@ -123,10 +123,12 @@ const Comments = ({
   if (!comments || item.isLoadingComments) {
     return (
       <div>
-        <div id="comments" className={classes.spacer}>
-          <Box className={classes.loading} boxShadow={3}>
-            Loading Comments....
-          </Box>
+        <div className={classes.spacer}>
+          <div id="comments" className={classes.loading}>
+            <Box className={classes.selfPostBody} boxShadow={5}>
+              <LinearProgress />
+            </Box>
+          </div>
         </div>
         <div className={classes.spacerBottom}></div>
       </div>
@@ -197,7 +199,10 @@ const ReplyTree = ({ replies, depth }) => {
 }
 
 ReplyTree.propTypes = {
-  replies: PropTypes.object,
+  replies: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+  ]),
   depth: PropTypes.number,
 }
 
@@ -222,7 +227,8 @@ const Reply = ({ reply }) => {
         </div>
       )
     default:
-      return <div>DEBUG:{reply.kind}</div>
+      // istanbul ignore next //
+      return ''
   }
 }
 

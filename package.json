@@ -28,6 +28,7 @@
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
+    "react-select": "^3.0.8",
     "recompose": "^0.30.0",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
@@ -40,8 +41,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
-    "check": "eslint --fix-dry-run --ignore-pattern 'src/**/__snapshots__' --ignore-pattern '*.test.*' 'src/**/*''",
-    "fix": "eslint --fix --ignore-pattern 'src/**/__snapshots__' --ignore-pattern '*.test.*' 'src/**/*'",
+    "fix": "eslint --fix --ignore-pattern 'src/**/__snapshots__' 'src/**/*'",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

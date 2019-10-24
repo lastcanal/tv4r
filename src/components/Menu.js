@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import ToolBar from '@material-ui/core/ToolBar'
 import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
 
 import {
   selectSubreddit,
@@ -61,8 +62,8 @@ class Menu extends Component {
     }
   }
 
-  changeSubreddit (nextSubreddit) {
-    this.props.dispatch(selectSubreddit(nextSubreddit))
+  changeSubreddit ({ value }) {
+    this.props.dispatch(selectSubreddit(value))
   }
 
   render () {
@@ -72,6 +73,17 @@ class Menu extends Component {
       <Paper>
         <Container classes={classes} maxWidth={false}>
           <ToolBar>
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <Picker
+                  value={selectedSubreddit}
+                  onChange={this.changeSubreddit.bind(this)}
+                  options={DEFAULT_SUBREDDITS}
+                />
+              </Grid>
+            </Grid>
+          </ToolBar>
+          <ToolBar>
             <Posts />
           </ToolBar>
           <ToolBar>
@@ -79,11 +91,6 @@ class Menu extends Component {
               dispatch={dispatch}
               posts={posts}
               selectedSubreddit={selectedSubreddit}
-            />
-            <Picker
-              value={selectedSubreddit}
-              onChange={this.changeSubreddit.bind(this)}
-              options={DEFAULT_SUBREDDITS}
             />
             <Title post={post} />
           </ToolBar>

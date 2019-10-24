@@ -1,9 +1,7 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
-
-import MenuItem from '@material-ui/core/MenuItem'
-import Select from '@material-ui/core/Select'
+import CreatableSelect from 'react-select/creatable'
 
 const useStyles = makeStyles(({ spacing }) => ({
   container: {
@@ -11,35 +9,29 @@ const useStyles = makeStyles(({ spacing }) => ({
   },
 }))
 
-const useSelectStyles = makeStyles(({ spacing }) => ({
-  select: {
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    margin: {
-      margin: spacing(1),
-    },
-  },
-}))
+const nameToOption = (name) => ({
+  value: name.toLowerCase(), label: name,
+})
 
-const Picker = ({ value, onChange, options }) => {
+const Picker = ({ value, options, onChange }) => {
   const classes = useStyles()
-  const onChangeWrapper = e => onChange(e.target.value)
+
+  const mappedOptions = useMemo(() => (
+    options.map(nameToOption)
+  ), [options])
+
+  const mappedValue = useMemo(() => (
+    value ? nameToOption(value) : ''
+  ), [value])
 
   return (
     <span className={classes.container}>
-      <Select
-        classes={useSelectStyles()}
-        onChange={onChangeWrapper}
-        value={value}
-      >
-        {options.map(option => (
-          <MenuItem value={option} key={option}>
-            r/{option}
-          </MenuItem>
-        ))}
-      </Select>
+      <CreatableSelect
+        isClearable
+        defaultValue={mappedValue}
+        onChange={onChange}
+        options={mappedOptions}
+      />
     </span>
   )
 }

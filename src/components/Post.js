@@ -107,12 +107,18 @@ class Post extends Component {
     return <h2>No TV Found.</h2>
   }
 
+  renderLoadingError () {
+    return <h2>Failed to load TV; try again..</h2>
+  }
+
   render () {
-    const { classes, posts, isFetching } = this.props
+    const { classes, posts, isFetching, post } = this.props
     if (isFetching) {
       return this.renderLoading()
     } else if (posts.length === 0) {
       return this.renderEmpty()
+    } else if (!post.url) {
+      return this.renderLoadingError()
     } else {
       return (
         <div style={{ opacity: isFetching ? 0.5 : 1 }}>

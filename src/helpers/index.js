@@ -7,6 +7,7 @@ export const SUPPORTED_IMAGE_MEDIA = []
 export function extractPosts (json) {
   // json.data?.children? ?? []
   const children = (json && json.data && json.data.children) || []
+
   return children.length === 0
     ? []
     : children.reduce((acc, child) => {
@@ -44,11 +45,12 @@ export function filterVideoImage (posts) {
 
 export function isVideo (post) {
   const media = post.secure_media || post.media
-  return media && media.oembed.type === 'video'
+  return media && media.oembed && media.oembed.type === 'video'
+
 }
 export function isImage (post) {
   return !!(
-    post.thumbnail &&
+    post && post.thumbnail &&
     !(post.thumbnail === 'self' || post.thumbnail === 'default')
   )
 }
