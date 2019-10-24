@@ -7,6 +7,7 @@ import Option from './Option'
 const useStyles = makeStyles(({ spacing }) => ({
   container: {
     margin: spacing(2),
+    display: 'block',
   },
 }))
 
@@ -26,7 +27,7 @@ const Picker = ({ value, options, onChange }) => {
   ), [value])
 
   return (
-    <span className={classes.container}>
+    <div className={classes.container}>
       <CreatableSelect
         isClearable
         defaultValue={mappedValue}
@@ -36,7 +37,7 @@ const Picker = ({ value, options, onChange }) => {
           Option: Option,
         }}
       />
-    </span>
+    </div>
   )
 }
 

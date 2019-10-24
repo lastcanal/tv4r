@@ -15,7 +15,7 @@ describe('menu', () => {
 })
 
 test('should render new subreddit', () => {
-  const store = mockStore({
+  const store = makeStore({
     postsBySubreddit: {
       foo: {
         items: [],

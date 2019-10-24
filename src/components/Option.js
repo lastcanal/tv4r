@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-// import { makeStyles } from '@material-ui/core/styles'
 import { MenuItem, ListItemIcon } from '@material-ui/core'
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
 

@@ -13,8 +13,6 @@ import {
   previousPost,
 } from '../actions'
 
-import { DEFAULT_SUBREDDITS } from '../constants'
-
 import Posts from './Posts'
 import Picker from './Picker'
 import Controls from './Controls'
@@ -31,7 +29,7 @@ const styles = ({ palette }) => ({
   },
 })
 
-const Menu = ({ classes, dispatch, post, posts, selectedSubreddit }) => {
+const Menu = ({ classes, dispatch, post, posts, selectedSubreddit, subreddits }) => {
 
   const changeSubreddit = ({ value }) => {
     dispatch(selectSubreddit(value))
@@ -64,7 +62,7 @@ const Menu = ({ classes, dispatch, post, posts, selectedSubreddit }) => {
               <Picker
                 value={selectedSubreddit}
                 onChange={changeSubreddit}
-                options={DEFAULT_SUBREDDITS}
+                options={subreddits}
               />
             </Grid>
           </Grid>
@@ -92,12 +90,13 @@ Menu.propTypes = {
   post: PropTypes.object,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
+  subreddits: PropTypes.array,
   dispatch: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => {
-  const { selectedSubreddit, postsBySubreddit } = state
+  const { selectedSubreddit, postsBySubreddit, subreddits } = state
   const selectedPost = postsBySubreddit.cursor || {}
   const { isFetching, lastUpdated, items: posts } = postsBySubreddit[
     selectedSubreddit
@@ -107,11 +106,13 @@ const mapStateToProps = state => {
   }
 
   return {
+    postsBySubreddit,
     selectedSubreddit,
     posts,
     isFetching,
     post: selectedPost.post,
     lastUpdated,
+    subreddits: Array.from(subreddits),
   }
 }
 

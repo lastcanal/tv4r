@@ -15,6 +15,7 @@ import {
   RECEIVE_COMMENTS,
   RECEIVE_COMMENTS_ERROR,
   DEFAULT_SUBREDDIT,
+  DEFAULT_SUBREDDITS,
 } from '../constants'
 
 import {
@@ -215,10 +216,21 @@ export const postsBySubreddit = (state = { cursor: {} }, action) => {
   }
 }
 
+const subreddits = (state = new Set(DEFAULT_SUBREDDITS), action) => {
+  switch (action.type) {
+    case INVALIDATE_SUBREDDIT:
+      state.add(action.subreddit)
+      return state
+    default:
+      return state
+  }
+}
+
 const createRootReducer = history => {
   return combineReducers({
     postsBySubreddit,
     selectedSubreddit,
+    subreddits,
     router: connectRouter(history),
   })
 }

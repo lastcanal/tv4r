@@ -18,6 +18,7 @@ const makeStore = (extra = {}) => {
     postsBySubreddit: {},
     selectedPost: {},
     selectedSubreddit: 'foo',
+    subreddits: new Set(['foo']),
     router: connectRouter(history),
     ...extra,
   })
@@ -30,6 +31,7 @@ customGlobal.shallow = shallow
 customGlobal.render = render
 customGlobal.mount = mount
 customGlobal.React = React
-customGlobal.mockStore = mockStore
 customGlobal.makeStore = makeStore
+// TODO: rename mockStore -> makeStore
+customGlobal.mockStore = makeStore
 customGlobal.fc = fc
