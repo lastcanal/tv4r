@@ -112,7 +112,7 @@ const mapStateToProps = state => {
     isFetching,
     post: selectedPost.post,
     lastUpdated,
-    subreddits: Array.from(subreddits),
+    subreddits,
   }
 }
 

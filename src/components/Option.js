@@ -4,17 +4,15 @@ import PropTypes from 'prop-types'
 import { MenuItem, ListItemIcon } from '@material-ui/core'
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
 
-// import { removeSubreddit } from '../actions'
+import { removeSubreddit } from '../actions'
 
-const Option = ({ children, isSelected, onFocus, data, setValue, dispatch: _ }) => {
+const Option = ({ children, isSelected, onFocus, data, setValue, dispatch }) => {
   const onClick = () => {
     setValue(data)
   }
 
-  const onRemove = (e) => {
-    e.preventDefault()
-    // dispatch(removeSubreddit(data.value))
-    return false
+  const onRemove = () => {
+    dispatch(removeSubreddit(data.value))
   }
 
   return <MenuItem

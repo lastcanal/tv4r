@@ -4,6 +4,7 @@ import reddit from '../helpers/reddit'
 import {
   SELECT_SUBREDDIT,
   INVALIDATE_SUBREDDIT,
+  REMOVE_SUBREDDIT,
   REQUEST_POSTS,
   RECEIVE_POSTS,
   RECEIVE_POSTS_ERROR,
@@ -23,6 +24,11 @@ export const selectSubreddit = subreddit => ({
 
 export const invalidateSubreddit = subreddit => ({
   type: INVALIDATE_SUBREDDIT,
+  subreddit,
+})
+
+export const removeSubreddit = subreddit => ({
+  type: REMOVE_SUBREDDIT,
   subreddit,
 })
 

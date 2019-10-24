@@ -18,7 +18,7 @@ const makeStore = (extra = {}) => {
     postsBySubreddit: {},
     selectedPost: {},
     selectedSubreddit: 'foo',
-    subreddits: new Set(['foo']),
+    subreddits: ['foo'],
     router: connectRouter(history),
     ...extra,
   })

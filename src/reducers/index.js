@@ -4,6 +4,7 @@ import { connectRouter, LOCATION_CHANGE } from 'connected-react-router'
 import {
   SELECT_SUBREDDIT,
   INVALIDATE_SUBREDDIT,
+  REMOVE_SUBREDDIT,
   REQUEST_POSTS,
   RECEIVE_POSTS,
   RECEIVE_POSTS_ERROR,
@@ -211,16 +212,26 @@ export const postsBySubreddit = (state = { cursor: {} }, action) => {
       } else {
         return state
       }
+    case REMOVE_SUBREDDIT:
+      return {
+        ...state,
+        [action.subreddit]: null,
+      }
     default:
       return state
   }
 }
 
-const subreddits = (state = new Set(DEFAULT_SUBREDDITS), action) => {
+const subreddits = (state = DEFAULT_SUBREDDITS, action) => {
   switch (action.type) {
     case INVALIDATE_SUBREDDIT:
-      state.add(action.subreddit)
-      return state
+      const addSet = new Set(state)
+      addSet.add(action.subreddit)
+      return Array.from(addSet)
+    case REMOVE_SUBREDDIT:
+      const removeSet = new Set(state)
+      removeSet.delete(action.subreddit)
+      return Array.from(removeSet)
     default:
       return state
   }
