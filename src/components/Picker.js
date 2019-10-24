@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import CreatableSelect from 'react-select/creatable'
+import Option from './Option'
 
 const useStyles = makeStyles(({ spacing }) => ({
   container: {
@@ -31,6 +32,9 @@ const Picker = ({ value, options, onChange }) => {
         defaultValue={mappedValue}
         onChange={onChange}
         options={mappedOptions}
+        components={{
+          Option: Option,
+        }}
       />
     </span>
   )

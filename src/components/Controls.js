@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
-import IconButton from '@material-ui/core/IconButton'
+import { IconButton } from '@material-ui/core'
 
 import SkipNextIcon from '@material-ui/icons/SkipNext'
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious'
@@ -26,7 +26,6 @@ const useStyles = makeStyles(({ spacing }) => ({
     width: spacing(3),
   },
 }))
-
 const Controls = ({ dispatch, posts, selectedSubreddit }) => {
   const handleRefreshClick = e => {
     e.preventDefault()
