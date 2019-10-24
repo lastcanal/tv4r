@@ -40,6 +40,11 @@ const styles = theme => ({
   },
 })
 
+const classNameForTile = (selected, post, classes) => {
+  if (!selected || !selected.post || !post.id) return classes.tile
+  return selected.post.id === post.id ? classes.tileSelected : classes.tile
+}
+
 const Posts = ({ posts, selected, classes, dispatch }) => {
   const refs = {}
 
@@ -86,14 +91,11 @@ const Posts = ({ posts, selected, classes, dispatch }) => {
   )
 }
 
-const classNameForTile = (selected, post, classes) => {
-  if (!selected || !selected.post || !post.id) return classes.tile
-  return selected.post.id === post.id ? classes.tileSelected : classes.tile
-}
-
 Posts.propTypes = {
   posts: PropTypes.array.isRequired,
   selected: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {

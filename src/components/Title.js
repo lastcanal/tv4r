@@ -1,7 +1,8 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
 
-const useStyles = makeStyles(({ typography, spacing, palette }) => ({
+const useStyles = makeStyles(({ spacing, palette }) => ({
   root: {
     padding: spacing(2),
   },
@@ -32,6 +33,10 @@ const Title = ({ post }) => {
       </a>
     </div>
   )
+}
+
+Title.propTypes = {
+  post: PropTypes.object,
 }
 
 export default Title

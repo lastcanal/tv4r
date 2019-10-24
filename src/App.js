@@ -1,13 +1,12 @@
 import React, { useEffect, useMemo } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
+import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import { MuiThemeProvider } from '@material-ui/core/styles'
-import { createMuiTheme } from '@material-ui/core/styles'
 import grey from '@material-ui/core/colors/grey'
 import brown from '@material-ui/core/colors/brown'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { connect } from 'react-redux'
-import { push, replace } from 'connected-react-router'
+import { push } from 'connected-react-router'
 
 import Menu from './components/Menu'
 import Post from './components/Post'
@@ -64,6 +63,14 @@ const App = ({
       </Container>
     </MuiThemeProvider>
   )
+}
+
+App.propTypes = {
+  selectedSubreddit: PropTypes.string,
+  postsBySubreddit: PropTypes.object,
+  dispatch: PropTypes.func,
+  classes: PropTypes.object,
+  router: PropTypes.object,
 }
 
 const mapStateToProps = ({ selectedSubreddit, postsBySubreddit, router }) => ({

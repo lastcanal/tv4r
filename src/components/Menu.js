@@ -8,8 +8,6 @@ import Paper from '@material-ui/core/Paper'
 
 import {
   selectSubreddit,
-  fetchPostsIfNeeded,
-  invalidateSubreddit,
   nextPost,
   previousPost,
 } from '../actions'
@@ -36,9 +34,11 @@ class Menu extends Component {
   static propTypes = {
     selectedSubreddit: PropTypes.string,
     posts: PropTypes.array,
+    post: PropTypes.object,
     isFetching: PropTypes.bool.isRequired,
     lastUpdated: PropTypes.number,
     dispatch: PropTypes.func.isRequired,
+    classes: PropTypes.object.isRequired,
   }
 
   componentDidMount () {

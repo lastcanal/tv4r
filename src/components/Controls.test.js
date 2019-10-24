@@ -9,7 +9,8 @@ describe('Controls', () => {
   const posts = [{ id: 1 }, { id: 2 }]
 
   it('should render Controls', () => {
-    const wrapper = mount(<Controls />)
+    const dispatch = jest.fn(() => {})
+    const wrapper = mount(<Controls dispatch={dispatch} />)
 
     expect(wrapper).toMatchSnapshot()
   })

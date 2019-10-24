@@ -10,7 +10,7 @@ import ReactPlayer from 'react-player'
 import { nextPost, mediaFallback } from '../actions'
 import Comments from './Comments'
 
-const styles = theme => ({
+const styles = _theme => ({
   root: {
     margin: 0,
     padding: 0,
@@ -25,6 +25,15 @@ const styles = theme => ({
 })
 
 class Post extends Component {
+  static propTypes = {
+    classes: PropTypes.object.isRequired,
+    mediaFallback: PropTypes.boolean,
+    dispatch: PropTypes.func,
+    posts: PropTypes.object,
+    error: PropTypes.object,
+    isFetching: PropTypes.bool,
+  }
+
   mediaEmbedContent () {
     return new DOMParser().parseFromString(
       this.props.post.media_embed.content,
@@ -35,7 +44,7 @@ class Post extends Component {
   renderMediaEmbed () {
     const { post, classes } = this.props
     if (post && isVideo(post)) {
-      const transform = (node, index) => {
+      const transform = (node, _index) => {
         if (node.type === 'tag' && node.name === 'iframe') {
           node.attribs.height = '100%'
           node.attribs.width = '100%'
@@ -72,8 +81,8 @@ class Post extends Component {
   }
 
   renderMedia () {
-    const { media_fallback } = this.props
-    if (media_fallback) {
+    const { mediaFallback } = this.props
+    if (mediaFallback) {
       return this.renderMediaEmbed()
     } else {
       return this.renderMediaPlayer()
@@ -87,7 +96,7 @@ class Post extends Component {
 
   onMediaError (error) {
     const { dispatch } = this.props
-    dispatch(mediaFallback())
+    dispatch(mediaFallback(error))
   }
 
   renderLoading () {
@@ -135,7 +144,7 @@ const mapStateToProps = state => {
     posts,
     isFetching,
     post: selectedPost.post,
-    media_fallback: selectedPost.media_fallback,
+    mediaFallback: selectedPost.media_fallback,
   }
 }
 

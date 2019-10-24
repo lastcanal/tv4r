@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
 
@@ -66,6 +67,12 @@ const Controls = ({ dispatch, posts, selectedSubreddit }) => {
       </IconButton>
     </div>
   )
+}
+
+Controls.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  posts: PropTypes.array,
+  selectedSubreddit: PropTypes.string,
 }
 
 export default Controls

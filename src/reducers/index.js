@@ -1,7 +1,5 @@
 import { combineReducers } from 'redux'
-import { connectRouter } from 'connected-react-router'
-
-import { LOCATION_CHANGE, CALL_HISTORY_METHOD } from 'connected-react-router'
+import { connectRouter, LOCATION_CHANGE } from 'connected-react-router'
 
 import {
   SELECT_SUBREDDIT,
@@ -115,6 +113,59 @@ const selectedPosts = (
   }
 }
 
+export const selectedPost = (state = {}, action) => {
+  switch (action.type) {
+    case RECEIVE_POSTS:
+      return {
+        ...state,
+        ...extractPost(state, action),
+        media_fallback: false,
+      }
+    case SELECT_POST:
+      return {
+        ...state,
+        ...extractPost(state, action),
+        media_fallback: false,
+      }
+    case NEXT_POST:
+      const nextIndex = state.index + 1
+      const nextPost = action.posts[nextIndex]
+
+      return {
+        ...state,
+        index: nextPost ? nextIndex : 0,
+        post: nextPost || action.posts[0],
+        media_fallback: false,
+      }
+    case PREVIOUS_POST:
+      const previousIndex =
+        state.index - 1 >= 0 ? state.index - 1 : action.posts.length - 1
+      return {
+        ...state,
+        index: previousIndex,
+        post: action.posts[previousIndex],
+        media_fallback: false,
+      }
+    case MEDIA_FALLBACK:
+      return {
+        ...state,
+        media_fallback: true,
+      }
+    case LOCATION_CHANGE:
+      const match = matchRedditPath(action.payload.location.pathname)
+      if (match && (!state.post || match.params.postId !== state.post.id)) {
+        return {
+          ...state,
+          ...findPostById(match.params.postId, action.posts),
+        }
+      } else {
+        return state
+      }
+    default:
+      return state
+  }
+}
+
 export const postsBySubreddit = (state = { cursor: {} }, action) => {
   switch (action.type) {
     case INVALIDATE_SUBREDDIT:
@@ -153,59 +204,6 @@ export const postsBySubreddit = (state = { cursor: {} }, action) => {
             posts,
             subreddit,
           }),
-        }
-      } else {
-        return state
-      }
-    default:
-      return state
-  }
-}
-
-export const selectedPost = (state = {}, action) => {
-  switch (action.type) {
-    case RECEIVE_POSTS:
-      return {
-        ...state,
-        ...extractPost(state, action),
-        media_fallback: false,
-      }
-    case SELECT_POST:
-      return {
-        ...state,
-        ...extractPost(state, action),
-        media_fallback: false,
-      }
-    case NEXT_POST:
-      const next_index = state.index + 1
-      const next_post = action.posts[next_index]
-
-      return {
-        ...state,
-        index: next_post ? next_index : 0,
-        post: next_post || action.posts[0],
-        media_fallback: false,
-      }
-    case PREVIOUS_POST:
-      const previous_index =
-        state.index - 1 >= 0 ? state.index - 1 : action.posts.length - 1
-      return {
-        ...state,
-        index: previous_index,
-        post: action.posts[previous_index],
-        media_fallback: false,
-      }
-    case MEDIA_FALLBACK:
-      return {
-        ...state,
-        media_fallback: true,
-      }
-    case LOCATION_CHANGE:
-      const match = matchRedditPath(action.payload.location.pathname)
-      if (match && (!state.post || match.params.postId !== state.post.id)) {
-        return {
-          ...state,
-          ...findPostById(match.params.postId, action.posts),
         }
       } else {
         return state

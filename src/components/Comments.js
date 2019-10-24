@@ -1,21 +1,10 @@
 import React, { useEffect, useState } from 'react'
-
 import { connect } from 'react-redux'
-
-import { makeStyles } from '@material-ui/core/styles'
-import ToolBar from '@material-ui/core/ToolBar'
 import Box from '@material-ui/core/Box'
-
 import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
-import GridList from '@material-ui/core/GridList'
-import GridListTile from '@material-ui/core/GridListTile'
-import GridListTileBar from '@material-ui/core/GridListTileBar'
+import { withStyles, makeStyles } from '@material-ui/core/styles'
 
 import { fetchCommentsIfNeeded } from '../actions'
-
-import Menu from './Menu'
-import Posts from './Posts'
 
 const styles = ({ spacing, palette, shape }) => ({
   comments: {
@@ -89,7 +78,7 @@ const Comments = ({
   const [visible, setVisible] = useState(false)
 
   useEffect(
-    selected => {
+    () => {
       if (visible) {
         dispatch(fetchCommentsIfNeeded())
       }
@@ -149,8 +138,8 @@ const Comments = ({
       <div className={classes.spacer}>
         <div id="comments" className={classes.comments}>
           <div className={`${classes.comment_container} ${classes.root}`}>
-            {comments.map(post => (
-              <CommentTree post={post} />
+            {comments.map((comment, index) => (
+              <CommentTree comments={comment} key={index} />
             ))}
           </div>
         </div>
@@ -160,8 +149,12 @@ const Comments = ({
   )
 }
 
-const CommentTree = ({ post }) => {
-  return post.data.children.map(child => <Comment comment={child} depth={0} />)
+Comments.propTypes = {
+  postsBySubreddit: PropTypes.object,
+  selectedSubreddit: PropTypes.string,
+  selected: PropTypes.object,
+  dispatch: PropTypes.func,
+  classes: PropTypes.object,
 }
 
 const Comment = ({ comment, depth }) => {
@@ -182,14 +175,33 @@ const Comment = ({ comment, depth }) => {
   )
 }
 
+Comment.propTypes = {
+  comment: PropTypes.object,
+  depth: PropTypes.number,
+}
+
+const CommentTree = ({ comments }) => {
+  return comments.data.children.map(
+    (child, index) => <Comment comment={child} depth={0} key={index} />)
+}
+
+CommentTree.propTypes = {
+  comments: PropTypes.object,
+}
+
 const ReplyTree = ({ replies, depth }) => {
   if (!replies || !replies.data) return []
-  return replies.data.children.map(child => (
-    <Comment comment={child} depth={depth} />
+  return replies.data.children.map((child, index) => (
+    <Comment comment={child} depth={depth} key={index} />
   ))
 }
 
-const Reply = ({ reply, depth }) => {
+ReplyTree.propTypes = {
+  replies: PropTypes.object,
+  depth: PropTypes.number,
+}
+
+const Reply = ({ reply }) => {
   const classes = commentStyles()
   switch (reply.kind) {
     case 'more':
@@ -212,6 +224,11 @@ const Reply = ({ reply, depth }) => {
     default:
       return <div>DEBUG:{reply.kind}</div>
   }
+}
+
+Reply.propTypes = {
+  reply: PropTypes.object,
+  depth: PropTypes.number,
 }
 
 const mapStateToProps = ({ postsBySubreddit, selectedSubreddit }) => ({
