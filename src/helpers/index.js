@@ -82,8 +82,10 @@ export const findPostById = (postId, posts) => {
 
   if (index >= 0) {
     return { index, post: posts[index] }
-  } else {
+  } else if (posts[0]) {
     return { index: 0, post: posts[0] }
+  } else {
+    return { index: -1, post: { id: postId } }
   }
 }
 
@@ -92,10 +94,6 @@ export const extractPost = (state, action) => {
     return { index: action.index, post: action.post }
   } else if (action.posts && state.post && state.post.id) {
     return findPostById(state.post.id, action.posts)
-  } else if (action.post) {
-    return { index: -1, post: action.post }
-  } else if (action.posts) {
-    return { index: 0, post: action.posts[0] }
   } else {
     return { index: -1, post: null }
   }

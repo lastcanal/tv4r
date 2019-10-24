@@ -164,7 +164,11 @@ export const selectedPost = (state = {}, action) => {
         return state
       }
     case INVALIDATE_SUBREDDIT:
-      return {}
+      return {
+        ...state,
+        index: -1,
+        post: state.post ? { id: state.post.id } : null,
+      }
     default:
       return state
   }
