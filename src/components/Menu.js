@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
@@ -31,27 +31,13 @@ const styles = ({ palette }) => ({
   },
 })
 
-class Menu extends Component {
-  static propTypes = {
-    selectedSubreddit: PropTypes.string,
-    posts: PropTypes.array,
-    post: PropTypes.object,
-    isFetching: PropTypes.bool.isRequired,
-    lastUpdated: PropTypes.number,
-    dispatch: PropTypes.func.isRequired,
-    classes: PropTypes.object.isRequired,
+const Menu = ({ classes, dispatch, post, posts, selectedSubreddit }) => {
+
+  const changeSubreddit = ({ value }) => {
+    dispatch(selectSubreddit(value))
   }
 
-  componentDidMount () {
-    document.body.addEventListener('keydown', this.handleKeyDown.bind(this))
-  }
-
-  componentWillUnmount () {
-    document.body.removeEventListener('keydown', this.handleKeyDown)
-  }
-
-  handleKeyDown (e) {
-    const { dispatch, posts } = this.props
+  const handleKeyDown = (e) => {
     switch (e.key) {
       case 'ArrowRight':
         return dispatch(nextPost(posts))
@@ -62,42 +48,52 @@ class Menu extends Component {
     }
   }
 
-  changeSubreddit ({ value }) {
-    this.props.dispatch(selectSubreddit(value))
-  }
+  useEffect(() => {
+    document.body.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.body.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
 
-  render () {
-    const { classes, dispatch, post, posts, selectedSubreddit } = this.props
-
-    return (
-      <Paper>
-        <Container classes={classes} maxWidth={false}>
-          <ToolBar>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <Picker
-                  value={selectedSubreddit}
-                  onChange={this.changeSubreddit.bind(this)}
-                  options={DEFAULT_SUBREDDITS}
-                />
-              </Grid>
+  return (
+    <Paper>
+      <Container classes={classes} maxWidth={false}>
+        <ToolBar>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <Picker
+                value={selectedSubreddit}
+                onChange={changeSubreddit}
+                options={DEFAULT_SUBREDDITS}
+              />
             </Grid>
-          </ToolBar>
-          <ToolBar>
-            <Posts />
-          </ToolBar>
-          <ToolBar>
-            <Controls
-              dispatch={dispatch}
-              posts={posts}
-              selectedSubreddit={selectedSubreddit}
-            />
-            <Title post={post} />
-          </ToolBar>
-        </Container>
-      </Paper>
-    )
-  }
+          </Grid>
+        </ToolBar>
+        <ToolBar>
+          <Posts />
+        </ToolBar>
+        <ToolBar>
+          <Controls
+            dispatch={dispatch}
+            posts={posts}
+            selectedSubreddit={selectedSubreddit}
+          />
+          <Title post={post} />
+        </ToolBar>
+      </Container>
+    </Paper>
+  )
+
+}
+
+Menu.propTypes = {
+  selectedSubreddit: PropTypes.string,
+  posts: PropTypes.array,
+  post: PropTypes.object,
+  isFetching: PropTypes.bool.isRequired,
+  lastUpdated: PropTypes.number,
+  dispatch: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => {
