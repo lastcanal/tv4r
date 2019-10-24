@@ -2,25 +2,33 @@ import { extractPosts, filterPosts, matchRedditPath } from '../helpers'
 import reddit from '../helpers/reddit'
 
 import {
-  SELECT_SUBREDDIT, INVALIDATE_SUBREDDIT,
-  REQUEST_POSTS, RECEIVE_POSTS, RECEIVE_POSTS_ERROR,
-  SELECT_POST, NEXT_POST, PREVIOUS_POST, MEDIA_FALLBACK,
-  REQUEST_COMMENTS, RECEIVE_COMMENTS, RECEIVE_COMMENTS_ERROR,
+  SELECT_SUBREDDIT,
+  INVALIDATE_SUBREDDIT,
+  REQUEST_POSTS,
+  RECEIVE_POSTS,
+  RECEIVE_POSTS_ERROR,
+  SELECT_POST,
+  NEXT_POST,
+  PREVIOUS_POST,
+  MEDIA_FALLBACK,
+  REQUEST_COMMENTS,
+  RECEIVE_COMMENTS,
+  RECEIVE_COMMENTS_ERROR,
 } from '../constants'
 
 export const selectSubreddit = subreddit => ({
   type: SELECT_SUBREDDIT,
-  subreddit
+  subreddit,
 })
 
 export const invalidateSubreddit = subreddit => ({
   type: INVALIDATE_SUBREDDIT,
-  subreddit
+  subreddit,
 })
 
 export const requestPosts = subreddit => ({
   type: REQUEST_POSTS,
-  subreddit
+  subreddit,
 })
 
 export const receivePosts = (subreddit, json) => ({
@@ -28,38 +36,39 @@ export const receivePosts = (subreddit, json) => ({
   subreddit,
   posts: filterPosts(extractPosts(json)),
   error: null,
-  receivedAt: Date.now()
+  receivedAt: Date.now(),
 })
 
 export const receivePostsError = (subreddit, error) => ({
   type: RECEIVE_POSTS_ERROR,
   subreddit,
-  error
+  error,
 })
 
 export const selectPost = (post, index) => ({
   type: SELECT_POST,
   post,
-  index
+  index,
 })
 
-export const nextPost = (posts) => ({
+export const nextPost = posts => ({
   type: NEXT_POST,
-  posts
+  posts,
 })
 
-export const previousPost = (posts) => ({
+export const previousPost = posts => ({
   type: PREVIOUS_POST,
-  posts
+  posts,
 })
 
 export const mediaFallback = () => ({
-  type: MEDIA_FALLBACK
+  type: MEDIA_FALLBACK,
 })
 
 const fetchPosts = subreddit => dispatch => {
   dispatch(requestPosts(subreddit))
-  return reddit.fetchPosts(subreddit)
+  return reddit
+    .fetchPosts(subreddit)
     .then(response => response.json())
     .then(response => dispatch(receivePosts(subreddit, response)))
     .catch(error => dispatch(receivePostsError(subreddit, error)))
@@ -85,10 +94,17 @@ export const fetchPostsIfNeeded = subreddit => (dispatch, getState) => {
 const shouldInvalidateSubreddit = ({ router, postsBySubreddit }, subreddit) => {
   const match = matchRedditPath(router.location.pathname)
   const posts = postsBySubreddit[subreddit]
-  return !posts || posts.items.length === 0 || (match && match.subreddit === subreddit)
+  return (
+    !posts ||
+    posts.items.length === 0 ||
+    (match && match.subreddit === subreddit)
+  )
 }
 
-export const invalidateSubredditIfNeeded = subreddit => (dispatch, getState) => {
+export const invalidateSubredditIfNeeded = subreddit => (
+  dispatch,
+  getState,
+) => {
   if (shouldInvalidateSubreddit(getState(), subreddit)) {
     return dispatch(invalidateSubreddit(subreddit))
   }
@@ -97,29 +113,34 @@ export const invalidateSubredditIfNeeded = subreddit => (dispatch, getState) => 
 const requestComments = (post, subreddit) => ({
   type: REQUEST_COMMENTS,
   post,
-  subreddit
+  subreddit,
 })
 
 const receiveComments = (post, subreddit, response) => ({
   type: RECEIVE_COMMENTS,
   post,
   subreddit,
-  comments: response
+  comments: response,
 })
 
 const receiveCommentsError = (post, subreddit, error) => ({
   type: RECEIVE_COMMENTS_ERROR,
   post,
   subreddit,
-  error
+  error,
 })
 
-const fetchComments = (post, selectedSubreddit) => (dispatch) => {
+const fetchComments = (post, selectedSubreddit) => dispatch => {
   dispatch(requestComments(post, selectedSubreddit))
-  return reddit.fetchPost(post.permalink)
+  return reddit
+    .fetchPost(post.permalink)
     .then(response => response.json())
-    .then(response => dispatch(receiveComments(post, selectedSubreddit, response)))
-    .catch(error => dispatch(receiveCommentsError(post, selectedSubreddit, error)))
+    .then(response =>
+      dispatch(receiveComments(post, selectedSubreddit, response)),
+    )
+    .catch(error =>
+      dispatch(receiveCommentsError(post, selectedSubreddit, error)),
+    )
 }
 
 export const fetchCommentsIfNeeded = () => (dispatch, getState) => {

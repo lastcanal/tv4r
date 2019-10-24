@@ -1,19 +1,23 @@
-import { matchPath } from 'react-router-dom';
+import { matchPath } from 'react-router-dom'
 import { MEDIA_VIDEO, MEDIA_IMAGE } from '../constants'
 
 export const SUPPORTED_VIDEO_MEDIA = []
 export const SUPPORTED_IMAGE_MEDIA = []
 
-export function extractPosts(json) {
+export function extractPosts (json) {
   // json.data?.children? ?? []
   const children = (json && json.data && json.data.children) || []
-  return children.length === 0 ? [] : children.reduce((acc, child) => {
-    if (child && child.data) { acc.push(child.data) }
-    return acc
-  }, [])
+  return children.length === 0
+    ? []
+    : children.reduce((acc, child) => {
+      if (child && child.data) {
+        acc.push(child.data)
+      }
+      return acc
+    }, [])
 }
 
-export function filterPosts(posts, mediaType = MEDIA_VIDEO) {
+export function filterPosts (posts, mediaType = MEDIA_VIDEO) {
   switch (mediaType) {
     case MEDIA_VIDEO:
       return filterVideo(posts)
@@ -24,48 +28,43 @@ export function filterPosts(posts, mediaType = MEDIA_VIDEO) {
   }
 }
 
-export function filterVideo(posts) {
+export function filterVideo (posts) {
   return posts.filter(isVideo)
 }
 
-export function filterImage(posts) {
+export function filterImage (posts) {
   return posts.filter(isImage)
 }
 
-export function filterVideoImage(posts) {
-  return posts.filter(function(post) {
-    return (isVideo(post) || isImage(post))
+export function filterVideoImage (posts) {
+  return posts.filter(function (post) {
+    return isVideo(post) || isImage(post)
   })
 }
 
-export function isVideo(post) {
+export function isVideo (post) {
   const media = post.secure_media || post.media
-  return (media && media.oembed.type === 'video')
-
+  return media && media.oembed.type === 'video'
 }
-export function isImage(post) {
-  return !!(post.thumbnail &&
-    !(post.thumbnail === 'self' || post.thumbnail === 'default'))
+export function isImage (post) {
+  return !!(
+    post.thumbnail &&
+    !(post.thumbnail === 'self' || post.thumbnail === 'default')
+  )
 }
 
-const matchSubredditPath = (pathname) => (
-  matchPath(pathname, "/r/:subreddit")
-)
+const matchSubredditPath = pathname => matchPath(pathname, '/r/:subreddit')
 
-const matchPostPath = (pathname) => (
-  matchPath(pathname, "/r/:subreddit/comments/:postId/:slug")
-)
+const matchPostPath = pathname =>
+  matchPath(pathname, '/r/:subreddit/comments/:postId/:slug')
 
-export const matchRedditPath = (pathname) => (
+export const matchRedditPath = pathname =>
   matchPostPath(pathname) || matchSubredditPath(pathname)
-)
 
 export const getNewSubredditFromPath = (state, action) => {
   const match = matchRedditPath(action.payload.location.pathname)
 
-  return match
-    && match.isExact
-    && state !== match.params.subreddit
+  return match && match.isExact && state !== match.params.subreddit
     ? match.params.subreddit
     : state
 }
@@ -73,33 +72,29 @@ export const getNewSubredditFromPath = (state, action) => {
 export const didInvalidateSubredditFromPath = (state, action) => {
   const match = matchRedditPath(action.payload.location.pathname)
 
-  return match
-    && match.isExact
-    && state !== match.params.subreddit
+  return match && match.isExact && state !== match.params.subreddit
 }
 
 export const findPostById = (postId, posts) => {
-  const index = posts.findIndex(
-    (post) => (post.id === postId))
+  const index = posts.findIndex(post => post.id === postId)
 
   if (index >= 0) {
-    return {index, post: posts[index]}
+    return { index, post: posts[index] }
   } else {
-    return {index: 0, post: posts[0]}
+    return { index: 0, post: posts[0] }
   }
 }
 
 export const extractPost = (state, action) => {
   if (action.index >= 0) {
-    return {index: action.index, post: action.post}
+    return { index: action.index, post: action.post }
   } else if (action.posts && state.post && state.post.id) {
     return findPostById(state.post.id, action.posts)
   } else if (action.post) {
-    return {index: -1, post: action.post}
+    return { index: -1, post: action.post }
   } else if (action.posts) {
-    return {index: 0, post: action.posts[0]}
+    return { index: 0, post: action.posts[0] }
   } else {
-    return {index: -1, post: null}
+    return { index: -1, post: null }
   }
 }
-

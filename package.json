@@ -36,9 +36,11 @@
     "typescript": "3.6.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
+    "check": "eslint --fix-dry-run --ignore-pattern 'src/**/__snapshots__' --ignore-pattern '*.test.*' 'src/**/*''",
+    "fix": "eslint --fix --ignore-pattern 'src/**/__snapshots__' --ignore-pattern '*.test.*' 'src/**/*'",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -62,11 +64,17 @@
     ]
   },
   "devDependencies": {
+    "customize-cra": "^0.8.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-prettier": "^3.1.1",
     "fast-check": "^1.17.0",
     "jest-fetch-mock": "^2.1.2",
     "prettier": "^1.18.2",
+    "react-app-rewired": "^2.1.4",
     "redux-mock-store": "^1.5.3"
   }
 }

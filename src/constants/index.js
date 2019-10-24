@@ -21,7 +21,7 @@ export const DEFAULT_SUBREDDITS = [
   'Videos',
   'Documentaries',
   'PoliticalVideos',
-  'ArtisanVideos'
+  'ArtisanVideos',
 ]
 
 export const DEFAULT_SUBREDDIT = DEFAULT_SUBREDDITS[0]
