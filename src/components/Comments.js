@@ -115,12 +115,11 @@ const Comments = ({
     }
   }, [selectedSubreddit])
 
-  const item =
-    postsBySubreddit[selectedSubreddit] &&
-    postsBySubreddit[selectedSubreddit].items[selected.index]
-  const comments = item && item.comments
+  const subreddit = postsBySubreddit[selectedSubreddit]
+  const item = subreddit && subreddit.items[selected.index]
+  const comments = item && item.comments || []
 
-  if (!comments || item.isLoadingComments) {
+  if (subreddit.isFetchingComments) {
     return (
       <div>
         <div className={classes.spacer}>
