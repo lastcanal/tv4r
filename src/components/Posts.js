@@ -21,6 +21,7 @@ const styles = theme => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
+    minHeight: 200,
   },
   gridList: {
     flexWrap: 'nowrap',

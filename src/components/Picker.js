@@ -8,6 +8,7 @@ const useStyles = makeStyles(({ spacing }) => ({
   container: {
     margin: spacing(2),
     display: 'block',
+    maxHeight: 200,
   },
 }))
 
@@ -30,11 +31,12 @@ const Picker = ({ value, options, onChange }) => {
     <div className={classes.container}>
       <CreatableSelect
         isClearable
+        maxMenuHeight={200}
         defaultValue={mappedValue}
         onChange={onChange}
         options={mappedOptions}
         components={{
-          Option: Option,
+          Option,
         }}
       />
     </div>

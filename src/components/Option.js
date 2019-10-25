@@ -7,11 +7,13 @@ import RemoveCircleIcon from '@material-ui/icons/RemoveCircle'
 import { removeSubreddit } from '../actions'
 
 const Option = ({ children, isSelected, onFocus, data, setValue, dispatch }) => {
-  const onClick = () => {
+  const onClick = (e) => {
+    e.stopPropagation()
     setValue(data)
   }
 
-  const onRemove = () => {
+  const onRemove = (e) => {
+    e.stopPropagation()
     dispatch(removeSubreddit(data.value))
   }
 
@@ -19,11 +21,12 @@ const Option = ({ children, isSelected, onFocus, data, setValue, dispatch }) => 
     onFocus={onFocus}
     selected={isSelected}
     component="div"
+    onClick={onClick}
   >
     <ListItemIcon onClick={onRemove}>
       <RemoveCircleIcon />
     </ListItemIcon>
-    <div onClick={onClick}>
+    <div>
       {children}
     </div>
   </MenuItem>
