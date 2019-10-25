@@ -6,7 +6,6 @@ import Enzyme, { shallow, render, mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16' // React 16 Enzyme adapter
 import { connectRouter, routerMiddleware} from 'connected-react-router'
 import fc from 'fast-check'
-import { history } from './configureStore'
 
 Enzyme.configure({ adapter: new Adapter() }) // Make Enzyme functions available in all test files without importing
 
@@ -19,7 +18,23 @@ const makeStore = (extra = {}) => {
     selectedPost: {},
     selectedSubreddit: 'foo',
     subreddits: ['foo'],
-    router: connectRouter(history),
+    router: {
+      history :{
+        location: {},
+        action: 'POP',
+        push: jest.fn(),
+        replace: jest.fn(),
+        go: jest.fn(),
+        goBack: jest.fn(),
+        goForward: jest.fn(),
+      },
+      location: {
+        pathname: '/',
+        search: '',
+        hash: '',
+      },
+      action: 'POP',
+    },
     ...extra,
   })
 }

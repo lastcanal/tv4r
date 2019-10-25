@@ -120,9 +120,9 @@ const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback }) =
 
 Post.propTypes = {
   classes: PropTypes.object.isRequired,
-  isMediaFallback: PropTypes.boolean,
+  isMediaFallback: PropTypes.bool,
   dispatch: PropTypes.func,
-  posts: PropTypes.object,
+  posts: PropTypes.array,
   error: PropTypes.object,
   isFetching: PropTypes.bool,
 }

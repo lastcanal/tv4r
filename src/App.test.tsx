@@ -9,10 +9,11 @@ import configureStore, { history } from './configureStore'
 describe('app', () => {
   it('renders empty app', () => {
     fetch.mockResponseOnce(JSON.stringify({ data: { children: [] } }))
+    const store = makeStore()
     mount(
-      <Provider store={configureStore()}>
+      <Provider store={store}>
         <ConnectedRouter history={history} hashType="noslash">
-          <Route exact path="/" component={App} />
+          <App />
         </ConnectedRouter>
       </Provider>,
     )
@@ -20,11 +21,10 @@ describe('app', () => {
 
   it('renders error app', () => {
     fetch.mockResponseOnce('undefined')
-    const store = configureStore()
     mount(
-      <Provider store={store}>
+      <Provider store={makeStore()}>
         <ConnectedRouter history={history} hashType="noslash">
-          <Route exact path="/" component={App} />
+          <App />
         </ConnectedRouter>
       </Provider>,
     )
@@ -35,11 +35,10 @@ describe('app', () => {
     fc.assert(
       fc.property(fc.array(fc.object(), 10), objects => {
         fetch.mockResponseOnce(JSON.stringify({ data: { children: objects } }))
-        const store = configureStore()
         mount(
-          <Provider store={store}>
+          <Provider store={makeStore()}>
             <ConnectedRouter history={history} hashType="noslash">
-              <Route exact path="/" component={App} />
+              <App />
             </ConnectedRouter>
           </Provider>,
         )
