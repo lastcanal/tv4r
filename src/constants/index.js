@@ -19,10 +19,10 @@ export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 export const RECEIVE_COMMENTS_ERROR = 'RECEIVE_COMMENTS_ERROR'
 
 export const DEFAULT_SUBREDDITS = [
-  'Videos',
-  'Documentaries',
-  'PoliticalVideos',
-  'ArtisanVideos',
+  'videos',
+  'documentaries',
+  'politicalvideos',
+  'artisanvideos',
 ]
 
 export const DEFAULT_SUBREDDIT = DEFAULT_SUBREDDITS[0]

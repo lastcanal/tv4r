@@ -111,8 +111,9 @@ export const invalidateSubredditIfNeeded = subreddit => (
   dispatch,
   getState,
 ) => {
-  if (shouldInvalidateSubreddit(getState(), subreddit)) {
-    return dispatch(invalidateSubreddit(subreddit))
+  const newSubreddit = subreddit.toLowerCase()
+  if (shouldInvalidateSubreddit(getState(), newSubreddit)) {
+    return dispatch(invalidateSubreddit(newSubreddit))
   }
 }
 

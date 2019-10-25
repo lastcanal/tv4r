@@ -67,14 +67,14 @@ export const getNewSubredditFromPath = (state, action) => {
   const match = matchRedditPath(action.payload.location.pathname)
 
   return match && match.isExact && state !== match.params.subreddit
-    ? match.params.subreddit
+    ? match.params.subreddit.toLowerCase()
     : state
 }
 
 export const didInvalidateSubredditFromPath = (state, action) => {
   const match = matchRedditPath(action.payload.location.pathname)
 
-  return match && match.isExact && state !== match.params.subreddit
+  return match && match.isExact && state !== match.params.subreddit.toLowerCase()
 }
 
 export const findPostById = (postId, posts) => {
