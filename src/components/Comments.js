@@ -103,7 +103,7 @@ const Comments = ({
       const target = document.getElementById('scroll_beacon')
       const options = {
         root: null,
-        rootMargin: '400px',
+        rootMargin: '500px',
         threshold: 1.0,
       }
       const onIntersection = elements => {
