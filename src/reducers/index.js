@@ -97,11 +97,18 @@ const selectedPosts = (
         error: null,
       }
     case RECEIVE_COMMENTS:
-      action.post.comments = action.comments
-      return {
+      const { index, post } = findPostById(action.post.id, state.items)
+      const newState = {
         ...state,
         isFetchingComments: false,
+        items: ([
+          ...state.items.slice(0, index),
+          { ...post, comments: action.comments },
+          ...state.items.slice(index + 1),
+        ]),
       }
+
+      return newState
     case RECEIVE_COMMENTS_ERROR:
       return {
         ...state,
