@@ -94,6 +94,8 @@ export const extractPost = (state, action) => {
     return { index: action.index, post: action.post }
   } else if (action.posts && state.post && state.post.id) {
     return findPostById(state.post.id, action.posts)
+  } else if (action.posts) {
+    return { index: 0, post: action.posts[0] }
   } else {
     return { index: -1, post: null }
   }
