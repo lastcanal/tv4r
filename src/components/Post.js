@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
@@ -16,33 +16,35 @@ const styles = _theme => ({
     padding: 0,
     height: '100%',
   },
-  playerWrapper: {},
+  playerWrapper: {
+    backgroundColor: 'black',
+  },
   reactPlayer: {
+    backgroundColor: 'black',
     position: 'absolute',
     top: 0,
     left: 0,
   },
 })
 
-class Post extends Component {
-  static propTypes = {
-    classes: PropTypes.object.isRequired,
-    mediaFallback: PropTypes.boolean,
-    dispatch: PropTypes.func,
-    posts: PropTypes.object,
-    error: PropTypes.object,
-    isFetching: PropTypes.bool,
+const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback }) => {
+
+  const onMediaEnded = () => {
+    dispatch(nextPost(posts))
   }
 
-  mediaEmbedContent () {
+  const onMediaError = (error) => {
+    dispatch(mediaFallback(error))
+  }
+
+  const mediaEmbedContent = () => {
     return new DOMParser().parseFromString(
-      this.props.post.media_embed.content,
+      post.media_embed.content,
       'text/html',
     ).documentElement.textContent
   }
 
-  renderMediaEmbed () {
-    const { post, classes } = this.props
+  const renderMediaEmbed = () => {
     if (post && isVideo(post)) {
       const transform = (node, _index) => {
         if (node.type === 'tag' && node.name === 'iframe') {
@@ -53,7 +55,7 @@ class Post extends Component {
       }
       return (
         <div className={classes.playerWrapper}>
-          {ReactHtmlParser(this.mediaEmbedContent(), { transform })}
+          {ReactHtmlParser(mediaEmbedContent(), { transform })}
         </div>
       )
     } else {
@@ -61,79 +63,68 @@ class Post extends Component {
     }
   }
 
-  renderMediaPlayer () {
-    const { post, classes } = this.props
+  const renderMediaPlayer = () => {
     return (
       <div className={classes.playerWrapper}>
         <ReactPlayer
-          ref={node => (this.player = node)}
-          //  playing
           url={post.url}
           className={classes.reactPlayer}
           width="100%"
           height="100%"
-          onEnded={this.onMediaEnded.bind(this)}
-          onError={this.onMediaError.bind(this)}
+          onEnded={onMediaEnded}
+          onError={onMediaError}
           controls={true}
         />
       </div>
     )
   }
 
-  renderMedia () {
-    const { mediaFallback } = this.props
-    if (mediaFallback) {
-      return this.renderMediaEmbed()
+  const renderMedia = () => {
+    if (isMediaFallback) {
+      return renderMediaEmbed()
     } else {
-      return this.renderMediaPlayer()
+      return renderMediaPlayer()
     }
   }
 
-  onMediaEnded () {
-    const { dispatch, posts } = this.props
-    dispatch(nextPost(posts))
-  }
-
-  onMediaError (error) {
-    const { dispatch } = this.props
-    dispatch(mediaFallback(error))
-  }
-
-  renderLoading () {
+  const renderLoading = () => {
     return <h2>Loading...</h2>
   }
 
-  renderEmpty () {
+  const renderEmpty = () => {
     return <h2>No TV Found.</h2>
   }
 
-  renderLoadingError () {
+  const renderLoadingError = () => {
     return <h2>Failed to load TV; try again..</h2>
   }
 
-  render () {
-    const { classes, posts, isFetching, post } = this.props
-    if (isFetching) {
-      return this.renderLoading()
-    } else if (posts.length === 0) {
-      return this.renderEmpty()
-    } else if (!post.url) {
-      return this.renderLoadingError()
-    } else {
-      return (
-        <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-          <Container maxWidth={false} className={classes.root}>
-            <div>{this.renderMedia()}</div>
-          </Container>
-          <Comments />
-        </div>
-      )
-    }
+  if (isFetching) {
+    return renderLoading()
+  } else if (posts.length === 0) {
+    return renderEmpty()
+  } else if (!post || !post.url) {
+    return renderLoadingError()
+  } else {
+    return (
+      <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+        <Container maxWidth={false} className={classes.root}>
+          <div>{renderMedia()}</div>
+        </Container>
+        <Comments />
+      </div>
+    )
   }
+
 }
 
 Post.propTypes = {
-  post: PropTypes.object,
+  classes: PropTypes.object.isRequired,
+  isMediaFallback: PropTypes.boolean,
+  dispatch: PropTypes.func,
+  posts: PropTypes.object,
+  error: PropTypes.object,
+  isFetching: PropTypes.bool,
 }
 
 const mapStateToProps = state => {
@@ -150,7 +141,7 @@ const mapStateToProps = state => {
     posts,
     isFetching,
     post: selectedPost.post,
-    mediaFallback: selectedPost.media_fallback,
+    isMediaFallback: selectedPost.media_fallback,
   }
 }
 

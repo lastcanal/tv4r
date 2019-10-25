@@ -8,13 +8,25 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 import { fetchCommentsIfNeeded } from '../actions'
 
 const styles = ({ spacing, palette, shape }) => ({
-  comments: {
-  },
   root: {
     borderRadius: shape.borderRadius,
     backgroundColor: palette.background.default,
     flexGrow: 1,
     margin: 0,
+  },
+  comments: {
+    borderRadius: shape.borderRadius,
+    backgroundColor: palette.background.default,
+    flexGrow: 1,
+    margin: spacing(2),
+    minHeight: '61vh',
+  },
+  loading: {
+    borderRadius: shape.borderRadius,
+    backgroundColor: palette.background.default,
+    flexGrow: 1,
+    margin: spacing(2),
+    minHeight: '61vh',
   },
   menuButton: {
     marginRight: spacing(2),
@@ -26,14 +38,8 @@ const styles = ({ spacing, palette, shape }) => ({
     marginTop: '100vh',
   },
   spacerBottom: {
-    marginBottom: '92vh',
+    marginBottom: '350px',
     paddingBottom: 1,
-  },
-  loading: {
-    borderRadius: shape.borderRadius,
-    backgroundColor: palette.background.default,
-    flexGrow: 1,
-    margin: spacing(2),
   },
 })
 
@@ -117,15 +123,15 @@ const Comments = ({
 
   const subreddit = postsBySubreddit[selectedSubreddit]
   const item = subreddit && subreddit.items[selected.index]
-  const comments = item && item.comments || []
+  const comments = item && item.comments
 
-  if (subreddit.isFetchingComments) {
+  if (!comments || subreddit.isFetchingComments) {
     return (
       <div>
         <div className={classes.spacer}>
-          <div id="comments" className={classes.loading}>
+          <div className={classes.loading}>
             <Box className={classes.selfPostBody} boxShadow={5}>
-              <LinearProgress />
+              { subreddit.isFetchingComments ? <LinearProgress /> : '' }
             </Box>
           </div>
         </div>
@@ -137,7 +143,7 @@ const Comments = ({
   return (
     <div>
       <div className={classes.spacer}>
-        <div id="comments" className={classes.comments}>
+        <div className={classes.comments}>
           <div className={`${classes.comment_container} ${classes.root}`}>
             {comments.map((comment, index) => (
               <CommentTree comments={comment} key={index} />
