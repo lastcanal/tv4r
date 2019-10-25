@@ -62,7 +62,6 @@ const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback }) =
       return <div></div>
     }
   }
-
   const renderMediaPlayer = () => {
     return (
       <div className={classes.playerWrapper}>

@@ -35,23 +35,23 @@ const Menu = ({ classes, dispatch, post, posts, selectedSubreddit, subreddits })
     dispatch(selectSubreddit(value))
   }
 
-  const handleKeyDown = (e) => {
-    switch (e.key) {
-      case 'ArrowRight':
-        return dispatch(nextPost(posts))
-      case 'ArrowLeft':
-        return dispatch(previousPost(posts))
-      default:
-        return
-    }
-  }
-
   useEffect(() => {
+    const handleKeyDown = (e) => {
+      switch (e.key) {
+        case 'ArrowRight':
+          return dispatch(nextPost(posts))
+        case 'ArrowLeft':
+          return dispatch(previousPost(posts))
+        default:
+          return
+      }
+    }
+
     document.body.addEventListener('keydown', handleKeyDown)
     return () => {
       document.body.removeEventListener('keydown', handleKeyDown)
     }
-  }, [])
+  }, [posts])
 
   return (
     <Paper>
