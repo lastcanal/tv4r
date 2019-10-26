@@ -75,6 +75,7 @@ const Comments = ({
   postsBySubreddit,
   selectedSubreddit,
   selected,
+  height,
   dispatch,
   classes,
 }) => {
@@ -117,7 +118,7 @@ const Comments = ({
 
       return () => observer.unobserve(target)
     }
-  }, [selectedSubreddit])
+  }, [selectedSubreddit, height])
 
   const subreddit = postsBySubreddit[selectedSubreddit]
   const item = subreddit && subreddit.items[selected.index]

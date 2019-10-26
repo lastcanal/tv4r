@@ -18,6 +18,7 @@
     "connected-react-router": "^6.5.2",
     "es6-promise": "^4.2.8",
     "isomorphic-fetch": "^2.2.1",
+    "lodash.debounce": "^4.0.8",
     "loglevel": "^1.6.4",
     "pretty": "^2.0.0",
     "prop-types": "^15.7.2",

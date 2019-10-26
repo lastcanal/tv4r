@@ -6,6 +6,7 @@ import Container from '@material-ui/core/Container'
 import { isVideo } from '../helpers'
 import ReactHtmlParser from 'react-html-parser'
 import ReactPlayer from 'react-player'
+import debounce from 'lodash.debounce'
 
 import { nextPost, mediaFallback } from '../actions'
 import Comments from './Comments'
@@ -38,8 +39,9 @@ const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback }) =
   }
 
   useEffect(() => {
-    window.addEventListener('resize', onResize)
-    return () => (window.removeEventListener('resize', onResize))
+    const listener = debounce(onResize, 500)
+    window.addEventListener('resize', listener)
+    return () => (window.removeEventListener('resize', listener))
   }, [])
 
   const onMediaEnded = () => {
