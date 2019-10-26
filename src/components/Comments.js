@@ -6,27 +6,27 @@ import { withStyles, makeStyles } from '@material-ui/core/styles'
 import LinearProgress from '@material-ui/core/LinearProgress'
 
 import { fetchCommentsIfNeeded } from '../actions'
+import { MENU_OFFSET_HEIGHT } from '../constants'
 
 const styles = ({ spacing, palette, shape }) => ({
   root: {
     borderRadius: shape.borderRadius,
-    backgroundColor: palette.background.default,
     flexGrow: 1,
-    margin: 0,
+    margin: spacing(1),
+    padding: spacing(1),
   },
   comments: {
     borderRadius: shape.borderRadius,
-    backgroundColor: palette.background.default,
     flexGrow: 1,
     margin: spacing(2),
-    minHeight: '61vh',
+    minHeight: ({ height }) => (height),
   },
   loading: {
     borderRadius: shape.borderRadius,
     backgroundColor: palette.background.default,
     flexGrow: 1,
     margin: spacing(2),
-    minHeight: '61vh',
+    minHeight: ({ height }) => (height),
   },
   menuButton: {
     marginRight: spacing(2),
@@ -35,10 +35,10 @@ const styles = ({ spacing, palette, shape }) => ({
     flexGrow: 1,
   },
   spacer: {
-    marginTop: '100vh',
+    marginTop: ({ height }) => (height),
   },
   spacerBottom: {
-    marginBottom: '350px',
+    minHeight: MENU_OFFSET_HEIGHT,
     paddingBottom: 1,
   },
 })
@@ -53,12 +53,10 @@ const commentStyles = makeStyles(({ palette, spacing, shape }) => ({
     color: palette.primary.contrastText,
   },
   comment_container: {
-    backgroundColor: palette.background.default,
-    borderTop: `2px solid ${palette.background.paper}`,
+    backgroundColor: palette.background.paper,
   },
   comment_container_alt: {
-    backgroundColor: palette.background.paper,
-    borderBottom: `2px solid ${palette.background.default}`,
+    backgroundColor: palette.background.default,
   },
   commentBody: {
     margin: spacing(1),
@@ -162,6 +160,7 @@ Comments.propTypes = {
   selected: PropTypes.object,
   dispatch: PropTypes.func,
   classes: PropTypes.object,
+  height: PropTypes.number,
 }
 
 const Comment = ({ comment, depth }) => {
@@ -226,11 +225,10 @@ const Reply = ({ reply }) => {
         </div>
       )
     case 't3':
-      return (
-        <div className={classes.selfPostBody}>
-          <h2>{reply.data.title}</h2>
-        </div>
-      )
+      return <div className={classes.selfPostBody}>
+        <h2>{reply.data.title}</h2>
+        {reply.data.selfText}
+      </div>
     default:
       // istanbul ignore next //
       return ''

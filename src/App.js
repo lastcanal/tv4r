@@ -3,10 +3,9 @@ import PropTypes from 'prop-types'
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import grey from '@material-ui/core/colors/grey'
-import brown from '@material-ui/core/colors/brown'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
 import Menu from './components/Menu'
 import Post from './components/Post'
@@ -40,24 +39,22 @@ const App = ({
     }
   }, [postsBySubreddit, dispatch, router])
 
-  const prefersLightMode = useMediaQuery('(prefers-color-scheme: light)')
-
   const theme = useMemo(
     () =>
       createMuiTheme({
         palette: {
-          type: prefersLightMode ? 'light' : 'dark',
+          type: 'dark',
           primary: grey,
-          secondary: brown,
-          contrastThreshold: prefersLightMode ? 6 : 3,
+          contrastThreshold: 1,
         },
       }),
-    [prefersLightMode],
+    [],
   )
 
   return (
     <MuiThemeProvider theme={theme}>
       <Container classes={classes} maxWidth={false}>
+        <CssBaseline />
         <Menu />
         <Post />
       </Container>

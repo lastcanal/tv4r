@@ -1,16 +1,32 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 import CreatableSelect from 'react-select/creatable'
 import Option from './Option'
+import { muiThemeToRSTheme } from '../helpers'
 
-const useStyles = makeStyles(({ spacing }) => ({
+const useStyles = makeStyles(({ palette, spacing }) => ({
   container: {
     margin: spacing(2),
     display: 'block',
+    backgroundColor: palette.background.default,
     maxHeight: 200,
+    flex: 1,
   },
 }))
+
+const makeSelectStyles = ({ palette }) => ({
+  container: styles => ({
+    ...styles,
+    backgroundColor: palette.background.default,
+    color: palette.text.contrastText,
+  }),
+  menu: styles => ({
+    ...styles,
+    backgroundColor: palette.background.paper,
+    border: `4px solid ${palette.background.paper}`,
+  }),
+})
 
 const nameToOption = (name) => ({
   value: name.toLowerCase(), label: name,
@@ -18,6 +34,7 @@ const nameToOption = (name) => ({
 
 const Picker = ({ value, options, onChange }) => {
   const classes = useStyles()
+  const theme = useTheme()
 
   const mappedOptions = useMemo(() => (
     options.map(nameToOption)
@@ -27,14 +44,24 @@ const Picker = ({ value, options, onChange }) => {
     value ? nameToOption(value) : ''
   ), [value])
 
+  const selectTheme = useMemo(() => (
+    muiThemeToRSTheme(theme)
+  ), [theme])
+
+  const selectStyles = useMemo(() => (
+    makeSelectStyles(theme)
+  ), [theme])
+
   return (
     <div className={classes.container}>
       <CreatableSelect
-        isClearable
-        maxMenuHeight={200}
+        isClearable={false}
+        menuPlacement="top"
         defaultValue={mappedValue}
         onChange={onChange}
         options={mappedOptions}
+        theme={selectTheme}
+        styles={selectStyles}
         components={{
           Option,
         }}

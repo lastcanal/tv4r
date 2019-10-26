@@ -19,7 +19,7 @@ const makeStore = (extra = {}) => {
     selectedSubreddit: 'foo',
     subreddits: ['foo'],
     router: {
-      history :{
+      history: {
         location: {},
         action: 'POP',
         push: jest.fn(),

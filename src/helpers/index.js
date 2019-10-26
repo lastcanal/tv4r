@@ -100,3 +100,27 @@ export const extractPost = (state, action) => {
     return { index: -1, post: null }
   }
 }
+
+export const muiThemeToRSTheme = ({ palette }) =>
+  theme => ({
+    ...theme,
+    colors: {
+      ...theme.colors,
+      primary: palette.background.contrastText,
+      primary25: palette.background.contrastText,
+      primary50: palette.background.contrastText,
+      primary75: palette.background.contrastText,
+      neutral0: palette.background.primary,
+      neutral5: palette.background.primary,
+      neutral10: palette.background.primary,
+      neutral20: palette.background.primary,
+      neutral30: palette.background.primary,
+      neutral40: palette.background.primary,
+      neutral50: palette.background.primary,
+      neutral60: palette.background.primary,
+      neutral70: palette.background.primary,
+      neutral80: palette.background.primary,
+      neutral90: palette.background.primary,
+    },
+  })
+

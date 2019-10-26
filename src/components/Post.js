@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
@@ -9,6 +9,8 @@ import ReactPlayer from 'react-player'
 
 import { nextPost, mediaFallback } from '../actions'
 import Comments from './Comments'
+
+import { MENU_OFFSET_HEIGHT } from '../constants'
 
 const styles = _theme => ({
   root: {
@@ -29,6 +31,17 @@ const styles = _theme => ({
 
 const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback }) => {
 
+  const [ height, setHeight ] = useState(window.innerHeight - MENU_OFFSET_HEIGHT)
+
+  const onResize = () => {
+    setHeight(window.innerHeight - MENU_OFFSET_HEIGHT)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', onResize)
+    return () => (window.removeEventListener('resize', onResize))
+  }, [])
+
   const onMediaEnded = () => {
     dispatch(nextPost(posts))
   }
@@ -48,7 +61,7 @@ const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback }) =
     if (post && isVideo(post)) {
       const transform = (node, _index) => {
         if (node.type === 'tag' && node.name === 'iframe') {
-          node.attribs.height = '100%'
+          node.attribs.height = height
           node.attribs.width = '100%'
           node.attribs.class = classes.reactPlayer
         }
@@ -62,14 +75,17 @@ const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback }) =
       return <div></div>
     }
   }
+
   const renderMediaPlayer = () => {
     return (
       <div className={classes.playerWrapper}>
         <ReactPlayer
+          playing={false}
+          preload={true}
           url={post.url}
           className={classes.reactPlayer}
           width="100%"
-          height="100%"
+          height={height}
           onEnded={onMediaEnded}
           onError={onMediaError}
           controls={true}
@@ -110,7 +126,7 @@ const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback }) =
         <Container maxWidth={false} className={classes.root}>
           <div>{renderMedia()}</div>
         </Container>
-        <Comments />
+        <Comments height={height} />
       </div>
     )
   }

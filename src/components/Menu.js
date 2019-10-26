@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import ToolBar from '@material-ui/core/ToolBar'
 import Paper from '@material-ui/core/Paper'
-import Grid from '@material-ui/core/Grid'
 
 import {
   selectSubreddit,
@@ -57,26 +56,22 @@ const Menu = ({ classes, dispatch, post, posts, selectedSubreddit, subreddits })
     <Paper>
       <Container classes={classes} maxWidth={false}>
         <ToolBar>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <Picker
-                value={selectedSubreddit}
-                onChange={changeSubreddit}
-                options={subreddits}
-              />
-            </Grid>
-          </Grid>
+          <Title post={post} />
         </ToolBar>
         <ToolBar>
           <Posts />
         </ToolBar>
         <ToolBar>
+          <Picker
+            value={selectedSubreddit}
+            onChange={changeSubreddit}
+            options={subreddits}
+          />
           <Controls
             dispatch={dispatch}
             posts={posts}
             selectedSubreddit={selectedSubreddit}
           />
-          <Title post={post} />
         </ToolBar>
       </Container>
     </Paper>
