@@ -9,41 +9,38 @@ import GridListTile from '@material-ui/core/GridListTile'
 import GridListTileBar from '@material-ui/core/GridListTileBar'
 import { selectPost } from '../actions'
 
-const tileStyles = ({ spacing, shape }) => ({
-  margin: spacing(1),
-  overflow: 'hidden',
-  borderRadius: shape.borderRadius,
-})
-
-const styles = theme => ({
+const styles = ({ spacing, palette }) => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
     minHeight: 200,
+    scrollbarWidth: 'none',
   },
   gridList: {
     flexWrap: 'nowrap',
     transform: 'translateZ(0)',
   },
-  title: {
-    color: theme.palette.primary.contrastText,
-  },
-  tileSelected: {
-    opacity: 1,
-    border: `2px solid ${theme.palette.primary.main}`,
-    ...tileStyles(theme),
-  },
   tile: {
     opacity: 0.8,
-    ...tileStyles(theme),
+    margin: spacing(1),
+    marginBottom: spacing(2),
+    boxShadow: `2px 2px 2px 0px ${palette.primary.dark}`,
+  },
+  selected: {
+    boxShadow: `8px 8px 8px 0px ${palette.primary.dark}`,
+    borderBottom: '1px transparent',
+    borderRight: '1px transparent',
   },
 })
 
 const classNameForTile = (selected, post, classes) => {
-  if (!selected || !selected.post || !post.id) return classes.tile
-  return selected.post.id === post.id ? classes.tileSelected : classes.tile
+  if (!selected || !selected.post || !post.id || selected.post.id !== post.id) {
+    return classes.tile
+  } else {
+    return `${classes.tile} ${classes.selected}`
+  }
 }
 
 const Posts = ({ posts, selected, classes, dispatch }) => {
@@ -58,8 +55,11 @@ const Posts = ({ posts, selected, classes, dispatch }) => {
     if (selected && selected.post && selected.post.id) {
       const element = refs['post-' + selected.post.id]
       if (element) {
-        const box = element.parentNode.getBoundingClientRect()
-        element.parentNode.scrollLeft = element.offsetLeft - box.width / Math.PI
+        const box = element.getBoundingClientRect()
+        const parentBox = element.parentNode.getBoundingClientRect()
+        const left = element.offsetLeft - (
+          (parentBox.width / 2).toFixed() - (box.width / 2))
+        element.parentNode.scrollTo({ left, behavior: 'smooth' })
       }
     }
   }, [selected])

@@ -12,20 +12,17 @@ const styles = ({ spacing, palette, shape }) => ({
   root: {
     borderRadius: shape.borderRadius,
     flexGrow: 1,
-    margin: spacing(1),
-    padding: spacing(1),
   },
   comments: {
     borderRadius: shape.borderRadius,
     flexGrow: 1,
-    margin: spacing(2),
     minHeight: ({ height }) => (height),
   },
   loading: {
     borderRadius: shape.borderRadius,
     backgroundColor: palette.background.default,
     flexGrow: 1,
-    margin: spacing(2),
+    marginBottom: spacing(2),
     minHeight: ({ height }) => (height),
   },
   menuButton: {

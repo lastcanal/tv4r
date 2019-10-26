@@ -13,10 +13,11 @@ import Comments from './Comments'
 
 import { MENU_OFFSET_HEIGHT } from '../constants'
 
-const styles = _theme => ({
+const styles = ({ spacing }) => ({
   root: {
-    margin: 0,
     padding: 0,
+    margin: 0,
+    marginBottom: spacing(1),
     height: '100%',
   },
   playerWrapper: {

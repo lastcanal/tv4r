@@ -4,7 +4,7 @@ import configureMockStore from 'redux-mock-store'
 import fetch, { GlobalWithFetchMock } from 'jest-fetch-mock'
 import Enzyme, { shallow, render, mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16' // React 16 Enzyme adapter
-import { connectRouter, routerMiddleware} from 'connected-react-router'
+import { routerMiddleware} from 'connected-react-router'
 import fc from 'fast-check'
 
 Enzyme.configure({ adapter: new Adapter() }) // Make Enzyme functions available in all test files without importing

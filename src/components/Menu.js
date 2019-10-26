@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import ToolBar from '@material-ui/core/ToolBar'
-import Paper from '@material-ui/core/Paper'
 
 import {
   selectSubreddit,
@@ -26,6 +25,8 @@ const styles = ({ palette, spacing }) => ({
     paddingBottom: spacing(2),
     width: '100%',
     backgroundColor: palette.background.default,
+    borderTop: '1px soild black',
+    boxShadow: `0px -2px 2px -2px ${palette.primary.dark}`,
   },
 })
 
@@ -54,28 +55,24 @@ const Menu = ({ classes, dispatch, post, posts, selectedSubreddit, subreddits })
   }, [posts])
 
   return (
-    <Paper>
-      <Container classes={classes} maxWidth={false}>
-        <ToolBar>
-          <Title post={post} />
-        </ToolBar>
-        <ToolBar>
-          <Posts />
-        </ToolBar>
-        <ToolBar>
-          <Picker
-            value={selectedSubreddit}
-            onChange={changeSubreddit}
-            options={subreddits}
-          />
-          <Controls
-            dispatch={dispatch}
-            posts={posts}
-            selectedSubreddit={selectedSubreddit}
-          />
-        </ToolBar>
-      </Container>
-    </Paper>
+    <Container classes={classes} maxWidth={false}>
+      <ToolBar>
+        <Title post={post} />
+      </ToolBar>
+      <Posts />
+      <ToolBar>
+        <Picker
+          value={selectedSubreddit}
+          onChange={changeSubreddit}
+          options={subreddits}
+        />
+        <Controls
+          dispatch={dispatch}
+          posts={posts}
+          selectedSubreddit={selectedSubreddit}
+        />
+      </ToolBar>
+    </Container>
   )
 
 }

@@ -3,7 +3,7 @@ import { ConnectedRouter } from 'connected-react-router'
 
 import App from './App'
 
-import { history } from './configureStore'
+import { history } from './setupTests'
 
 describe('app', () => {
   it('renders empty app', () => {

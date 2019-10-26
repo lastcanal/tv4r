@@ -28,5 +28,5 @@ export const DEFAULT_SUBREDDITS = [
 export const DEFAULT_SUBREDDIT = DEFAULT_SUBREDDITS[0]
 
 // TODO: move logic to playerSettings.isFullScreen in redux
-export const MENU_OFFSET_HEIGHT = 350
+export const MENU_OFFSET_HEIGHT = 348
 

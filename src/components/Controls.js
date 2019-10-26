@@ -54,7 +54,7 @@ const Controls = ({ dispatch, posts, selectedSubreddit }) => {
 
   return (
     <div className={classes.controls}>
-      <Tooltip title="Refresh Subreddit" placement="top-start">
+      <Tooltip title="Refresh Subreddit">
         <IconButton
           aria-label="refresh content"
           color="inherit"
@@ -63,22 +63,22 @@ const Controls = ({ dispatch, posts, selectedSubreddit }) => {
           <RefreshIcon />
         </IconButton>
       </Tooltip>
-      <Tooltip title={`Switch to ${currentThemeMode} theme`} placement="top-start">
+      <Tooltip title={`Switch to ${currentThemeMode} theme`}>
         <IconButton aria-label={`Switch to ${currentThemeMode} theme`} color="inherit">
           {<Brightness4Icon />}
         </IconButton>
       </Tooltip>
-      <Tooltip title={`${isFullScreen ? 'Activate' : 'Disable'} Fullscreen`} placement="top-start">
+      <Tooltip title={`${isFullScreen ? 'Activate' : 'Disable'} Fullscreen`}>
         <IconButton aria-label="toggle fullscreen" color="inherit">
           {isFullScreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
         </IconButton>
       </Tooltip>
-      <Tooltip title="Auto-Play Videos" placement="top-start">
+      <Tooltip title="Auto-Play Videos">
         <IconButton aria-label="toggle autoplay" color="inherit">
           {isAutoplaying ? <PlayCircleFilledWhiteIcon /> : <PlayCircleOutlineIcon />}
         </IconButton>
       </Tooltip>
-      <Tooltip title="Play Previous" placement="top-start">
+      <Tooltip title="Play Previous">
         <IconButton
           aria-label="play previous"
           color="inherit"
@@ -87,7 +87,7 @@ const Controls = ({ dispatch, posts, selectedSubreddit }) => {
           <SkipPreviousIcon />
         </IconButton>
       </Tooltip>
-      <Tooltip title="Play Next" placement="top-start">
+      <Tooltip title="Play Next">
         <IconButton aria-label="play next" color="inherit" onClick={handleNextClick}>
           <SkipNextIcon />
         </IconButton>
