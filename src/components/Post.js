@@ -83,7 +83,7 @@ const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback }) =
       <div className={classes.playerWrapper}>
         <ReactPlayer
           playing={false}
-          preload={true}
+          preload="true"
           url={post.url}
           className={classes.reactPlayer}
           width="100%"

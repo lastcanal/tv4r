@@ -8,6 +8,8 @@ import { muiThemeToRSTheme } from '../helpers'
 const useStyles = makeStyles(({ palette, spacing }) => ({
   container: {
     margin: spacing(2),
+    marginLeft: 0,
+    marginRight: spacing(1),
     display: 'block',
     backgroundColor: palette.background.default,
     maxHeight: 200,

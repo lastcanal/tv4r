@@ -49,8 +49,8 @@ const commentStyles = makeStyles(({ palette, spacing, shape }) => ({
     margin: spacing(1),
     padding: spacing(1),
     paddingRight: 0,
-    marginRight: spacing(0.5),
-    color: palette.primary.contrastText,
+    marginRight: spacing(0.61),
+    marginLeft: spacing(0.61),
   },
   comment_container: {
     backgroundColor: palette.background.paper,

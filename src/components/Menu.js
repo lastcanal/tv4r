@@ -17,12 +17,13 @@ import Picker from './Picker'
 import Controls from './Controls'
 import Title from './Title'
 
-const styles = ({ palette }) => ({
+const styles = ({ palette, spacing }) => ({
   root: {
     position: 'fixed',
     left: 0,
     bottom: 0,
     padding: 0,
+    paddingBottom: spacing(2),
     width: '100%',
     backgroundColor: palette.background.default,
   },

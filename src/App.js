@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 import grey from '@material-ui/core/colors/grey'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
@@ -39,17 +40,16 @@ const App = ({
     }
   }, [postsBySubreddit, dispatch, router])
 
-  const theme = useMemo(
-    () =>
-      createMuiTheme({
-        palette: {
-          type: 'dark',
-          primary: grey,
-          contrastThreshold: 1,
-        },
-      }),
-    [],
-  )
+  const prefersLightMode = useMediaQuery('(prefers-color-scheme: light)')
+
+  const theme = useMemo(() => (
+    createMuiTheme({
+      palette: {
+        type: prefersLightMode ? 'light' : 'dark',
+        primary: grey,
+      },
+    })
+  ), [prefersLightMode])
 
   return (
     <MuiThemeProvider theme={theme}>

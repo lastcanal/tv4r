@@ -14,7 +14,7 @@ const useStyles = makeStyles(({ palette, shape }) => ({
     borderRadius: shape.borderRadius,
   },
   icon: {
-    color: 'red',
+    color: 'inherit',
   },
 }))
 

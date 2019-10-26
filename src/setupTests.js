@@ -9,6 +9,15 @@ import fc from 'fast-check'
 
 Enzyme.configure({ adapter: new Adapter() }) // Make Enzyme functions available in all test files without importing
 
+export const history = {
+  location: {},
+  action: 'POP',
+  push: jest.fn(),
+  replace: jest.fn(),
+  go: jest.fn(),
+  goBack: jest.fn(),
+  goForward: jest.fn(),
+}
 const middleware = [thunk, routerMiddleware(history)]
 const mockStore = configureMockStore(middleware)
 
@@ -19,15 +28,7 @@ const makeStore = (extra = {}) => {
     selectedSubreddit: 'foo',
     subreddits: ['foo'],
     router: {
-      history: {
-        location: {},
-        action: 'POP',
-        push: jest.fn(),
-        replace: jest.fn(),
-        go: jest.fn(),
-        goBack: jest.fn(),
-        goForward: jest.fn(),
-      },
+      history,
       location: {
         pathname: '/',
         search: '',

@@ -1,10 +1,9 @@
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
-import { Route } from 'react-router'
 
 import App from './App'
 
-import configureStore, { history } from './configureStore'
+import { history } from './configureStore'
 
 describe('app', () => {
   it('renders empty app', () => {
