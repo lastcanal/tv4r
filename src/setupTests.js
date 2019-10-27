@@ -7,6 +7,9 @@ import Adapter from 'enzyme-adapter-react-16' // React 16 Enzyme adapter
 import { routerMiddleware} from 'connected-react-router'
 import fc from 'fast-check'
 
+// https://github.com/jsdom/jsdom/pull/2626
+Object.defineProperty(window, 'scrollTo', { value: () => {}, writable: true });
+
 Enzyme.configure({ adapter: new Adapter() }) // Make Enzyme functions available in all test files without importing
 
 export const history = {
@@ -17,6 +20,7 @@ export const history = {
   go: jest.fn(),
   goBack: jest.fn(),
   goForward: jest.fn(),
+  listen: jest.fn(),
 }
 const middleware = [thunk, routerMiddleware(history)]
 const mockStore = configureMockStore(middleware)
@@ -27,6 +31,12 @@ const makeStore = (extra = {}) => {
     selectedPost: {},
     selectedSubreddit: 'foo',
     subreddits: ['foo'],
+    config: {
+      themeMode: 'dark',
+      isFullscreen: false,
+      isPlaying: false,
+      isAutoplay: false,
+    },
     router: {
       history,
       location: {

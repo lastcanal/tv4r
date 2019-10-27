@@ -1,3 +1,5 @@
+import { Provider } from 'react-redux'
+
 import SkipNextIcon from '@material-ui/icons/SkipNext'
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious'
 import RefreshIcon from '@material-ui/icons/Refresh'
@@ -10,14 +12,33 @@ describe('controls', () => {
 
   it('should render Controls', () => {
     const dispatch = jest.fn(() => {})
-    const wrapper = mount(<Controls dispatch={dispatch} />)
+    const wrapper = mount(
+      <Provider store={makeStore()}>
+        <Controls />
+     </Provider>
+    )
 
     expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
   })
 
   it('should render handle next post', () => {
     const dispatch = jest.fn(() => {})
-    const wrapper = mount(<Controls dispatch={dispatch} posts={posts} />)
+    const store = {
+      ...makeStore({
+        selectdSubreddit: 'foo',
+        postsBySubreddit: {
+          foo: {
+            items: posts
+          }
+        }
+      }),
+      dispatch
+    }
+    const wrapper = mount(
+      <Provider store={store}>
+        <Controls />
+     </Provider>
+    )
 
     wrapper.find(SkipNextIcon).simulate('click')
 
@@ -26,7 +47,22 @@ describe('controls', () => {
 
   it('should render handle previous post', () => {
     const dispatch = jest.fn(() => {})
-    const wrapper = mount(<Controls dispatch={dispatch} posts={posts} />)
+    const store = {
+      ...makeStore({
+        selectdSubreddit: 'foo',
+        postsBySubreddit: {
+          foo: {
+            items: posts
+          }
+        }
+      }),
+      dispatch
+    }
+    const wrapper = mount(
+      <Provider store={store}>
+        <Controls />
+     </Provider>
+    )
 
     wrapper.find(SkipPreviousIcon).simulate('click')
 
@@ -35,9 +71,15 @@ describe('controls', () => {
 
   it('should render handle refresh', () => {
     const dispatch = jest.fn(() => {})
+    const store = {
+      ...makeStore(),
+      dispatch
+    }
     const subreddit = 'foo'
     const wrapper = mount(
-      <Controls dispatch={dispatch} selectedSubreddit={subreddit} />
+      <Provider store={store}>
+        <Controls />
+     </Provider>
     )
 
     wrapper.find(RefreshIcon).simulate('click')
