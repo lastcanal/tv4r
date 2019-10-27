@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import { isVideo } from '../helpers'
 import ReactHtmlParser from 'react-html-parser'
 import ReactPlayer from 'react-player'
-import debounce from 'lodash.debounce'
 
+import { isVideo } from '../helpers'
 import { nextPost, mediaFallback } from '../actions'
 import Comments from './Comments'
-
-import { MENU_OFFSET_HEIGHT } from '../constants'
 
 const styles = ({ spacing }) => ({
   root: {
@@ -29,21 +26,40 @@ const styles = ({ spacing }) => ({
     top: 0,
     left: 0,
   },
+  loading: {
+    backgroundColor: 'black',
+    height: ({ height }) => (
+      height
+    ),
+    width: '100vw',
+    margin: 0,
+    padding: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    zIndex: 40,
+  },
+  loadingDot: {
+    height: 10,
+    width: 10,
+    backgroundColor: 'white',
+    borderRadius: 22,
+    animationName: '$blipOn',
+    animationDuration: '1s',
+    animationTimingFunction: 'ease-in-out',
+    animationIterationCount: 1,
+    animationFillMode: 'forwards',
+    zIndex: 41,
+  },
+  '@keyframes blipOn': {
+    '0%': {width: 4, height: 4},
+    '40%': {width: '90vw', height: 2},
+    '100%': {width: '100vw', height: '100vh', borderRadius: 0},
+  },
 })
 
-const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback }) => {
-
-  const [ height, setHeight ] = useState(window.innerHeight - MENU_OFFSET_HEIGHT)
-
-  const onResize = () => {
-    setHeight(window.innerHeight - MENU_OFFSET_HEIGHT)
-  }
-
-  useEffect(() => {
-    const listener = debounce(onResize, 500)
-    window.addEventListener('resize', listener)
-    return () => (window.removeEventListener('resize', listener))
-  }, [])
+const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback, height, isAutoplay }) => {
 
   const onMediaEnded = () => {
     dispatch(nextPost(posts))
@@ -83,7 +99,7 @@ const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback }) =
     return (
       <div className={classes.playerWrapper}>
         <ReactPlayer
-          playing={false}
+          playing={isAutoplay}
           preload="true"
           url={post.url}
           className={classes.reactPlayer}
@@ -106,7 +122,9 @@ const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback }) =
   }
 
   const renderLoading = () => {
-    return <h2>Loading...</h2>
+    return <div className={classes.loading}>
+      <div className={classes.loadingDot} />
+    </div>
   }
 
   const renderEmpty = () => {
@@ -143,13 +161,15 @@ Post.propTypes = {
   posts: PropTypes.array,
   error: PropTypes.object,
   isFetching: PropTypes.bool,
+  isAutoplay: PropTypes.bool,
+  isFullsceen: PropTypes.bool,
+  height: PropTypes.number,
 }
 
 const mapStateToProps = state => {
-  const { dispatch, selectedSubreddit, postsBySubreddit } = state
-
+  const { dispatch, selectedSubreddit, postsBySubreddit, config } = state
+  const { isFullsceen, isAutoplay } = config
   const selectedPost = postsBySubreddit.cursor || {}
-
   const { isFetching, items: posts } = postsBySubreddit[selectedSubreddit] || {
     items: [],
   }
@@ -160,6 +180,8 @@ const mapStateToProps = state => {
     isFetching,
     post: selectedPost.post,
     isMediaFallback: selectedPost.media_fallback,
+    isFullsceen,
+    isAutoplay,
   }
 }
 

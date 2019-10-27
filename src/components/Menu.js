@@ -38,6 +38,7 @@ const Menu = ({ classes, dispatch, post, posts, selectedSubreddit, subreddits })
 
   useEffect(() => {
     const handleKeyDown = (e) => {
+      e.stopPropagation()
       switch (e.key) {
         case 'ArrowRight':
           return dispatch(nextPost(posts))
@@ -66,11 +67,7 @@ const Menu = ({ classes, dispatch, post, posts, selectedSubreddit, subreddits })
           onChange={changeSubreddit}
           options={subreddits}
         />
-        <Controls
-          dispatch={dispatch}
-          posts={posts}
-          selectedSubreddit={selectedSubreddit}
-        />
+        <Controls />
       </ToolBar>
     </Container>
   )

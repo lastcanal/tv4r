@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
@@ -12,6 +12,7 @@ import Menu from './components/Menu'
 import Post from './components/Post'
 
 import { fetchPostsIfNeeded, invalidateSubredditIfNeeded } from './actions'
+import { MENU_OFFSET_HEIGHT } from './constants'
 
 const styles = theme => ({
   root: {
@@ -24,10 +25,37 @@ const styles = theme => ({
 const App = ({
   selectedSubreddit,
   postsBySubreddit,
+  themeMode,
+  isFullscreen,
   dispatch,
   classes,
   router,
 }) => {
+
+  const menuOffsetHeight = () => (
+    isFullscreen ? MENU_OFFSET_HEIGHT : 0
+  )
+
+  const calculateHeight = () => (
+    window.innerHeight - menuOffsetHeight()
+  )
+
+  const [ height, setHeight ] = useState(calculateHeight())
+
+  const onResize = () => {
+    setHeight(window.innerHeight - menuOffsetHeight())
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', onResize)
+    return () => (window.removeEventListener('resize', onResize))
+  }, [])
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    setHeight(calculateHeight())
+  }, [isFullscreen])
+
   useEffect(() => {
     dispatch(invalidateSubredditIfNeeded(selectedSubreddit))
     dispatch(fetchPostsIfNeeded(selectedSubreddit))
@@ -45,18 +73,18 @@ const App = ({
   const theme = useMemo(() => (
     createMuiTheme({
       palette: {
-        type: prefersLightMode ? 'light' : 'dark',
+        type: themeMode || (prefersLightMode ? 'light' : 'dark'),
         primary: grey,
       },
     })
-  ), [prefersLightMode])
+  ), [themeMode, prefersLightMode])
 
   return (
     <MuiThemeProvider theme={theme}>
       <Container classes={classes} maxWidth={false}>
         <CssBaseline />
         <Menu />
-        <Post />
+        <Post height={height} />
       </Container>
     </MuiThemeProvider>
   )
@@ -65,15 +93,19 @@ const App = ({
 App.propTypes = {
   selectedSubreddit: PropTypes.string,
   postsBySubreddit: PropTypes.object,
+  themeMode: PropTypes.string,
+  isFullscreen: PropTypes.bool,
   dispatch: PropTypes.func,
   classes: PropTypes.object,
   router: PropTypes.object,
 }
 
-const mapStateToProps = ({ selectedSubreddit, postsBySubreddit, router }) => ({
+const mapStateToProps = ({ selectedSubreddit, postsBySubreddit, router, config }) => ({
   selectedSubreddit,
   postsBySubreddit,
   router,
+  themeMode: config.themeMode,
+  isFullscreen: config.isFullscreen,
 })
 
 export default connect(mapStateToProps)(withStyles(styles)(App))

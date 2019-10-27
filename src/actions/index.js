@@ -15,6 +15,9 @@ import {
   REQUEST_COMMENTS,
   RECEIVE_COMMENTS,
   RECEIVE_COMMENTS_ERROR,
+  TOGGLE_FULLSCREEN,
+  TOGGLE_AUTOPLAY,
+  TOGGLE_THEME_MODE,
 } from '../constants'
 
 export const selectSubreddit = subreddit => ({
@@ -158,3 +161,15 @@ export const fetchCommentsIfNeeded = () => (dispatch, getState) => {
     dispatch(fetchComments(posts[index], selectedSubreddit))
   }
 }
+
+export const configToggleFullscreen = () => ({
+  type: TOGGLE_FULLSCREEN,
+})
+
+export const configToggleAutoplay = () => ({
+  type: TOGGLE_AUTOPLAY,
+})
+
+export const configToggleThemeMode = () => ({
+  type: TOGGLE_THEME_MODE,
+})

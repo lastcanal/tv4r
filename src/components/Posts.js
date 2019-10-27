@@ -26,7 +26,10 @@ const styles = ({ spacing, palette }) => ({
     opacity: 0.8,
     margin: spacing(1),
     marginBottom: spacing(2),
-    boxShadow: `2px 2px 2px 0px ${palette.primary.dark}`,
+    boxShadow: `2px 2px 8px 0px ${palette.primary.dark}`,
+    '&:hover': {
+      boxShadow: `4px 4px 8px 0px ${palette.primary.dark}`,
+    },
   },
   selected: {
     boxShadow: `8px 8px 8px 0px ${palette.primary.dark}`,

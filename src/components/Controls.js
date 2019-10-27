@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import { IconButton, Tooltip } from '@material-ui/core'
+import { connect } from 'react-redux'
 
 import SkipNextIcon from '@material-ui/icons/SkipNext'
 import SkipPreviousIcon from '@material-ui/icons/SkipPrevious'
@@ -17,6 +18,9 @@ import {
   invalidateSubreddit,
   nextPost,
   previousPost,
+  configToggleFullscreen,
+  configToggleAutoplay,
+  configToggleThemeMode,
 } from '../actions'
 
 const useStyles = makeStyles(({ spacing }) => ({
@@ -30,24 +34,10 @@ const useStyles = makeStyles(({ spacing }) => ({
     width: spacing(3),
   },
 }))
-const Controls = ({ dispatch, posts, selectedSubreddit }) => {
-  const isFullScreen = true
-  const isAutoplaying = true
-  const currentThemeMode = 'dark'
-  const handleRefreshClick = e => {
-    e.preventDefault()
+const Controls = ({ dispatch, posts, selectedSubreddit, isFullscreen, isAutoplay, themeMode }) => {
+  const handleRefreshClick = _e => {
     dispatch(invalidateSubreddit(selectedSubreddit))
     dispatch(fetchPostsIfNeeded(selectedSubreddit))
-  }
-
-  const handleNextClick = e => {
-    e.preventDefault()
-    dispatch(nextPost(posts))
-  }
-
-  const handlePreviousClick = e => {
-    e.preventDefault()
-    dispatch(previousPost(posts))
   }
 
   const classes = useStyles()
@@ -63,32 +53,46 @@ const Controls = ({ dispatch, posts, selectedSubreddit }) => {
           <RefreshIcon />
         </IconButton>
       </Tooltip>
-      <Tooltip title={`Switch to ${currentThemeMode} theme`}>
-        <IconButton aria-label={`Switch to ${currentThemeMode} theme`} color="inherit">
-          {<Brightness4Icon />}
+      <Tooltip title={`Switch to ${themeMode} theme`}>
+        <IconButton
+          aria-label={`Switch to ${themeMode} theme`} color="inherit"
+          onClick={() => dispatch(configToggleThemeMode())}
+        >
+          {<Brightness4Icon/>}
         </IconButton>
       </Tooltip>
-      <Tooltip title={`${isFullScreen ? 'Activate' : 'Disable'} Fullscreen`}>
-        <IconButton aria-label="toggle fullscreen" color="inherit">
-          {isFullScreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
-        </IconButton>
-      </Tooltip>
-      <Tooltip title="Auto-Play Videos">
-        <IconButton aria-label="toggle autoplay" color="inherit">
-          {isAutoplaying ? <PlayCircleFilledWhiteIcon /> : <PlayCircleOutlineIcon />}
+      <Tooltip title={`${isFullscreen ? 'Enter' : 'Exit'} Fullscreen`}>
+        <IconButton
+          aria-label="toggle fullscreen"
+          color="inherit"
+          onClick={() => dispatch(configToggleFullscreen())}
+        >
+          {isFullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
         </IconButton>
       </Tooltip>
       <Tooltip title="Play Previous">
         <IconButton
           aria-label="play previous"
           color="inherit"
-          onClick={handlePreviousClick}
+          onClick={() => dispatch(previousPost(posts))}
         >
           <SkipPreviousIcon />
         </IconButton>
       </Tooltip>
+      <Tooltip title={`${isAutoplay ? 'Start' : 'Stop'} Auto-Playing Videos`}>
+        <IconButton
+          aria-label="toggle autoplay" color="inherit"
+          onClick={() => dispatch(configToggleAutoplay())}
+        >
+          {isAutoplay ? <PlayCircleFilledWhiteIcon /> : <PlayCircleOutlineIcon />}
+        </IconButton>
+      </Tooltip>
       <Tooltip title="Play Next">
-        <IconButton aria-label="play next" color="inherit" onClick={handleNextClick}>
+        <IconButton
+          aria-label="play next"
+          color="inherit"
+          onClick={() => dispatch(nextPost(posts))}
+        >
           <SkipNextIcon />
         </IconButton>
       </Tooltip>
@@ -100,6 +104,25 @@ Controls.propTypes = {
   dispatch: PropTypes.func.isRequired,
   posts: PropTypes.array,
   selectedSubreddit: PropTypes.string,
+  isFullscreen: PropTypes.bool,
+  isAutoplay: PropTypes.bool,
+  themeMode: PropTypes.string,
 }
 
-export default Controls
+const mapStateToProps = state => {
+  const { selectedSubreddit, postsBySubreddit, config } = state
+  const { items: posts } = postsBySubreddit[
+    selectedSubreddit
+  ] || {
+    items: [],
+  }
+
+  return {
+    selectedSubreddit,
+    posts,
+    ...config,
+  }
+}
+
+export default connect(mapStateToProps)(Controls)
+

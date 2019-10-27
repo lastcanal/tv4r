@@ -17,6 +17,9 @@ import {
   RECEIVE_COMMENTS_ERROR,
   DEFAULT_SUBREDDIT,
   DEFAULT_SUBREDDITS,
+  TOGGLE_FULLSCREEN,
+  TOGGLE_AUTOPLAY,
+  TOGGLE_THEME_MODE,
 } from '../constants'
 
 import {
@@ -174,7 +177,7 @@ export const selectedPost = (state = {}, action) => {
       return {
         ...state,
         index: -1,
-        post: state.post ? { id: state.post.id } : null,
+        post: null,
       }
     default:
       return state
@@ -248,11 +251,34 @@ const subreddits = (state = DEFAULT_SUBREDDITS, action) => {
   }
 }
 
+const config = (state = { isFullsceen: false, isAutoplay: false }, action) => {
+  switch (action.type) {
+    case TOGGLE_FULLSCREEN:
+      return {
+        ...state,
+        isFullscreen: !state.isFullscreen,
+      }
+    case TOGGLE_AUTOPLAY:
+      return {
+        ...state,
+        isAutoplay: !state.isAutoplay,
+      }
+    case TOGGLE_THEME_MODE:
+      return {
+        ...state,
+        themeMode: state.themeMode === 'dark' ? 'light' : 'dark',
+      }
+    default:
+      return state
+  }
+}
+
 const createRootReducer = history => {
   return combineReducers({
     postsBySubreddit,
     selectedSubreddit,
     subreddits,
+    config,
     router: connectRouter(history),
   })
 }

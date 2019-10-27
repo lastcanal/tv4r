@@ -18,6 +18,10 @@ export const REQUEST_COMMENTS = 'REQUEST_COMMENTS'
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 export const RECEIVE_COMMENTS_ERROR = 'RECEIVE_COMMENTS_ERROR'
 
+export const TOGGLE_FULLSCREEN = 'TOGGLE_FULLSCREEN'
+export const TOGGLE_AUTOPLAY = 'TOGGLE_AUTOPLAY'
+export const TOGGLE_THEME_MODE = 'TOGGLE_THEME_MODE'
+
 export const DEFAULT_SUBREDDITS = [
   'videos',
   'documentaries',
@@ -27,6 +31,6 @@ export const DEFAULT_SUBREDDITS = [
 
 export const DEFAULT_SUBREDDIT = DEFAULT_SUBREDDITS[0]
 
-// TODO: move logic to playerSettings.isFullScreen in redux
 export const MENU_OFFSET_HEIGHT = 348
+
 
