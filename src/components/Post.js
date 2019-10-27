@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
@@ -10,7 +10,7 @@ import { isVideo } from '../helpers'
 import { nextPost, mediaFallback } from '../actions'
 import Comments from './Comments'
 
-const styles = ({ spacing }) => ({
+const styles = ({ spacing, palette }) => ({
   root: {
     padding: 0,
     margin: 0,
@@ -18,22 +18,29 @@ const styles = ({ spacing }) => ({
     height: '100%',
   },
   playerWrapper: {
-    backgroundColor: 'black',
+    backgroundColor: 'white',
   },
   reactPlayer: {
     backgroundColor: 'black',
     position: 'absolute',
+    borderRadius: '0 50',
+    animationName: '$fadeIn',
+    animationDuration: '1s',
+    animationIterationCount: '1',
+    animationFillMode: 'forwards',
     top: 0,
     left: 0,
   },
   loading: {
-    backgroundColor: 'black',
+    backgroundColor: palette.background.default,
     height: ({ height }) => (
       height
     ),
     width: '100vw',
     margin: 0,
     padding: 0,
+    top: 0,
+    botton: 0,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -41,14 +48,13 @@ const styles = ({ spacing }) => ({
     zIndex: 40,
   },
   loadingDot: {
+    backgroundColor: 'black',
     height: 10,
     width: 10,
-    backgroundColor: 'white',
     borderRadius: 22,
     animationName: '$blipOn',
     animationDuration: '1s',
-    animationTimingFunction: 'ease-in-out',
-    animationIterationCount: 1,
+    animationIterationCount: '1',
     animationFillMode: 'forwards',
     zIndex: 41,
   },
@@ -57,9 +63,25 @@ const styles = ({ spacing }) => ({
     '40%': {width: '90vw', height: 2},
     '100%': {width: '100vw', height: '100vh', borderRadius: 0},
   },
+  '@keyframes borderOut': {
+    '0%': {borderWidth: '40vw'},
+    '40%': {
+      borderTopWidth: '40vw',
+      borderBottomWidth: '40vw',
+      borderLeftWidth: '10vw',
+      orderRightWidth: '10vw',
+    },
+    '100%': {borderWidth: '0'},
+  },
+  '@keyframes fadeIn': {
+    '0%': {opacity: 0},
+    '100%': {opacity: 1},
+  },
 })
 
 const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback, height, isAutoplay }) => {
+
+  const [isPlayerReady, setPlayerReady] = useState(false)
 
   const onMediaEnded = () => {
     dispatch(nextPost(posts))
@@ -105,6 +127,7 @@ const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback, hei
           className={classes.reactPlayer}
           width="100%"
           height={height}
+          onReady={() => setPlayerReady(true)}
           onEnded={onMediaEnded}
           onError={onMediaError}
           controls={true}
@@ -122,8 +145,12 @@ const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback, hei
   }
 
   const renderLoading = () => {
+    const dotClassName = isPlayerReady
+      ? `${classes.loadingDot} ${classes.loadingDotLoaded}`
+      : `${classes.loadingDot}`
+
     return <div className={classes.loading}>
-      <div className={classes.loadingDot} />
+      <div className={dotClassName} />
     </div>
   }
 

@@ -9,9 +9,9 @@ import SkipPreviousIcon from '@material-ui/icons/SkipPrevious'
 import RefreshIcon from '@material-ui/icons/Refresh'
 import FullscreenIcon from '@material-ui/icons/Fullscreen'
 import FullscreenExitIcon from '@material-ui/icons/FullscreenExit'
-import PlayCircleFilledWhiteIcon from '@material-ui/icons/PlayCircleFilledWhite'
-import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline'
-import Brightness4Icon from '@material-ui/icons/Brightness4'
+import SettingsBrightnessIcon from '@material-ui/icons/SettingsBrightness'
+import PlayArrowIcon from '@material-ui/icons/PlayArrow'
+import StopIcon from '@material-ui/icons/Stop'
 
 import {
   fetchPostsIfNeeded,
@@ -58,7 +58,7 @@ const Controls = ({ dispatch, posts, selectedSubreddit, isFullscreen, isAutoplay
           aria-label={`Switch to ${themeMode} theme`} color="inherit"
           onClick={() => dispatch(configToggleThemeMode())}
         >
-          {<Brightness4Icon/>}
+          <SettingsBrightnessIcon />
         </IconButton>
       </Tooltip>
       <Tooltip title={`${isFullscreen ? 'Enter' : 'Exit'} Fullscreen`}>
@@ -84,7 +84,7 @@ const Controls = ({ dispatch, posts, selectedSubreddit, isFullscreen, isAutoplay
           aria-label="toggle autoplay" color="inherit"
           onClick={() => dispatch(configToggleAutoplay())}
         >
-          {isAutoplay ? <PlayCircleFilledWhiteIcon /> : <PlayCircleOutlineIcon />}
+          {isAutoplay ? <StopIcon /> : <PlayArrowIcon />}
         </IconButton>
       </Tooltip>
       <Tooltip title="Play Next">

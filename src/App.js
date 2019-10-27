@@ -14,11 +14,10 @@ import Post from './components/Post'
 import { fetchPostsIfNeeded, invalidateSubredditIfNeeded } from './actions'
 import { MENU_OFFSET_HEIGHT } from './constants'
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     paddingLeft: 0,
     paddingRight: 0,
-    marginTop: theme.spacing(3),
   },
 })
 
@@ -41,9 +40,11 @@ const App = ({
   )
 
   const [ height, setHeight ] = useState(calculateHeight())
+  const [ width, setWidth ] = useState(window.innerWidth)
 
   const onResize = () => {
     setHeight(window.innerHeight - menuOffsetHeight())
+    setWidth(window.innerWidth)
   }
 
   useEffect(() => {
@@ -83,7 +84,7 @@ const App = ({
     <MuiThemeProvider theme={theme}>
       <Container classes={classes} maxWidth={false}>
         <CssBaseline />
-        <Menu />
+        <Menu width={width} />
         <Post height={height} />
       </Container>
     </MuiThemeProvider>

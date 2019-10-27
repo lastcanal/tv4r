@@ -30,7 +30,7 @@ const styles = ({ palette, spacing }) => ({
   },
 })
 
-const Menu = ({ classes, dispatch, post, posts, selectedSubreddit, subreddits }) => {
+const Menu = ({ classes, dispatch, post, posts, selectedSubreddit, subreddits, width }) => {
 
   const changeSubreddit = ({ value }) => {
     dispatch(selectSubreddit(value))
@@ -60,7 +60,7 @@ const Menu = ({ classes, dispatch, post, posts, selectedSubreddit, subreddits })
       <ToolBar>
         <Title post={post} />
       </ToolBar>
-      <Posts />
+      <Posts width={width} />
       <ToolBar>
         <Picker
           value={selectedSubreddit}
@@ -81,6 +81,7 @@ Menu.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
   subreddits: PropTypes.array,
+  width: PropTypes.number,
   dispatch: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
 }

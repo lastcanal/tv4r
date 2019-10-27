@@ -124,3 +124,6 @@ export const muiThemeToRSTheme = ({ palette }) =>
     },
   })
 
+export const contrastColor = (themeMode, { primary }) => (
+  primary[themeMode === 'dark' ? 'light' : 'dark']
+)

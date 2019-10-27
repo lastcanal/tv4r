@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 
 import { connect } from 'react-redux'
 
@@ -8,15 +8,21 @@ import GridList from '@material-ui/core/GridList'
 import GridListTile from '@material-ui/core/GridListTile'
 import GridListTileBar from '@material-ui/core/GridListTileBar'
 import { selectPost } from '../actions'
+import { contrastColor } from '../helpers'
+
+import { THUMBNAIL_WIDTH } from '../constants'
 
 const styles = ({ spacing, palette }) => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    overflow: 'hidden',
+    overflowX: 'hidden',
     minHeight: 200,
     scrollbarWidth: 'none',
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
   },
   gridList: {
     flexWrap: 'nowrap',
@@ -27,14 +33,15 @@ const styles = ({ spacing, palette }) => ({
     margin: spacing(1),
     marginBottom: spacing(2),
     boxShadow: `2px 2px 8px 0px ${palette.primary.dark}`,
+    outline: `thin double ${palette.primary.dark}`,
     '&:hover': {
-      boxShadow: `4px 4px 8px 0px ${palette.primary.dark}`,
+      outline: `thick double ${palette.primary.dark}`,
     },
   },
   selected: {
-    boxShadow: `8px 8px 8px 0px ${palette.primary.dark}`,
-    borderBottom: '1px transparent',
-    borderRight: '1px transparent',
+    border: ({ themeMode }) => (`2px solid ${contrastColor(themeMode, palette)}`),
+    outline: ({ themeMode }) => (`thick double ${contrastColor(themeMode, palette)}`),
+    display: 'block',
   },
 })
 
@@ -46,7 +53,7 @@ const classNameForTile = (selected, post, classes) => {
   }
 }
 
-const Posts = ({ posts, selected, classes, dispatch }) => {
+const Posts = ({ posts, selected, width, classes, dispatch }) => {
   const refs = {}
 
   const onSelectPost = (nextPost, index, e) => {
@@ -67,9 +74,11 @@ const Posts = ({ posts, selected, classes, dispatch }) => {
     }
   }, [selected])
 
+  const cols = useMemo(() => (width / THUMBNAIL_WIDTH), [width])
+
   return (
     <div ref={node => (refs['posts-ref'] = node)} className={classes.root}>
-      <GridList className={classes.gridList} cols={6.1}>
+      <GridList className={classes.gridList} cols={cols}>
         {posts.map((post, index) => {
           return (
             <GridListTile
@@ -98,15 +107,15 @@ const Posts = ({ posts, selected, classes, dispatch }) => {
 Posts.propTypes = {
   posts: PropTypes.array.isRequired,
   selected: PropTypes.object.isRequired,
+  width: PropTypes.number,
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {
-  const { dispatch, selectedSubreddit, postsBySubreddit } = state
-
+  const { dispatch, selectedSubreddit, postsBySubreddit, config } = state
+  const { themeMode } = config
   const selectedPost = postsBySubreddit.cursor || {}
-
   const { items: posts } = postsBySubreddit[selectedSubreddit] || {
     items: [],
   }
@@ -116,6 +125,7 @@ const mapStateToProps = state => {
     posts,
     selected: selectedPost,
     visible: true,
+    themeMode,
   }
 }
 
