@@ -15,19 +15,18 @@ const styles = ({ spacing, palette }) => ({
     padding: 0,
     margin: 0,
     marginBottom: spacing(1),
-    height: '100%',
   },
   playerWrapper: {
-    backgroundColor: 'white',
+    display: 'block',
+    backgroundColor: palette.background.default,
+    height: ({ height }) => (
+      height
+    ),
+    width: '100vw',
   },
   reactPlayer: {
     backgroundColor: 'black',
     position: 'absolute',
-    borderRadius: '0 50',
-    animationName: '$fadeIn',
-    animationDuration: '1s',
-    animationIterationCount: '1',
-    animationFillMode: 'forwards',
     top: 0,
     left: 0,
   },
@@ -62,16 +61,6 @@ const styles = ({ spacing, palette }) => ({
     '0%': {width: 4, height: 4},
     '40%': {width: '90vw', height: 2},
     '100%': {width: '100vw', height: '100vh', borderRadius: 0},
-  },
-  '@keyframes borderOut': {
-    '0%': {borderWidth: '40vw'},
-    '40%': {
-      borderTopWidth: '40vw',
-      borderBottomWidth: '40vw',
-      borderLeftWidth: '10vw',
-      orderRightWidth: '10vw',
-    },
-    '100%': {borderWidth: '0'},
   },
   '@keyframes fadeIn': {
     '0%': {opacity: 0},
