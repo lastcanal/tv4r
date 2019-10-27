@@ -31,9 +31,6 @@ const styles = ({ spacing, palette, shape }) => ({
   title: {
     flexGrow: 1,
   },
-  spacer: {
-    marginTop: ({ height }) => (height),
-  },
   spacerBottom: {
     minHeight: MENU_OFFSET_HEIGHT,
     paddingBottom: 1,
@@ -99,7 +96,7 @@ const Comments = ({
       const target = document.getElementById('scroll_beacon')
       const options = {
         root: null,
-        rootMargin: '500px',
+        rootMargin: `${height}px`,
         threshold: 1.0,
       }
       const onIntersection = elements => {
@@ -138,13 +135,11 @@ const Comments = ({
 
   return (
     <div>
-      <div className={classes.spacer}>
-        <div className={classes.comments}>
-          <div className={`${classes.comment_container} ${classes.root}`}>
-            {comments.map((comment, index) => (
-              <CommentTree comments={comment} key={index} />
-            ))}
-          </div>
+      <div className={classes.comments}>
+        <div className={`${classes.comment_container} ${classes.root}`}>
+          {comments.map((comment, index) => (
+            <CommentTree comments={comment} key={index} />
+          ))}
         </div>
       </div>
       <div className={classes.spacerBottom}></div>
