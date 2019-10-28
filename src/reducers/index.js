@@ -171,6 +171,7 @@ export const selectedPost = (state = {}, action) => {
           ...findPostById(match.params.postId, action.posts),
         }
       } else {
+        // istanbul ignore next
         return state
       }
     case INVALIDATE_SUBREDDIT:
@@ -223,6 +224,7 @@ export const postsBySubreddit = (state = { cursor: {} }, action) => {
           }),
         }
       } else {
+        // istanbul ignore next
         return state
       }
     case REMOVE_SUBREDDIT:
@@ -235,7 +237,7 @@ export const postsBySubreddit = (state = { cursor: {} }, action) => {
   }
 }
 
-const subreddits = (state = DEFAULT_SUBREDDITS, action) => {
+const subreddits = (state = [DEFAULT_SUBREDDITS], action) => {
   switch (action.type) {
     case INVALIDATE_SUBREDDIT:
       const addSet = new Set(state)
@@ -250,7 +252,13 @@ const subreddits = (state = DEFAULT_SUBREDDITS, action) => {
   }
 }
 
-const config = (state = { isFullsceen: false, isAutoplay: false }, action) => {
+const DEFAULT_CONFIG = {
+  isFullsceen: false,
+  isAutoplay: false,
+  themeMode: 'dark',
+}
+
+const config = (state = DEFAULT_CONFIG, action) => {
   switch (action.type) {
     case TOGGLE_FULLSCREEN:
       return {

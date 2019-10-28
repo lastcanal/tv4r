@@ -4,8 +4,16 @@ import { ConnectedRouter } from 'connected-react-router'
 import App from './App'
 
 import { history } from './setupTests'
+import configureStore from './configureStore'
 
 describe('app', () => {
+  it('configures a store', () => {
+    const { store, persistor } = configureStore()
+    console.log(store, persistor)
+    expect(store).toHaveProperty('dispatch')
+    expect(persistor).toHaveProperty('dispatch')
+  })
+
   it('renders empty app', () => {
     fetch.mockResponseOnce(JSON.stringify({ data: { children: [] } }))
     const store = makeStore()

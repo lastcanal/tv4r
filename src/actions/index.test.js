@@ -128,7 +128,9 @@ describe('actions', () => {
           fc.array(fc.object(), 100),
           (subreddit, objects) => {
             fetch.mockResponseOnce(JSON.stringify(objects))
-            const dispatch = jest.fn(() => {})
+            const dispatch = jest.fn((fn) => {
+              typeof(fn) === 'function' ? fn(dispatch) : null
+            })
             const getState = jest.fn(() => {
               return { postsBySubreddit: {} }
             })
@@ -148,7 +150,9 @@ describe('actions', () => {
           fc.array(fc.object(), 100),
           (subreddit, objects) => {
             fetch.mockResponseOnce(JSON.stringify(objects))
-            const dispatch = jest.fn(() => {})
+            const dispatch = jest.fn((fn) => {
+              typeof(fn) === 'function' ? fn(dispatch) : null
+            })
             const getState = jest.fn(() => {
               const state = { postsBySubreddit: {} }
               state.postsBySubreddit[subreddit] = {
@@ -174,7 +178,9 @@ describe('actions', () => {
           fc.array(fc.object(), 100),
           (subreddit, objects) => {
             fetch.mockResponseOnce(JSON.stringify(objects))
-            const dispatch = jest.fn(() => {})
+            const dispatch = jest.fn((fn) => {
+              typeof(fn) === 'function' ? fn(dispatch) : null
+            })
             const getState = jest.fn(() => {
               const state = { postsBySubreddit: {} }
               state.postsBySubreddit[subreddit] = {
@@ -192,4 +198,65 @@ describe('actions', () => {
       )
     })
   })
+
+  describe('Comments', () => {
+    const state = (post, index = 0) => ({
+      postsBySubreddit: {
+        foo: {
+          items: [post],
+        },
+        cursor: {
+          index,
+        }
+      },
+      selectedSubreddit: 'foo',
+    })
+
+    it('should check request post', () => {
+      fetch.resetMocks()
+      fc.assert(
+        fc.property(
+          fc.string(),
+          fc.string(),
+          fc.string(),
+          fc.array(fc.object(), 10),
+          (subreddit, id, permalink, objects) => {
+            fetch.mockResponseOnce(JSON.stringify(objects))
+            const post = { id: id, permalink }
+            const dispatch = jest.fn((fn) => {
+              typeof(fn) === 'function' ? fn(dispatch) : null
+            })
+            const getState = jest.fn(() => state(post))
+            actions.fetchCommentsIfNeeded(post, subreddit)(dispatch, getState)
+            expect(getState).toHaveBeenCalled()
+            expect(dispatch).toHaveBeenCalled()
+          },
+        ),
+      )
+    })
+
+    it('should handle request post errors', () => {
+      fetch.resetMocks()
+      fc.assert(
+        fc.property(
+          fc.string(),
+          fc.string(),
+          fc.string(),
+          fc.array(fc.object(), 10),
+          (subreddit, id, permalink, objects) => {
+            fetch.mockResponseOnce('undefined')
+            const post = { id: id, permalink }
+            const dispatch = jest.fn((fn) => {
+              typeof(fn) === 'function' ? fn(dispatch) : null
+            })
+            const getState = jest.fn(() => state(post))
+            actions.fetchCommentsIfNeeded(post, subreddit)(dispatch, getState)
+            expect(getState).toHaveBeenCalled()
+            expect(dispatch).toHaveBeenCalled()
+          },
+        ),
+      )
+    })
+  })
+
 })

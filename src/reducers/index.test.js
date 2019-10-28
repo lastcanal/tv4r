@@ -1,5 +1,6 @@
 import rootReducer from './index.js'
 import * as types from '../constants'
+import { LOCATION_CHANGE } from 'connected-react-router'
 
 import { history } from '../configureStore'
 
@@ -29,11 +30,37 @@ describe('reducers', () => {
           subreddit,
         }
 
-        const response = root(undefined, action)
+        const state = { subreddits: [] }
+        const response = root(state, action)
         expect(response.postsBySubreddit[subreddit].didInvalidate).toBeTruthy()
+        expect(response.subreddits[0]).toBe(subreddit)
       }),
     )
   })
+
+  it('should remove subreddit', () => {
+    fc.assert(
+      fc.property(fc.string(), subreddit => {
+        const addAction = {
+          type: types.INVALIDATE_SUBREDDIT,
+          subreddit,
+        }
+
+        const removeAction = {
+          type: types.REMOVE_SUBREDDIT,
+          subreddit,
+        }
+
+        const state = { subreddits: [] }
+        const addResponse = root(state, addAction)
+        expect(addResponse.postsBySubreddit[subreddit].didInvalidate).toBeTruthy()
+        expect(addResponse.subreddits[0]).toBe(subreddit)
+        const removeResponse = root(state, removeAction)
+        expect(removeResponse.subreddits[0]).toBe(undefined)
+      }),
+    )
+  })
+
 
   it('should request posts for subreddit', () => {
     fc.assert(
@@ -211,6 +238,72 @@ describe('reducers', () => {
         },
       ),
     )
+  })
+
+  it('should toggle fullscreen', () => {
+    const action = {
+      type: types.TOGGLE_FULLSCREEN,
+    }
+
+    expect(root({config: {isFullscreen: false}}, action).config.isFullscreen).toBe(true)
+    expect(root({config: {isFullscreen: true}}, action).config.isFullscreen).toBe(false)
+  })
+
+  it('should toggle autoplay', () => {
+    const action = {
+      type: types.TOGGLE_AUTOPLAY,
+    }
+
+    expect(root({config: {isAutoplay: false}}, action).config.isAutoplay).toBe(true)
+    expect(root({config: {isAutoplay: true}}, action).config.isAutoplay).toBe(false)
+  })
+
+  it('should set theme mode', () => {
+    const action = {
+      type: types.TOGGLE_THEME_MODE,
+    }
+
+    expect(root({config: {themeMode: 'dark'}}, action).config.themeMode).toBe('light')
+    expect(root({config: {themeMode: 'light'}}, action).config.themeMode).toBe('dark')
+  })
+
+  it('should hangle location change for subreddit', () => {
+    const action = {
+      type: LOCATION_CHANGE,
+      payload: {
+        location: {
+          pathname: "/r/videos"
+        }
+      }
+    }
+
+    expect(root(undefined, action).postsBySubreddit.cursor.post.id).toBe(undefined)
+  })
+
+  it('should hangle location change for post', () => {
+    const action = {
+      type: LOCATION_CHANGE,
+      payload: {
+        location: {
+          pathname: "/r/videos/comments/foo/slug"
+        }
+      }
+    }
+
+    expect(root(undefined, action).postsBySubreddit.cursor.post.id).toBe('foo')
+  })
+
+  it('should hangle location change 404', () => {
+    const action = {
+      type: LOCATION_CHANGE,
+      payload: {
+        location: {
+          pathname: "blabla"
+        }
+      }
+    }
+
+    expect(root(undefined, action).postsBySubreddit.cursor.post).toBe(undefined)
   })
 
 })

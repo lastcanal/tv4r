@@ -145,11 +145,11 @@ const fetchComments = (post, selectedSubreddit) => dispatch => {
   return reddit
     .fetchPost(post.permalink)
     .then(response => response.json())
-    .then(response =>
-      dispatch(receiveComments(post, selectedSubreddit, response)),
-    )
     .catch(error =>
       dispatch(receiveCommentsError(post, selectedSubreddit, error)),
+    )
+    .then(response =>
+      dispatch(receiveComments(post, selectedSubreddit, response)),
     )
 }
 
