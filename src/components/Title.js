@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
+import Skeleton from '@material-ui/lab/Skeleton'
 
 const useStyles = makeStyles(({ palette }) => ({
   root: {
@@ -24,14 +25,15 @@ const Title = ({ post }) => {
 
   return (
     <div className={classes.root}>
-      <a
+      {post && <a
         className={classes.title}
         target="_BLANK"
         rel="noopener noreferrer"
         href={'https://reddit.com' + post.permalink}
       >
-        {post.title ? post.title : ''}
+        {post.title ? post.title : <Skeleton />}
       </a>
+      }
     </div>
   )
 }

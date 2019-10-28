@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles'
 import GridList from '@material-ui/core/GridList'
 import GridListTile from '@material-ui/core/GridListTile'
 import GridListTileBar from '@material-ui/core/GridListTileBar'
+import Skeleton from '@material-ui/lab/Skeleton'
 
 import { selectPost } from '../actions'
 import { contrastColor } from '../helpers'
@@ -33,14 +34,16 @@ const styles = ({ spacing, palette }) => ({
 })
 
 const classNameForTile = (selected, post, classes) => {
-  if (!selected || !selected.post || !post.id || selected.post.id !== post.id) {
+  if (!post || !post.id ||
+      !selected || !selected.post ||
+      selected.post.id !== post.id) {
     return classes.tile
   } else {
     return `${classes.tile} ${classes.selected}`
   }
 }
 
-const Posts = ({ posts, selected, classes, dispatch }) => {
+const Posts = ({ posts, selected, isFetching, classes, dispatch }) => {
   const refs = {}
 
   const onSelectPost = (nextPost, index, e) => {
@@ -62,19 +65,23 @@ const Posts = ({ posts, selected, classes, dispatch }) => {
   }, [selected])
 
   return (
-    <div ref={node => (refs['posts-ref'] = node)}>
+    <div ref={node => (refs['posts-ref'] = node)} className={classes.root}>
       <GridList className={classes.gridList} cols={6.1}>
-        {posts.map((post, index) => {
+        {(isFetching ? Array.from(new Array(7)) : posts).map((post, index) => {
+          const id = post ? post.id : index
           return <GridListTile
             rows={1}
             className={classNameForTile(selected, post, classes)}
-            key={post.id}
-            ref={node => (refs['post-' + post.id] = node)}
+            key={id}
+            ref={node => (post ? (refs['post-' + post.id] = node) : '')}
             onClick={onSelectPost.bind(this, post, index)}
           >
-            <img src={post.thumbnail} alt={post.title} />
+            {isFetching
+              ? <Skeleton variant="rect" />
+              : <img src={post.thumbnail} alt={post.title} />
+            }
             <GridListTileBar
-              title={post.title}
+              title={isFetching ? <Skeleton /> : post.title}
               classes={{
                 root: classes.titleBar,
                 title: classes.title,
@@ -90,6 +97,7 @@ const Posts = ({ posts, selected, classes, dispatch }) => {
 Posts.propTypes = {
   posts: PropTypes.array.isRequired,
   selected: PropTypes.object.isRequired,
+  isFetching: PropTypes.bool.isRequired,
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
 }
@@ -98,7 +106,8 @@ const mapStateToProps = state => {
   const { dispatch, selectedSubreddit, postsBySubreddit, config } = state
   const { themeMode } = config
   const selectedPost = postsBySubreddit.cursor || {}
-  const { items: posts } = postsBySubreddit[selectedSubreddit] || {
+  const { isFetching, items: posts } = postsBySubreddit[selectedSubreddit] || {
+    isFetching: false,
     items: [],
   }
 
@@ -108,6 +117,7 @@ const mapStateToProps = state => {
     selected: selectedPost,
     visible: true,
     themeMode,
+    isFetching,
   }
 }
 
