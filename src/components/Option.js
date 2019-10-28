@@ -13,9 +13,6 @@ const useStyles = makeStyles(({ palette, shape }) => ({
     backgroundColor: palette.background.paper,
     borderRadius: shape.borderRadius,
   },
-  icon: {
-    color: 'inherit',
-  },
 }))
 
 const Option = ({ children, isSelected, onFocus, data, setValue, dispatch }) => {
@@ -39,7 +36,7 @@ const Option = ({ children, isSelected, onFocus, data, setValue, dispatch }) => 
     classes={classes}
   >
     <ListItemIcon onClick={onRemove}>
-      <RemoveCircleIcon className={classes.icon}/>
+      <RemoveCircleIcon style={{color: 'inherit'}} />
     </ListItemIcon>
     <div>
       {children}

@@ -8,7 +8,7 @@ import { routerMiddleware} from 'connected-react-router'
 import fc from 'fast-check'
 
 // https://github.com/jsdom/jsdom/pull/2626
-Object.defineProperty(window, 'scrollTo', { value: () => {}, writable: true });
+Object.defineProperty(window, 'scrollTo', { value: () => {}, writable: true })
 
 Enzyme.configure({ adapter: new Adapter() }) // Make Enzyme functions available in all test files without importing
 

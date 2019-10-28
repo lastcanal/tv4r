@@ -5,6 +5,8 @@ import { withStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import ToolBar from '@material-ui/core/ToolBar'
 
+import { MENU_OFFSET_HEIGHT } from '../constants'
+
 import {
   selectSubreddit,
   nextPost,
@@ -23,6 +25,7 @@ const styles = ({ palette, spacing }) => ({
     bottom: 0,
     padding: 0,
     paddingBottom: spacing(2),
+    minHeight: MENU_OFFSET_HEIGHT,
     width: '100%',
     backgroundColor: palette.background.default,
     borderTop: '1px soild black',
@@ -30,7 +33,16 @@ const styles = ({ palette, spacing }) => ({
   },
 })
 
-const Menu = ({ classes, dispatch, post, posts, selectedSubreddit, subreddits, width }) => {
+const Menu = ({
+  classes,
+  dispatch,
+  post,
+  posts,
+  selectedSubreddit,
+  subreddits,
+  width,
+  menuRef,
+}) => {
 
   const changeSubreddit = ({ value }) => {
     dispatch(selectSubreddit(value))
@@ -56,22 +68,21 @@ const Menu = ({ classes, dispatch, post, posts, selectedSubreddit, subreddits, w
   }, [posts])
 
   return (
-    <Container classes={classes} maxWidth={false}>
-      <ToolBar>
-        <Title post={post} />
-      </ToolBar>
-      <Posts width={width} />
+    <Container ref={menuRef} classes={classes} maxWidth={false}>
       <ToolBar>
         <Picker
           value={selectedSubreddit}
           onChange={changeSubreddit}
           options={subreddits}
         />
+      </ToolBar>
+      <Posts width={width} />
+      <ToolBar>
+        <Title post={post} />
         <Controls />
       </ToolBar>
     </Container>
   )
-
 }
 
 Menu.propTypes = {
@@ -82,8 +93,10 @@ Menu.propTypes = {
   lastUpdated: PropTypes.number,
   subreddits: PropTypes.array,
   width: PropTypes.number,
+  menuHeight: PropTypes.number,
   dispatch: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
+  menuRef: PropTypes.object,
 }
 
 const mapStateToProps = state => {

@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import ReactHtmlParser from 'react-html-parser'
 import ReactPlayer from 'react-player'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 import { isVideo } from '../helpers'
 import { nextPost, mediaFallback } from '../actions'
@@ -22,7 +23,6 @@ const styles = ({ spacing, palette }) => ({
     height: ({ height }) => (
       height
     ),
-    width: '100vw',
   },
   reactPlayer: {
     backgroundColor: 'black',
@@ -35,7 +35,6 @@ const styles = ({ spacing, palette }) => ({
     height: ({ height }) => (
       height
     ),
-    width: '100vw',
     margin: 0,
     padding: 0,
     top: 0,
@@ -46,8 +45,7 @@ const styles = ({ spacing, palette }) => ({
     flexDirection: 'column',
     zIndex: 40,
   },
-  loadingDot: {
-    backgroundColor: 'black',
+  loadingInitial: {
     height: 10,
     width: 10,
     borderRadius: 22,
@@ -60,11 +58,7 @@ const styles = ({ spacing, palette }) => ({
   '@keyframes blipOn': {
     '0%': {width: 4, height: 4},
     '40%': {width: '90vw', height: 2},
-    '100%': {width: '100vw', height: '100vh', borderRadius: 0},
-  },
-  '@keyframes fadeIn': {
-    '0%': {opacity: 0},
-    '100%': {opacity: 1},
+    '100%': {width: '100vw', height: '100vh', borderRadius: 0, backgroundColor: 'black'},
   },
 })
 
@@ -134,12 +128,11 @@ const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback, hei
   }
 
   const renderLoading = () => {
-    const dotClassName = isPlayerReady
-      ? `${classes.loadingDot} ${classes.loadingDotLoaded}`
-      : `${classes.loadingDot}`
-
     return <div className={classes.loading}>
-      <div className={dotClassName} />
+      {isPlayerReady
+        ? <CircularProgress />
+        : <div className={classes.loadingInitial} />
+      }
     </div>
   }
 

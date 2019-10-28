@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useMemo, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
@@ -7,12 +7,12 @@ import grey from '@material-ui/core/colors/grey'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import debounce from 'lodash.debounce'
 
 import Menu from './components/Menu'
 import Post from './components/Post'
 
 import { fetchPostsIfNeeded, invalidateSubredditIfNeeded } from './actions'
-import { MENU_OFFSET_HEIGHT } from './constants'
 
 const styles = () => ({
   root: {
@@ -31,21 +31,28 @@ const App = ({
   router,
 }) => {
 
-  const menuOffsetHeight = () => (
-    isFullscreen ? MENU_OFFSET_HEIGHT : 0
-  )
+  const menuRef = useRef()
+  const calculateMenuHeight = () => {
+    const { current } = menuRef
+    if (current) {
+      const box = current.getBoundingClientRect()
+      return box.height
+    }
+  }
+
+  const menuOffsetHeight = () => {
+    return isFullscreen ? 0 : calculateMenuHeight()
+  }
 
   const calculateHeight = () => (
     window.innerHeight - menuOffsetHeight()
   )
 
   const [ height, setHeight ] = useState(calculateHeight())
-  const [ width, setWidth ] = useState(window.innerWidth)
 
-  const onResize = () => {
-    setHeight(window.innerHeight - menuOffsetHeight())
-    setWidth(window.innerWidth)
-  }
+  const onResize = debounce(() => {
+    setHeight(calculateHeight())
+  }, 100)
 
   useEffect(() => {
     window.addEventListener('resize', onResize)
@@ -53,7 +60,6 @@ const App = ({
   }, [])
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
     setHeight(calculateHeight())
   }, [isFullscreen])
 
@@ -84,7 +90,7 @@ const App = ({
     <MuiThemeProvider theme={theme}>
       <Container classes={classes} maxWidth={false}>
         <CssBaseline />
-        <Menu width={width} />
+        <Menu menuRef={menuRef} />
         <Post height={height} />
       </Container>
     </MuiThemeProvider>

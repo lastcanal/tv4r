@@ -1,30 +1,17 @@
-import React, { useEffect, useMemo } from 'react'
-
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import GridList from '@material-ui/core/GridList'
 import GridListTile from '@material-ui/core/GridListTile'
 import GridListTileBar from '@material-ui/core/GridListTileBar'
+
 import { selectPost } from '../actions'
 import { contrastColor } from '../helpers'
 
-import { THUMBNAIL_WIDTH } from '../constants'
-
 const styles = ({ spacing, palette }) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflowX: 'hidden',
-    minHeight: 200,
-    scrollbarWidth: 'none',
-    '&::-webkit-scrollbar': {
-      display: 'none',
-    },
-  },
   gridList: {
+    minHeight: 140,
     flexWrap: 'nowrap',
     transform: 'translateZ(0)',
   },
@@ -53,7 +40,7 @@ const classNameForTile = (selected, post, classes) => {
   }
 }
 
-const Posts = ({ posts, selected, width, classes, dispatch }) => {
+const Posts = ({ posts, selected, classes, dispatch }) => {
   const refs = {}
 
   const onSelectPost = (nextPost, index, e) => {
@@ -74,30 +61,26 @@ const Posts = ({ posts, selected, width, classes, dispatch }) => {
     }
   }, [selected])
 
-  const cols = useMemo(() => (width / THUMBNAIL_WIDTH), [width])
-
   return (
-    <div ref={node => (refs['posts-ref'] = node)} className={classes.root}>
-      <GridList className={classes.gridList} cols={cols}>
+    <div ref={node => (refs['posts-ref'] = node)}>
+      <GridList className={classes.gridList} cols={6.1}>
         {posts.map((post, index) => {
-          return (
-            <GridListTile
-              rows={1}
-              className={classNameForTile(selected, post, classes)}
-              key={post.id}
-              ref={node => (refs['post-' + post.id] = node)}
-              onClick={onSelectPost.bind(this, post, index)}
-            >
-              <img src={post.thumbnail} alt={post.title} />
-              <GridListTileBar
-                title={post.title}
-                classes={{
-                  root: classes.titleBar,
-                  title: classes.title,
-                }}
-              />
-            </GridListTile>
-          )
+          return <GridListTile
+            rows={1}
+            className={classNameForTile(selected, post, classes)}
+            key={post.id}
+            ref={node => (refs['post-' + post.id] = node)}
+            onClick={onSelectPost.bind(this, post, index)}
+          >
+            <img src={post.thumbnail} alt={post.title} />
+            <GridListTileBar
+              title={post.title}
+              classes={{
+                root: classes.titleBar,
+                title: classes.title,
+              }}
+            />
+          </GridListTile>
         })}
       </GridList>
     </div>
@@ -107,7 +90,6 @@ const Posts = ({ posts, selected, width, classes, dispatch }) => {
 Posts.propTypes = {
   posts: PropTypes.array.isRequired,
   selected: PropTypes.object.isRequired,
-  width: PropTypes.number,
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
 }

@@ -15,7 +15,7 @@ describe('controls', () => {
     const wrapper = mount(
       <Provider store={makeStore()}>
         <Controls />
-     </Provider>
+      </Provider>
     )
 
     expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
@@ -28,16 +28,16 @@ describe('controls', () => {
         selectdSubreddit: 'foo',
         postsBySubreddit: {
           foo: {
-            items: posts
-          }
-        }
+            items: posts,
+          },
+        },
       }),
-      dispatch
+      dispatch,
     }
     const wrapper = mount(
       <Provider store={store}>
         <Controls />
-     </Provider>
+      </Provider>
     )
 
     wrapper.find(SkipNextIcon).simulate('click')
@@ -52,16 +52,16 @@ describe('controls', () => {
         selectdSubreddit: 'foo',
         postsBySubreddit: {
           foo: {
-            items: posts
-          }
-        }
+            items: posts,
+          },
+        },
       }),
-      dispatch
+      dispatch,
     }
     const wrapper = mount(
       <Provider store={store}>
         <Controls />
-     </Provider>
+      </Provider>
     )
 
     wrapper.find(SkipPreviousIcon).simulate('click')
@@ -73,13 +73,13 @@ describe('controls', () => {
     const dispatch = jest.fn(() => {})
     const store = {
       ...makeStore(),
-      dispatch
+      dispatch,
     }
     const subreddit = 'foo'
     const wrapper = mount(
       <Provider store={store}>
         <Controls />
-     </Provider>
+      </Provider>
     )
 
     wrapper.find(RefreshIcon).simulate('click')

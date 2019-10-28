@@ -58,7 +58,8 @@ const Picker = ({ value, options, onChange }) => {
     <div className={classes.container}>
       <CreatableSelect
         isClearable={false}
-        menuPlacement="top"
+        menuPlacement="bottom"
+        maxHeight={200}
         defaultValue={mappedValue}
         onChange={onChange}
         options={mappedOptions}

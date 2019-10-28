@@ -33,6 +33,5 @@ export const DEFAULT_SUBREDDIT = DEFAULT_SUBREDDITS[0]
 
 // TODO: Calculate MENU_OFFSET_HEIGHT dynamically.
 export const MENU_OFFSET_HEIGHT = 348
-export const THUMBNAIL_WIDTH = 320
 
 

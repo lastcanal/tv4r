@@ -61,7 +61,7 @@ const Controls = ({ dispatch, posts, selectedSubreddit, isFullscreen, isAutoplay
           <SettingsBrightnessIcon />
         </IconButton>
       </Tooltip>
-      <Tooltip title={`${isFullscreen ? 'Enter' : 'Exit'} Fullscreen`}>
+      <Tooltip title={`${isFullscreen ? 'Exit' : 'Enter'} Fullscreen`}>
         <IconButton
           aria-label="toggle fullscreen"
           color="inherit"
