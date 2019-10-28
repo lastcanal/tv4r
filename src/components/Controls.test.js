@@ -11,7 +11,6 @@ describe('controls', () => {
   const posts = [{ id: 1 }, { id: 2 }]
 
   it('should render Controls', () => {
-    const dispatch = jest.fn(() => {})
     const wrapper = mount(
       <Provider store={makeStore()}>
         <Controls />

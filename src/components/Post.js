@@ -50,14 +50,22 @@ const styles = ({ palette }) => ({
     zIndex: 40,
   },
   '@keyframes blipOn': {
-    '0%': {height: 4, width: 4, borderRadius: 10},
-    '40%': {height: 4, width: '90%', borderRadius: 0},
-    '100%': {borderRadius: 0},
+    '0%': { height: 4, width: 4, borderRadius: 10 },
+    '40%': { height: 4, width: '90%', borderRadius: 0 },
+    '100%': { borderRadius: 0 },
   },
 })
 
-const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback, height, isAutoplay }) => {
-
+const Post = ({
+  classes,
+  posts,
+  isFetching,
+  post,
+  dispatch,
+  isMediaFallback,
+  height,
+  isAutoplay,
+}) => {
   const onMediaEnded = () => {
     dispatch(nextPost(posts))
   }

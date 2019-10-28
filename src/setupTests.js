@@ -4,7 +4,7 @@ import configureMockStore from 'redux-mock-store'
 import fetch, { GlobalWithFetchMock } from 'jest-fetch-mock'
 import Enzyme, { shallow, render, mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16' // React 16 Enzyme adapter
-import { routerMiddleware} from 'connected-react-router'
+import { routerMiddleware } from 'connected-react-router'
 import fc from 'fast-check'
 
 // https://github.com/jsdom/jsdom/pull/2626

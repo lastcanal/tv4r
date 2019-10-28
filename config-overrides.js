@@ -2,5 +2,9 @@ const { useBabelRc, override, useEslintRc, disableEsLint } = require('customize-
 
 module.exports = override(
   useBabelRc(),
-  (process.env['LINT'] === 'no' ? disableEsLint() : useEslintRc())
+  (
+    (process.env['LINT'] || '').toLowerCase() === 'no'
+      ? disableEsLint()
+      : useEslintRc()
+  )
 );

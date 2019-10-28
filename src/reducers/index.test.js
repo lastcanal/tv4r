@@ -103,7 +103,9 @@ describe('reducers', () => {
 
           root(undefined, setupAction)
           const response = root(undefined, action)
-          if (post) { expect(response.postsBySubreddit.cursor.post).toMatchObject(post) }
+          if (post) {
+            expect(response.postsBySubreddit.cursor.post).toMatchObject(post)
+          }
           expect(response.postsBySubreddit.cursor.index).toStrictEqual(index)
         },
       ),

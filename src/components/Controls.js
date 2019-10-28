@@ -34,7 +34,14 @@ const useStyles = makeStyles(({ spacing }) => ({
     width: spacing(3),
   },
 }))
-const Controls = ({ dispatch, posts, selectedSubreddit, isFullscreen, isAutoplay, themeMode }) => {
+const Controls = ({
+  dispatch,
+  posts,
+  selectedSubreddit,
+  isFullscreen,
+  isAutoplay,
+  themeMode,
+}) => {
   const handleRefreshClick = _e => {
     dispatch(invalidateSubreddit(selectedSubreddit))
     dispatch(fetchPostsIfNeeded(selectedSubreddit))

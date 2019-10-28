@@ -27,8 +27,12 @@ const styles = ({ spacing, palette }) => ({
     },
   },
   selected: {
-    border: ({ themeMode }) => (`2px solid ${contrastColor(themeMode, palette)}`),
-    outline: ({ themeMode }) => (`thick double ${contrastColor(themeMode, palette)}`),
+    border: ({ themeMode }) => (
+      `2px solid ${contrastColor(themeMode, palette)}`
+    ),
+    outline: ({ themeMode }) => (
+      `thick double ${contrastColor(themeMode, palette)}`
+    ),
     display: 'block',
   },
 })

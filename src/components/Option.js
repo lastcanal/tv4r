@@ -15,7 +15,14 @@ const useStyles = makeStyles(({ palette, shape }) => ({
   },
 }))
 
-const Option = ({ children, isSelected, onFocus, data, setValue, dispatch }) => {
+const Option = ({
+  children,
+  isSelected,
+  onFocus,
+  data,
+  setValue,
+  dispatch,
+}) => {
   const classes = useStyles()
 
   const onClick = (e) => {
@@ -36,7 +43,7 @@ const Option = ({ children, isSelected, onFocus, data, setValue, dispatch }) => 
     classes={classes}
   >
     <ListItemIcon onClick={onRemove}>
-      <RemoveCircleIcon style={{color: 'inherit'}} />
+      <RemoveCircleIcon style={{ color: 'inherit' }} />
     </ListItemIcon>
     <div>
       {children}
