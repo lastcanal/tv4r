@@ -34,6 +34,7 @@ const styles = ({ palette }) => ({
     animationDuration: '1s',
     animationIterationCount: '1',
     animationFillMode: 'forwards',
+    zIndex: 40,
   },
   loading: {
     backgroundColor: palette.background.default,

@@ -18,7 +18,7 @@ import Picker from './Picker'
 import Controls from './Controls'
 import Title from './Title'
 
-const styles = ({ palette, spacing }) => ({
+const styles = ({ palette, spacing, shape }) => ({
   root: {
     position: 'fixed',
     left: 0,
@@ -29,7 +29,8 @@ const styles = ({ palette, spacing }) => ({
     width: '100%',
     backgroundColor: palette.background.default,
     borderTop: '1px soild black',
-    boxShadow: `0px -2px 2px -2px ${palette.primary.dark}`,
+    boxShadow: `-1px -4px 4px -4px ${palette.primary.dark}`,
+    borderRadius: shape.borderRadius,
   },
 })
 

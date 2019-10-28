@@ -20,7 +20,7 @@ const styles = ({ spacing, palette }) => ({
     opacity: 0.8,
     margin: spacing(1),
     marginBottom: spacing(2),
-    boxShadow: `2px 2px 8px 0px ${palette.primary.dark}`,
+    boxShadow: `-1px -4px 4px -4px ${palette.primary.dark}`,
     outline: `thin double ${palette.primary.dark}`,
     '&:hover': {
       outline: `thick double ${palette.primary.dark}`,
@@ -65,7 +65,7 @@ const Posts = ({ posts, selected, isFetching, classes, dispatch }) => {
   }, [selected])
 
   return (
-    <div ref={node => (refs['posts-ref'] = node)} className={classes.root}>
+    <div ref={node => (refs['posts-ref'] = node)}>
       <GridList className={classes.gridList} cols={6.1}>
         {(isFetching ? Array.from(new Array(7)) : posts).map((post, index) => {
           const id = post ? post.id : index

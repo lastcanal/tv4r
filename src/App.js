@@ -32,6 +32,7 @@ const App = ({
 }) => {
   const { spacing } = useTheme()
   const menuRef = useRef()
+
   const calculateMenuHeight = () => {
     const { current } = menuRef
     if (current) {
@@ -71,7 +72,9 @@ const App = ({
   useEffect(() => {
     if (postsBySubreddit.cursor && postsBySubreddit.cursor.post) {
       const permalink = postsBySubreddit.cursor.post.permalink
-      if (permalink && permalink !== router.location.pathname) { dispatch(push(permalink)) }
+      if (permalink && permalink !== router.location.pathname) {
+        dispatch(push(permalink))
+      }
     }
   }, [postsBySubreddit, dispatch, router])
 

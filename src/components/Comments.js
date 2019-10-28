@@ -22,7 +22,6 @@ const styles = ({ spacing, palette, shape }) => ({
     borderRadius: shape.borderRadius,
     backgroundColor: palette.background.default,
     flexGrow: 1,
-    marginBottom: spacing(2),
     minHeight: ({ height }) => (height),
   },
   menuButton: {
