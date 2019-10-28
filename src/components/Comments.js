@@ -107,7 +107,7 @@ const Comments = ({
       }
 
       const observer = new IntersectionObserver(onIntersection, options)
-      observer.observe(target)
+      if (target) observer.observe(target)
 
       return () => observer.unobserve(target)
     }
