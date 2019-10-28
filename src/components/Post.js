@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
@@ -11,32 +11,35 @@ import { isVideo } from '../helpers'
 import { nextPost, mediaFallback } from '../actions'
 import Comments from './Comments'
 
-const styles = ({ spacing, palette }) => ({
+const styles = ({ palette }) => ({
   root: {
-    padding: 0,
     margin: 0,
-    marginBottom: spacing(1),
+    padding: 0,
   },
   playerWrapper: {
-    display: 'block',
     backgroundColor: palette.background.default,
     height: ({ height }) => (
       height
     ),
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    top: 0,
+    left: 0,
   },
   reactPlayer: {
     backgroundColor: 'black',
-    position: 'absolute',
-    top: 0,
-    left: 0,
+    animationName: '$blipOn',
+    animationDuration: '1s',
+    animationIterationCount: '1',
+    animationFillMode: 'forwards',
   },
   loading: {
     backgroundColor: palette.background.default,
     height: ({ height }) => (
       height
     ),
-    margin: 0,
-    padding: 0,
     top: 0,
     botton: 0,
     display: 'flex',
@@ -45,26 +48,14 @@ const styles = ({ spacing, palette }) => ({
     flexDirection: 'column',
     zIndex: 40,
   },
-  loadingInitial: {
-    height: 10,
-    width: 10,
-    borderRadius: 22,
-    animationName: '$blipOn',
-    animationDuration: '1s',
-    animationIterationCount: '1',
-    animationFillMode: 'forwards',
-    zIndex: 41,
-  },
   '@keyframes blipOn': {
-    '0%': {width: 4, height: 4},
-    '40%': {width: '90vw', height: 2},
-    '100%': {width: '100vw', height: '100vh', borderRadius: 0, backgroundColor: 'black'},
+    '0%': {height: 4, width: 4, borderRadius: 10},
+    '40%': {height: 4, width: '90%', borderRadius: 0},
+    '100%': {borderRadius: 0},
   },
 })
 
 const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback, height, isAutoplay }) => {
-
-  const [isPlayerReady, setPlayerReady] = useState(false)
 
   const onMediaEnded = () => {
     dispatch(nextPost(posts))
@@ -110,7 +101,6 @@ const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback, hei
           className={classes.reactPlayer}
           width="100%"
           height={height}
-          onReady={() => setPlayerReady(true)}
           onEnded={onMediaEnded}
           onError={onMediaError}
           controls={true}
@@ -129,22 +119,23 @@ const Post = ({ classes, posts, isFetching, post, dispatch, isMediaFallback, hei
 
   const renderLoading = () => {
     return <div className={classes.loading}>
-      {isPlayerReady
-        ? <CircularProgress />
-        : <div className={classes.loadingInitial} />
-      }
+      <CircularProgress />
     </div>
   }
 
   const renderEmpty = () => {
-    return <h2>No TV Found.</h2>
+    return <div className={classes.loading}>
+      <h2>No TV Found.</h2>
+    </div>
   }
 
   const renderLoadingError = () => {
-    return <h2>Failed to load TV; try again..</h2>
+    return <div className={classes.loading}>
+      <h2>Failed to load TV; try again..</h2>
+    </div>
   }
 
-  if (isFetching) {
+  if (!posts || isFetching) {
     return renderLoading()
   } else if (posts.length === 0) {
     return renderEmpty()
@@ -180,7 +171,8 @@ const mapStateToProps = state => {
   const { isFullsceen, isAutoplay } = config
   const selectedPost = postsBySubreddit.cursor || {}
   const { isFetching, items: posts } = postsBySubreddit[selectedSubreddit] || {
-    items: [],
+    isFetching: false,
+    items: null,
   }
 
   return {

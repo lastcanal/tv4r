@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react'
 import PropTypes from 'prop-types'
-import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import { withStyles, MuiThemeProvider, createMuiTheme, useTheme } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import grey from '@material-ui/core/colors/grey'
@@ -30,13 +30,13 @@ const App = ({
   classes,
   router,
 }) => {
-
+  const { spacing } = useTheme()
   const menuRef = useRef()
   const calculateMenuHeight = () => {
     const { current } = menuRef
     if (current) {
       const box = current.getBoundingClientRect()
-      return box.height
+      return box.height + spacing(1)
     }
   }
 
