@@ -106,10 +106,15 @@ const Comments = ({
         }
       }
 
-      const observer = new IntersectionObserver(onIntersection, options)
-      if (target) observer.observe(target)
+      try {
+        const observer = new IntersectionObserver(onIntersection, options)
+        if (target) observer.observe(target)
 
-      return () => observer.unobserve(target)
+        return () => observer.unobserve(target)
+      } catch (error) {
+        setVisible(true)
+        console && console.error(error)
+      }
     }
   }, [selectedSubreddit, height])
 
