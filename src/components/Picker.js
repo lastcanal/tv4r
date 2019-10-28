@@ -31,7 +31,7 @@ const makeSelectStyles = ({ palette }) => ({
 })
 
 const nameToOption = (name) => ({
-  value: name.toLowerCase(), label: name,
+  value: (name || '').toLowerCase(), label: name,
 })
 
 const Picker = ({ value, options, onChange }) => {

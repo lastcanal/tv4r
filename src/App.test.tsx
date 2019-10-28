@@ -9,7 +9,6 @@ import configureStore from './configureStore'
 describe('app', () => {
   it('configures a store', () => {
     const { store, persistor } = configureStore()
-    console.log(store, persistor)
     expect(store).toHaveProperty('dispatch')
     expect(persistor).toHaveProperty('dispatch')
   })
