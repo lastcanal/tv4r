@@ -64,10 +64,11 @@ const Post = ({
   dispatch,
   isMediaFallback,
   height,
+  menuHeight,
   isAutoplay,
 }) => {
   const onMediaEnded = () => {
-    dispatch(nextPost(posts))
+    if (isAutoplay) dispatch(nextPost(posts))
   }
 
   const onMediaError = (error) => {
