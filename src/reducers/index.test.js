@@ -245,8 +245,8 @@ describe('reducers', () => {
       type: types.TOGGLE_FULLSCREEN,
     }
 
-    expect(root({config: {isFullscreen: false}}, action).config.isFullscreen).toBe(true)
-    expect(root({config: {isFullscreen: true}}, action).config.isFullscreen).toBe(false)
+    expect(root({ config: { isFullscreen: false } }, action).config.isFullscreen).toBe(true)
+    expect(root({ config: { isFullscreen: true } }, action).config.isFullscreen).toBe(false)
   })
 
   it('should toggle autoplay', () => {
@@ -254,8 +254,8 @@ describe('reducers', () => {
       type: types.TOGGLE_AUTOPLAY,
     }
 
-    expect(root({config: {isAutoplay: false}}, action).config.isAutoplay).toBe(true)
-    expect(root({config: {isAutoplay: true}}, action).config.isAutoplay).toBe(false)
+    expect(root({ config: { isAutoplay: false } }, action).config.isAutoplay).toBe(true)
+    expect(root({ config: { isAutoplay: true } }, action).config.isAutoplay).toBe(false)
   })
 
   it('should set theme mode', () => {
@@ -263,8 +263,8 @@ describe('reducers', () => {
       type: types.TOGGLE_THEME_MODE,
     }
 
-    expect(root({config: {themeMode: 'dark'}}, action).config.themeMode).toBe('light')
-    expect(root({config: {themeMode: 'light'}}, action).config.themeMode).toBe('dark')
+    expect(root({ config: { themeMode: 'dark' } }, action).config.themeMode).toBe('light')
+    expect(root({ config: { themeMode: 'light' } }, action).config.themeMode).toBe('dark')
   })
 
   it('should hangle location change for subreddit', () => {
@@ -272,9 +272,9 @@ describe('reducers', () => {
       type: LOCATION_CHANGE,
       payload: {
         location: {
-          pathname: "/r/videos"
-        }
-      }
+          pathname: '/r/videos',
+        },
+      },
     }
 
     expect(root(undefined, action).postsBySubreddit.cursor.post.id).toBe(undefined)
@@ -285,9 +285,9 @@ describe('reducers', () => {
       type: LOCATION_CHANGE,
       payload: {
         location: {
-          pathname: "/r/videos/comments/foo/slug"
-        }
-      }
+          pathname: '/r/videos/comments/foo/slug',
+        },
+      },
     }
 
     expect(root(undefined, action).postsBySubreddit.cursor.post.id).toBe('foo')
@@ -298,9 +298,9 @@ describe('reducers', () => {
       type: LOCATION_CHANGE,
       payload: {
         location: {
-          pathname: "blabla"
-        }
-      }
+          pathname: 'blabla',
+        },
+      },
     }
 
     expect(root(undefined, action).postsBySubreddit.cursor.post).toBe(undefined)

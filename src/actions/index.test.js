@@ -129,7 +129,7 @@ describe('actions', () => {
           (subreddit, objects) => {
             fetch.mockResponseOnce(JSON.stringify(objects))
             const dispatch = jest.fn((fn) => {
-              typeof(fn) === 'function' ? fn(dispatch) : null
+              typeof (fn) === 'function' ? fn(dispatch) : null
             })
             const getState = jest.fn(() => {
               return { postsBySubreddit: {} }
@@ -151,7 +151,7 @@ describe('actions', () => {
           (subreddit, objects) => {
             fetch.mockResponseOnce(JSON.stringify(objects))
             const dispatch = jest.fn((fn) => {
-              typeof(fn) === 'function' ? fn(dispatch) : null
+              typeof (fn) === 'function' ? fn(dispatch) : null
             })
             const getState = jest.fn(() => {
               const state = { postsBySubreddit: {} }
@@ -179,7 +179,7 @@ describe('actions', () => {
           (subreddit, objects) => {
             fetch.mockResponseOnce(JSON.stringify(objects))
             const dispatch = jest.fn((fn) => {
-              typeof(fn) === 'function' ? fn(dispatch) : null
+              typeof (fn) === 'function' ? fn(dispatch) : null
             })
             const getState = jest.fn(() => {
               const state = { postsBySubreddit: {} }
@@ -207,7 +207,7 @@ describe('actions', () => {
         },
         cursor: {
           index,
-        }
+        },
       },
       selectedSubreddit: 'foo',
     })
@@ -224,7 +224,7 @@ describe('actions', () => {
             fetch.mockResponseOnce(JSON.stringify(objects))
             const post = { id: id, permalink }
             const dispatch = jest.fn((fn) => {
-              typeof(fn) === 'function' ? fn(dispatch) : null
+              typeof (fn) === 'function' ? fn(dispatch) : null
             })
             const getState = jest.fn(() => state(post))
             actions.fetchCommentsIfNeeded(post, subreddit)(dispatch, getState)
@@ -247,7 +247,7 @@ describe('actions', () => {
             fetch.mockResponseOnce('undefined')
             const post = { id: id, permalink }
             const dispatch = jest.fn((fn) => {
-              typeof(fn) === 'function' ? fn(dispatch) : null
+              typeof (fn) === 'function' ? fn(dispatch) : null
             })
             const getState = jest.fn(() => state(post))
             actions.fetchCommentsIfNeeded(post, subreddit)(dispatch, getState)
