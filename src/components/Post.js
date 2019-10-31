@@ -100,6 +100,18 @@ const Post = ({
     }
   }
 
+  const onBlur = (event) => {
+    if (event.currentTarget === event.target) {
+      window.focus() // FF
+      setTimeout(window.focus, 20) // Chrome
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('blur', onBlur)
+    return () => window.removeEventListener('blur', onBlur)
+  })
+
   const renderMediaPlayer = () => {
     return (
       <div className={classes.playerWrapper}>

@@ -17,7 +17,11 @@ import debounce from 'lodash.debounce'
 import Menu from './components/Menu'
 import Post from './components/Post'
 
-import { fetchPostsIfNeeded, invalidateSubredditIfNeeded } from './actions'
+import {
+  fetchPostsIfNeeded,
+  invalidateSubredditIfNeeded,
+  handleKeyboardAction,
+} from './actions'
 
 const styles = () => ({
   root: {
@@ -97,6 +101,14 @@ const App = ({
       },
     })
   ), [themeMode, prefersLightMode])
+
+  useEffect(() => {
+    document.body.addEventListener('keydown', handleKeyboardAction(dispatch))
+    return () => {
+      document.body.removeEventListener(
+        'keydown', handleKeyboardAction(dispatch))
+    }
+  }, [])
 
   return (
     <MuiThemeProvider theme={theme}>

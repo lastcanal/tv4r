@@ -60,14 +60,14 @@ export const selectPost = (post, index) => ({
   index,
 })
 
-export const nextPost = posts => ({
+export const nextPost = _posts => ({
   type: NEXT_POST,
-  posts,
+  // posts,
 })
 
-export const previousPost = posts => ({
+export const previousPost = _posts => ({
   type: PREVIOUS_POST,
-  posts,
+  // posts,
 })
 
 export const mediaFallback = () => ({
@@ -173,3 +173,17 @@ export const configToggleAutoplay = () => ({
 export const configToggleThemeMode = () => ({
   type: TOGGLE_THEME_MODE,
 })
+
+export const handleKeyboardAction = dispatch => event => {
+  switch (event.key) {
+    case '.':
+    case '>':
+      return dispatch(nextPost())
+    case ',':
+    case '<':
+      return dispatch(previousPost())
+    default:
+      console.log(event.key)
+      return
+  }
+}
