@@ -53,9 +53,11 @@ const Menu = ({
     const handleKeyDown = (e) => {
       e.stopPropagation()
       switch (e.key) {
-        case 'ArrowRight':
+        case '.':
+        case '>':
           return dispatch(nextPost(posts))
-        case 'ArrowLeft':
+        case ',':
+        case '<':
           return dispatch(previousPost(posts))
         default:
           return
