@@ -83,6 +83,10 @@ const App = ({
     }
   }, [postsBySubreddit, dispatch, router])
 
+  const menuHeight = useMemo(() => (
+    calculateHeight()
+  ), [height])
+
   const prefersLightMode = useMediaQuery('(prefers-color-scheme: light)')
 
   const theme = useMemo(() => (
@@ -99,7 +103,7 @@ const App = ({
       <Container classes={classes} maxWidth={false}>
         <CssBaseline />
         <Menu menuRef={menuRef} />
-        <Post height={height} />
+        <Post menuHeight={menuHeight} height={height} />
       </Container>
     </MuiThemeProvider>
   )

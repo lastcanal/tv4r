@@ -6,7 +6,6 @@ import { withStyles, makeStyles } from '@material-ui/core/styles'
 import LinearProgress from '@material-ui/core/LinearProgress'
 
 import { fetchCommentsIfNeeded } from '../actions'
-import { MENU_OFFSET_HEIGHT } from '../constants'
 
 const styles = ({ spacing, palette, shape }) => ({
   root: {
@@ -31,7 +30,7 @@ const styles = ({ spacing, palette, shape }) => ({
     flexGrow: 1,
   },
   spacerBottom: {
-    minHeight: MENU_OFFSET_HEIGHT,
+    minHeight: ({ menuHeight }) => (menuHeight),
     paddingBottom: 1,
   },
 })
@@ -69,6 +68,7 @@ const Comments = ({
   selectedSubreddit,
   selected,
   height,
+  menuHeight,
   dispatch,
   classes,
 }) => {
@@ -95,7 +95,7 @@ const Comments = ({
       const target = document.getElementById('scroll_beacon')
       const options = {
         root: null,
-        rootMargin: `${height}px`,
+        rootMargin: `${menuHeight}px`,
         threshold: 1.0,
       }
       const onIntersection = elements => {
@@ -158,6 +158,7 @@ Comments.propTypes = {
   dispatch: PropTypes.func,
   classes: PropTypes.object,
   height: PropTypes.number,
+  menuHeight: PropTypes.number,
 }
 
 const Comment = ({ comment, depth }) => {
