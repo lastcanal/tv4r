@@ -237,7 +237,7 @@ export const postsBySubreddit = (state = { cursor: {} }, action) => {
   }
 }
 
-const subreddits = (state = [DEFAULT_SUBREDDITS], action) => {
+const subreddits = (state = DEFAULT_SUBREDDITS, action) => {
   switch (action.type) {
     case INVALIDATE_SUBREDDIT:
       const addSet = new Set(state)

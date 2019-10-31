@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
@@ -27,6 +27,7 @@ const styles = ({ palette }) => ({
     flexDirection: 'column',
     top: 0,
     left: 0,
+    zIndex: 40,
   },
   reactPlayer: {
     backgroundColor: 'black',
@@ -34,7 +35,6 @@ const styles = ({ palette }) => ({
     animationDuration: '1s',
     animationIterationCount: '1',
     animationFillMode: 'forwards',
-    zIndex: 40,
   },
   loading: {
     backgroundColor: palette.background.default,
@@ -87,7 +87,6 @@ const Post = ({
         if (node.type === 'tag' && node.name === 'iframe') {
           node.attribs.height = height
           node.attribs.width = '100%'
-          node.attribs.class = classes.reactPlayer
         }
       }
       return (
@@ -156,7 +155,7 @@ const Post = ({
         <Container maxWidth={false} className={classes.root}>
           <div>{renderMedia()}</div>
         </Container>
-        <Comments height={height} />
+        <Comments height={height} menuHeight={menuHeight} />
       </div>
     )
   }

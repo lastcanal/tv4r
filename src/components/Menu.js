@@ -96,7 +96,6 @@ Menu.propTypes = {
   lastUpdated: PropTypes.number,
   subreddits: PropTypes.array,
   width: PropTypes.number,
-  menuHeight: PropTypes.number,
   dispatch: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   menuRef: PropTypes.object,
