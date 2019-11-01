@@ -57,7 +57,7 @@ module.exports = {
   },
 
   "rules": {
-    "max-len": ["error", { "code": 80, "ignoreTrailingComments": true, "ignoreUrls": true, }],
+    "max-len": ["error", { "code": 80, "ignoreTrailingComments": true, "ignoreUrls": true, "ignorePattern": "(^import|expect)" }],
     "react/jsx-uses-vars": "error",
     "react/jsx-uses-react": "error",
     "react/react-in-jsx-scope": "error",
