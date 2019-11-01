@@ -9,7 +9,7 @@ describe('reddit', () => {
         reddit.fetchPosts('foo')
 
         expect(fetch.mock.calls[0][0]).toStrictEqual(
-          'https://www.reddit.com/r/foo.json?limit=1000',
+          encodeURI('https://www.reddit.com/r/foo.json?limit=100'),
         )
       }),
     )
@@ -23,7 +23,7 @@ describe('reddit', () => {
         reddit.fetchPost('/r/foo/bla')
 
         expect(fetch.mock.calls[0][0]).toStrictEqual(
-          'https://www.reddit.com/r/foo/bla.json',
+          encodeURI('https://www.reddit.com/r/foo/bla.json'),
         )
       }),
     )

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
@@ -8,7 +8,7 @@ import ReactPlayer from 'react-player'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import { isVideo } from '../helpers'
-import { nextPost, mediaFallback } from '../actions'
+import { nextPost, mediaFallback, playerScanAck, playerJumpAck } from '../actions'
 import Comments from './Comments'
 
 const styles = ({ palette }) => ({
@@ -27,7 +27,6 @@ const styles = ({ palette }) => ({
     flexDirection: 'column',
     top: 0,
     left: 0,
-    zIndex: 40,
   },
   reactPlayer: {
     backgroundColor: 'black',
@@ -35,6 +34,7 @@ const styles = ({ palette }) => ({
     animationDuration: '1s',
     animationIterationCount: '1',
     animationFillMode: 'forwards',
+    zIndex: 40,
   },
   loading: {
     backgroundColor: palette.background.default,
@@ -64,9 +64,14 @@ const Post = ({
   dispatch,
   isMediaFallback,
   height,
-  menuHeight,
   isAutoplay,
+  isPlaying,
+  volume,
+  scan,
+  jump,
 }) => {
+  const playerRef = useRef()
+
   const onMediaEnded = () => {
     if (isAutoplay) dispatch(nextPost(posts))
   }
@@ -100,23 +105,31 @@ const Post = ({
     }
   }
 
-  const onBlur = (event) => {
-    if (event.currentTarget === event.target) {
-      window.focus() // FF
-      setTimeout(window.focus, 20) // Chrome
+  useEffect(() => {
+    if (scan === 0) return
+    const player = playerRef.current
+    if (player) {
+      const currentTime = player.getCurrentTime()
+      playerRef.current.seekTo(currentTime + scan, 'seconds')
     }
-  }
+    dispatch(playerScanAck())
+  }, [scan])
 
   useEffect(() => {
-    window.addEventListener('blur', onBlur)
-    return () => window.removeEventListener('blur', onBlur)
-  })
+    if (jump === -1) return
+    if (playerRef.current) {
+      playerRef.current.seekTo(jump, 'fraction')
+    }
+    dispatch(playerJumpAck())
+  }, [jump])
 
   const renderMediaPlayer = () => {
     return (
       <div className={classes.playerWrapper}>
         <ReactPlayer
-          playing={isAutoplay}
+          ref={playerRef}
+          playing={isPlaying}
+          volume={volume}
           preload="true"
           url={post.url}
           className={classes.reactPlayer}
@@ -168,7 +181,7 @@ const Post = ({
         <Container maxWidth={false} className={classes.root}>
           <div>{renderMedia()}</div>
         </Container>
-        <Comments height={height} menuHeight={menuHeight} />
+        <Comments height={height} />
       </div>
     )
   }
@@ -183,13 +196,15 @@ Post.propTypes = {
   error: PropTypes.object,
   isFetching: PropTypes.bool,
   isAutoplay: PropTypes.bool,
+  isPlaying: PropTypes.bool,
   isFullsceen: PropTypes.bool,
+  volume: PropTypes.number,
   height: PropTypes.number,
 }
 
 const mapStateToProps = state => {
   const { dispatch, selectedSubreddit, postsBySubreddit, config } = state
-  const { isFullsceen, isAutoplay } = config
+  const { isFullsceen, isAutoplay, isPlaying, volume, scan, jump } = config
   const selectedPost = postsBySubreddit.cursor || {}
   const { isFetching, items: posts } = postsBySubreddit[selectedSubreddit] || {
     isFetching: false,
@@ -204,6 +219,10 @@ const mapStateToProps = state => {
     isMediaFallback: selectedPost.media_fallback,
     isFullsceen,
     isAutoplay,
+    isPlaying,
+    volume,
+    scan,
+    jump,
   }
 }
 

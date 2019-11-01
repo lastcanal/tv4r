@@ -1,18 +1,20 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
+import { withStyles, useTheme } from '@material-ui/core/styles'
 import GridList from '@material-ui/core/GridList'
 import GridListTile from '@material-ui/core/GridListTile'
 import GridListTileBar from '@material-ui/core/GridListTileBar'
 import Skeleton from '@material-ui/lab/Skeleton'
+import debounce from 'lodash.debounce'
 
 import { selectPost } from '../actions'
 import { contrastColor } from '../helpers'
 
+import { THUMBNAIL_HEIGHT, THUMBNAIL_WIDTH } from '../constants'
+
 const styles = ({ spacing, palette }) => ({
   gridList: {
-    minHeight: 140,
     flexWrap: 'nowrap',
     transform: 'translateZ(0)',
   },
@@ -55,6 +57,8 @@ const Posts = ({ posts, selected, isFetching, classes, dispatch }) => {
     dispatch(selectPost(nextPost, index))
   }
 
+  const { spacing } = useTheme()
+
   useEffect(() => {
     if (selected && selected.post && selected.post.id) {
       const element = refs['post-' + selected.post.id]
@@ -68,10 +72,29 @@ const Posts = ({ posts, selected, isFetching, classes, dispatch }) => {
     }
   }, [selected])
 
+  const calculateColumns = () => (
+    window.innerWidth / (THUMBNAIL_WIDTH + spacing(2))
+  )
+
+  const [columns, setColumns] = useState(calculateColumns())
+
+  const onResize = debounce(() => {
+    setColumns(calculateColumns())
+  }, 10)
+
+  useEffect(() => {
+    window.addEventListener('resize', onResize)
+    return () => (window.removeEventListener('resize', onResize))
+  }, [])
+
   return (
     <div ref={node => (refs['posts-ref'] = node)}>
-      <GridList className={classes.gridList} cols={6.1}>
-        {(isFetching ? Array.from(new Array(7)) : posts).map((post, index) => {
+      <GridList
+        className={classes.gridList}
+        cellHeight={THUMBNAIL_HEIGHT}
+        cols={columns}
+      >
+        {(isFetching ? Array.from(new Array(14)) : posts).map((post, index) => {
           const id = post ? post.id : index
           return <GridListTile
             rows={1}

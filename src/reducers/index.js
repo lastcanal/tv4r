@@ -19,7 +19,15 @@ import {
   DEFAULT_SUBREDDITS,
   TOGGLE_FULLSCREEN,
   TOGGLE_AUTOPLAY,
+  TOGGLE_PLAY,
   TOGGLE_THEME_MODE,
+  PLAYER_VOLUME_UP,
+  PLAYER_VOLUME_DOWN,
+  PLAYER_SCAN_FORWARDS,
+  PLAYER_SCAN_BACKWARDS,
+  PLAYER_SCAN_ACK,
+  PLAYER_JUMP_TO,
+  PLAYER_JUMP_ACK,
 } from '../constants'
 
 import {
@@ -29,6 +37,7 @@ import {
   extractPost,
   getNewSubredditFromPath,
   didInvalidateSubredditFromPath,
+  translateVolume,
 } from '../helpers'
 
 export const selectedSubreddit = (state = DEFAULT_SUBREDDIT, action) => {
@@ -256,6 +265,9 @@ const DEFAULT_CONFIG = {
   isFullsceen: false,
   isAutoplay: false,
   themeMode: 'dark',
+  volume: 1,
+  scan: 0,
+  jump: -1,
 }
 
 const config = (state = DEFAULT_CONFIG, action) => {
@@ -270,10 +282,50 @@ const config = (state = DEFAULT_CONFIG, action) => {
         ...state,
         isAutoplay: !state.isAutoplay,
       }
+    case TOGGLE_PLAY:
+      return {
+        ...state,
+        isPlaying: !state.isPlaying,
+      }
     case TOGGLE_THEME_MODE:
       return {
         ...state,
         themeMode: state.themeMode === 'dark' ? 'light' : 'dark',
+      }
+    case PLAYER_VOLUME_UP:
+      return {
+        ...state,
+        volume: translateVolume(state.volume, 0.1),
+      }
+    case PLAYER_VOLUME_DOWN:
+      return {
+        ...state,
+        volume: translateVolume(state.volume, -0.1),
+      }
+    case PLAYER_SCAN_FORWARDS:
+      return {
+        ...state,
+        scan: action.seconds,
+      }
+    case PLAYER_SCAN_BACKWARDS:
+      return {
+        ...state,
+        scan: -action.seconds,
+      }
+    case PLAYER_SCAN_ACK:
+      return {
+        ...state,
+        scan: 0,
+      }
+    case PLAYER_JUMP_TO:
+      return {
+        ...state,
+        jump: action.percentage,
+      }
+    case PLAYER_JUMP_ACK:
+      return {
+        ...state,
+        jump: -1,
       }
     default:
       return state

@@ -1,16 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import ToolBar from '@material-ui/core/ToolBar'
 
-import { MENU_OFFSET_HEIGHT } from '../constants'
-
 import {
-  selectSubreddit,
-  nextPost,
-  previousPost,
+  loadSubreddit,
 } from '../actions'
 
 import Posts from './Posts'
@@ -25,7 +21,6 @@ const styles = ({ palette, spacing, shape }) => ({
     bottom: 0,
     padding: 0,
     paddingBottom: spacing(2),
-    minHeight: MENU_OFFSET_HEIGHT,
     width: '100%',
     backgroundColor: palette.background.default,
     borderTop: '1px soild black',
@@ -38,37 +33,14 @@ const Menu = ({
   classes,
   dispatch,
   post,
-  posts,
   selectedSubreddit,
   subreddits,
-  width,
   menuRef,
 }) => {
 
   const changeSubreddit = ({ value }) => {
-    dispatch(selectSubreddit(value))
+    dispatch(loadSubreddit(value))
   }
-
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      e.stopPropagation()
-      switch (e.key) {
-        case '.':
-        case '>':
-          return dispatch(nextPost(posts))
-        case ',':
-        case '<':
-          return dispatch(previousPost(posts))
-        default:
-          return
-      }
-    }
-
-    document.body.addEventListener('keydown', handleKeyDown)
-    return () => {
-      document.body.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [posts])
 
   return (
     <Container ref={menuRef} classes={classes} maxWidth={false}>
@@ -79,7 +51,7 @@ const Menu = ({
           options={subreddits}
         />
       </ToolBar>
-      <Posts width={width} />
+      <Posts />
       <ToolBar>
         <Title post={post} />
         <Controls />
@@ -90,12 +62,10 @@ const Menu = ({
 
 Menu.propTypes = {
   selectedSubreddit: PropTypes.string,
-  posts: PropTypes.array,
   post: PropTypes.object,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
   subreddits: PropTypes.array,
-  width: PropTypes.number,
   dispatch: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   menuRef: PropTypes.object,
@@ -104,7 +74,7 @@ Menu.propTypes = {
 const mapStateToProps = state => {
   const { selectedSubreddit, postsBySubreddit, subreddits } = state
   const selectedPost = postsBySubreddit.cursor || {}
-  const { isFetching, lastUpdated, items: posts } = postsBySubreddit[
+  const { isFetching, lastUpdated } = postsBySubreddit[
     selectedSubreddit
   ] || {
     isFetching: true,
@@ -114,7 +84,6 @@ const mapStateToProps = state => {
   return {
     postsBySubreddit,
     selectedSubreddit,
-    posts,
     isFetching,
     post: selectedPost.post,
     lastUpdated,

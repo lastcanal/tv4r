@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, styled } from '@material-ui/core/styles'
 import { IconButton, Tooltip } from '@material-ui/core'
 import { connect } from 'react-redux'
 
@@ -12,6 +12,8 @@ import FullscreenExitIcon from '@material-ui/icons/FullscreenExit'
 import SettingsBrightnessIcon from '@material-ui/icons/SettingsBrightness'
 import PlayArrowIcon from '@material-ui/icons/PlayArrow'
 import StopIcon from '@material-ui/icons/Stop'
+import SyncIcon from '@material-ui/icons/Sync'
+import SyncDisabledIcon from '@material-ui/icons/SyncDisabled'
 
 import {
   fetchPostsIfNeeded,
@@ -20,8 +22,17 @@ import {
   previousPost,
   configToggleFullscreen,
   configToggleAutoplay,
+  configTogglePlay,
   configToggleThemeMode,
 } from '../actions'
+
+const AutoPlayOnIcon = styled(SyncIcon)({
+  transform: 'scale(-1, 1) rotate(135deg)',
+})
+
+const AutoPlayOffIcon = styled(SyncDisabledIcon)({
+  transform: 'scale(-1, 1) rotate(-90deg)',
+})
 
 const useStyles = makeStyles(({ spacing }) => ({
   controls: {
@@ -34,12 +45,14 @@ const useStyles = makeStyles(({ spacing }) => ({
     width: spacing(3),
   },
 }))
+
 const Controls = ({
   dispatch,
   posts,
   selectedSubreddit,
   isFullscreen,
   isAutoplay,
+  isPlaying,
   themeMode,
 }) => {
   const handleRefreshClick = _e => {
@@ -60,9 +73,11 @@ const Controls = ({
           <RefreshIcon />
         </IconButton>
       </Tooltip>
-      <Tooltip title={`Switch to ${themeMode} theme`}>
+      <Tooltip
+        title={`Switch to ${themeMode === 'dark' ? 'Light' : 'Dark'} theme`}
+      >
         <IconButton
-          aria-label={`Switch to ${themeMode} theme`} color="inherit"
+          aria-label={`toggle theme`} color="inherit"
           onClick={() => dispatch(configToggleThemeMode())}
         >
           <SettingsBrightnessIcon />
@@ -77,6 +92,14 @@ const Controls = ({
           {isFullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
         </IconButton>
       </Tooltip>
+      <Tooltip title={`${isAutoplay ? 'Stop' : 'Start'} Auto-Playing Videos`}>
+        <IconButton
+          aria-label="toggle autoplay" color="inherit"
+          onClick={() => dispatch(configToggleAutoplay())}
+        >
+          {isAutoplay ? <AutoPlayOnIcon /> : <AutoPlayOffIcon />}
+        </IconButton>
+      </Tooltip>
       <Tooltip title="Play Previous">
         <IconButton
           aria-label="play previous"
@@ -88,10 +111,10 @@ const Controls = ({
       </Tooltip>
       <Tooltip title={`${isAutoplay ? 'Start' : 'Stop'} Auto-Playing Videos`}>
         <IconButton
-          aria-label="toggle autoplay" color="inherit"
-          onClick={() => dispatch(configToggleAutoplay())}
+          aria-label={isPlaying ? 'Stop' : 'Play'} color="inherit"
+          onClick={() => dispatch(configTogglePlay())}
         >
-          {isAutoplay ? <StopIcon /> : <PlayArrowIcon />}
+          {isPlaying ? <StopIcon /> : <PlayArrowIcon />}
         </IconButton>
       </Tooltip>
       <Tooltip title="Play Next">
@@ -113,6 +136,7 @@ Controls.propTypes = {
   selectedSubreddit: PropTypes.string,
   isFullscreen: PropTypes.bool,
   isAutoplay: PropTypes.bool,
+  isPlaying: PropTypes.bool,
   themeMode: PropTypes.string,
 }
 

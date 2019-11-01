@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import Box from '@material-ui/core/Box'
 import PropTypes from 'prop-types'
-import { withStyles, makeStyles } from '@material-ui/core/styles'
+import { withStyles, makeStyles, useTheme } from '@material-ui/core/styles'
 import LinearProgress from '@material-ui/core/LinearProgress'
 
 import { fetchCommentsIfNeeded } from '../actions'
@@ -30,7 +30,7 @@ const styles = ({ spacing, palette, shape }) => ({
     flexGrow: 1,
   },
   spacerBottom: {
-    minHeight: ({ menuHeight }) => (menuHeight),
+    minHeight: ({ height }) => (window.innerHeight - height - spacing(1)),
     paddingBottom: 1,
   },
 })
@@ -68,7 +68,6 @@ const Comments = ({
   selectedSubreddit,
   selected,
   height,
-  menuHeight,
   dispatch,
   classes,
 }) => {
@@ -83,6 +82,8 @@ const Comments = ({
     [selected, visible, dispatch],
   )
 
+  const { spacing } = useTheme()
+
   useEffect(() => {
     if (typeof IntersectionObserver === 'undefined') {
       // IntersectionObserver not supported (ie, node),
@@ -92,11 +93,11 @@ const Comments = ({
       return
     } else {
       /* istanbul ignore next */
+      const rootMargin = (height - spacing(2)) || 0
       const target = document.getElementById('scroll_beacon')
       const options = {
-        root: null,
-        rootMargin: `${menuHeight}px`,
-        threshold: 1.0,
+        rootMargin: `${rootMargin}px`,
+        threshold: 1,
       }
       const onIntersection = elements => {
         if (elements[0] && elements[0].isIntersecting) {
@@ -106,14 +107,10 @@ const Comments = ({
         }
       }
 
-      try {
-        const observer = new IntersectionObserver(onIntersection, options)
-        if (target) observer.observe(target)
-
+      const observer = new IntersectionObserver(onIntersection, options)
+      if (target) {
+        observer.observe(target)
         return () => observer.unobserve(target)
-      } catch (error) {
-        setVisible(true)
-        console && console.error(error)
       }
     }
   }, [selectedSubreddit, height])
@@ -126,7 +123,7 @@ const Comments = ({
     return (
       <div>
         <div className={classes.spacer}>
-          <div className={classes.loading}>
+          <div id="comments" className={classes.loading}>
             <Box className={classes.selfPostBody} boxShadow={5}>
               { subreddit.isFetchingComments ? <LinearProgress /> : '' }
             </Box>
@@ -140,7 +137,10 @@ const Comments = ({
   return (
     <div>
       <div className={classes.comments}>
-        <div className={`${classes.comment_container} ${classes.root}`}>
+        <div
+          id="comments"
+          className={`${classes.comment_container} ${classes.root}`}
+        >
           {comments.map((comment, index) => (
             <CommentTree comments={comment} key={index} />
           ))}
@@ -158,7 +158,6 @@ Comments.propTypes = {
   dispatch: PropTypes.func,
   classes: PropTypes.object,
   height: PropTypes.number,
-  menuHeight: PropTypes.number,
 }
 
 const Comment = ({ comment, depth }) => {

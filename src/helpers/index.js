@@ -102,6 +102,10 @@ export const extractPost = (state, action) => {
   }
 }
 
+export const translateVolume = (volume, change) => (
+  Math.min(1, Math.max(0, volume + change))
+)
+
 export const muiThemeToRSTheme = ({ palette }) =>
   theme => ({
     ...theme,

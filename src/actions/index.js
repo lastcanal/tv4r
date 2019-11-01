@@ -1,3 +1,5 @@
+import { batch } from 'react-redux'
+
 import { extractPosts, filterPosts, matchRedditPath } from '../helpers'
 import reddit from '../helpers/reddit'
 
@@ -16,8 +18,16 @@ import {
   RECEIVE_COMMENTS,
   RECEIVE_COMMENTS_ERROR,
   TOGGLE_FULLSCREEN,
+  TOGGLE_PLAY,
   TOGGLE_AUTOPLAY,
   TOGGLE_THEME_MODE,
+  PLAYER_VOLUME_UP,
+  PLAYER_VOLUME_DOWN,
+  PLAYER_SCAN_FORWARDS,
+  PLAYER_SCAN_BACKWARDS,
+  PLAYER_SCAN_ACK,
+  PLAYER_JUMP_TO,
+  PLAYER_JUMP_ACK,
 } from '../constants'
 
 export const selectSubreddit = subreddit => ({
@@ -60,14 +70,14 @@ export const selectPost = (post, index) => ({
   index,
 })
 
-export const nextPost = _posts => ({
+export const nextPost = posts => ({
   type: NEXT_POST,
-  // posts,
+  posts,
 })
 
-export const previousPost = _posts => ({
+export const previousPost = posts => ({
   type: PREVIOUS_POST,
-  // posts,
+  posts,
 })
 
 export const mediaFallback = () => ({
@@ -120,6 +130,14 @@ export const invalidateSubredditIfNeeded = subreddit => (
   }
 }
 
+export const loadSubreddit = subreddit => (dispatch) => {
+  batch(() => {
+    dispatch(selectSubreddit(subreddit))
+    dispatch(invalidateSubredditIfNeeded(subreddit))
+    dispatch(fetchPostsIfNeeded(subreddit))
+  })
+}
+
 const requestComments = (post, subreddit) => ({
   type: REQUEST_COMMENTS,
   post,
@@ -170,20 +188,84 @@ export const configToggleAutoplay = () => ({
   type: TOGGLE_AUTOPLAY,
 })
 
+export const configTogglePlay = () => ({
+  type: TOGGLE_PLAY,
+})
+
 export const configToggleThemeMode = () => ({
   type: TOGGLE_THEME_MODE,
 })
 
-export const handleKeyboardAction = dispatch => event => {
+export const playerScanForwards = seconds => ({
+  type: PLAYER_SCAN_FORWARDS,
+  seconds,
+})
+
+export const playerScanBackwards = seconds => ({
+  type: PLAYER_SCAN_BACKWARDS,
+  seconds,
+})
+
+export const playerScanAck = () => ({
+  type: PLAYER_SCAN_ACK,
+})
+
+export const playerJumpTo = (number) => ({
+  type: PLAYER_JUMP_TO,
+  percentage: (number / 10),
+})
+
+export const playerJumpAck = () => ({
+  type: PLAYER_JUMP_ACK,
+})
+
+export const playerVolumeDown = () => ({
+  type: PLAYER_VOLUME_DOWN,
+})
+
+export const playerVolumeUp = () => ({
+  type: PLAYER_VOLUME_UP,
+})
+
+export const handleKeyboardAction = event => (dispatch, getState) => {
+  const { postsBySubreddit, selectedSubreddit } = getState()
+  const posts = postsBySubreddit[selectedSubreddit] &&
+    postsBySubreddit[selectedSubreddit].items
   switch (event.key) {
     case '.':
     case '>':
-      return dispatch(nextPost())
+      return dispatch(nextPost(posts))
+    case 'N':
+    case 'n':
+      return event.shiftKey ? dispatch(nextPost(posts)) : void (0)
     case ',':
     case '<':
-      return dispatch(previousPost())
+      return dispatch(previousPost(posts))
+    case 'P':
+    case 'p':
+      return event.shiftKey ? dispatch(previousPost(posts)) : void (0)
+    case ' ':
+    case 'Enter':
+    case 'k':
+      return dispatch(configTogglePlay())
+    case 'a':
+      return dispatch(configToggleAutoplay())
+    case 'f':
+      return dispatch(configToggleFullscreen())
+    case 'ArrowLeft':
+      return dispatch(playerScanBackwards(5))
+    case 'ArrowRight':
+      return dispatch(playerScanForwards(5))
+    case 'ArrowUp':
+      return dispatch(playerVolumeUp())
+    case 'ArrowDown':
+      return dispatch(playerVolumeDown())
     default:
-      console.log(event.key)
-      return
+      const jumpTo = parseInt(event.key)
+      if (jumpTo) {
+        return dispatch(playerJumpTo(jumpTo))
+      } else {
+        return
+      }
   }
 }

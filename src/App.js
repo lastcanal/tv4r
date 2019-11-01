@@ -1,27 +1,18 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  withStyles,
-  MuiThemeProvider,
-  createMuiTheme,
-  useTheme,
-} from '@material-ui/core/styles'
+import { withStyles, MuiThemeProvider } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
-import grey from '@material-ui/core/colors/grey'
 import { connect } from 'react-redux'
-import { push } from 'connected-react-router'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import debounce from 'lodash.debounce'
 
 import Menu from './components/Menu'
 import Post from './components/Post'
 
-import {
-  fetchPostsIfNeeded,
-  invalidateSubredditIfNeeded,
-  handleKeyboardAction,
-} from './actions'
+import useKeyboardController from './hooks/useKeyboardController'
+import useLayoutDimensionTracker from './hooks/useLayoutDimensionTracker'
+import useForceWindowFocus from './hooks/useForceWindowFocus'
+import useRouteTracker from './hooks/useRouteTracker'
+import useAppTheme from './hooks/useAppTheme'
 
 const styles = () => ({
   root: {
@@ -35,87 +26,25 @@ const App = ({
   postsBySubreddit,
   themeMode,
   isFullscreen,
+  isFetching,
   dispatch,
   classes,
   router,
 }) => {
-  const { spacing } = useTheme()
-  const menuRef = useRef()
 
-  const calculateMenuHeight = () => {
-    const { current } = menuRef
-    if (current) {
-      const box = current.getBoundingClientRect()
-      return box.height + spacing(1)
-    }
-  }
-
-  const menuOffsetHeight = () => {
-    return isFullscreen ? 0 : calculateMenuHeight()
-  }
-
-  const calculateHeight = () => (
-    window.innerHeight - menuOffsetHeight()
-  )
-
-  const [height, setHeight] = useState(calculateHeight())
-
-  const onResize = debounce(() => {
-    setHeight(calculateHeight())
-  }, 100)
-
-  useEffect(() => {
-    window.addEventListener('resize', onResize)
-    return () => (window.removeEventListener('resize', onResize))
-  }, [])
-
-  useEffect(() => {
-    setHeight(calculateHeight())
-  }, [isFullscreen])
-
-  useEffect(() => {
-    dispatch(invalidateSubredditIfNeeded(selectedSubreddit))
-    dispatch(fetchPostsIfNeeded(selectedSubreddit))
-  }, [selectedSubreddit, dispatch, router])
-
-  useEffect(() => {
-    if (postsBySubreddit.cursor && postsBySubreddit.cursor.post) {
-      const permalink = postsBySubreddit.cursor.post.permalink
-      if (permalink && permalink !== router.location.pathname) {
-        dispatch(push(permalink))
-      }
-    }
-  }, [postsBySubreddit, dispatch, router])
-
-  const menuHeight = useMemo(() => (
-    calculateHeight()
-  ), [height])
-
-  const prefersLightMode = useMediaQuery('(prefers-color-scheme: light)')
-
-  const theme = useMemo(() => (
-    createMuiTheme({
-      palette: {
-        type: themeMode || (prefersLightMode ? 'light' : 'dark'),
-        primary: grey,
-      },
-    })
-  ), [themeMode, prefersLightMode])
-
-  useEffect(() => {
-    document.body.addEventListener('keydown', handleKeyboardAction(dispatch))
-    return () => {
-      document.body.removeEventListener(
-        'keydown', handleKeyboardAction(dispatch))
-    }
-  }, [])
+  const theme = useAppTheme({ themeMode })
+  const [height, menuRef] =
+    useLayoutDimensionTracker({ isFullscreen, isFetching })
+  useForceWindowFocus()
+  useKeyboardController({ dispatch })
+  useRouteTracker({ dispatch, postsBySubreddit, selectedSubreddit, router })
 
   return (
     <MuiThemeProvider theme={theme}>
       <Container classes={classes} maxWidth={false}>
         <CssBaseline />
         <Menu menuRef={menuRef} />
-        <Post menuHeight={menuHeight} height={height} />
+        <Post height={height} />
       </Container>
     </MuiThemeProvider>
   )
@@ -126,6 +55,7 @@ App.propTypes = {
   postsBySubreddit: PropTypes.object,
   themeMode: PropTypes.string,
   isFullscreen: PropTypes.bool,
+  isFetching: PropTypes.bool,
   dispatch: PropTypes.func,
   classes: PropTypes.object,
   router: PropTypes.object,
@@ -136,12 +66,18 @@ const mapStateToProps = ({
   postsBySubreddit,
   router,
   config,
-}) => ({
-  selectedSubreddit,
-  postsBySubreddit,
-  router,
-  themeMode: config.themeMode,
-  isFullscreen: config.isFullscreen,
-})
+}) => {
+  const { isFetching } = postsBySubreddit[selectedSubreddit] || {
+    isFetching: false,
+  }
+  return {
+    selectedSubreddit,
+    postsBySubreddit,
+    router,
+    themeMode: config.themeMode,
+    isFullscreen: config.isFullscreen,
+    isFetching,
+  }
+}
 
 export default connect(mapStateToProps)(withStyles(styles)(App))
