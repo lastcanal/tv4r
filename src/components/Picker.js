@@ -1,9 +1,15 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import CreatableSelect from 'react-select/creatable'
+import { connect } from 'react-redux'
 import Option from './Option'
 import { muiThemeToRSTheme } from '../helpers'
+import {
+  enableKeyboardControls,
+  disableKeyboardControls,
+  loadSubreddit,
+} from '../actions'
 
 const useStyles = makeStyles(({ palette, spacing }) => ({
   container: {
@@ -34,9 +40,15 @@ const nameToOption = (name) => ({
   value: (name || '').toLowerCase(), label: name,
 })
 
-const Picker = ({ value, options, onChange }) => {
+const Picker = ({ value, options, dispatch }) => {
   const classes = useStyles()
   const theme = useTheme()
+  const ref = useRef()
+
+  const changeSubreddit = ({ value }) => {
+    dispatch(loadSubreddit(value))
+    ref.current && ref.current.blur()
+  }
 
   const mappedOptions = useMemo(() => (
     options.map(nameToOption)
@@ -54,17 +66,28 @@ const Picker = ({ value, options, onChange }) => {
     makeSelectStyles(theme)
   ), [theme])
 
+  const onMenuOpen = () => {
+    dispatch(disableKeyboardControls())
+  }
+
+  const onMenuClose = () => {
+    dispatch(enableKeyboardControls())
+  }
+
   return (
     <div className={classes.container}>
       <CreatableSelect
+        ref={ref}
         isClearable={false}
         menuPlacement="bottom"
         defaultValue={mappedValue}
-        onChange={onChange}
+        onChange={changeSubreddit}
         options={mappedOptions}
         theme={selectTheme}
         maxMenuHeight={200}
         styles={selectStyles}
+        onMenuOpen={onMenuOpen}
+        onMenuClose={onMenuClose}
         components={{
           Option,
         }}
@@ -76,7 +99,12 @@ const Picker = ({ value, options, onChange }) => {
 Picker.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   value: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  dispatch: PropTypes.func,
 }
 
-export default Picker
+const mapStateToProps = ({ selectedSubreddit, subreddits }) => ({
+  value: selectedSubreddit,
+  options: subreddits,
+})
+
+export default connect(mapStateToProps)(Picker)

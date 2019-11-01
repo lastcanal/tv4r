@@ -21,6 +21,8 @@ import {
   TOGGLE_PLAY,
   TOGGLE_AUTOPLAY,
   TOGGLE_THEME_MODE,
+  ENABLE_KEYBORAD_CONTROLS,
+  DISABLE_KEYBORAD_CONTROLS,
   PLAYER_VOLUME_UP,
   PLAYER_VOLUME_DOWN,
   PLAYER_SCAN_FORWARDS,
@@ -70,15 +72,23 @@ export const selectPost = (post, index) => ({
   index,
 })
 
-export const nextPost = posts => ({
-  type: NEXT_POST,
-  posts,
-})
+export const nextPost = () => (dispatch, getState) => {
+  const { postsBySubreddit, selectedSubreddit } = getState()
+  return dispatch({
+    type: NEXT_POST,
+    posts: postsBySubreddit[selectedSubreddit] &&
+      postsBySubreddit[selectedSubreddit].items,
+  })
+}
 
-export const previousPost = posts => ({
-  type: PREVIOUS_POST,
-  posts,
-})
+export const previousPost = () => (dispatch, getState) => {
+  const { postsBySubreddit, selectedSubreddit } = getState()
+  return dispatch({
+    type: PREVIOUS_POST,
+    posts: postsBySubreddit[selectedSubreddit] &&
+      postsBySubreddit[selectedSubreddit].items,
+  })
+}
 
 export const mediaFallback = () => ({
   type: MEDIA_FALLBACK,
@@ -227,23 +237,34 @@ export const playerVolumeUp = () => ({
   type: PLAYER_VOLUME_UP,
 })
 
+export const enableKeyboardControls = () => ({
+  type: ENABLE_KEYBORAD_CONTROLS,
+})
+
+export const disableKeyboardControls = () => ({
+  type: DISABLE_KEYBORAD_CONTROLS,
+})
+
 export const handleKeyboardAction = event => (dispatch, getState) => {
-  const { postsBySubreddit, selectedSubreddit } = getState()
-  const posts = postsBySubreddit[selectedSubreddit] &&
-    postsBySubreddit[selectedSubreddit].items
+  const { config } = getState()
+
+  if (!config.keyboardControls) return
+
+  event.preventDefault()
+
   switch (event.key) {
     case '.':
     case '>':
-      return dispatch(nextPost(posts))
+      return dispatch(nextPost())
     case 'N':
     case 'n':
-      return event.shiftKey ? dispatch(nextPost(posts)) : void (0)
+      return event.shiftKey ? dispatch(nextPost()) : void (0)
     case ',':
     case '<':
-      return dispatch(previousPost(posts))
+      return dispatch(previousPost())
     case 'P':
     case 'p':
-      return event.shiftKey ? dispatch(previousPost(posts)) : void (0)
+      return event.shiftKey ? dispatch(previousPost()) : void (0)
     case ' ':
     case 'Enter':
     case 'k':

@@ -11,7 +11,7 @@ const useRouteTracker = ({
 }) => {
   useEffect(() => {
     dispatch(loadSubreddit(selectedSubreddit))
-  }, [selectedSubreddit, dispatch, router])
+  }, [selectedSubreddit])
 
   useEffect(() => {
     if (postsBySubreddit.cursor && postsBySubreddit.cursor.post) {

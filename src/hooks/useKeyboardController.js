@@ -2,9 +2,8 @@ import { useEffect } from 'react'
 
 import { handleKeyboardAction } from '../actions'
 
-const useKeyboardController = ({ dispatch, preventDefault = true }) => {
+const useKeyboardController = ({ dispatch }) => {
   const handleKeyDown = (event) => {
-    if (preventDefault) event.preventDefault()
     dispatch(handleKeyboardAction(event))
   }
 

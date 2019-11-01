@@ -5,10 +5,6 @@ import { withStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import ToolBar from '@material-ui/core/ToolBar'
 
-import {
-  loadSubreddit,
-} from '../actions'
-
 import Posts from './Posts'
 import Picker from './Picker'
 import Controls from './Controls'
@@ -31,25 +27,14 @@ const styles = ({ palette, spacing, shape }) => ({
 
 const Menu = ({
   classes,
-  dispatch,
   post,
-  selectedSubreddit,
-  subreddits,
   menuRef,
 }) => {
-
-  const changeSubreddit = ({ value }) => {
-    dispatch(loadSubreddit(value))
-  }
 
   return (
     <Container ref={menuRef} classes={classes} maxWidth={false}>
       <ToolBar>
-        <Picker
-          value={selectedSubreddit}
-          onChange={changeSubreddit}
-          options={subreddits}
-        />
+        <Picker />
       </ToolBar>
       <Posts />
       <ToolBar>
@@ -61,33 +46,17 @@ const Menu = ({
 }
 
 Menu.propTypes = {
-  selectedSubreddit: PropTypes.string,
   post: PropTypes.object,
-  isFetching: PropTypes.bool.isRequired,
-  lastUpdated: PropTypes.number,
-  subreddits: PropTypes.array,
-  dispatch: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   menuRef: PropTypes.object,
 }
 
 const mapStateToProps = state => {
-  const { selectedSubreddit, postsBySubreddit, subreddits } = state
+  const { postsBySubreddit } = state
   const selectedPost = postsBySubreddit.cursor || {}
-  const { isFetching, lastUpdated } = postsBySubreddit[
-    selectedSubreddit
-  ] || {
-    isFetching: true,
-    items: [],
-  }
 
   return {
-    postsBySubreddit,
-    selectedSubreddit,
-    isFetching,
     post: selectedPost.post,
-    lastUpdated,
-    subreddits,
   }
 }
 

@@ -21,6 +21,8 @@ import {
   TOGGLE_AUTOPLAY,
   TOGGLE_PLAY,
   TOGGLE_THEME_MODE,
+  ENABLE_KEYBORAD_CONTROLS,
+  DISABLE_KEYBORAD_CONTROLS,
   PLAYER_VOLUME_UP,
   PLAYER_VOLUME_DOWN,
   PLAYER_SCAN_FORWARDS,
@@ -265,6 +267,7 @@ const DEFAULT_CONFIG = {
   isFullsceen: false,
   isAutoplay: false,
   themeMode: 'dark',
+  keyboardControls: true,
   volume: 1,
   scan: 0,
   jump: -1,
@@ -326,6 +329,16 @@ const config = (state = DEFAULT_CONFIG, action) => {
       return {
         ...state,
         jump: -1,
+      }
+    case ENABLE_KEYBORAD_CONTROLS:
+      return {
+        ...state,
+        keyboardControls: true,
+      }
+    case DISABLE_KEYBORAD_CONTROLS:
+      return {
+        ...state,
+        keyboardControls: false,
       }
     default:
       return state
