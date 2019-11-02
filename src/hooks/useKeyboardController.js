@@ -5,7 +5,8 @@ import {
   previousPost,
   configTogglePlay,
   configToggleAutoAdvance,
-  configToggleFullscreen,
+  configEnableFullscreen,
+  configDisableFullscreen,
   playerScanBackwards,
   playerScanForwards,
   playerVolumeUp,
@@ -16,9 +17,7 @@ import {
 
 export const handleKeyboardAction = event => (dispatch, getState) => {
   const { config } = getState()
-
   if (!config.keyboardControls) return
-
   switch (event.key) {
     case '.':
     case '>':
@@ -41,11 +40,13 @@ export const handleKeyboardAction = event => (dispatch, getState) => {
     case 'a':
       return dispatch(configToggleAutoAdvance())
     case 'f':
-      return dispatch(configToggleFullscreen())
+      return dispatch(configEnableFullscreen())
+    case 'Escape':
+      return dispatch(configDisableFullscreen())
     case 'ArrowLeft':
       return dispatch(playerScanBackwards(5))
     case 'ArrowRight':
-      return dispatch(playerScanForwards(5))
+      return dispatch(playerScanForwards(10))
     case 'ArrowUp':
       if (!event.shiftKey) event.preventDefault()
       return dispatch(playerVolumeUp())
@@ -64,6 +65,9 @@ export const handleKeyboardAction = event => (dispatch, getState) => {
     case '9':
       const jumpTo = parseInt(event.key, 10)
       return dispatch(playerJumpTo(jumpTo))
+    case 'End':
+      if (!event.shiftKey) event.preventDefault()
+      return dispatch(playerJumpTo(10))
     default:
       return
   }

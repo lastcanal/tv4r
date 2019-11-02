@@ -17,6 +17,8 @@ import {
   REQUEST_COMMENTS,
   RECEIVE_COMMENTS,
   RECEIVE_COMMENTS_ERROR,
+  ENABLE_FULLSCREEN,
+  DISABLE_FULLSCREEN,
   TOGGLE_FULLSCREEN,
   TOGGLE_PLAY,
   TOGGLE_AUTO_ADVANCE,
@@ -191,6 +193,14 @@ export const fetchCommentsIfNeeded = () => (dispatch, getState) => {
 
 export const configToggleFullscreen = () => ({
   type: TOGGLE_FULLSCREEN,
+})
+
+export const configEnableFullscreen = () => ({
+  type: ENABLE_FULLSCREEN,
+})
+
+export const configDisableFullscreen = () => ({
+  type: DISABLE_FULLSCREEN,
 })
 
 export const configToggleAutoAdvance = () => ({

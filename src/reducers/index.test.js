@@ -249,13 +249,29 @@ describe('reducers', () => {
     expect(root({ config: { isFullscreen: true } }, action).config.isFullscreen).toBe(false)
   })
 
-  it('should toggle autoplay', () => {
+  it('should enable fullscreen', () => {
     const action = {
-      type: types.TOGGLE_AUTOPLAY,
+      type: types.ENABLE_FULLSCREEN,
     }
 
-    expect(root({ config: { isAutoplay: false } }, action).config.isAutoplay).toBe(true)
-    expect(root({ config: { isAutoplay: true } }, action).config.isAutoplay).toBe(false)
+    expect(root({ config: { isFullscreen: false } }, action).config.isFullscreen).toBe(true)
+  })
+
+  it('should disable fullscreen', () => {
+    const action = {
+      type: types.DISABLE_FULLSCREEN,
+    }
+
+    expect(root({ config: { isFullscreen: true } }, action).config.isFullscreen).toBe(false)
+  })
+
+  it('should toggle autoplay', () => {
+    const action = {
+      type: types.TOGGLE_AUTO_ADVANCE,
+    }
+
+    expect(root({ config: { isAutoAdvance: false } }, action).config.isAutoAdvance).toBe(true)
+    expect(root({ config: { isAutoAdvance: true } }, action).config.isAutoAdvance).toBe(false)
   })
 
   it('should set theme mode', () => {

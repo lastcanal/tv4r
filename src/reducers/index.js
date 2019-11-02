@@ -17,6 +17,8 @@ import {
   RECEIVE_COMMENTS_ERROR,
   DEFAULT_SUBREDDIT,
   DEFAULT_SUBREDDITS,
+  ENABLE_FULLSCREEN,
+  DISABLE_FULLSCREEN,
   TOGGLE_FULLSCREEN,
   TOGGLE_AUTO_ADVANCE,
   TOGGLE_PLAY,
@@ -275,6 +277,16 @@ const DEFAULT_CONFIG = {
 
 const config = (state = DEFAULT_CONFIG, action) => {
   switch (action.type) {
+    case ENABLE_FULLSCREEN:
+      return {
+        ...state,
+        isFullscreen: true,
+      }
+    case DISABLE_FULLSCREEN:
+      return {
+        ...state,
+        isFullscreen: false,
+      }
     case TOGGLE_FULLSCREEN:
       return {
         ...state,
