@@ -40,9 +40,7 @@ const styles = ({ spacing, palette }) => ({
 })
 
 const classNameForTile = (selected, post, classes) => {
-  if (!post || !post.id ||
-      !selected || !selected.post ||
-      selected.post.id !== post.id) {
+  if (!post?.id || !selected?.post || selected.post.id !== post.id) {
     return classes.tile
   } else {
     return `${classes.tile} ${classes.selected}`
@@ -60,7 +58,7 @@ const Posts = ({ posts, selected, isFetching, classes, dispatch }) => {
   const { spacing } = useTheme()
 
   useEffect(() => {
-    if (selected && selected.post && selected.post.id) {
+    if (selected?.post?.id) {
       const element = refs['post-' + selected.post.id]
       if (element) {
         const box = element.getBoundingClientRect()
@@ -148,4 +146,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(Posts))
+export default Posts |> connect(mapStateToProps) |> withStyles(styles)

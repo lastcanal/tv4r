@@ -80,4 +80,4 @@ const mapStateToProps = ({
   }
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(App))
+export default App |> withStyles(styles) |> connect(mapStateToProps)

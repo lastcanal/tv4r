@@ -73,14 +73,11 @@ const Comments = ({
 }) => {
   const [visible, setVisible] = useState(false)
 
-  useEffect(
-    () => {
-      if (visible) {
-        dispatch(fetchCommentsIfNeeded())
-      }
-    },
-    [selected, visible, dispatch],
-  )
+  useEffect(() => {
+    if (visible) {
+      dispatch(fetchCommentsIfNeeded())
+    }
+  }, [selected, visible, dispatch])
 
   const { spacing } = useTheme()
 
@@ -116,8 +113,8 @@ const Comments = ({
   }, [selectedSubreddit, height])
 
   const subreddit = postsBySubreddit[selectedSubreddit]
-  const item = subreddit && subreddit.items[selected.index]
-  const comments = item && item.comments
+  const item = subreddit?.items[selected.index]
+  const comments = item?.comments
 
   if (!comments || subreddit.isFetchingComments) {
     return (
@@ -244,4 +241,4 @@ const mapStateToProps = ({ postsBySubreddit, selectedSubreddit }) => ({
   subreddit: postsBySubreddit[selectedSubreddit],
 })
 
-export default connect(mapStateToProps)(withStyles(styles)(Comments))
+export default Comments |> withStyles(styles) |> connect(mapStateToProps)

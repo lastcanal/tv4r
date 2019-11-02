@@ -47,7 +47,7 @@ const Picker = ({ value, options, dispatch }) => {
 
   const changeSubreddit = ({ value }) => {
     dispatch(loadSubreddit(value))
-    ref.current && ref.current.blur()
+    void ref.current?.blur()
   }
 
   const mappedOptions = useMemo(() => (
@@ -107,4 +107,4 @@ const mapStateToProps = ({ selectedSubreddit, subreddits }) => ({
   options: subreddits,
 })
 
-export default connect(mapStateToProps)(Picker)
+export default Picker |> connect(mapStateToProps)

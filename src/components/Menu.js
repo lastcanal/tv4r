@@ -60,4 +60,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(Menu))
+export default Menu |> connect(mapStateToProps) |> withStyles(styles)

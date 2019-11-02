@@ -5,13 +5,11 @@ export const SUPPORTED_VIDEO_MEDIA = []
 export const SUPPORTED_IMAGE_MEDIA = []
 
 export function extractPosts (json) {
-  // json.data?.children? ?? []
-  const children = (json && json.data && json.data.children) || []
-
+  const children = (json?.data?.children) || []
   return children.length === 0
     ? []
     : children.reduce((acc, child) => {
-      if (child && child.data) {
+      if (child?.data) {
         acc.push(child.data)
       }
       return acc
@@ -45,12 +43,12 @@ export function filterVideoImage (posts) {
 
 export function isVideo (post) {
   const media = post.secure_media || post.media
-  return media && media.oembed && media.oembed.type === 'video'
+  return media?.oembed?.type === 'video'
 
 }
 export function isImage (post) {
   return !!(
-    post && post.thumbnail &&
+    post?.thumbnail &&
     !(post.thumbnail === 'self' || post.thumbnail === 'default')
   )
 }
@@ -66,7 +64,7 @@ export const matchRedditPath = pathname =>
 export const getNewSubredditFromPath = (state, action) => {
   const match = matchRedditPath(action.payload.location.pathname)
 
-  return match && match.isExact && state !== match.params.subreddit
+  return match?.isExact && state !== match.params.subreddit
     ? match.params.subreddit.toLowerCase()
     : state
 }
@@ -74,7 +72,7 @@ export const getNewSubredditFromPath = (state, action) => {
 export const didInvalidateSubredditFromPath = (state, action) => {
   const match = matchRedditPath(action.payload.location.pathname)
 
-  return match && match.isExact &&
+  return match?.isExact &&
     state !== match.params.subreddit.toLowerCase()
 }
 

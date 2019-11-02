@@ -76,8 +76,7 @@ export const nextPost = () => (dispatch, getState) => {
   const { postsBySubreddit, selectedSubreddit } = getState()
   return dispatch({
     type: NEXT_POST,
-    posts: postsBySubreddit[selectedSubreddit] &&
-      postsBySubreddit[selectedSubreddit].items,
+    posts: postsBySubreddit[selectedSubreddit]?.items,
   })
 }
 
@@ -85,8 +84,7 @@ export const previousPost = () => (dispatch, getState) => {
   const { postsBySubreddit, selectedSubreddit } = getState()
   return dispatch({
     type: PREVIOUS_POST,
-    posts: postsBySubreddit[selectedSubreddit] &&
-      postsBySubreddit[selectedSubreddit].items,
+    posts: postsBySubreddit[selectedSubreddit]?.items,
   })
 }
 
@@ -126,7 +124,7 @@ const shouldInvalidateSubreddit = ({ router, postsBySubreddit }, subreddit) => {
   return (
     !posts ||
     posts.items.length === 0 ||
-    (match && match.subreddit === subreddit)
+    (match?.subreddit === subreddit)
   )
 }
 
@@ -169,6 +167,7 @@ const receiveCommentsError = (post, subreddit, error) => ({
 })
 
 const fetchComments = (post, selectedSubreddit) => dispatch => {
+  if (!post?.permalink) return
   dispatch(requestComments(post, selectedSubreddit))
   return reddit
     .fetchPost(post.permalink)
@@ -185,7 +184,7 @@ export const fetchCommentsIfNeeded = () => (dispatch, getState) => {
   const { postsBySubreddit, selectedSubreddit } = getState()
   const { index } = postsBySubreddit.cursor
   const posts = postsBySubreddit[selectedSubreddit].items
-  if (posts[index] && !posts[index].comments) {
+  if (!posts[index]?.comments) {
     dispatch(fetchComments(posts[index], selectedSubreddit))
   }
 }
@@ -244,4 +243,3 @@ export const enableKeyboardControls = () => ({
 export const disableKeyboardControls = () => ({
   type: DISABLE_KEYBORAD_CONTROLS,
 })
-

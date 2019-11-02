@@ -226,4 +226,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(Post))
+export default Post |> connect(mapStateToProps) |> withStyles(styles)

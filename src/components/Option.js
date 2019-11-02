@@ -61,4 +61,4 @@ Option.propTypes = {
   dispatch: PropTypes.func,
 }
 
-export default connect()(Option)
+export default Option |> connect()

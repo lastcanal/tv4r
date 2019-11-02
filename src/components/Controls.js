@@ -155,5 +155,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Controls)
-
+export default Controls |> connect(mapStateToProps)
