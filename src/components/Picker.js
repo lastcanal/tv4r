@@ -36,7 +36,7 @@ const makeSelectStyles = ({ palette }) => ({
 })
 
 const nameToOption = (name) => ({
-  value: (name || '').toLowerCase(), label: name,
+  value: (name || '').toLowerCase(), label: `r/${name}`,
 })
 
 const Picker = ({ value, options, dispatch }) => {
