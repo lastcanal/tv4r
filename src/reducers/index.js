@@ -18,7 +18,7 @@ import {
   DEFAULT_SUBREDDIT,
   DEFAULT_SUBREDDITS,
   TOGGLE_FULLSCREEN,
-  TOGGLE_AUTOPLAY,
+  TOGGLE_AUTO_ADVANCE,
   TOGGLE_PLAY,
   TOGGLE_THEME_MODE,
   ENABLE_KEYBORAD_CONTROLS,
@@ -265,7 +265,7 @@ const subreddits = (state = DEFAULT_SUBREDDITS, action) => {
 
 const DEFAULT_CONFIG = {
   isFullsceen: false,
-  isAutoplay: false,
+  isAutoAdvance: false,
   themeMode: 'dark',
   keyboardControls: true,
   volume: 1,
@@ -280,10 +280,10 @@ const config = (state = DEFAULT_CONFIG, action) => {
         ...state,
         isFullscreen: !state.isFullscreen,
       }
-    case TOGGLE_AUTOPLAY:
+    case TOGGLE_AUTO_ADVANCE:
       return {
         ...state,
-        isAutoplay: !state.isAutoplay,
+        isAutoAdvance: !state.isAutoAdvance,
       }
     case TOGGLE_PLAY:
       return {

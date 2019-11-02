@@ -21,7 +21,7 @@ import {
   nextPost,
   previousPost,
   configToggleFullscreen,
-  configToggleAutoplay,
+  configToggleAutoAdvance,
   configTogglePlay,
   configToggleThemeMode,
 } from '../actions'
@@ -51,7 +51,7 @@ const Controls = ({
   posts,
   selectedSubreddit,
   isFullscreen,
-  isAutoplay,
+  isAutoAdvance,
   isPlaying,
   themeMode,
 }) => {
@@ -92,12 +92,14 @@ const Controls = ({
           {isFullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
         </IconButton>
       </Tooltip>
-      <Tooltip title={`${isAutoplay ? 'Stop' : 'Start'} Auto-Playing Videos`}>
+      <Tooltip
+        title={`${isAutoAdvance ? 'Stop' : 'Start'} Auto Advancing Videos`}
+      >
         <IconButton
-          aria-label="toggle autoplay" color="inherit"
-          onClick={() => dispatch(configToggleAutoplay())}
+          aria-label="toggle auto advance" color="inherit"
+          onClick={() => dispatch(configToggleAutoAdvance())}
         >
-          {isAutoplay ? <AutoPlayOnIcon /> : <AutoPlayOffIcon />}
+          {isAutoAdvance ? <AutoPlayOnIcon /> : <AutoPlayOffIcon />}
         </IconButton>
       </Tooltip>
       <Tooltip title="Play Previous">
@@ -109,7 +111,7 @@ const Controls = ({
           <SkipPreviousIcon />
         </IconButton>
       </Tooltip>
-      <Tooltip title={`${isAutoplay ? 'Start' : 'Stop'} Auto-Playing Videos`}>
+      <Tooltip title={`${isAutoAdvance ? 'Start' : 'Stop'} Playing Video`}>
         <IconButton
           aria-label={isPlaying ? 'Stop' : 'Play'} color="inherit"
           onClick={() => dispatch(configTogglePlay())}
@@ -135,7 +137,7 @@ Controls.propTypes = {
   posts: PropTypes.array,
   selectedSubreddit: PropTypes.string,
   isFullscreen: PropTypes.bool,
-  isAutoplay: PropTypes.bool,
+  isAutoAdvance: PropTypes.bool,
   isPlaying: PropTypes.bool,
   themeMode: PropTypes.string,
 }

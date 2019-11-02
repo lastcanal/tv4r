@@ -64,7 +64,7 @@ const Post = ({
   dispatch,
   isMediaFallback,
   height,
-  isAutoplay,
+  isAutoAdvance,
   isPlaying,
   volume,
   scan,
@@ -73,7 +73,7 @@ const Post = ({
   const playerRef = useRef()
 
   const onMediaEnded = () => {
-    if (isAutoplay) dispatch(nextPost(posts))
+    if (isAutoAdvance) dispatch(nextPost(posts))
   }
 
   const onMediaError = (error) => {
@@ -195,7 +195,7 @@ Post.propTypes = {
   posts: PropTypes.array,
   error: PropTypes.object,
   isFetching: PropTypes.bool,
-  isAutoplay: PropTypes.bool,
+  isAutoAdvance: PropTypes.bool,
   isPlaying: PropTypes.bool,
   isFullsceen: PropTypes.bool,
   volume: PropTypes.number,
@@ -204,7 +204,7 @@ Post.propTypes = {
 
 const mapStateToProps = state => {
   const { dispatch, selectedSubreddit, postsBySubreddit, config } = state
-  const { isFullsceen, isAutoplay, isPlaying, volume, scan, jump } = config
+  const { isFullsceen, isAutoAdvance, isPlaying, volume, scan, jump } = config
   const selectedPost = postsBySubreddit.cursor || {}
   const { isFetching, items: posts } = postsBySubreddit[selectedSubreddit] || {
     isFetching: false,
@@ -218,7 +218,7 @@ const mapStateToProps = state => {
     post: selectedPost.post,
     isMediaFallback: selectedPost.media_fallback,
     isFullsceen,
-    isAutoplay,
+    isAutoAdvance,
     isPlaying,
     volume,
     scan,

@@ -19,7 +19,7 @@ import {
   RECEIVE_COMMENTS_ERROR,
   TOGGLE_FULLSCREEN,
   TOGGLE_PLAY,
-  TOGGLE_AUTOPLAY,
+  TOGGLE_AUTO_ADVANCE,
   TOGGLE_THEME_MODE,
   ENABLE_KEYBORAD_CONTROLS,
   DISABLE_KEYBORAD_CONTROLS,
@@ -193,8 +193,8 @@ export const configToggleFullscreen = () => ({
   type: TOGGLE_FULLSCREEN,
 })
 
-export const configToggleAutoplay = () => ({
-  type: TOGGLE_AUTOPLAY,
+export const configToggleAutoAdvance = () => ({
+  type: TOGGLE_AUTO_ADVANCE,
 })
 
 export const configTogglePlay = () => ({

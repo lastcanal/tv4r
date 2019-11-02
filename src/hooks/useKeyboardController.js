@@ -4,7 +4,7 @@ import {
   nextPost,
   previousPost,
   configTogglePlay,
-  configToggleAutoplay,
+  configToggleAutoAdvance,
   configToggleFullscreen,
   playerScanBackwards,
   playerScanForwards,
@@ -39,7 +39,7 @@ export const handleKeyboardAction = event => (dispatch, getState) => {
     case 'k':
       return dispatch(configTogglePlay())
     case 'a':
-      return dispatch(configToggleAutoplay())
+      return dispatch(configToggleAutoAdvance())
     case 'f':
       return dispatch(configToggleFullscreen())
     case 'ArrowLeft':
