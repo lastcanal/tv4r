@@ -1,44 +1,84 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# TVR: The TV of the Internet
 
-## Available Scripts
+TVR is a television interface for reddit, the front page of the internet.
+TVR runs entirely in your browser, only relying on the reddit API.
 
-In the project directory, you can run:
+#### Description
 
-### `npm start`
+TVR lets you watch the latest videos from any subreddit and play them 
+back-to-back without interuptions. Load up your favorite subreddit then 
+sit back and enjoy what the internet is watching. 
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Common Shortcuts
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+- `>` or `.` plays next post
+- `<` or `,` plays previous post
+- `SpaceBar` or `Enter` toggles play/pause
+- `a` Auto Advance
+- `f` Fullscreen
+- `Esc` Exit Fullscreen
+- `↑` Increase Volume
+- `↓` Decrease Volume
+- `←` Go back 5 seconds
+- `→` Go forward 10 seconds
 
-### `npm test`
+#### Skip to certain parts of the video
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `0` Go to the 0% mark
+- `1` Go to the 10% mark
+- `2` Go to the 20% mark
+- `3` Go to the 30% mark
+- `4` Go to the 40% mark
+- `5` Go to the 50% mark
+- `6` Go to the 60% mark
+- `7` Go to the 70% mark
+- `8` Go to the 80% mark
+- `9` Go to the 90% mark
+- `End`	Go to the End
 
-### `npm run build`
+#### Goals
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [x] Watch reddit videos
+- [x] Read reddit comments
+- [ ] Look at reddit images and gifs
+- [ ] Listen to reddit audio
+- [ ] Read from new, controversial, top, and rising
+- [ ] Load all videos by 'domain' (e.g. youtube.com)
+- [ ] Load subreddits from authenticated reddit profile
+- [ ] Vote on reddit posts and comments
+- [ ] Write reddit comments
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+#### Non Goals
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [x] Source content from non-reddit sources
+- [x] Override native players
 
-### `npm run eject`
+#### Running locally
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To get started running TVR locally, start by cloning this repo:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`$ git clone https://github.com/lastcanal/tvr`
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Install the dependancies
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+`$ yarn`
 
-## Learn More
+Run the dev-server
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+`$ yarn start`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Run the tests
+
+`$ yarn test`
+
+Build a release
+
+`$ yarn build`
+
+#### Contributing
+
+TVR is written using React and Redux. Install [Redux Devtools](https://extension.remotedev.io/) to see what is happening under the hood. 
+
+#### Licence
+
+MIT
