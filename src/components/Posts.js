@@ -47,7 +47,7 @@ const classNameForTile = (selected, post, classes) => {
   }
 }
 
-const Posts = ({ posts, selected, isFetching, classes, dispatch }) => {
+const Posts = ({ posts, selected, classes, dispatch }) => {
   const refs = {}
 
   const onSelectPost = (nextPost, index, e) => {
@@ -85,6 +85,10 @@ const Posts = ({ posts, selected, isFetching, classes, dispatch }) => {
     return () => (window.removeEventListener('resize', onResize))
   }, [])
 
+  const postsIter = posts.length === 0
+    ? Array.from(new Array(14))
+    : posts
+
   return (
     <div ref={node => (refs['posts-ref'] = node)}>
       <GridList
@@ -92,7 +96,7 @@ const Posts = ({ posts, selected, isFetching, classes, dispatch }) => {
         cellHeight={THUMBNAIL_HEIGHT}
         cols={columns}
       >
-        {(isFetching ? Array.from(new Array(14)) : posts).map((post, index) => {
+        {postsIter.map((post, index) => {
           const id = post ? post.id : index
           return <GridListTile
             rows={1}
@@ -101,12 +105,12 @@ const Posts = ({ posts, selected, isFetching, classes, dispatch }) => {
             ref={node => (post ? (refs['post-' + post.id] = node) : '')}
             onClick={onSelectPost.bind(this, post, index)}
           >
-            {isFetching
-              ? <Skeleton variant="rect" />
-              : <img src={post.thumbnail} alt={post.title} />
+            {post
+              ? <img src={post.thumbnail} alt={post.title} />
+              : <Skeleton variant="rect" />
             }
             <GridListTileBar
-              title={isFetching ? <Skeleton /> : post.title}
+              title={post ? post.title : <Skeleton />}
               classes={{
                 root: classes.titleBar,
                 title: classes.title,
@@ -122,7 +126,6 @@ const Posts = ({ posts, selected, isFetching, classes, dispatch }) => {
 Posts.propTypes = {
   posts: PropTypes.array.isRequired,
   selected: PropTypes.object.isRequired,
-  isFetching: PropTypes.bool.isRequired,
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
 }
@@ -131,8 +134,7 @@ const mapStateToProps = state => {
   const { dispatch, selectedSubreddit, postsBySubreddit, config } = state
   const { themeMode } = config
   const selectedPost = postsBySubreddit.cursor || {}
-  const { isFetching, items: posts } = postsBySubreddit[selectedSubreddit] || {
-    isFetching: false,
+  const { items: posts } = postsBySubreddit[selectedSubreddit] || {
     items: [],
   }
 
@@ -142,7 +144,6 @@ const mapStateToProps = state => {
     selected: selectedPost,
     visible: true,
     themeMode,
-    isFetching,
   }
 }
 
