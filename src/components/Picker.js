@@ -18,7 +18,6 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
     marginRight: spacing(1),
     display: 'block',
     backgroundColor: palette.background.default,
-    maxHeight: 200,
     flex: 1,
   },
 }))

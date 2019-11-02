@@ -1,16 +1,14 @@
 import { useState, useEffect, useRef } from 'react'
-import { useTheme } from '@material-ui/core/styles'
 import debounce from 'lodash.debounce'
 
 const useLayoutDimensionTracker = ({ isFullscreen, isFetching }) => {
-  const { spacing } = useTheme()
   const menuRef = useRef()
 
   const calculateMenuHeight = () => {
     const { current } = menuRef
     if (current) {
       const box = current.getBoundingClientRect()
-      return box.height + spacing(1)
+      return box.height
     }
   }
 
