@@ -35,11 +35,11 @@ const Menu = ({
     <Container ref={menuRef} classes={classes} maxWidth={false}>
       <ToolBar>
         <Picker />
+        <Controls />
       </ToolBar>
       <Posts />
       <ToolBar>
         <Title post={post} />
-        <Controls />
       </ToolBar>
     </Container>
   )
