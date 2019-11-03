@@ -27,6 +27,8 @@ const styles = ({ palette }) => ({
     flexDirection: 'column',
     top: 0,
     left: 0,
+    backgroundColor: 'black',
+    transform: 'translate3d(0,0,1px)',
   },
   reactPlayer: {
     backgroundColor: 'black',
@@ -130,6 +132,7 @@ const Post = ({
           ref={playerRef}
           playing={isPlaying}
           volume={volume}
+          playsinline={true}
           preload="true"
           url={post.url}
           className={classes.reactPlayer}

@@ -1,26 +1,33 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import debounce from 'lodash.debounce'
 
 const useLayoutDimensionTracker = ({ isFullscreen, isFetching }) => {
   const menuRef = useRef()
 
-  const calculateMenuHeight = () => {
+  const [menuHeight, setMenuHeight] = useState(0)
+  const [menuOffsetHeight, setMenuOffsetHeight] = useState(0)
+
+  useLayoutEffect(() => {
     const { current } = menuRef
     if (current) {
       const box = current.getBoundingClientRect()
-      return box.height
+      setMenuHeight(box.height)
     }
-  }
+  }, [menuRef])
 
-  const menuOffsetHeight = () => {
-    return isFullscreen ? 0 : calculateMenuHeight()
-  }
+  useEffect(() => {
+    setMenuOffsetHeight(isFullscreen ? 0 : menuHeight)
+  }, [isFullscreen, menuHeight])
 
   const calculateHeight = () => (
-    window.innerHeight - menuOffsetHeight()
+    (window.innerHeight - menuOffsetHeight)
   )
 
   const [height, setHeight] = useState(calculateHeight())
+
+  useEffect(() => {
+    setHeight(calculateHeight())
+  }, [menuOffsetHeight])
 
   const onResize = debounce(() => {
     setHeight(calculateHeight())

@@ -266,7 +266,7 @@ const subreddits = (state = DEFAULT_SUBREDDITS, action) => {
 }
 
 const DEFAULT_CONFIG = {
-  isFullsceen: false,
+  isFullscreen: false,
   isAutoAdvance: false,
   themeMode: 'dark',
   keyboardControls: true,
