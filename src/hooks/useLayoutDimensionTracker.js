@@ -1,14 +1,14 @@
-import { useState, useEffect, useLayoutEffect, useRef } from 'react'
+import { useState, useEffect, useMemo, useLayoutEffect, useRef } from 'react'
 import debounce from 'lodash.debounce'
 
 const useLayoutDimensionTracker = ({ isFullscreen, isFetching }) => {
   const menuRef = useRef()
 
-  const [height, setHeight] = useState(0)
+  const [playerHeight, setPlayerHeight] = useState(0)
   const [menuHeight, setMenuHeight] = useState(0)
   const [menuOffsetHeight, setMenuOffsetHeight] = useState(0)
-  const [menuWidth, setMenuWidth] = useState(document.innerWidth)
   const [orientation, setOrientation] = useState(0)
+  const [screenHeight, setScreenHeight] = useState(window.innerHeight)
 
   useLayoutEffect(() => {
     const { current } = menuRef
@@ -23,18 +23,24 @@ const useLayoutDimensionTracker = ({ isFullscreen, isFetching }) => {
   }, [isFullscreen, menuHeight, orientation])
 
   const calculateHeight = () => (
-    (window.innerHeight - menuOffsetHeight)
+    window.innerHeight - menuOffsetHeight
   )
 
   useLayoutEffect(() => {
-    setHeight(calculateHeight())
+    setPlayerHeight(calculateHeight())
   }, [menuOffsetHeight, orientation])
+
+  const IOS = useMemo(() => (
+    navigator.userAgent.match(/iP(?:hone|ad;(?: U;)? CPU) OS (\d+)/)
+  ), [])
 
   const onResize = debounce(() => {
     // prevent mobile safari/chrome from flailing
-    if (menuWidth !== document.innerWidth) {
-      setHeight(calculateHeight())
-      setMenuWidth(document.innerWidth)
+    const newHeight = window.innerHeight
+    const delta = Math.abs(screenHeight - newHeight)
+    if (!IOS || (delta > 100)) {
+      setPlayerHeight(calculateHeight())
+      setScreenHeight(newHeight)
     }
   }, 100)
 
@@ -57,10 +63,10 @@ const useLayoutDimensionTracker = ({ isFullscreen, isFetching }) => {
   }, [])
 
   useEffect(() => {
-    setHeight(calculateHeight())
+    setPlayerHeight(calculateHeight())
   }, [isFullscreen, isFetching])
 
-  return [height, menuRef]
+  return [playerHeight, menuRef]
 }
 
 export default useLayoutDimensionTracker
