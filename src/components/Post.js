@@ -17,7 +17,6 @@ const styles = ({ palette }) => ({
     padding: 0,
   },
   playerWrapper: {
-    backgroundColor: palette.background.default,
     height: ({ height }) => (
       height
     ),
