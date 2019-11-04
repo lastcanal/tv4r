@@ -13,6 +13,9 @@ const useStyles = makeStyles(({ palette, shape }) => ({
     backgroundColor: palette.background.paper,
     borderRadius: shape.borderRadius,
   },
+  selected: {
+    backgroundColor: palette.background.default,
+  },
 }))
 
 const Option = ({
@@ -45,9 +48,7 @@ const Option = ({
     <ListItemIcon onClick={onRemove}>
       <RemoveCircleIcon style={{ color: 'inherit' }} />
     </ListItemIcon>
-    <div>
-      {children}
-    </div>
+    {children}
   </MenuItem>
 }
 

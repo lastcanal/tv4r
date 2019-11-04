@@ -125,7 +125,7 @@ const shouldInvalidateSubreddit = ({ router, postsBySubreddit }, subreddit) => {
   const posts = postsBySubreddit[subreddit]
   return (
     !posts ||
-    posts.items.length === 0 ||
+    posts?.items?.length === 0 ||
     (match?.subreddit === subreddit)
   )
 }
