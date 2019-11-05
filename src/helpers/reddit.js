@@ -9,7 +9,7 @@ export const fetchPosts = subreddit => {
   return fetch(url.href)
 }
 
-export const fetchPost = permalink => {
+export const fetchPost = (permalink) => {
   const url = new URL(
     encodeURI(`${permalink}.json`),
     REDDIT_API_HOST
@@ -18,4 +18,14 @@ export const fetchPost = permalink => {
   return fetch(url.href)
 }
 
-export default { fetchPosts, fetchPost }
+export const fetchReplies = (permalink, parentId) => {
+  const url = new URL(
+    encodeURI(`${permalink}${parentId}.json`),
+    REDDIT_API_HOST
+  )
+
+  return fetch(url.href)
+}
+
+export default { fetchPosts, fetchPost, fetchReplies }
+

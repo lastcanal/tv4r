@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import Box from '@material-ui/core/Box'
+import iconButton from '@material-ui/core/iconButton'
 import PropTypes from 'prop-types'
-import { withStyles, makeStyles, useTheme } from '@material-ui/core/styles'
+import { withStyles, useTheme } from '@material-ui/core/styles'
 import LinearProgress from '@material-ui/core/LinearProgress'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import AddIcon from '@material-ui/icons/Add'
+import RemoveIcon from '@material-ui/icons/Remove'
 
-import { fetchCommentsIfNeeded } from '../actions'
+import {
+  fetchCommentsIfNeeded,
+  fetchRepliesIfNeeded,
+} from '../actions'
 
-const styles = ({ spacing, palette, shape }) => ({
+const commentsStyles = ({ spacing, palette, shape }) => ({
   root: {
     borderRadius: shape.borderRadius,
     flexGrow: 1,
@@ -35,14 +42,25 @@ const styles = ({ spacing, palette, shape }) => ({
   },
 })
 
-const commentStyles = makeStyles(({ palette, spacing, shape }) => ({
+const commentSpacing = (depth, base = 1) => (
+  Math.min(base, base / depth)
+)
+
+const commentStyles = ({ palette, spacing, shape }) => ({
   comment: {
     borderRadius: shape.borderRadius,
-    margin: spacing(1),
     padding: spacing(1),
+    margin: spacing(1),
     paddingRight: 0,
-    marginRight: spacing(0.61),
-    marginLeft: spacing(0.61),
+    marginBottom: ({ depth }) => (
+      spacing(commentSpacing(depth, 1))
+    ),
+    marginLeft: ({ depth }) => (
+      spacing(commentSpacing(depth, 0.61))
+    ),
+    marginRight: ({ depth }) => (
+      spacing(commentSpacing(depth, 0.61))
+    ),
   },
   comment_container: {
     backgroundColor: palette.background.paper,
@@ -54,6 +72,10 @@ const commentStyles = makeStyles(({ palette, spacing, shape }) => ({
     margin: spacing(1),
     marginBottom: spacing(2),
   },
+  commentHide: {
+    margin: spacing(1),
+    marginBottom: spacing(2),
+  },
   selfPostBody: {
     margin: spacing(1),
   },
@@ -61,12 +83,30 @@ const commentStyles = makeStyles(({ palette, spacing, shape }) => ({
     margin: spacing(1),
     display: 'block',
   },
-}))
+})
 
-const Comments = ({
-  postsBySubreddit,
-  selectedSubreddit,
-  selected,
+const mapStateToProps = ({ postsBySubreddit, selectedSubreddit }) => {
+  const { cursor } = postsBySubreddit
+  const {
+    items,
+    comments,
+    isFetchingComments,
+  } = postsBySubreddit[selectedSubreddit]
+
+  const post = items[cursor.index]
+  const commentsForPost = comments[post?.id]
+
+  return {
+    post,
+    isFetchingComments,
+    comments: commentsForPost,
+  }
+}
+
+const _Comments = ({
+  comments,
+  isFetchingComments,
+  post,
   height,
   dispatch,
   classes,
@@ -77,7 +117,7 @@ const Comments = ({
     if (visible) {
       dispatch(fetchCommentsIfNeeded())
     }
-  }, [selected, visible, dispatch])
+  }, [post, visible])
 
   const { spacing } = useTheme()
 
@@ -110,19 +150,15 @@ const Comments = ({
         return () => observer.unobserve(target)
       }
     }
-  }, [selectedSubreddit, height])
+  }, [height])
 
-  const subreddit = postsBySubreddit[selectedSubreddit]
-  const item = subreddit?.items[selected.index]
-  const comments = item?.comments
-
-  if (!comments || subreddit.isFetchingComments) {
+  if (!comments || isFetchingComments) {
     return (
       <div>
         <div className={classes.spacer}>
           <div id="comments" className={classes.loading}>
             <Box className={classes.selfPostBody} boxShadow={5}>
-              { subreddit.isFetchingComments ? <LinearProgress /> : '' }
+              { isFetchingComments ? <LinearProgress /> : '' }
             </Box>
           </div>
         </div>
@@ -138,7 +174,7 @@ const Comments = ({
           id="comments"
           className={`${classes.comment_container} ${classes.root}`}
         >
-          {comments.map((comment, index) => (
+          {comments.root.map((comment, index) => (
             <CommentTree comments={comment} key={index} />
           ))}
         </div>
@@ -148,17 +184,20 @@ const Comments = ({
   )
 }
 
-Comments.propTypes = {
-  postsBySubreddit: PropTypes.object,
-  selectedSubreddit: PropTypes.string,
-  selected: PropTypes.object,
+_Comments.propTypes = {
   dispatch: PropTypes.func,
   classes: PropTypes.object,
   height: PropTypes.number,
+  isFetchingComments: PropTypes.bool,
+  comments: PropTypes.object,
+  post: PropTypes.object,
 }
 
-const Comment = ({ comment, depth }) => {
-  const classes = commentStyles()
+const Comments = _Comments |>
+  withStyles(commentsStyles) |>
+  connect(mapStateToProps)
+
+const _Comment = ({ comment, depth, classes }) => {
   const classForDepth = depth =>
     depth % 2 === 0
       ? `${classes.comment} ${classes.comment_container}`
@@ -175,10 +214,13 @@ const Comment = ({ comment, depth }) => {
   )
 }
 
-Comment.propTypes = {
+_Comment.propTypes = {
   comment: PropTypes.object,
   depth: PropTypes.number,
+  classes: PropTypes.object,
 }
+
+const Comment = _Comment |> withStyles(commentStyles)
 
 const CommentTree = ({ comments }) => {
   return comments.data.children.map(
@@ -204,24 +246,60 @@ ReplyTree.propTypes = {
   depth: PropTypes.number,
 }
 
-const Reply = ({ reply }) => {
-  const classes = commentStyles()
+const _Reply = ({ reply, dispatch, comments, classes }) => {
+  const { data } = reply
+  const [show, setShow] = useState(true)
+  const [loading, setLoading] = useState(false)
+
+  const loadReplies = () => {
+    setShow(true)
+    setLoading(true)
+    dispatch(fetchRepliesIfNeeded(reply))
+    return false
+  }
+
+  const hideReplies = () => {
+    setLoading(false)
+    setShow(false)
+  }
+
   switch (reply.kind) {
     case 'more':
-      return <div>More</div>
+      const parentId = reply.data.parent_id
+      const comment = comments[parentId]
+      if (show && comment) {
+        console.log(comment)
+        return <>
+          <iconButton
+            onClick={hideReplies}
+          >
+            <RemoveIcon />
+          </iconButton>
+          {show && <ReplyTree replies={comment} depth={5} key={parentId} />}
+        </>
+      } else if (loading) {
+        return <CircularProgress size={16} />
+      } else {
+        return <iconButton
+          onClick={loadReplies}
+        >
+          <AddIcon />
+        </iconButton>
+      }
+
     case 't1':
       return (
         <div>
           <div className={classes.commentAuthor}>
-            {reply.data.author} ({reply.data.ups - reply.data.downs})
+            {reply.data.author} ({data.ups - data.downs})
           </div>
-          <div className={classes.commentBody}>{reply.data.body}</div>
+          <div className={classes.commentBody}>{data.body}</div>
         </div>
       )
     case 't3':
       return <div className={classes.selfPostBody}>
-        <h2>{reply.data.title}</h2>
-        {reply.data.selfText}
+        <h2>{data.title}</h2>
+        {data.selfText}
       </div>
     default:
       // istanbul ignore next //
@@ -229,16 +307,14 @@ const Reply = ({ reply }) => {
   }
 }
 
-Reply.propTypes = {
+_Reply.propTypes = {
   reply: PropTypes.object,
   depth: PropTypes.number,
+  dispatch: PropTypes.func,
 }
 
-const mapStateToProps = ({ postsBySubreddit, selectedSubreddit }) => ({
-  postsBySubreddit,
-  selectedSubreddit,
-  selected: postsBySubreddit.cursor,
-  subreddit: postsBySubreddit[selectedSubreddit],
-})
+const Reply = _Reply |>
+  withStyles(commentStyles) |>
+  connect(mapStateToProps)
 
-export default Comments |> withStyles(styles) |> connect(mapStateToProps)
+export default Comments

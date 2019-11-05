@@ -15,6 +15,9 @@ import {
   REQUEST_COMMENTS,
   RECEIVE_COMMENTS,
   RECEIVE_COMMENTS_ERROR,
+  REQUEST_REPLIES,
+  RECEIVE_REPLIES,
+  RECEIVE_REPLIES_ERROR,
   DEFAULT_SUBREDDIT,
   DEFAULT_SUBREDDITS,
   ENABLE_FULLSCREEN,
@@ -60,6 +63,7 @@ const selectedPosts = (
     isFetching: false,
     didInvalidate: false,
     items: [],
+    comments: {},
   },
   action,
 ) => {
@@ -83,6 +87,7 @@ const selectedPosts = (
         isFetching: false,
         didInvalidate: false,
         items: items,
+        comments: state.comments,
         lastUpdated: action.receivedAt,
       }
     case RECEIVE_POSTS_ERROR:
@@ -113,22 +118,44 @@ const selectedPosts = (
         error: null,
       }
     case RECEIVE_COMMENTS:
-      const { index, post } = findPostById(action.post.id, state.items)
-      const newState = {
+      const comments = { ...state.comments, [action.post.id]: {
+        root: action.comments,
+      } }
+      return {
         ...state,
         isFetchingComments: false,
-        items: ([
-          ...state.items.slice(0, index),
-          { ...post, comments: action.comments },
-          ...state.items.slice(index + 1),
-        ]),
+        comments,
       }
-
-      return newState
     case RECEIVE_COMMENTS_ERROR:
       return {
         ...state,
         isFetchingComments: false,
+        error: action.error,
+      }
+    case REQUEST_REPLIES:
+      return {
+        ...state,
+        isFetchingReplies: true,
+        error: null,
+      }
+    case RECEIVE_REPLIES:
+      const replies = action.comments[1].data.children[0].data.replies
+      console.log(replies)
+      return {
+        ...state,
+        isFetchingReplies: false,
+        comments: {
+          ...state.comments,
+          [action.post.id]: {
+            ...state.comments[action.post.id],
+            [`t1_${action.parentId}`]: replies,
+          },
+        },
+      }
+    case RECEIVE_REPLIES_ERROR:
+      return {
+        ...state,
+        isFetchingReplies: false,
         error: action.error,
       }
 
@@ -206,10 +233,13 @@ export const postsBySubreddit = (state = { cursor: {} }, action) => {
     case REQUEST_COMMENTS:
     case RECEIVE_COMMENTS:
     case RECEIVE_COMMENTS_ERROR:
+    case REQUEST_REPLIES:
+    case RECEIVE_REPLIES:
+    case RECEIVE_REPLIES_ERROR:
       return {
         ...state,
         [action.subreddit]: selectedPosts(state[action.subreddit], action),
-        cursor: selectedPost(state.cursor || {}, action),
+        cursor: selectedPost(state.cursor, action),
       }
     case SELECT_POST:
     case NEXT_POST:
@@ -225,12 +255,12 @@ export const postsBySubreddit = (state = { cursor: {} }, action) => {
       if (subreddit) {
         return {
           ...state,
-          [subreddit]: selectedPosts(state[subreddit] || {}, {
+          [subreddit]: selectedPosts(state[subreddit], {
             ...action,
             posts,
             subreddit,
           }),
-          cursor: selectedPost(state.cursor || {}, {
+          cursor: selectedPost(state.cursor, {
             ...action,
             posts,
             subreddit,

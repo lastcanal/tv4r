@@ -17,6 +17,9 @@ import {
   REQUEST_COMMENTS,
   RECEIVE_COMMENTS,
   RECEIVE_COMMENTS_ERROR,
+  REQUEST_REPLIES,
+  RECEIVE_REPLIES,
+  RECEIVE_REPLIES_ERROR,
   ENABLE_FULLSCREEN,
   DISABLE_FULLSCREEN,
   TOGGLE_FULLSCREEN,
@@ -185,11 +188,66 @@ const fetchComments = (post, selectedSubreddit) => dispatch => {
 export const fetchCommentsIfNeeded = () => (dispatch, getState) => {
   const { postsBySubreddit, selectedSubreddit } = getState()
   const { index } = postsBySubreddit.cursor
-  const posts = postsBySubreddit[selectedSubreddit].items
-  if (!posts[index]?.comments) {
-    dispatch(fetchComments(posts[index], selectedSubreddit))
+  const { items, comments } = postsBySubreddit[selectedSubreddit]
+  const post = items[index]
+  if (!comments?.[post?.id]) {
+    dispatch(fetchComments(items[index], selectedSubreddit))
   }
 }
+
+const requestReplies = (post, subreddit, parentId) => ({
+  type: REQUEST_REPLIES,
+  post,
+  subreddit,
+  parentId,
+})
+
+const receiveReplies = (post, subreddit, parentId, response) => ({
+  type: RECEIVE_REPLIES,
+  post,
+  subreddit,
+  comments: response,
+  parentId,
+})
+
+const receiveRepliesError = (post, subreddit, parentId, error) => ({
+  type: RECEIVE_REPLIES_ERROR,
+  post,
+  subreddit,
+  error,
+  parentId,
+})
+
+
+const fetchReplies = (post, selectedSubreddit, parentId) => dispatch => {
+  dispatch(requestReplies(post, selectedSubreddit, parentId))
+  return reddit
+    .fetchReplies(post.permalink, parentId)
+    .then(response => response.json())
+    .catch(error =>
+      dispatch(receiveRepliesError(post, selectedSubreddit, parentId, error)),
+    )
+    .then(response =>
+      dispatch(receiveReplies(post, selectedSubreddit, parentId, response)),
+    )
+}
+
+export const fetchRepliesIfNeeded = ({ data }) => (dispatch, getState) => {
+  console.log('a', data.parent_id)
+
+  const { postsBySubreddit, selectedSubreddit } = getState()
+  const { index } = postsBySubreddit.cursor
+  const { items, comments } = postsBySubreddit[selectedSubreddit]
+  const post = items[index]
+  const commentsForPost = comments?.[post?.id] || {}
+  const { groups: { parentId } } =
+    /^t1_(?<parentId>\w+)$/.exec(data.parent_id)
+
+  if (parentId && !commentsForPost[parentId]) {
+    dispatch(fetchReplies(items[index], selectedSubreddit, parentId))
+  }
+}
+
 
 export const configToggleFullscreen = () => ({
   type: TOGGLE_FULLSCREEN,
