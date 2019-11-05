@@ -11,6 +11,7 @@ describe('comments', () => {
           postsBySubreddit: {
             foo: {
               items: [],
+              comments: {},
               isFetching: false,
               didInvalidate: false,
             },
@@ -27,11 +28,17 @@ describe('comments', () => {
   })
 
   it('should render Post', () => {
-    const post = fixtures.postWithComments()
+    const post = {id: "foo", url: 'https://example.com/foo'}
     const store = mockStore({
       postsBySubreddit: {
         foo: {
           items: [post],
+          comments: {
+            foo: {
+              root: fixtures.postComments('bar'),
+              bar: fixtures.postComments('baz'),
+            },
+          },
           isFetching: false,
           didInvalidate: false,
         },

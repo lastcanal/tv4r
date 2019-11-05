@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import Box from '@material-ui/core/Box'
-import iconButton from '@material-ui/core/iconButton'
 import PropTypes from 'prop-types'
 import { withStyles, useTheme } from '@material-ui/core/styles'
 import LinearProgress from '@material-ui/core/LinearProgress'
@@ -72,10 +71,6 @@ const commentStyles = ({ palette, spacing, shape }) => ({
     margin: spacing(1),
     marginBottom: spacing(2),
   },
-  commentHide: {
-    margin: spacing(1),
-    marginBottom: spacing(2),
-  },
   selfPostBody: {
     margin: spacing(1),
   },
@@ -94,13 +89,27 @@ const mapStateToProps = ({ postsBySubreddit, selectedSubreddit }) => {
   } = postsBySubreddit[selectedSubreddit]
 
   const post = items[cursor.index]
-  const commentsForPost = comments[post?.id]
+  const commentsForPost = comments?.[post?.id]
 
   return {
     post,
     isFetchingComments,
     comments: commentsForPost,
   }
+}
+
+const MoreButton = ({ children, onClick }) => {
+  return <a style={{
+    display: 'flex',
+    cursor: 'pointer' }
+  } onClick={onClick}>
+    {children}
+  </a>
+}
+
+MoreButton.propTypes = {
+  children: PropTypes.object,
+  onClick: PropTypes.func,
 }
 
 const _Comments = ({
@@ -270,21 +279,19 @@ const _Reply = ({ reply, dispatch, comments, classes }) => {
       if (show && comment) {
         console.log(comment)
         return <>
-          <iconButton
-            onClick={hideReplies}
-          >
+          <MoreButton onClick={hideReplies}>
             <RemoveIcon />
-          </iconButton>
+          </MoreButton>
           {show && <ReplyTree replies={comment} depth={5} key={parentId} />}
         </>
       } else if (loading) {
-        return <CircularProgress size={16} />
+        return <MoreButton>
+          <CircularProgress size={24} thuckness={10} />
+        </MoreButton>
       } else {
-        return <iconButton
-          onClick={loadReplies}
-        >
+        return <MoreButton onClick={loadReplies}>
           <AddIcon />
-        </iconButton>
+        </MoreButton>
       }
 
     case 't1':
