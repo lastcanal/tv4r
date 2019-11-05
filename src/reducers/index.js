@@ -140,7 +140,6 @@ const selectedPosts = (
       }
     case RECEIVE_REPLIES:
       const replies = action.comments[1].data.children[0].data.replies
-      console.log(replies)
       return {
         ...state,
         isFetchingReplies: false,

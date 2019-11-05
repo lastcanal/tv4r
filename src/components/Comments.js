@@ -13,6 +13,8 @@ import {
   fetchRepliesIfNeeded,
 } from '../actions'
 
+import { postURL } from '../helpers/reddit'
+
 const commentsStyles = ({ spacing, palette, shape }) => ({
   root: {
     borderRadius: shape.borderRadius,
@@ -34,6 +36,7 @@ const commentsStyles = ({ spacing, palette, shape }) => ({
   },
   title: {
     flexGrow: 1,
+    color: palette.text.contrastText,
   },
   spacerBottom: {
     minHeight: ({ height }) => (window.innerHeight - height - spacing(1)),
@@ -76,7 +79,12 @@ const commentStyles = ({ palette, spacing, shape }) => ({
   },
   commentAuthor: {
     margin: spacing(1),
-    display: 'block',
+    display: 'inline',
+    color: palette.text.primary,
+  },
+  postTitle: {
+    color: palette.text.primary,
+    textDecoration: 'none',
   },
 })
 
@@ -277,7 +285,6 @@ const _Reply = ({ reply, dispatch, comments, classes }) => {
       const parentId = reply.data.parent_id
       const comment = comments[parentId]
       if (show && comment) {
-        console.log(comment)
         return <>
           <MoreButton onClick={hideReplies}>
             <RemoveIcon />
@@ -295,17 +302,29 @@ const _Reply = ({ reply, dispatch, comments, classes }) => {
       }
 
     case 't1':
+      const voteTotal = data.ups - data.downs
       return (
-        <div>
-          <div className={classes.commentAuthor}>
-            {reply.data.author} ({data.ups - data.downs})
+        <>
+          <div>
+            <a
+              className={classes.commentAuthor}
+              href={postURL(reply.data.permalink, 'html')}
+            >
+              {reply.data.author}
+            </a>
+            ({voteTotal > 0 ? `+${voteTotal}` : voteTotal})
           </div>
           <div className={classes.commentBody}>{data.body}</div>
-        </div>
+        </>
       )
     case 't3':
       return <div className={classes.selfPostBody}>
-        <h2>{data.title}</h2>
+        <a
+          className={classes.postTitle}
+          href={postURL(reply.data.permalink, 'html')}
+        >
+          <h2>{data.title}</h2>
+        </a>
         {data.selfText}
       </div>
     default:

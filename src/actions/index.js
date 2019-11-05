@@ -233,8 +233,6 @@ const fetchReplies = (post, selectedSubreddit, parentId) => dispatch => {
 }
 
 export const fetchRepliesIfNeeded = ({ data }) => (dispatch, getState) => {
-  console.log('a', data.parent_id)
-
   const { postsBySubreddit, selectedSubreddit } = getState()
   const { index } = postsBySubreddit.cursor
   const { items, comments } = postsBySubreddit[selectedSubreddit]
