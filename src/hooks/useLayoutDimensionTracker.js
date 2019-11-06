@@ -30,15 +30,16 @@ const useLayoutDimensionTracker = ({ isFullscreen, isFetching }) => {
     setPlayerHeight(calculateHeight())
   }, [menuOffsetHeight, orientation])
 
-  const IOS = useMemo(() => (
-    navigator.userAgent.match(/iP(?:hone|ad;(?: U;)? CPU) OS (\d+)/)
+  const isMobile = useMemo(() => (
+    typeof window.orientation !== 'undefined' ||
+      navigator.userAgent.indexOf('IEMobile') !== -1
   ), [])
 
   const onResize = debounce(() => {
-    // prevent mobile safari/chrome from flailing
+    // Prevent mobile browers resize-on-scroll due to system menu being hidden
     const newHeight = window.innerHeight
     const delta = Math.abs(screenHeight - newHeight)
-    if (!IOS || (delta > 100)) {
+    if (!isMobile || (delta > 100)) {
       setPlayerHeight(calculateHeight())
       setScreenHeight(newHeight)
     }
