@@ -39,13 +39,9 @@ const AutoPlayOffIcon = styled(SyncDisabledIcon)({
 
 const useStyles = makeStyles(({ spacing }) => ({
   controls: {
-    display: 'flex',
+    display: 'block',
     alignItems: 'center',
     paddingLeft: spacing(1),
-  },
-  playIcon: {
-    height: spacing(3),
-    width: spacing(3),
   },
 }))
 
