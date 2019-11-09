@@ -9,6 +9,7 @@ const useFullscreen = ({ dispatch, isFullscreen }) => {
     if (screenfull.isEnabled) {
       isFullscreen
         ? screenfull.isFullscreen || screenfull.request()
+          .catch(() => dispatch(configDisableFullscreen()))
         : screenfull.isFullscreen && screenfull.exit()
       return () => screenfull.exit()
     }
