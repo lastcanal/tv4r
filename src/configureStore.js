@@ -16,7 +16,7 @@ const devtools = window.__REDUX_DEVTOOLS_EXTENSION__
 const persistConfig = {
   key: 'rtv',
   storage,
-  whitelist: ['subreddits'],
+  whitelist: ['subreddits', 'config'],
 }
 
 const rootReducer = createRootReducer(history)

@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import { nextPost, mediaFallback } from '../actions'
 
-const styles = () => ({
+const styles = ({ palette }) => ({
   reactPlayer: {
     backgroundColor: 'black',
     zIndex: 40,
@@ -23,6 +23,25 @@ const styles = () => ({
     backgroundColor: 'black',
     transform: 'translate3d(0,0,1px)',
   },
+  error: {
+    height: ({ height }) => (
+      height
+    ),
+    backgroundColor: palette.background.default,
+    top: 0,
+    botton: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    zIndex: 40,
+  },
+  fallbackLink: {
+    color: palette.text.primary,
+    fontSize: 60,
+    textDecoration: 'none',
+  },
+
 })
 
 const ImagePlayer = ({
@@ -74,10 +93,13 @@ const ImagePlayer = ({
     onLoad()
   }, [post])
 
-  if (!loading && isMediaFallback) {
-    return <div className={classes.playerWrapper}>
-      <h2>Error Loading Image.</h2>
-      <h5><a href={post.url}> Visit Image Directly </a></h5>
+  if (isMediaFallback) {
+    return <div className={classes.error}>
+      <h2>  Loading Embedded Image </h2>
+      <a className={classes.fallbackLink} href={post.url}>
+        Direct Link
+      </a>
+      <h5>via { post.domain }</h5>
     </div>
   }
 

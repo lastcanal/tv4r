@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import { nextPost, mediaFallback } from '../actions'
 
-const styles = () => ({
+const styles = ({ palette }) => ({
   playerWrapper: {
     height: ({ height }) => (
       height
@@ -19,6 +19,24 @@ const styles = () => ({
     backgroundColor: 'black',
     transform: 'translate3d(0,0,1px)',
   },
+  error: {
+    height: ({ height }) => (
+      height
+    ),
+    backgroundColor: palette.background.default,
+    top: 0,
+    botton: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    zIndex: 40,
+  },
+  fallbackLink: {
+    color: palette.text.primary,
+    fontSize: 60,
+    textDecoration: 'none',
+  },
 })
 
 const WebPagePlayer = ({
@@ -30,7 +48,7 @@ const WebPagePlayer = ({
   classes,
 }) => {
 
-  const [loading, setLoading] = useState(true)
+  const [ref, setRef] = useState(null)
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -40,26 +58,35 @@ const WebPagePlayer = ({
     return () => clearTimeout(timeout)
   }, [post, isAutoPlay])
 
-  const onLoad = () => { setLoading(false) }
-
   const onError = (error) => {
-    setLoading(false)
     dispatch(mediaFallback(error))
   }
 
-  useEffect(() => {
-    setLoading(true)
-  }, [post])
+  const onLoad = () => {
+    if (ref) {
+      try {
+        if (!ref.contentWindow.location.href) {
+          onError()
+        }
+      } catch (e) {
+        onError()
+      }
+    }
+  }
 
-  if (!loading && isMediaFallback) {
-    return <div className={classes.playerWrapper}>
-      <h2>Error Loading WebPage.</h2>
-      <h5><a href={post.url}> Visit Webpage Directly </a></h5>
+  if (isMediaFallback) {
+    return <div className={classes.error}>
+      <h3> Failed to load embedded web page </h3>
+      <a className={classes.fallbackLink} href={post.url}>
+        Direct Link
+      </a>
+      <h5>via { post.domain }</h5>
     </div>
   }
 
   return <div className={classes.playerWrapper}>
     <iframe
+      ref={(iframe) => setRef(iframe)}
       src={post.url}
       height={height}
       width={window.innerWidth}
@@ -93,6 +120,7 @@ const mapStateToProps = state => {
     dispatch,
     isFetching,
     post: selectedPost.post,
+    isMediaFallback: selectedPost.media_fallback,
     isFullsceen,
     isAutoPlay,
   }
