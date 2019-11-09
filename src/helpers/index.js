@@ -1,4 +1,5 @@
 import { matchPath } from 'react-router-dom'
+import ReactPlayer from 'react-player'
 
 import { MEDIA_VIDEO, MEDIA_IMAGE } from '../constants'
 
@@ -46,7 +47,11 @@ export function filterVideoImage (posts) {
 
 export function isVideo (post) {
   const media = post.secure_media || post.media
-  return (post.is_video || media?.oembed?.type === 'video')
+  return (
+    post.is_video ||
+    media?.oembed?.type === 'video' ||
+    ReactPlayer.canPlay(post.url)
+  )
 }
 export function isImage (post) {
   return !!(

@@ -25,12 +25,7 @@ const Title = ({ post }) => {
 
   return (
     <div className={classes.root}>
-      {post && <a
-        className={classes.title}
-        target="_BLANK"
-        rel="noopener noreferrer"
-        href={'https://reddit.com' + post.permalink}
-      >
+      {post && <a className={classes.title} href={post.url}>
         {post.title ? post.title : <Skeleton />}
       </a>
       }

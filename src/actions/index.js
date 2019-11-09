@@ -331,15 +331,11 @@ export const configToggleShowImages = () => (dispatch, getState) => {
   const action = {
     type: TOGGLE_SHOW_IMAGES,
     post,
-    showImages: !showImages,
-    showVideos: showVideos === !showImages
-      ? true
-      : showVideos,
   }
   const posts = mediaSelector({
     posts: items,
-    showImages: action.showImages,
-    showVideos: action.showVideos,
+    showImages: !showImages,
+    showVideos,
   })
   return dispatch({ ...action, posts })
 }
@@ -352,15 +348,11 @@ export const configToggleShowVideos = () => (dispatch, getState) => {
   const action = {
     type: TOGGLE_SHOW_VIDEOS,
     post,
-    showVideos: !showVideos,
-    showImages: showImages === !showVideos
-      ? true
-      : showImages,
   }
   const posts = mediaSelector({
     posts: items,
-    showImages: action.showImages,
-    showVideos: action.showVideos,
+    showImages,
+    showVideos: !showVideos,
   })
   return dispatch({ ...action, posts })
 }

@@ -106,9 +106,11 @@ const Posts = ({ posts, selected, classes, dispatch }) => {
             ref={node => (post ? (refs['post-' + post.id] = node) : '')}
             onClick={onSelectPost.bind(this, post, index)}
           >
-            {post
+            {post && post.thumbnail
               ? <img src={post.thumbnail} alt={post.title} />
-              : <Skeleton variant="rect" />
+              : post && post.title
+                ? ''
+                : <Skeleton variant="rect" />
             }
             <GridListTileBar
               title={post ? post.title : <Skeleton />}

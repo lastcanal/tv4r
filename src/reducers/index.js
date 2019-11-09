@@ -347,11 +347,14 @@ const config = (state = DEFAULT_CONFIG, action) => {
         themeMode: state.themeMode === 'dark' ? 'light' : 'dark',
       }
     case TOGGLE_SHOW_IMAGES:
+      return {
+        ...state,
+        showImages: !state.showImages,
+      }
     case TOGGLE_SHOW_VIDEOS:
       return {
         ...state,
-        showVideos: action.showVideos,
-        showImages: action.showImages,
+        showVideos: !state.showVideos,
       }
     case PLAYER_VOLUME_UP:
       return {

@@ -6,10 +6,6 @@ import { withStyles } from '@material-ui/core/styles'
 import { nextPost, mediaFallback } from '../actions'
 
 const styles = () => ({
-  reactPlayer: {
-    backgroundColor: 'black',
-    zIndex: 40,
-  },
   playerWrapper: {
     height: ({ height }) => (
       height
@@ -25,7 +21,7 @@ const styles = () => ({
   },
 })
 
-const ImagePlayer = ({
+const WebPagePlayer = ({
   height,
   post,
   isAutoPlay,
@@ -35,7 +31,6 @@ const ImagePlayer = ({
 }) => {
 
   const [loading, setLoading] = useState(true)
-  const [url, setUrl] = useState(post.thumbnail)
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -45,24 +40,7 @@ const ImagePlayer = ({
     return () => clearTimeout(timeout)
   }, [post, isAutoPlay])
 
-  const onLoad = () => {
-    let decodedUrl = null
-    if (post.preview?.enabled) {
-      const parser = new DOMParser()
-      const images = post.preview.images[0].resolutions
-      const selectedImage = images.find((image) => image.height >= height) || {}
-      const newUrl = selectedImage.url || images[images.length - 1]?.url
-      if (newUrl) {
-        decodedUrl = parser.parseFromString(newUrl, 'text/html')
-          .body.textContent
-      }
-    }
-
-    const target = decodedUrl || post.url
-
-    setUrl(target)
-    setLoading(target !== url)
-  }
+  const onLoad = () => { setLoading(false) }
 
   const onError = (error) => {
     setLoading(false)
@@ -71,36 +49,32 @@ const ImagePlayer = ({
 
   useEffect(() => {
     setLoading(true)
-    onLoad()
   }, [post])
 
   if (!loading && isMediaFallback) {
     return <div className={classes.playerWrapper}>
-      <h2>Error Loading Image.</h2>
-      <h5><a href={post.url}> Visit Image Directly </a></h5>
+      <h2>Error Loading WebPage.</h2>
+      <h5><a href={post.url}> Visit Webpage Directly </a></h5>
     </div>
   }
 
   return <div className={classes.playerWrapper}>
-    <img
-      src={url}
+    <iframe
+      src={post.url}
       height={height}
-      style={{
-        opacity: loading ? 0.5 : 1,
-        transition: 'opacity 1s',
-      }}
+      width={window.innerWidth}
       onLoad={onLoad}
       onError={onError}
     />
   </div>
 }
 
-ImagePlayer.propTypes = {
+WebPagePlayer.propTypes = {
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func,
   error: PropTypes.object,
-  isFetching: PropTypes.bool,
   isMediaFallback: PropTypes.bool,
+  isFetching: PropTypes.bool,
   isAutoPlay: PropTypes.bool,
   height: PropTypes.number,
   post: PropTypes.object,
@@ -119,11 +93,11 @@ const mapStateToProps = state => {
     dispatch,
     isFetching,
     post: selectedPost.post,
-    isMediaFallback: selectedPost.media_fallback,
     isFullsceen,
     isAutoPlay,
   }
 }
 
-export default ImagePlayer |> connect(mapStateToProps) |> withStyles(styles)
+export default WebPagePlayer |> connect(mapStateToProps) |> withStyles(styles)
+
 

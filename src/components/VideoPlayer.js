@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useMemo } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
@@ -93,10 +93,13 @@ const VideoPlayer = ({
     dispatch(playerJumpAck())
   }, [jump])
 
-  const renderMediaPlayer = () => {
+  const url = useMemo(() => (
     // eslint-disable-next-line camelcase
-    const url = (post.secure_media?.reddit_video?.fallback_url || post.url)
+    (post.secure_media?.reddit_video?.fallback_url || post.url)
       .replace(/\.gifv/, '.mp4')
+  ), [post])
+
+  const renderMediaPlayer = () => {
     return <div className={classes.playerWrapper}>
       <ReactPlayer
         ref={playerRef}
