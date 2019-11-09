@@ -14,6 +14,8 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow'
 import StopIcon from '@material-ui/icons/Stop'
 import SyncIcon from '@material-ui/icons/Sync'
 import SyncDisabledIcon from '@material-ui/icons/SyncDisabled'
+import PhotoSizeSelectActualIcon from '@material-ui/icons/PhotoSizeSelectActual'
+import MovieIcon from '@material-ui/icons/Movie'
 
 import {
   fetchPostsIfNeeded,
@@ -24,6 +26,8 @@ import {
   configToggleAutoAdvance,
   configTogglePlay,
   configToggleThemeMode,
+  configToggleShowVideos,
+  configToggleShowImages,
 } from '../actions'
 
 const AutoPlayOnIcon = styled(SyncIcon)({
@@ -54,6 +58,8 @@ const Controls = ({
   isAutoAdvance,
   isPlaying,
   themeMode,
+  showVideos,
+  showImages,
 }) => {
   const handleRefreshClick = _e => {
     dispatch(invalidateSubreddit(selectedSubreddit))
@@ -64,6 +70,28 @@ const Controls = ({
 
   return (
     <div className={classes.controls}>
+      <Tooltip title="Show Images">
+        <IconButton
+          aria-label="Show Image"
+          color="inherit"
+          onClick={() => dispatch(configToggleShowImages())}
+        >
+          <PhotoSizeSelectActualIcon
+            style={{ opacity: showImages ? 1 : 0.5 }}
+          />
+        </IconButton>
+      </Tooltip>
+      <Tooltip title="Show Videos">
+        <IconButton
+          aria-label="Show Videos"
+          color="inherit"
+          onClick={() => dispatch(configToggleShowVideos())}
+        >
+          <MovieIcon
+            style={{ opacity: showVideos ? 1 : 0.5 }}
+          />
+        </IconButton>
+      </Tooltip>
       <Tooltip title="Refresh Subreddit">
         <IconButton
           aria-label="refresh content"
@@ -140,6 +168,8 @@ Controls.propTypes = {
   isAutoAdvance: PropTypes.bool,
   isPlaying: PropTypes.bool,
   themeMode: PropTypes.string,
+  showVideos: PropTypes.bool,
+  showImages: PropTypes.bool,
 }
 
 const mapStateToProps = state => {

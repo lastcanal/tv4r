@@ -26,6 +26,8 @@ import {
   TOGGLE_AUTO_ADVANCE,
   TOGGLE_PLAY,
   TOGGLE_THEME_MODE,
+  TOGGLE_SHOW_IMAGES,
+  TOGGLE_SHOW_VIDEOS,
   ENABLE_KEYBORAD_CONTROLS,
   DISABLE_KEYBORAD_CONTROLS,
   PLAYER_VOLUME_UP,
@@ -38,7 +40,6 @@ import {
 } from '../constants'
 
 import {
-  filterPosts,
   matchRedditPath,
   findPostById,
   extractPost,
@@ -81,12 +82,12 @@ const selectedPosts = (
         error: null,
       }
     case RECEIVE_POSTS:
-      const items = filterPosts(action.posts)
+      const items = action.posts
       return {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        items: items,
+        items,
         comments: state.comments,
         lastUpdated: action.receivedAt,
       }
@@ -181,7 +182,6 @@ export const selectedPost = (state = {}, action) => {
     case NEXT_POST:
       const nextIndex = state.index + 1
       const nextPost = action.posts[nextIndex]
-
       return {
         ...state,
         index: nextPost ? nextIndex : 0,
@@ -218,6 +218,12 @@ export const selectedPost = (state = {}, action) => {
         ...state,
         post: { id: state.post ? state.post.id : null },
       }
+    case TOGGLE_SHOW_VIDEOS:
+    case TOGGLE_SHOW_IMAGES:
+      return {
+        ...state,
+        ...findPostById(action.post?.id, action.posts),
+      }
     default:
       return state
   }
@@ -235,6 +241,8 @@ export const postsBySubreddit = (state = { cursor: {} }, action) => {
     case REQUEST_REPLIES:
     case RECEIVE_REPLIES:
     case RECEIVE_REPLIES_ERROR:
+    case TOGGLE_SHOW_VIDEOS:
+    case TOGGLE_SHOW_IMAGES:
       return {
         ...state,
         [action.subreddit]: selectedPosts(state[action.subreddit], action),
@@ -299,6 +307,8 @@ const DEFAULT_CONFIG = {
   isAutoAdvance: false,
   themeMode: 'dark',
   keyboardControls: true,
+  showImages: true,
+  showVideos: true,
   volume: 1,
   scan: 0,
   jump: -1,
@@ -335,6 +345,13 @@ const config = (state = DEFAULT_CONFIG, action) => {
       return {
         ...state,
         themeMode: state.themeMode === 'dark' ? 'light' : 'dark',
+      }
+    case TOGGLE_SHOW_IMAGES:
+    case TOGGLE_SHOW_VIDEOS:
+      return {
+        ...state,
+        showVideos: action.showVideos,
+        showImages: action.showImages,
       }
     case PLAYER_VOLUME_UP:
       return {

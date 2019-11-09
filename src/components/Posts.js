@@ -10,6 +10,7 @@ import debounce from 'lodash.debounce'
 
 import { selectPost } from '../actions'
 import { contrastColor } from '../helpers'
+import { mediaSelector } from '../selectors'
 
 import { THUMBNAIL_HEIGHT, THUMBNAIL_WIDTH } from '../constants'
 
@@ -132,7 +133,7 @@ Posts.propTypes = {
 
 const mapStateToProps = state => {
   const { dispatch, selectedSubreddit, postsBySubreddit, config } = state
-  const { themeMode } = config
+  const { themeMode, showImages, showVideos } = config
   const selectedPost = postsBySubreddit.cursor || {}
   const { items: posts } = postsBySubreddit[selectedSubreddit] || {
     items: [],
@@ -140,11 +141,11 @@ const mapStateToProps = state => {
 
   return {
     dispatch,
-    posts,
+    posts: mediaSelector({ posts, showImages, showVideos }),
     selected: selectedPost,
     visible: true,
     themeMode,
   }
 }
 
-export default Posts |> connect(mapStateToProps) |> withStyles(styles)
+export default Posts |> withStyles(styles) |> connect(mapStateToProps)

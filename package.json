@@ -39,6 +39,7 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "remote-redux-devtools": "^0.5.16",
+    "reselect": "^4.0.0",
     "screenfull": "^5.0.0"
   },
   "scripts": {

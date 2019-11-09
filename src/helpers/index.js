@@ -1,5 +1,8 @@
 import { matchPath } from 'react-router-dom'
+
 import { MEDIA_VIDEO, MEDIA_IMAGE } from '../constants'
+
+import { mediaSelector } from '../selectors'
 
 export const SUPPORTED_VIDEO_MEDIA = []
 export const SUPPORTED_IMAGE_MEDIA = []
@@ -16,7 +19,7 @@ export function extractPosts (json) {
     }, [])
 }
 
-export function filterPosts (posts, mediaType = MEDIA_VIDEO) {
+export function filterPosts (posts, mediaType) {
   switch (mediaType) {
     case MEDIA_VIDEO:
       return filterVideo(posts)
@@ -28,28 +31,26 @@ export function filterPosts (posts, mediaType = MEDIA_VIDEO) {
 }
 
 export function filterVideo (posts) {
-  return posts.filter(isVideo)
+  return posts?.filter(isVideo)
 }
 
 export function filterImage (posts) {
-  return posts.filter(isImage)
+  return posts?.filter(isImage)
 }
 
 export function filterVideoImage (posts) {
-  return posts.filter(function (post) {
-    return isVideo(post) || isImage(post)
+  return posts?.filter(function (post) {
+    return (isVideo(post) || isImage(post))
   })
 }
 
 export function isVideo (post) {
   const media = post.secure_media || post.media
-  return media?.oembed?.type === 'video'
-
+  return (post.is_video || media?.oembed?.type === 'video')
 }
 export function isImage (post) {
   return !!(
-    post?.thumbnail &&
-    !(post.thumbnail === 'self' || post.thumbnail === 'default')
+    !isVideo(post) && !post.is_video && post.preview?.enabled
   )
 }
 
@@ -92,7 +93,10 @@ export const extractPost = (state, action) => {
   if (action.index >= 0) {
     return { index: action.index, post: action.post }
   } else if (action.posts && state.post && state.post.id) {
-    return findPostById(state.post.id, action.posts)
+    return findPostById(
+      state.post.id,
+      mediaSelector(action)
+    )
   } else if (action.posts) {
     return { index: 0, post: action.posts[0] }
   } else {
@@ -128,5 +132,5 @@ export const muiThemeToRSTheme = ({ palette }) =>
   })
 
 export const contrastColor = (themeMode, { primary }) => (
-  primary[themeMode === 'dark' ? 'light' : 'dark']
+  themeMode === 'light' ? primary.dark : primary.light
 )

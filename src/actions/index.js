@@ -1,7 +1,8 @@
 import { batch } from 'react-redux'
 
-import { extractPosts, filterPosts, matchRedditPath } from '../helpers'
+import { extractPosts, matchRedditPath } from '../helpers'
 import reddit from '../helpers/reddit'
+import { mediaSelector } from '../selectors'
 
 import {
   SELECT_SUBREDDIT,
@@ -26,6 +27,8 @@ import {
   TOGGLE_PLAY,
   TOGGLE_AUTO_ADVANCE,
   TOGGLE_THEME_MODE,
+  TOGGLE_SHOW_IMAGES,
+  TOGGLE_SHOW_VIDEOS,
   ENABLE_KEYBORAD_CONTROLS,
   DISABLE_KEYBORAD_CONTROLS,
   PLAYER_VOLUME_UP,
@@ -57,13 +60,19 @@ export const requestPosts = subreddit => ({
   subreddit,
 })
 
-export const receivePosts = (subreddit, json) => ({
-  type: RECEIVE_POSTS,
-  subreddit,
-  posts: filterPosts(extractPosts(json)),
-  error: null,
-  receivedAt: Date.now(),
-})
+export const receivePosts = (subreddit, json) => (dispatch, getState) => {
+  const { config } = getState()
+  const { showVideos, showImages } = config
+  return dispatch({
+    type: RECEIVE_POSTS,
+    subreddit,
+    posts: extractPosts(json),
+    error: null,
+    receivedAt: Date.now(),
+    showVideos,
+    showImages,
+  })
+}
 
 export const receivePostsError = (subreddit, error) => ({
   type: RECEIVE_POSTS_ERROR,
@@ -78,18 +87,22 @@ export const selectPost = (post, index) => ({
 })
 
 export const nextPost = () => (dispatch, getState) => {
-  const { postsBySubreddit, selectedSubreddit } = getState()
+  const { postsBySubreddit, selectedSubreddit, config } = getState()
+  const { showImages, showVideos } = config
+  const posts = postsBySubreddit[selectedSubreddit]?.items
   return dispatch({
     type: NEXT_POST,
-    posts: postsBySubreddit[selectedSubreddit]?.items,
+    posts: mediaSelector({ posts, showImages, showVideos }),
   })
 }
 
 export const previousPost = () => (dispatch, getState) => {
-  const { postsBySubreddit, selectedSubreddit } = getState()
+  const { postsBySubreddit, selectedSubreddit, config } = getState()
+  const { showImages, showVideos } = config
+  const posts = postsBySubreddit[selectedSubreddit]?.items
   return dispatch({
     type: PREVIOUS_POST,
-    posts: postsBySubreddit[selectedSubreddit]?.items,
+    posts: mediaSelector({ posts, showImages, showVideos }),
   })
 }
 
@@ -309,3 +322,45 @@ export const enableKeyboardControls = () => ({
 export const disableKeyboardControls = () => ({
   type: DISABLE_KEYBORAD_CONTROLS,
 })
+
+export const configToggleShowImages = () => (dispatch, getState) => {
+  const { postsBySubreddit, selectedSubreddit, config } = getState()
+  const { showImages, showVideos } = config
+  const items = postsBySubreddit[selectedSubreddit]?.items
+  const { post } = postsBySubreddit.cursor
+  const action = {
+    type: TOGGLE_SHOW_IMAGES,
+    post,
+    showImages: !showImages,
+    showVideos: showVideos === !showImages
+      ? true
+      : showVideos,
+  }
+  const posts = mediaSelector({
+    posts: items,
+    showImages: action.showImages,
+    showVideos: action.showVideos,
+  })
+  return dispatch({ ...action, posts })
+}
+
+export const configToggleShowVideos = () => (dispatch, getState) => {
+  const { postsBySubreddit, selectedSubreddit, config } = getState()
+  const { showImages, showVideos } = config
+  const items = postsBySubreddit[selectedSubreddit]?.items
+  const { post } = postsBySubreddit.cursor
+  const action = {
+    type: TOGGLE_SHOW_VIDEOS,
+    post,
+    showVideos: !showVideos,
+    showImages: showImages === !showVideos
+      ? true
+      : showImages,
+  }
+  const posts = mediaSelector({
+    posts: items,
+    showImages: action.showImages,
+    showVideos: action.showVideos,
+  })
+  return dispatch({ ...action, posts })
+}

@@ -40,8 +40,7 @@ sit back and enjoy what the internet is watching.
 
 - [x] Watch reddit videos
 - [x] Read reddit comments
-- [ ] Look at reddit images and gifs
-- [ ] Listen to reddit audio
+- [x] Look at reddit images and gifs
 - [ ] Read from new, controversial, top, and rising
 - [ ] Load all videos by 'domain' (e.g. youtube.com)
 - [ ] Load subreddits from authenticated reddit profile

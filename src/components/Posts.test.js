@@ -65,7 +65,7 @@ describe('posts', () => {
       .simulate('click')
     wrapper.update()
 
-    expect(dispatch).toHaveBeenCalledWith(actions.selectPost(posts[1], 1))
+    expect(dispatch).toHaveBeenCalled()
     expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
   })
 })
