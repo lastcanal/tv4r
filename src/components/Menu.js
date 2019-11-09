@@ -30,7 +30,6 @@ const Menu = ({
   post,
   menuRef,
 }) => {
-
   return (
     <Container ref={menuRef} classes={classes} maxWidth={false}>
       <ToolBar>

@@ -10,17 +10,23 @@ const useLayoutDimensionTracker = ({ isFullscreen, isFetching }) => {
   const [orientation, setOrientation] = useState(0)
   const [screenHeight, setScreenHeight] = useState(window.innerHeight)
 
-  useLayoutEffect(() => {
+  const calculateMenuHeight = () => {
     const { current } = menuRef
     if (current) {
       const box = current.getBoundingClientRect()
-      setMenuHeight(box.height)
+      return box.height
+    } else {
+      return menuHeight
     }
+  }
+
+  useLayoutEffect(() => {
+    setMenuHeight(calculateMenuHeight())
   }, [menuRef, orientation])
 
   useEffect(() => {
     setMenuOffsetHeight(isFullscreen ? 0 : menuHeight)
-  }, [isFullscreen, menuHeight, orientation])
+  }, [screenHeight, menuHeight, orientation])
 
   const calculateHeight = () => (
     window.innerHeight - menuOffsetHeight
@@ -28,7 +34,7 @@ const useLayoutDimensionTracker = ({ isFullscreen, isFetching }) => {
 
   useLayoutEffect(() => {
     setPlayerHeight(calculateHeight())
-  }, [menuOffsetHeight, orientation])
+  }, [isFullscreen, screenHeight, menuOffsetHeight, orientation])
 
   const isMobile = useMemo(() => (
     typeof window.orientation !== 'undefined' ||
@@ -40,8 +46,8 @@ const useLayoutDimensionTracker = ({ isFullscreen, isFetching }) => {
     const newHeight = window.innerHeight
     const delta = Math.abs(screenHeight - newHeight)
     if (!isMobile || (delta > 100)) {
-      setPlayerHeight(calculateHeight())
       setScreenHeight(newHeight)
+      setMenuHeight(calculateMenuHeight())
     }
   }, 100)
 
@@ -64,7 +70,8 @@ const useLayoutDimensionTracker = ({ isFullscreen, isFetching }) => {
   }, [])
 
   useEffect(() => {
-    setPlayerHeight(calculateHeight())
+    setScreenHeight(window.innnerHeight)
+    setMenuHeight(calculateMenuHeight())
   }, [isFullscreen, isFetching])
 
   return [playerHeight, menuRef]

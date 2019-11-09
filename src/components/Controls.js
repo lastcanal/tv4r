@@ -42,6 +42,8 @@ const useStyles = makeStyles(({ spacing }) => ({
   controls: {
     display: 'flex',
     alignItems: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     paddingLeft: spacing(1),
   },
   playIcon: {
