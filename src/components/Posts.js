@@ -7,6 +7,7 @@ import GridListTile from '@material-ui/core/GridListTile'
 import GridListTileBar from '@material-ui/core/GridListTileBar'
 import Skeleton from '@material-ui/lab/Skeleton'
 import debounce from 'lodash.debounce'
+import ChromeReaderModeIcon from '@material-ui/icons/ChromeReaderMode'
 
 import { selectPost } from '../actions'
 import { contrastColor } from '../helpers'
@@ -38,6 +39,12 @@ const styles = ({ spacing, palette }) => ({
     ),
     display: 'block',
   },
+  postText: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
 })
 
 const classNameForTile = (selected, post, classes) => {
@@ -45,6 +52,23 @@ const classNameForTile = (selected, post, classes) => {
     return classes.tile
   } else {
     return `${classes.tile} ${classes.selected}`
+  }
+}
+
+
+const Thumbnail = ({ post }) => {
+  if (post && post.thumbnail && post.thumbnail !== 'self') {
+    return <img src={post.thumbnail} alt={post.title} />
+  } else if (post && post.title) {
+    return <ChromeReaderModeIcon
+      fontSize="large"
+      style={{
+        height: THUMBNAIL_HEIGHT / 2,
+        width: THUMBNAIL_WIDTH,
+      }}
+    />
+  } else {
+    return <Skeleton variant="rect" />
   }
 }
 
@@ -106,12 +130,7 @@ const Posts = ({ posts, selected, classes, dispatch }) => {
             ref={node => (post ? (refs['post-' + post.id] = node) : '')}
             onClick={onSelectPost.bind(this, post, index)}
           >
-            {post && post.thumbnail
-              ? <img src={post.thumbnail} alt={post.title} />
-              : post && post.title
-                ? ''
-                : <Skeleton variant="rect" />
-            }
+            <Thumbnail post={post} />
             <GridListTileBar
               title={post ? post.title : <Skeleton />}
               classes={{

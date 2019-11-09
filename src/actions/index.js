@@ -164,6 +164,14 @@ export const loadSubreddit = subreddit => (dispatch) => {
   })
 }
 
+export const refreshSubreddit = () => (dispatch, getState) => {
+  const { selectedSubreddit } = getState()
+  batch(() => {
+    dispatch(invalidateSubreddit(selectedSubreddit))
+    dispatch(fetchPostsIfNeeded(selectedSubreddit))
+  })
+}
+
 const requestComments = (post, subreddit) => ({
   type: REQUEST_COMMENTS,
   post,
@@ -230,7 +238,6 @@ const receiveRepliesError = (post, subreddit, parentId, error) => ({
   error,
   parentId,
 })
-
 
 const fetchReplies = (post, selectedSubreddit, parentId) => dispatch => {
   dispatch(requestReplies(post, selectedSubreddit, parentId))

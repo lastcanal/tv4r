@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import ReactHtmlParser from 'react-html-parser'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
@@ -62,6 +62,17 @@ const Reply = ({ reply, depth, dispatch, comments, classes }) => {
     setShow(false)
   }
 
+  const selfTextContent = () => {
+    return new DOMParser().parseFromString(
+      data.selftext_html,
+      'text/html',
+    ).documentElement.textContent
+  }
+
+  const renderSelfText = () => {
+    return ReactHtmlParser(selfTextContent())
+  }
+
   switch (reply.kind) {
     case 'more':
       const parentId = reply.data.parent_id
@@ -107,6 +118,7 @@ const Reply = ({ reply, depth, dispatch, comments, classes }) => {
           href={postURL(reply.data.permalink, 'html')}
         >
           <h2>{data.title}</h2>
+          {renderSelfText()}
         </a>
         {data.selfText}
       </div>

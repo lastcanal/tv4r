@@ -18,8 +18,6 @@ import PhotoSizeSelectActualIcon from '@material-ui/icons/PhotoSizeSelectActual'
 import MovieIcon from '@material-ui/icons/Movie'
 
 import {
-  fetchPostsIfNeeded,
-  invalidateSubreddit,
   nextPost,
   previousPost,
   configToggleFullscreen,
@@ -28,6 +26,7 @@ import {
   configToggleThemeMode,
   configToggleShowVideos,
   configToggleShowImages,
+  refreshSubreddit,
 } from '../actions'
 
 const AutoPlayOnIcon = styled(SyncIcon)({
@@ -41,8 +40,7 @@ const AutoPlayOffIcon = styled(SyncDisabledIcon)({
 const useStyles = makeStyles(({ spacing }) => ({
   controls: {
     display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    alignItems: 'center',
     paddingLeft: spacing(1),
   },
   playIcon: {
@@ -51,10 +49,63 @@ const useStyles = makeStyles(({ spacing }) => ({
   },
 }))
 
+export const ShowImagesControl = ({ showImages, onClick }) => (
+  <Tooltip title="Filter Images">
+    <IconButton
+      aria-label="Filter Images"
+      color="inherit"
+      onClick={onClick}
+    >
+      <PhotoSizeSelectActualIcon
+        style={{ opacity: showImages ? 1 : 0.5 }}
+      />
+    </IconButton>
+  </Tooltip>
+)
+
+ShowImagesControl.propTypes = {
+  showImages: PropTypes.bool,
+  onClick: PropTypes.func,
+}
+
+export const ShowVideosControl = ({ showVideos, onClick }) => (
+  <Tooltip title="Filter Videos">
+    <IconButton
+      aria-label="Filter Videos"
+      color="inherit"
+      onClick={onClick}
+    >
+      <MovieIcon
+        style={{ opacity: showVideos ? 1 : 0.5 }}
+      />
+    </IconButton>
+  </Tooltip>
+)
+
+ShowVideosControl.propTypes = {
+  showVideos: PropTypes.bool,
+  onClick: PropTypes.func,
+}
+
+export const RefreshControl = ({ onClick }) => (
+  <Tooltip title="Refresh Subreddit">
+    <IconButton
+      aria-label="refresh content"
+      color="inherit"
+      onClick={onClick}
+    >
+      <RefreshIcon />
+    </IconButton>
+  </Tooltip>
+)
+
+RefreshControl.propTypes = {
+  onClick: PropTypes.func,
+}
+
 const Controls = ({
   dispatch,
   posts,
-  selectedSubreddit,
   isFullscreen,
   isAutoAdvance,
   isPlaying,
@@ -62,46 +113,19 @@ const Controls = ({
   showVideos,
   showImages,
 }) => {
-  const handleRefreshClick = _e => {
-    dispatch(invalidateSubreddit(selectedSubreddit))
-    dispatch(fetchPostsIfNeeded(selectedSubreddit))
-  }
-
   const classes = useStyles()
 
   return (
     <div className={classes.controls}>
-      <Tooltip title="Show Images">
-        <IconButton
-          aria-label="Show Image"
-          color="inherit"
-          onClick={() => dispatch(configToggleShowImages())}
-        >
-          <PhotoSizeSelectActualIcon
-            style={{ opacity: showImages ? 1 : 0.5 }}
-          />
-        </IconButton>
-      </Tooltip>
-      <Tooltip title="Show Videos">
-        <IconButton
-          aria-label="Show Videos"
-          color="inherit"
-          onClick={() => dispatch(configToggleShowVideos())}
-        >
-          <MovieIcon
-            style={{ opacity: showVideos ? 1 : 0.5 }}
-          />
-        </IconButton>
-      </Tooltip>
-      <Tooltip title="Refresh Subreddit">
-        <IconButton
-          aria-label="refresh content"
-          color="inherit"
-          onClick={handleRefreshClick}
-        >
-          <RefreshIcon />
-        </IconButton>
-      </Tooltip>
+      <ShowImagesControl
+        showImages={showImages}
+        onClick={() => dispatch(configToggleShowImages())}
+      />
+      <ShowVideosControl
+        showVideos={showVideos}
+        onClick={() => dispatch(configToggleShowVideos())}
+      />
+      <RefreshControl onClick={() => dispatch(refreshSubreddit())} />
       <Tooltip
         title={`Switch to ${themeMode === 'dark' ? 'Light' : 'Dark'} theme`}
       >
@@ -182,7 +206,6 @@ const mapStateToProps = state => {
   }
 
   return {
-    selectedSubreddit,
     posts,
     ...config,
   }
