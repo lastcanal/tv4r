@@ -19,6 +19,9 @@ const styles = ({ palette, spacing }) => ({
   },
   selfPostBody: {
     margin: spacing(1),
+    '& a': {
+      color: palette.text.primary,
+    },
   },
   commentAuthor: {
     margin: spacing(1),
@@ -118,8 +121,8 @@ const Reply = ({ reply, depth, dispatch, comments, classes }) => {
           href={postURL(reply.data.permalink, 'html')}
         >
           <h2>{data.title}</h2>
-          {renderSelfText()}
         </a>
+        {renderSelfText()}
         {data.selfText}
       </div>
     default:
