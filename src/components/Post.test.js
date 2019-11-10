@@ -23,7 +23,8 @@ describe('post', () => {
     const store = mockStore({
       postsBySubreddit: {
         foo: {
-          items: [post],
+          scope: 'hot',
+          hot: [post],
           isFetching: false,
           didInvalidate: false,
         },
@@ -59,7 +60,8 @@ describe('post', () => {
     const store = mockStore({
       postsBySubreddit: {
         foo: {
-          items: [post],
+          scope: 'hot',
+          hot: [post],
           isFetching: false,
           didInvalidate: false,
         },
@@ -91,7 +93,8 @@ describe('post', () => {
     const store = mockStore({
       postsBySubreddit: {
         foo: {
-          items: [post],
+          scope: 'hot',
+          hot: [post],
           isFetching: false,
           didInvalidate: false,
         },
@@ -113,7 +116,8 @@ describe('post', () => {
     const store = mockStore({
       postsBySubreddit: {
         foo: {
-          items: [],
+          scope: 'hot',
+          hot: [],
           isFetching: true,
           didInvalidate: false,
         },
@@ -145,7 +149,8 @@ describe('post', () => {
     const store = mockStore({
       postsBySubreddit: {
         foo: {
-          items: [post1, post2],
+          scope: 'hot',
+          hot: [post1, post2],
           isFetching: false,
           didInvalidate: false,
         },
@@ -173,7 +178,8 @@ describe('post', () => {
     const store = mockStore({
       postsBySubreddit: {
         foo: {
-          items: [post],
+          scope: 'hot',
+          hot: [post],
           isFetching: true,
           didInvalidate: true,
         },

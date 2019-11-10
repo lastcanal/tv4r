@@ -57,7 +57,9 @@ const classNameForTile = (selected, post, classes) => {
 
 
 const Thumbnail = ({ post }) => {
-  if (post && post.thumbnail && post.thumbnail !== 'self') {
+  if (post && post.thumbnail && post.thumbnail === 'nsfw') {
+    return <h2>**** NSFW ****</h2>
+  } else if (post && post.thumbnail && post.thumbnail !== 'self') {
     return <img src={post.thumbnail} alt={post.title} />
   } else if (post && post.title) {
     return <ChromeReaderModeIcon
@@ -156,10 +158,8 @@ const mapStateToProps = state => {
   const { dispatch, selectedSubreddit, postsBySubreddit, config } = state
   const { themeMode, showImages, showVideos } = config
   const selectedPost = postsBySubreddit.cursor || {}
-  const { items: posts } = postsBySubreddit[selectedSubreddit] || {
-    items: [],
-  }
-
+  const subreddit = postsBySubreddit[selectedSubreddit]
+  const posts = subreddit?.[subreddit?.scope] || []
   return {
     dispatch,
     posts: mediaSelector({ posts, showImages, showVideos }),

@@ -37,7 +37,7 @@ const AutoPlayOffIcon = styled(SyncDisabledIcon)({
   transform: 'scale(-1, 1) rotate(-90deg)',
 })
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(({ breakpoints }) => ({
   controls: {
     width: '100%',
     display: 'flex',
@@ -45,6 +45,9 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
     overflow: 'auto',
     marginBottom: 0,
+    [breakpoints.up('md')]: {
+      justifyContent: 'flex-end',
+    },
   },
 }))
 
@@ -198,11 +201,8 @@ Controls.propTypes = {
 
 const mapStateToProps = state => {
   const { selectedSubreddit, postsBySubreddit, config } = state
-  const { items: posts } = postsBySubreddit[
-    selectedSubreddit
-  ] || {
-    items: [],
-  }
+  const subreddit = postsBySubreddit[selectedSubreddit]
+  const posts = subreddit?.[subreddit?.scope]
 
   return {
     posts,

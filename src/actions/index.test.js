@@ -35,6 +35,7 @@ describe('actions', () => {
         const action = {
           type: types.REQUEST_POSTS,
           subreddit,
+          scope: 'hot',
         }
 
         expect(actions.requestPosts(subreddit)).toStrictEqual(action)
@@ -52,11 +53,11 @@ describe('actions', () => {
           fc.array(fc.object(), 100),
           (subreddit, objects) => {
             fetch.mockResponseOnce(JSON.stringify(objects))
-            const dispatch = jest.fn((fn) => {
-              typeof (fn) === 'function' ? fn(dispatch) : null
-            })
             const getState = jest.fn(() => {
-              return { postsBySubreddit: {} }
+              return { postsBySubreddit: { [subreddit]: { scope: 'hot' } } }
+            })
+            const dispatch = jest.fn((fn) => {
+              typeof (fn) === 'function' ? fn(dispatch, getState) : null
             })
             actions.fetchPostsIfNeeded(subreddit)(dispatch, getState)
             expect(getState).toHaveBeenCalled()
@@ -80,7 +81,8 @@ describe('actions', () => {
             const getState = jest.fn(() => {
               const state = { postsBySubreddit: {} }
               state.postsBySubreddit[subreddit] = {
-                items: objects,
+                scope: 'hot',
+                hot: objects,
                 isFetching: false,
                 didInvalidate: false,
               }
@@ -108,7 +110,8 @@ describe('actions', () => {
             const getState = jest.fn(() => {
               const state = { postsBySubreddit: {} }
               state.postsBySubreddit[subreddit] = {
-                items: [],
+                scope: 'hot',
+                hot: [],
                 isFetching: true,
                 didInvalidate: false,
               }
@@ -127,7 +130,8 @@ describe('actions', () => {
     const state = (post, index = 0) => ({
       postsBySubreddit: {
         foo: {
-          items: [post],
+          scope: 'hot',
+          hot: [post],
         },
         cursor: {
           index,

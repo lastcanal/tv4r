@@ -36,7 +36,7 @@ const Menu = ({
   const largeScreen = useMediaQuery(theme.breakpoints.up('md'))
   return (
     <Container ref={menuRef} classes={classes} maxWidth={false}>
-      <ToolBar>
+      <ToolBar stype={{ overflow: 'auto' }}>
         <SubredditPicker />
         <SubredditScopePicker />
         {largeScreen ? <Controls /> : ''}

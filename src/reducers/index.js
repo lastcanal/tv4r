@@ -5,6 +5,7 @@ import {
   SELECT_SUBREDDIT,
   INVALIDATE_SUBREDDIT,
   REMOVE_SUBREDDIT,
+  SELECT_SUBREDDIT_SCOPE,
   REQUEST_POSTS,
   RECEIVE_POSTS,
   RECEIVE_POSTS_ERROR,
@@ -63,8 +64,13 @@ const selectedPosts = (
   state = {
     isFetching: false,
     didInvalidate: false,
-    items: [],
     comments: {},
+    scope: 'hot',
+    hot: [],
+    new: [],
+    controversial: [],
+    top: [],
+    rising: [],
   },
   action,
 ) => {
@@ -73,6 +79,11 @@ const selectedPosts = (
       return {
         ...state,
         didInvalidate: true,
+      }
+    case SELECT_SUBREDDIT_SCOPE:
+      return {
+        ...state,
+        scope: action.scope,
       }
     case REQUEST_POSTS:
       return {
@@ -87,7 +98,7 @@ const selectedPosts = (
         ...state,
         isFetching: false,
         didInvalidate: false,
-        items,
+        [action.scope]: items,
         comments: state.comments,
         lastUpdated: action.receivedAt,
       }
@@ -96,7 +107,7 @@ const selectedPosts = (
         ...state,
         isFetching: false,
         didInvalidate: false,
-        items: [],
+        [action.scope]: [],
         error: action.error,
       }
     case LOCATION_CHANGE:
@@ -109,7 +120,6 @@ const selectedPosts = (
         ...state,
         didInvalidate,
         isFetching: false,
-        items: state.items || [],
         error: null,
       }
     case REQUEST_COMMENTS:
@@ -224,6 +234,10 @@ export const selectedPost = (state = {}, action) => {
         ...state,
         ...findPostById(action.post?.id, action.posts),
       }
+    case SELECT_SUBREDDIT_SCOPE:
+      return {
+        ...state,
+      }
     default:
       return state
   }
@@ -243,6 +257,7 @@ export const postsBySubreddit = (state = { cursor: {} }, action) => {
     case RECEIVE_REPLIES_ERROR:
     case TOGGLE_SHOW_VIDEOS:
     case TOGGLE_SHOW_IMAGES:
+    case SELECT_SUBREDDIT_SCOPE:
       return {
         ...state,
         [action.subreddit]: selectedPosts(state[action.subreddit], action),
@@ -258,7 +273,7 @@ export const postsBySubreddit = (state = { cursor: {} }, action) => {
       }
     case LOCATION_CHANGE:
       const subreddit = getNewSubredditFromPath(null, action)
-      const posts = state[subreddit] ? state[subreddit].items : []
+      const posts = state[subreddit] ? state[subreddit][state.scope] : []
       if (subreddit) {
         return {
           ...state,

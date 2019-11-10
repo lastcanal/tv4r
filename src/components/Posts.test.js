@@ -8,8 +8,21 @@ describe('posts', () => {
   const posts = [{ id: 1 }, { id: 2 }]
 
   it('should render empty Posts', () => {
+    const store = mockStore({
+      postsBySubreddit: {
+        foo: {
+          scope: 'hot',
+          hot: [],
+          isFetching: false,
+          didInvalidate: false,
+        },
+      },
+      selectedSubreddit: 'foo',
+      selectedPost: {  },
+    })
+
     const wrapper = mount(
-      <Provider store={makeStore()}>
+      <Provider store={store}>
         <Posts />
       </Provider>
     )
@@ -21,7 +34,8 @@ describe('posts', () => {
     const store = mockStore({
       postsBySubreddit: {
         foo: {
-          items: posts,
+          scope: 'hot',
+          hot: posts,
           isFetching: false,
           didInvalidate: false,
         },
@@ -44,7 +58,8 @@ describe('posts', () => {
     const store = mockStore({
       postsBySubreddit: {
         foo: {
-          items: posts,
+          scope: 'hot',
+          hot: posts,
           isFetching: false,
           didInvalidate: false,
         },

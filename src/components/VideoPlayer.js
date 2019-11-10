@@ -145,7 +145,6 @@ const mapStateToProps = state => {
   const selectedPost = postsBySubreddit.cursor || {}
   const { isFetching } = postsBySubreddit[selectedSubreddit] || {
     isFetching: false,
-    items: null,
   }
 
   return {

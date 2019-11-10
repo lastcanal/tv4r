@@ -139,15 +139,9 @@ Reply.propTypes = {
 
 export const mapStateToProps = ({ postsBySubreddit, selectedSubreddit }) => {
   const { cursor } = postsBySubreddit
-  const {
-    items,
-    comments,
-  } = postsBySubreddit[selectedSubreddit] || {
-    items: [],
-    comments: {},
-  }
-
-  const post = items[cursor.index]
+  const subreddit = postsBySubreddit[selectedSubreddit]
+  const comments = subreddit.comments || {}
+  const post = subreddit[subreddit.scope][cursor.index]
   const commentsForPost = comments[post?.id]
 
   return {

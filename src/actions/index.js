@@ -8,6 +8,7 @@ import {
   SELECT_SUBREDDIT,
   INVALIDATE_SUBREDDIT,
   REMOVE_SUBREDDIT,
+  SELECT_SUBREDDIT_SCOPE,
   REQUEST_POSTS,
   RECEIVE_POSTS,
   RECEIVE_POSTS_ERROR,
@@ -55,24 +56,27 @@ export const removeSubreddit = subreddit => ({
   subreddit,
 })
 
-export const requestPosts = subreddit => ({
+export const requestPosts = (subreddit, scope = 'hot') => ({
   type: REQUEST_POSTS,
   subreddit,
+  scope,
 })
 
-export const receivePosts = (subreddit, json) => (dispatch, getState) => {
-  const { config } = getState()
-  const { showVideos, showImages } = config
-  return dispatch({
-    type: RECEIVE_POSTS,
-    subreddit,
-    posts: extractPosts(json),
-    error: null,
-    receivedAt: Date.now(),
-    showVideos,
-    showImages,
-  })
-}
+export const receivePosts = (subreddit, scope, json) =>
+  (dispatch, getState) => {
+    const { config } = getState()
+    const { showVideos, showImages } = config
+    return dispatch({
+      type: RECEIVE_POSTS,
+      subreddit,
+      posts: extractPosts(json),
+      error: null,
+      receivedAt: Date.now(),
+      showVideos,
+      showImages,
+      scope,
+    })
+  }
 
 export const receivePostsError = (subreddit, error) => ({
   type: RECEIVE_POSTS_ERROR,
@@ -89,7 +93,8 @@ export const selectPost = (post, index) => ({
 export const nextPost = () => (dispatch, getState) => {
   const { postsBySubreddit, selectedSubreddit, config } = getState()
   const { showImages, showVideos } = config
-  const posts = postsBySubreddit[selectedSubreddit]?.items
+  const subreddit = postsBySubreddit[selectedSubreddit]
+  const posts = subreddit?.[subreddit.scope]
   return dispatch({
     type: NEXT_POST,
     posts: mediaSelector({ posts, showImages, showVideos }),
@@ -99,7 +104,8 @@ export const nextPost = () => (dispatch, getState) => {
 export const previousPost = () => (dispatch, getState) => {
   const { postsBySubreddit, selectedSubreddit, config } = getState()
   const { showImages, showVideos } = config
-  const posts = postsBySubreddit[selectedSubreddit]?.items
+  const subreddit = postsBySubreddit[selectedSubreddit]
+  const posts = subreddit?.[subreddit.scope]
   return dispatch({
     type: PREVIOUS_POST,
     posts: mediaSelector({ posts, showImages, showVideos }),
@@ -110,24 +116,27 @@ export const mediaFallback = () => ({
   type: MEDIA_FALLBACK,
 })
 
-const fetchPosts = subreddit => dispatch => {
-  dispatch(requestPosts(subreddit))
+const fetchPosts = subreddit => (dispatch, getState) => {
+  const { postsBySubreddit } = getState()
+  const { scope } = postsBySubreddit[subreddit]
+  dispatch(requestPosts(subreddit, scope))
   return reddit
-    .fetchPosts(subreddit)
+    .fetchPosts(subreddit, scope)
     .then(response => response.json())
-    .then(response => dispatch(receivePosts(subreddit, response)))
+    .then(response => dispatch(receivePosts(subreddit, scope, response)))
     .catch(error => dispatch(receivePostsError(subreddit, error)))
 }
 
-const shouldFetchPosts = ({ postsBySubreddit }, subreddit) => {
-  const posts = postsBySubreddit[subreddit]
+const shouldFetchPosts = ({ postsBySubreddit }, selected) => {
+  const subreddit = postsBySubreddit[selected]
+  const posts = subreddit[subreddit.scope]
   if (!posts) {
     return true
   }
-  if (posts.isFetching) {
+  if (subreddit.isFetching) {
     return false
   }
-  return posts.didInvalidate
+  return subreddit.didInvalidate
 }
 
 export const fetchPostsIfNeeded = subreddit => (dispatch, getState) => {
@@ -136,13 +145,13 @@ export const fetchPostsIfNeeded = subreddit => (dispatch, getState) => {
   }
 }
 
-const shouldInvalidateSubreddit = ({ router, postsBySubreddit }, subreddit) => {
+const shouldInvalidateSubreddit = ({ router, postsBySubreddit }, selected) => {
   const match = matchRedditPath(router.location.pathname)
-  const posts = postsBySubreddit[subreddit]
+  const subreddit = postsBySubreddit[selected]
   return (
-    !posts ||
-    posts?.items?.length === 0 ||
-    (match?.subreddit === subreddit)
+    !subreddit ||
+    subreddit?.[subreddit.scope]?.length === 0 ||
+    (match?.subreddit === selected)
   )
 }
 
@@ -209,7 +218,9 @@ const fetchComments = (post, selectedSubreddit) => dispatch => {
 export const fetchCommentsIfNeeded = () => (dispatch, getState) => {
   const { postsBySubreddit, selectedSubreddit } = getState()
   const { index } = postsBySubreddit.cursor
-  const { items, comments } = postsBySubreddit[selectedSubreddit]
+  const subreddit = postsBySubreddit[selectedSubreddit]
+  const comments = subreddit.comments
+  const items = subreddit[subreddit.scope]
   const post = items[index]
   if (!comments?.[post?.id]) {
     dispatch(fetchComments(items[index], selectedSubreddit))
@@ -255,7 +266,9 @@ const fetchReplies = (post, selectedSubreddit, parentId) => dispatch => {
 export const fetchRepliesIfNeeded = ({ data }) => (dispatch, getState) => {
   const { postsBySubreddit, selectedSubreddit } = getState()
   const { index } = postsBySubreddit.cursor
-  const { items, comments } = postsBySubreddit[selectedSubreddit]
+  const subreddit = postsBySubreddit[selectedSubreddit]
+  const comments = subreddit.comments
+  const items = subreddit[subreddit.scope]
   const post = items[index]
   const commentsForPost = comments?.[post?.id] || {}
   const { groups: { parentId } } =
@@ -333,7 +346,8 @@ export const disableKeyboardControls = () => ({
 export const configToggleShowImages = () => (dispatch, getState) => {
   const { postsBySubreddit, selectedSubreddit, config } = getState()
   const { showImages, showVideos } = config
-  const items = postsBySubreddit[selectedSubreddit]?.items
+  const subreddit = postsBySubreddit[selectedSubreddit]
+  const items = subreddit[subreddit.scope]
   const { post } = postsBySubreddit.cursor
   const action = {
     type: TOGGLE_SHOW_IMAGES,
@@ -350,7 +364,8 @@ export const configToggleShowImages = () => (dispatch, getState) => {
 export const configToggleShowVideos = () => (dispatch, getState) => {
   const { postsBySubreddit, selectedSubreddit, config } = getState()
   const { showImages, showVideos } = config
-  const items = postsBySubreddit[selectedSubreddit]?.items
+  const subreddit = postsBySubreddit[selectedSubreddit]
+  const items = subreddit[subreddit.scope]
   const { post } = postsBySubreddit.cursor
   const action = {
     type: TOGGLE_SHOW_VIDEOS,
@@ -363,3 +378,16 @@ export const configToggleShowVideos = () => (dispatch, getState) => {
   })
   return dispatch({ ...action, posts })
 }
+
+export const selectSubredditScope = (subreddit, scope) => (dispatch) => {
+  return batch(() => {
+    dispatch({
+      type: SELECT_SUBREDDIT_SCOPE,
+      subreddit: subreddit,
+      scope,
+    })
+    dispatch(invalidateSubredditIfNeeded(subreddit))
+    dispatch(fetchPostsIfNeeded(subreddit))
+  })
+}
+

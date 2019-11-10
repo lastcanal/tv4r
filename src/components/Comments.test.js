@@ -10,7 +10,8 @@ describe('comments', () => {
         store={makeStore({
           postsBySubreddit: {
             foo: {
-              items: [],
+              scope: 'hot',
+              hot: [],
               comments: {},
               isFetching: false,
               didInvalidate: false,
@@ -32,7 +33,8 @@ describe('comments', () => {
     const store = mockStore({
       postsBySubreddit: {
         foo: {
-          items: [post],
+          scope: 'hot',
+          hot: [post],
           comments: {
             foo: {
               root: fixtures.postComments('bar'),

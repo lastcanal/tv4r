@@ -18,12 +18,14 @@ test('should render new subreddit', () => {
   const store = makeStore({
     postsBySubreddit: {
       foo: {
-        items: [],
+        scope: 'hot',
+        hot: [],
         isFetching: false,
         didInvalidate: false,
       },
       bar: {
-        items: [],
+        scope: 'hot',
+        hot: [],
         isFetching: false,
         didInvalidate: false,
       },

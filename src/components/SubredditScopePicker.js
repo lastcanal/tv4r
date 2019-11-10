@@ -8,6 +8,7 @@ import { muiThemeToRSTheme } from '../helpers'
 import {
   enableKeyboardControls,
   disableKeyboardControls,
+  selectSubredditScope,
 } from '../actions'
 
 import { makeSelectStyles } from './Picker'
@@ -28,13 +29,14 @@ const nameToOption = (name) => ({
   value: (name || '').toLowerCase(), label: name,
 })
 
-const SubredditScopePicker = ({ value, options, dispatch }) => {
+const SubredditScopePicker = ({
+  value, options, selectedSubreddit, dispatch }) => {
   const classes = useStyles()
   const theme = useTheme()
   const ref = useRef()
 
-  const changeSubredditScope = ({ _value }) => {
-    // dispatch(loadSubredditScope(value))
+  const changeSubredditScope = ({ value }) => {
+    dispatch(selectSubredditScope(selectedSubreddit, value))
     void ref.current?.blur()
   }
 
@@ -88,11 +90,13 @@ SubredditScopePicker.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   value: PropTypes.string,
   dispatch: PropTypes.func,
+  selectedSubreddit: PropTypes.string,
 }
 
-const mapStateToProps = ({ selectedSubredditScope }) => ({
-  value: selectedSubredditScope || 'New',
-  options: ['Hot', 'New', 'Controversial', 'Top', 'Rising'],
+const mapStateToProps = ({ selectedSubreddit, postsBySubreddit }) => ({
+  value: postsBySubreddit[selectedSubreddit]?.scope || 'hot',
+  options: ['hot', 'new', 'controversial', 'top', 'rising'],
+  selectedSubreddit,
 })
 
 export default SubredditScopePicker |> connect(mapStateToProps)

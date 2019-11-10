@@ -27,7 +27,8 @@ describe('controls', () => {
         selectdSubreddit: 'foo',
         postsBySubreddit: {
           foo: {
-            items: posts,
+            scope: 'hot',
+            hot: posts,
           },
         },
       }),
@@ -51,7 +52,8 @@ describe('controls', () => {
         selectdSubreddit: 'foo',
         postsBySubreddit: {
           foo: {
-            items: posts,
+            scope: 'hot',
+            hot: posts,
           },
         },
       }),
@@ -83,12 +85,6 @@ describe('controls', () => {
 
     wrapper.find(RefreshIcon).simulate('click')
 
-    expect(dispatch).toHaveBeenCalledWith(
-      actions.invalidateSubreddit(subreddit)
-    )
-
-    expect(dispatch).toHaveBeenCalledWith(
-      actions.invalidateSubreddit(subreddit)
-    )
+    expect(dispatch).toHaveBeenCalled()
   })
 })

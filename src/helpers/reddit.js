@@ -28,8 +28,8 @@ export const subredditURL = (subreddit, extention = 'json', limit = 100) => (
   )
 )
 
-export const fetchPosts = subreddit => (
-  fetch(subredditURL(subreddit).href)
+export const fetchPosts = (subreddit, scope) => (
+  fetch(subredditURL(`${subreddit}/${scope}`).href)
 )
 
 export const fetchPost = (permalink) => (

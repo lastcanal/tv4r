@@ -132,12 +132,14 @@ Comments.propTypes = {
 
 const mapStateToProps = ({ postsBySubreddit, selectedSubreddit }) => {
   const { cursor } = postsBySubreddit
+  const subreddit = postsBySubreddit[selectedSubreddit]
   const {
-    items,
     comments,
     isFetchingComments,
-  } = postsBySubreddit[selectedSubreddit]
+    scope,
+  } = subreddit
 
+  const items = subreddit[scope]
   const post = items[cursor.index]
   const commentsForPost = comments?.[post?.id]
 

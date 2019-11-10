@@ -27,7 +27,11 @@ const mockStore = configureMockStore(middleware)
 
 const makeStore = (extra = {}) => {
   return mockStore({
-    postsBySubreddit: {},
+    postsBySubreddit: {
+      foo: {
+        scope: 'new',
+      },
+    },
     selectedPost: {},
     selectedSubreddit: 'foo',
     subreddits: ['foo'],
