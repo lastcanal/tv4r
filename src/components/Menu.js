@@ -1,12 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { withStyles } from '@material-ui/core/styles'
+import { withStyles, useTheme } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import ToolBar from '@material-ui/core/ToolBar'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 import Posts from './Posts'
-import Picker from './Picker'
+import SubredditPicker from './Picker'
+import SubredditScopePicker from './SubredditScopePicker'
 import Controls from './Controls'
 import Title from './Title'
 
@@ -30,12 +32,16 @@ const Menu = ({
   post,
   menuRef,
 }) => {
+  const theme = useTheme()
+  const largeScreen = useMediaQuery(theme.breakpoints.up('md'))
   return (
     <Container ref={menuRef} classes={classes} maxWidth={false}>
       <ToolBar>
-        <Picker />
-        <Controls />
+        <SubredditPicker />
+        <SubredditScopePicker />
+        {largeScreen ? <Controls /> : ''}
       </ToolBar>
+      {largeScreen ? '' : <ToolBar><Controls /></ToolBar>}
       <Posts />
       <ToolBar>
         <Title post={post} />

@@ -37,11 +37,14 @@ const AutoPlayOffIcon = styled(SyncDisabledIcon)({
   transform: 'scale(-1, 1) rotate(-90deg)',
 })
 
-const useStyles = makeStyles(({ spacing }) => ({
+const useStyles = makeStyles(() => ({
   controls: {
-    display: 'block',
-    alignItems: 'center',
-    paddingLeft: spacing(1),
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    overflow: 'auto',
+    marginBottom: 0,
   },
 }))
 
@@ -109,10 +112,10 @@ const Controls = ({
   showVideos,
   showImages,
 }) => {
-  const classes = useStyles()
+  const { controls } = useStyles()
 
   return (
-    <div className={classes.controls}>
+    <div className={controls}>
       <ShowImagesControl
         showImages={showImages}
         onClick={() => dispatch(configToggleShowImages())}

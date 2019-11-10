@@ -25,6 +25,7 @@ const Option = ({
   data,
   setValue,
   dispatch,
+  removable = true,
 }) => {
   const classes = useStyles()
 
@@ -45,9 +46,11 @@ const Option = ({
     onClick={onClick}
     classes={classes}
   >
-    <ListItemIcon onClick={onRemove}>
-      <RemoveCircleIcon style={{ color: 'inherit' }} />
-    </ListItemIcon>
+    {removable &&
+      <ListItemIcon onClick={onRemove}>
+        <RemoveCircleIcon style={{ color: 'inherit' }} />
+      </ListItemIcon>
+    }
     {children}
   </MenuItem>
 }
@@ -57,9 +60,14 @@ Option.propTypes = {
   isFocused: PropTypes.bool,
   isSelected: PropTypes.bool,
   onFocus: PropTypes.func,
+  removable: PropTypes.bool,
   data: PropTypes.object,
   setValue: PropTypes.func,
   dispatch: PropTypes.func,
 }
+
+export const StaticOption = (props) => (
+  <Option removable={false} {...props} />
+)
 
 export default Option |> connect()

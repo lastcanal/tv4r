@@ -1,52 +1,40 @@
 import React, { useMemo, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
-import CreatableSelect from 'react-select/creatable'
+import Select from 'react-select'
 import { connect } from 'react-redux'
-import Option from './Option'
+import { StaticOption } from './Option'
 import { muiThemeToRSTheme } from '../helpers'
 import {
   enableKeyboardControls,
   disableKeyboardControls,
-  loadSubreddit,
 } from '../actions'
+
+import { makeSelectStyles } from './Picker'
 
 const useStyles = makeStyles(({ palette, spacing }) => ({
   container: {
-    minWidth: 250,
+    minWidth: 150,
     display: 'block',
     backgroundColor: palette.background.default,
     margin: spacing(1),
     marginLeft: 0,
     marginRight: spacing(1),
-    flex: 3,
+    flex: 2,
   },
 }))
 
-export const makeSelectStyles = ({ palette }) => ({
-  container: styles => ({
-    ...styles,
-    backgroundColor: palette.background.default,
-    color: palette.text.contrastText,
-  }),
-  menu: styles => ({
-    ...styles,
-    backgroundColor: palette.background.paper,
-    border: `4px solid ${palette.background.paper}`,
-  }),
-})
-
 const nameToOption = (name) => ({
-  value: (name || '').toLowerCase(), label: `r/${name}`,
+  value: (name || '').toLowerCase(), label: name,
 })
 
-const Picker = ({ value, options, dispatch }) => {
+const SubredditScopePicker = ({ value, options, dispatch }) => {
   const classes = useStyles()
   const theme = useTheme()
   const ref = useRef()
 
-  const changeSubreddit = ({ value }) => {
-    dispatch(loadSubreddit(value))
+  const changeSubredditScope = ({ _value }) => {
+    // dispatch(loadSubredditScope(value))
     void ref.current?.blur()
   }
 
@@ -76,12 +64,12 @@ const Picker = ({ value, options, dispatch }) => {
 
   return (
     <div className={classes.container}>
-      <CreatableSelect
+      <Select
         ref={ref}
         isClearable={false}
         menuPlacement="bottom"
         defaultValue={mappedValue}
-        onChange={changeSubreddit}
+        onChange={changeSubredditScope}
         options={mappedOptions}
         theme={selectTheme}
         maxMenuHeight={200}
@@ -89,22 +77,23 @@ const Picker = ({ value, options, dispatch }) => {
         onMenuOpen={onMenuOpen}
         onMenuClose={onMenuClose}
         components={{
-          Option,
+          Option: StaticOption,
         }}
       />
     </div>
   )
 }
 
-Picker.propTypes = {
+SubredditScopePicker.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   value: PropTypes.string,
   dispatch: PropTypes.func,
 }
 
-const mapStateToProps = ({ selectedSubreddit, subreddits }) => ({
-  value: selectedSubreddit,
-  options: subreddits,
+const mapStateToProps = ({ selectedSubredditScope }) => ({
+  value: selectedSubredditScope || 'New',
+  options: ['Hot', 'New', 'Controversial', 'Top', 'Rising'],
 })
 
-export default Picker |> connect(mapStateToProps)
+export default SubredditScopePicker |> connect(mapStateToProps)
+
