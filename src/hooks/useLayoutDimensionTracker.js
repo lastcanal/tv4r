@@ -50,7 +50,7 @@ const useLayoutDimensionTracker = ({ isFullscreen, isFetching }) => {
       setScreenHeight(newHeight)
       setMenuHeight(calculateMenuHeight())
     }
-  }, 100)
+  }, 10)
 
   const onOrientationChange = () => {
     if (window.orientation) {
