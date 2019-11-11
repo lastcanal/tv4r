@@ -67,6 +67,7 @@ const Reply = ({ reply, depth, dispatch, comments, classes }) => {
   }
 
   const selfTextContent = () => {
+    if (!data.selftext_html) return ''
     return new DOMParser().parseFromString(
       data.selftext_html,
       'text/html',

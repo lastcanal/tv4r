@@ -17,12 +17,12 @@ const styles = ({ spacing, palette, shape }) => ({
   },
   comments: {
     borderRadius: shape.borderRadius,
-    minHeight: ({ height }) => (height),
+    minHeight: ({ playerHeight }) => (playerHeight),
   },
   loading: {
     borderRadius: shape.borderRadius,
     backgroundColor: palette.background.default,
-    minHeight: ({ height }) => (height),
+    minHeight: ({ playerHeight }) => (playerHeight),
   },
   menuButton: {
     marginRight: spacing(2),
@@ -40,7 +40,7 @@ const Comments = ({
   comments,
   isFetchingComments,
   post,
-  height,
+  playerHeight,
   dispatch,
   classes,
 }) => {
@@ -63,7 +63,7 @@ const Comments = ({
       return
     } else {
       /* istanbul ignore next */
-      const rootMargin = (height - spacing(2)) || 0
+      const rootMargin = (playerHeight - spacing(2)) || 0
       const target = document.getElementById('scroll_beacon')
       const options = {
         rootMargin: `${rootMargin}px`,
@@ -83,7 +83,7 @@ const Comments = ({
         return () => observer.unobserve(target)
       }
     }
-  }, [height])
+  }, [playerHeight])
 
   if (!comments || isFetchingComments) {
     return (
@@ -120,7 +120,7 @@ const Comments = ({
 Comments.propTypes = {
   dispatch: PropTypes.func,
   classes: PropTypes.object,
-  height: PropTypes.number,
+  playerHeight: PropTypes.number,
   menuHeight: PropTypes.number,
   isFetchingComments: PropTypes.bool,
   comments: PropTypes.object,
