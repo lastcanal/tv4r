@@ -13,7 +13,6 @@ import {
 
 const useStyles = makeStyles(({ palette, spacing }) => ({
   container: {
-    minWidth: 250,
     display: 'block',
     backgroundColor: palette.background.default,
     margin: spacing(1),

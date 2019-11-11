@@ -28,14 +28,17 @@ import {
 
 const styles = ({ palette, spacing }) => ({
   root: {
+    width: '100vw',
     margin: 0,
     padding: 0,
     overflow: 'hidden',
+    scrollY: 'disabled',
   },
   loading: {
+    width: '100vw',
     backgroundColor: palette.background.default,
-    height: ({ height }) => (
-      height
+    height: ({ playerHeight }) => (
+      playerHeight
     ),
     top: 0,
     botton: 0,
@@ -58,7 +61,8 @@ const Post = ({
   error,
   isFetching,
   post,
-  height,
+  playerHeight,
+  menuHeight,
   showImages,
   showVideos,
   showNSFW,
@@ -66,13 +70,13 @@ const Post = ({
 }) => {
   const renderMedia = () => {
     if (isVideo(post)) {
-      return <VideoPlayer height={height} />
+      return <VideoPlayer height={playerHeight} />
     } else if (isImage(post)) {
-      return <ImagePlayer height={height} />
+      return <ImagePlayer height={playerHeight} />
     } else if (post.is_self) {
       return '' // show comments section if is_self
     } else {
-      return <WebPagePlayer height={height} />
+      return <WebPagePlayer height={playerHeight} />
     }
   }
 
@@ -133,7 +137,7 @@ const Post = ({
         <Container maxWidth={false} className={classes.root}>
           {(post.over_18 && !showNSFW) ? renderNSFW() : renderMedia()}
         </Container>
-        <Comments height={height} />
+        <Comments playerHeight={playerHeight} menuHeight={menuHeight} />
       </div>
     )
   }
@@ -143,6 +147,8 @@ const Post = ({
 Post.propTypes = {
   isFetching: PropTypes.bool,
   post: PropTypes.object,
+  playerHeight: PropTypes.number,
+  menuHeight: PropTypes.number,
   showImages: PropTypes.bool,
   showVideos: PropTypes.bool,
   showNSFW: PropTypes.bool,

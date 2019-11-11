@@ -35,7 +35,7 @@ const styles = ({ spacing, palette, shape }) => ({
     color: palette.text.contrastText,
   },
   spacerBottom: {
-    minHeight: ({ height }) => (window.innerHeight - height - spacing(1)),
+    minHeight: ({ menuHeight }) => (menuHeight - spacing(1)),
     paddingBottom: 1,
   },
 })
@@ -125,6 +125,7 @@ Comments.propTypes = {
   dispatch: PropTypes.func,
   classes: PropTypes.object,
   height: PropTypes.number,
+  menuHeight: PropTypes.number,
   isFetchingComments: PropTypes.bool,
   comments: PropTypes.object,
   post: PropTypes.object,

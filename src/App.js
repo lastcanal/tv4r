@@ -34,7 +34,7 @@ const App = ({
 }) => {
 
   const theme = useAppTheme({ themeMode })
-  const [height, menuRef] =
+  const [playerHeight, menuHeight, menuRef] =
     useLayoutDimensionTracker({ isFullscreen, isFetching })
   useForceWindowFocus()
   useKeyboardController({ dispatch })
@@ -46,7 +46,7 @@ const App = ({
       <Container classes={classes} maxWidth={false}>
         <CssBaseline />
         <Menu menuRef={menuRef} />
-        <Post height={height} />
+        <Post playerHeight={playerHeight} menuHeight={menuHeight} />
       </Container>
     </MuiThemeProvider>
   )

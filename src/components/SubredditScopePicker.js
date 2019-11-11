@@ -15,7 +15,6 @@ import { makeSelectStyles } from './Picker'
 
 const useStyles = makeStyles(({ palette, spacing }) => ({
   container: {
-    minWidth: 150,
     display: 'block',
     backgroundColor: palette.background.default,
     margin: spacing(1),

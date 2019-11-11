@@ -25,7 +25,8 @@ const useLayoutDimensionTracker = ({ isFullscreen, isFetching }) => {
   }, [menuRef, orientation])
 
   useEffect(() => {
-    setMenuOffsetHeight(isFullscreen ? 0 : menuHeight)
+    const constrained = menuHeight * 1.61 > window.innerHeight
+    setMenuOffsetHeight(isFullscreen || constrained ? 0 : menuHeight)
   }, [screenHeight, menuHeight, orientation])
 
   const calculateHeight = () => (
@@ -74,7 +75,7 @@ const useLayoutDimensionTracker = ({ isFullscreen, isFetching }) => {
     setMenuHeight(calculateMenuHeight())
   }, [isFullscreen, isFetching])
 
-  return [playerHeight, menuRef]
+  return [playerHeight, menuHeight, menuRef]
 }
 
 export default useLayoutDimensionTracker
