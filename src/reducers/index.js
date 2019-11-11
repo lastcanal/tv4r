@@ -120,6 +120,7 @@ const selectedPosts = (
         ...state,
         didInvalidate,
         isFetching: false,
+        scope: state.scope || 'hot',
         error: null,
       }
     case REQUEST_COMMENTS:
@@ -273,7 +274,8 @@ export const postsBySubreddit = (state = { cursor: {} }, action) => {
       }
     case LOCATION_CHANGE:
       const subreddit = getNewSubredditFromPath(null, action)
-      const posts = state[subreddit] ? state[subreddit][state.scope] : []
+      const scope = state.scope || 'hot'
+      const posts = state[subreddit] ? state[subreddit][scope] : []
       if (subreddit) {
         return {
           ...state,

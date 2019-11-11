@@ -118,7 +118,7 @@ export const mediaFallback = () => ({
 
 const fetchPosts = subreddit => (dispatch, getState) => {
   const { postsBySubreddit } = getState()
-  const { scope } = postsBySubreddit[subreddit]
+  const scope = postsBySubreddit?.[subreddit]?.scope || 'hot'
   dispatch(requestPosts(subreddit, scope))
   return reddit
     .fetchPosts(subreddit, scope)
@@ -129,7 +129,7 @@ const fetchPosts = subreddit => (dispatch, getState) => {
 
 const shouldFetchPosts = ({ postsBySubreddit }, selected) => {
   const subreddit = postsBySubreddit[selected]
-  const posts = subreddit[subreddit.scope]
+  const posts = subreddit?.[subreddit?.scope]
   if (!posts) {
     return true
   }
@@ -384,7 +384,7 @@ export const selectSubredditScope = (subreddit, scope) => (dispatch) => {
     dispatch({
       type: SELECT_SUBREDDIT_SCOPE,
       subreddit: subreddit,
-      scope,
+      scope: scope.toLowerCase(),
     })
     dispatch(invalidateSubredditIfNeeded(subreddit))
     dispatch(fetchPostsIfNeeded(subreddit))
