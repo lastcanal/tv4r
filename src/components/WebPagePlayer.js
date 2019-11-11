@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 
-import { nextPost, mediaFallback } from '../actions'
+import { nextPost } from '../actions'
 
 const styles = ({ palette }) => ({
   playerWrapper: {
@@ -32,23 +32,15 @@ const styles = ({ palette }) => ({
     flexDirection: 'column',
     zIndex: 40,
   },
-  fallbackLink: {
-    color: palette.text.primary,
-    fontSize: 60,
-    textDecoration: 'none',
-  },
 })
 
 const WebPagePlayer = ({
   height,
   post,
   isAutoPlay,
-  isMediaFallback,
   dispatch,
   classes,
 }) => {
-
-  const [ref, setRef] = useState(null)
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -58,56 +50,12 @@ const WebPagePlayer = ({
     return () => clearTimeout(timeout)
   }, [post, isAutoPlay])
 
-  const onError = (error) => {
-    dispatch(mediaFallback(error))
-  }
-
-  const onLoad = () => {
-    if (ref) {
-      try {
-        if (!ref.contentWindow?.location?.href) {
-          onError()
-        }
-      } catch (error) {
-        switch (error.name) {
-          case 'DOMException':
-            // Swallow DOMException error triggered above because we are
-            // accessing a cross-origin frame. The page should be visible,
-            // otherwise SecurityError would have been thrown
-            console.error(error)
-            break
-          case 'SecurityError':
-            // Blocked due to 'X-Frame-Options' CORS restrictions,
-            // We can now show media fallback page, as the visable page
-            // is most likely blank page or just the sad file face icon.
-            console.error(error)
-            onError(error)
-            break
-          default:
-            throw error
-        }
-      }
-    }
-  }
-
-  if (isMediaFallback) {
-    return <div className={classes.error}>
-      <h3> Failed to load embedded web page </h3>
-      <a className={classes.fallbackLink} href={post.url}>
-        Direct Link
-      </a>
-      <h5>via { post.domain }</h5>
-    </div>
-  }
-
   return <div className={classes.playerWrapper}>
     <iframe
-      ref={(iframe) => setRef(iframe)}
       src={post.url}
       height={height}
       width={window.innerWidth}
-      onLoad={onLoad}
-      onError={onError}
+      sandbox="allow-scripts"
     />
   </div>
 }
@@ -116,7 +64,6 @@ WebPagePlayer.propTypes = {
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func,
   error: PropTypes.object,
-  isMediaFallback: PropTypes.bool,
   isFetching: PropTypes.bool,
   isAutoPlay: PropTypes.bool,
   height: PropTypes.number,
@@ -135,7 +82,6 @@ const mapStateToProps = state => {
     dispatch,
     isFetching,
     post: selectedPost.post,
-    isMediaFallback: selectedPost.media_fallback,
     isFullsceen,
     isAutoPlay,
   }
