@@ -55,23 +55,48 @@ const classNameForTile = (selected, post, classes) => {
   }
 }
 
-
 const Thumbnail = ({ post }) => {
-  if (post && post.thumbnail && post.thumbnail === 'nsfw') {
-    return <h2>**** NSFW ****</h2>
-  } else if (post && post.thumbnail && post.thumbnail !== 'self') {
-    return <img src={post.thumbnail} alt={post.title} />
-  } else if (post && post.title) {
-    return <ChromeReaderModeIcon
-      fontSize="large"
-      style={{
-        height: THUMBNAIL_HEIGHT / 2,
-        width: THUMBNAIL_WIDTH,
-      }}
-    />
-  } else {
-    return <Skeleton variant="rect" />
+  if (post && post.thumbnail) {
+    // eslint-disable-next-line camelcase
+    const { thumbnail, title, over_18 } = post
+
+    if (thumbnail === 'self') {
+      return <ChromeReaderModeIcon
+        fontSize="large"
+        style={{
+          height: THUMBNAIL_HEIGHT / 2,
+          width: THUMBNAIL_WIDTH,
+        }}
+      />
+    } else if (thumbnail === 'image') {
+      return <ChromeReaderModeIcon
+        fontSize="large"
+        style={{
+          height: THUMBNAIL_HEIGHT / 2,
+          width: THUMBNAIL_WIDTH,
+        }}
+      />
+    } else if (thumbnail === 'default') {
+      return <ChromeReaderModeIcon
+        fontSize="large"
+        style={{
+          height: THUMBNAIL_HEIGHT / 2,
+          width: THUMBNAIL_WIDTH,
+        }}
+      />
+    // eslint-disable-next-line camelcase
+    } else if (over_18) {
+      return <h2>**** NSFW ****</h2>
+    } else {
+      return <img src={thumbnail} alt={title} />
+    }
   }
+
+  return <Skeleton variant="rect" />
+}
+
+Thumbnail.propTypes = {
+  post: PropTypes.object,
 }
 
 const Posts = ({ posts, selected, classes, dispatch }) => {
