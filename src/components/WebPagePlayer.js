@@ -65,11 +65,27 @@ const WebPagePlayer = ({
   const onLoad = () => {
     if (ref) {
       try {
-        if (!ref.contentWindow.location.href) {
+        if (!ref.contentWindow?.location?.href) {
           onError()
         }
-      } catch (e) {
-        onError()
+      } catch (error) {
+        switch (error.name) {
+          case 'DOMException':
+            // Swallow DOMException error triggered above because we are
+            // accessing a cross-origin frame. The page should be visible,
+            // otherwise SecurityError would have been thrown
+            console.error(error)
+            break
+          case 'SecurityError':
+            // Blocked due to 'X-Frame-Options' CORS restrictions,
+            // We can now show media fallback page, as the visable page
+            // is most likely blank page or just the sad file face icon.
+            console.error(error)
+            onError(error)
+            break
+          default:
+            throw error
+        }
       }
     }
   }
