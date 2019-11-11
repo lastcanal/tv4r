@@ -18,7 +18,7 @@ describe('posts', () => {
         },
       },
       selectedSubreddit: 'foo',
-      selectedPost: {  },
+      selectedPost: { },
     })
 
     const wrapper = mount(

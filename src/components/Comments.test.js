@@ -29,7 +29,7 @@ describe('comments', () => {
   })
 
   it('should render Post', () => {
-    const post = {id: "foo", url: 'https://example.com/foo'}
+    const post = { id: 'foo', url: 'https://example.com/foo' }
     const store = mockStore({
       postsBySubreddit: {
         foo: {

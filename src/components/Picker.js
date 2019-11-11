@@ -80,7 +80,7 @@ const Picker = ({ value, options, dispatch }) => {
         ref={ref}
         isClearable={false}
         menuPlacement="bottom"
-        defaultValue={mappedValue}
+        value={mappedValue}
         onChange={changeSubreddit}
         options={mappedOptions}
         theme={selectTheme}
@@ -97,7 +97,7 @@ const Picker = ({ value, options, dispatch }) => {
 }
 
 Picker.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  options: PropTypes.arrayOf(PropTypes.string),
   value: PropTypes.string,
   dispatch: PropTypes.func,
 }
