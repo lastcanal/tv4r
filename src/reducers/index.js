@@ -27,6 +27,7 @@ import {
   TOGGLE_AUTO_ADVANCE,
   TOGGLE_PLAY,
   TOGGLE_THEME_MODE,
+  TOGGLE_NSFW,
   TOGGLE_SHOW_IMAGES,
   TOGGLE_SHOW_VIDEOS,
   ENABLE_KEYBORAD_CONTROLS,
@@ -323,6 +324,7 @@ const DEFAULT_CONFIG = {
   isFullscreen: false,
   isAutoAdvance: false,
   themeMode: 'dark',
+  showNSFW: false,
   keyboardControls: true,
   showImages: true,
   showVideos: true,
@@ -362,6 +364,11 @@ const config = (state = DEFAULT_CONFIG, action) => {
       return {
         ...state,
         themeMode: state.themeMode === 'dark' ? 'light' : 'dark',
+      }
+    case TOGGLE_NSFW:
+      return {
+        ...state,
+        showNSFW: !state.showNSFW,
       }
     case TOGGLE_SHOW_IMAGES:
       return {

@@ -16,6 +16,7 @@ import SyncIcon from '@material-ui/icons/Sync'
 import SyncDisabledIcon from '@material-ui/icons/SyncDisabled'
 import PhotoSizeSelectActualIcon from '@material-ui/icons/PhotoSizeSelectActual'
 import MovieIcon from '@material-ui/icons/Movie'
+import BlockIcon from '@material-ui/icons/Block'
 
 import {
   nextPost,
@@ -27,6 +28,7 @@ import {
   configToggleShowVideos,
   configToggleShowImages,
   refreshSubreddit,
+  configToggleNSFW,
 } from '../actions'
 
 const AutoPlayOnIcon = styled(SyncIcon)({
@@ -105,6 +107,24 @@ RefreshControl.propTypes = {
   onClick: PropTypes.func,
 }
 
+export const ShowNSFWControl = ({ onClick, showNSFW }) => (
+  <Tooltip title={`Turn ${showNSFW ? 'ON' : 'OFF'} Not Safe For Work (NSFW)`}>
+    <IconButton
+      aria-label={`Turn ${showNSFW ? 'ON' : 'OFF'} Not Safe For Work (NSFW)`}
+      color="inherit"
+      onClick={onClick}
+    >
+      <BlockIcon
+        style={{ opacity: showNSFW ? 0.5 : 1 }}
+      />
+    </IconButton>
+  </Tooltip>
+)
+
+ShowNSFWControl.propTypes = {
+  onClick: PropTypes.func,
+  showNSFW: PropTypes.bool,
+}
 const Controls = ({
   dispatch,
   posts,
@@ -114,6 +134,7 @@ const Controls = ({
   themeMode,
   showVideos,
   showImages,
+  showNSFW,
 }) => {
   const { controls } = useStyles()
 
@@ -126,6 +147,10 @@ const Controls = ({
       <ShowVideosControl
         showVideos={showVideos}
         onClick={() => dispatch(configToggleShowVideos())}
+      />
+      <ShowNSFWControl
+        showNSFW={showNSFW}
+        onClick={() => dispatch(configToggleNSFW())}
       />
       <RefreshControl onClick={() => dispatch(refreshSubreddit())} />
       <Tooltip
@@ -197,16 +222,32 @@ Controls.propTypes = {
   themeMode: PropTypes.string,
   showVideos: PropTypes.bool,
   showImages: PropTypes.bool,
+  showNSFW: PropTypes.bool,
 }
 
 const mapStateToProps = state => {
   const { selectedSubreddit, postsBySubreddit, config } = state
   const subreddit = postsBySubreddit[selectedSubreddit]
   const posts = subreddit?.[subreddit?.scope]
+  const {
+    isFullscreen,
+    isAutoAdvance,
+    isPlaying,
+    themeMode,
+    showVideos,
+    showImages,
+    showNSFW,
+  } = config
 
   return {
     posts,
-    ...config,
+    isFullscreen,
+    isAutoAdvance,
+    isPlaying,
+    themeMode,
+    showVideos,
+    showImages,
+    showNSFW,
   }
 }
 

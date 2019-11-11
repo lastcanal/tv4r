@@ -28,6 +28,7 @@ import {
   TOGGLE_PLAY,
   TOGGLE_AUTO_ADVANCE,
   TOGGLE_THEME_MODE,
+  TOGGLE_NSFW,
   TOGGLE_SHOW_IMAGES,
   TOGGLE_SHOW_VIDEOS,
   ENABLE_KEYBORAD_CONTROLS,
@@ -65,15 +66,17 @@ export const requestPosts = (subreddit, scope = 'hot') => ({
 export const receivePosts = (subreddit, scope, json) =>
   (dispatch, getState) => {
     const { config } = getState()
-    const { showVideos, showImages } = config
+    const { showVideos, showImages, showNSFW } = config
+    const posts = extractPosts(json)
     return dispatch({
       type: RECEIVE_POSTS,
       subreddit,
-      posts: extractPosts(json),
+      posts,
       error: null,
       receivedAt: Date.now(),
       showVideos,
       showImages,
+      showNSFW,
       scope,
     })
   }
@@ -90,26 +93,22 @@ export const selectPost = (post, index) => ({
   index,
 })
 
-export const nextPost = () => (dispatch, getState) => {
+const translatePost = (type) => (dispatch, getState) => {
   const { postsBySubreddit, selectedSubreddit, config } = getState()
-  const { showImages, showVideos } = config
+  const { showImages, showVideos, showNSFW } = config
   const subreddit = postsBySubreddit[selectedSubreddit]
   const posts = subreddit?.[subreddit.scope]
   return dispatch({
-    type: NEXT_POST,
-    posts: mediaSelector({ posts, showImages, showVideos }),
+    type: type,
+    posts: mediaSelector({ posts, showImages, showVideos, showNSFW }),
   })
 }
 
-export const previousPost = () => (dispatch, getState) => {
-  const { postsBySubreddit, selectedSubreddit, config } = getState()
-  const { showImages, showVideos } = config
-  const subreddit = postsBySubreddit[selectedSubreddit]
-  const posts = subreddit?.[subreddit.scope]
-  return dispatch({
-    type: PREVIOUS_POST,
-    posts: mediaSelector({ posts, showImages, showVideos }),
-  })
+export const nextPost = () => (dispatch) => {
+  dispatch(translatePost(NEXT_POST))
+}
+export const previousPost = () => (dispatch) => {
+  dispatch(translatePost(PREVIOUS_POST))
 }
 
 export const mediaFallback = () => ({
@@ -304,6 +303,10 @@ export const configToggleThemeMode = () => ({
   type: TOGGLE_THEME_MODE,
 })
 
+export const configToggleNSFW = () => ({
+  type: TOGGLE_NSFW,
+})
+
 export const playerScanForwards = seconds => ({
   type: PLAYER_SCAN_FORWARDS,
   seconds,
@@ -343,41 +346,32 @@ export const disableKeyboardControls = () => ({
   type: DISABLE_KEYBORAD_CONTROLS,
 })
 
-export const configToggleShowImages = () => (dispatch, getState) => {
+const configToggleFilter = (type) => (dispatch, getState) => {
   const { postsBySubreddit, selectedSubreddit, config } = getState()
-  const { showImages, showVideos } = config
+  const { showImages, showVideos, showNSFW } = config
   const subreddit = postsBySubreddit[selectedSubreddit]
   const items = subreddit[subreddit.scope]
   const { post } = postsBySubreddit.cursor
   const action = {
-    type: TOGGLE_SHOW_IMAGES,
+    type,
     post,
   }
   const posts = mediaSelector({
     posts: items,
-    showImages: !showImages,
-    showVideos,
+    showImages: type === TOGGLE_SHOW_IMAGES ? !showImages : showImages,
+    showVideos: type === TOGGLE_SHOW_VIDEOS ? !showVideos : showVideos,
+    showNSFW,
   })
   return dispatch({ ...action, posts })
 }
 
-export const configToggleShowVideos = () => (dispatch, getState) => {
-  const { postsBySubreddit, selectedSubreddit, config } = getState()
-  const { showImages, showVideos } = config
-  const subreddit = postsBySubreddit[selectedSubreddit]
-  const items = subreddit[subreddit.scope]
-  const { post } = postsBySubreddit.cursor
-  const action = {
-    type: TOGGLE_SHOW_VIDEOS,
-    post,
-  }
-  const posts = mediaSelector({
-    posts: items,
-    showImages,
-    showVideos: !showVideos,
-  })
-  return dispatch({ ...action, posts })
-}
+export const configToggleShowVideos = () => (dispatch) => (
+  dispatch(configToggleFilter(TOGGLE_SHOW_VIDEOS))
+)
+
+export const configToggleShowImages = () => (dispatch) => (
+  dispatch(configToggleFilter(TOGGLE_SHOW_IMAGES))
+)
 
 export const selectSubredditScope = (subreddit, scope) => (dispatch) => {
   return batch(() => {

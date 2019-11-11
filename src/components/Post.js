@@ -12,12 +12,18 @@ import VideoPlayer from './VideoPlayer'
 import ImagePlayer from './ImagePlayer'
 import WebPagePlayer from './WebPagePlayer'
 
-import { ShowVideosControl, ShowImagesControl, RefreshControl } from './Controls'
+import {
+  ShowVideosControl,
+  ShowImagesControl,
+  ShowNSFWControl,
+  RefreshControl,
+} from './Controls'
 
 import {
   configToggleShowVideos,
   configToggleShowImages,
   refreshSubreddit,
+  configToggleNSFW,
 } from '../actions'
 
 const styles = ({ palette, spacing }) => ({
@@ -55,6 +61,7 @@ const Post = ({
   height,
   showImages,
   showVideos,
+  showNSFW,
   dispatch,
 }) => {
   const renderMedia = () => {
@@ -95,6 +102,19 @@ const Post = ({
     </div>
   }
 
+  const renderNSFW = () => {
+    return <div className={classes.loading}>
+      <h2>NSFW Content.</h2>
+      <h5>You must remove the NSFW filter to proceed.</h5>
+      <div className={classes.controls}>
+        <ShowNSFWControl
+          showNSFW={showNSFW}
+          onClick={() => dispatch(configToggleNSFW())}
+        />
+      </div>
+    </div>
+  }
+
   const renderLoadingError = () => {
     return <div className={classes.loading}>
       <h2>Failed to load TV; try again..</h2>
@@ -111,7 +131,7 @@ const Post = ({
     return (
       <div style={{ opacity: isFetching ? 0.5 : 1 }}>
         <Container maxWidth={false} className={classes.root}>
-          {renderMedia()}
+          {(post.over_18 && !showNSFW) ? renderNSFW() : renderMedia()}
         </Container>
         <Comments height={height} />
       </div>
@@ -123,11 +143,14 @@ const Post = ({
 Post.propTypes = {
   isFetching: PropTypes.bool,
   post: PropTypes.object,
+  showImages: PropTypes.bool,
+  showVideos: PropTypes.bool,
+  showNSFW: PropTypes.bool,
 }
 
 const mapStateToProps = state => {
   const { selectedSubreddit, postsBySubreddit, config } = state
-  const { showImages, showVideos } = config
+  const { showImages, showVideos, showNSFW } = config
   const selectedPost = postsBySubreddit.cursor || {}
   const { isFetching } = postsBySubreddit[selectedSubreddit] || {
     isFetching: false,
@@ -138,6 +161,7 @@ const mapStateToProps = state => {
     post: selectedPost.post,
     showImages,
     showVideos,
+    showNSFW,
   }
 }
 

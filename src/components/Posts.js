@@ -8,6 +8,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar'
 import Skeleton from '@material-ui/lab/Skeleton'
 import debounce from 'lodash.debounce'
 import ChromeReaderModeIcon from '@material-ui/icons/ChromeReaderMode'
+import BlockIcon from '@material-ui/icons/Block'
 
 import { selectPost } from '../actions'
 import { contrastColor } from '../helpers'
@@ -60,7 +61,7 @@ const style = {
   width: THUMBNAIL_WIDTH,
 }
 
-const Thumbnail = ({ post }) => {
+const Thumbnail = ({ post, showNSFW }) => {
   if (post) {
     // eslint-disable-next-line camelcase
     const { thumbnail, title, over_18 } = post
@@ -73,8 +74,8 @@ const Thumbnail = ({ post }) => {
     } else if (thumbnail === 'default') {
       return <ChromeReaderModeIcon fontSize="large" style={style} />
     // eslint-disable-next-line camelcase
-    } else if (over_18) {
-      return <h2>**** NSFW ****</h2>
+    } else if ((over_18 && !showNSFW) || thumbnail === 'nsfw') {
+      return <BlockIcon fontSize="large" style={style} />
     } else {
       return <img src={thumbnail} alt={title} />
     }
@@ -85,9 +86,10 @@ const Thumbnail = ({ post }) => {
 
 Thumbnail.propTypes = {
   post: PropTypes.object,
+  showNSFW: PropTypes.bool,
 }
 
-const Posts = ({ posts, selected, classes, dispatch }) => {
+const Posts = ({ posts, selected, showNSFW, classes, dispatch }) => {
   const refs = {}
 
   const onSelectPost = (nextPost, index, e) => {
@@ -145,7 +147,7 @@ const Posts = ({ posts, selected, classes, dispatch }) => {
             ref={node => (post ? (refs['post-' + post.id] = node) : '')}
             onClick={onSelectPost.bind(this, post, index)}
           >
-            <Thumbnail post={post} />
+            <Thumbnail post={post} showNSFW={showNSFW}/>
             <GridListTileBar
               title={post ? post.title : <Skeleton />}
               classes={{
@@ -165,11 +167,13 @@ Posts.propTypes = {
   selected: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
+  themeMode: PropTypes.string,
+  showNSFW: PropTypes.bool,
 }
 
 const mapStateToProps = state => {
   const { dispatch, selectedSubreddit, postsBySubreddit, config } = state
-  const { themeMode, showImages, showVideos } = config
+  const { themeMode, showImages, showVideos, showNSFW } = config
   const selectedPost = postsBySubreddit.cursor || {}
   const subreddit = postsBySubreddit[selectedSubreddit]
   const posts = subreddit?.[subreddit?.scope] || []
@@ -179,6 +183,7 @@ const mapStateToProps = state => {
     selected: selectedPost,
     visible: true,
     themeMode,
+    showNSFW,
   }
 }
 
