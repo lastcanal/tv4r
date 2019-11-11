@@ -28,14 +28,12 @@ import {
 
 const styles = ({ palette, spacing }) => ({
   root: {
-    width: '100vw',
     margin: 0,
     padding: 0,
     overflow: 'hidden',
     scrollY: 'disabled',
   },
   loading: {
-    width: '100vw',
     backgroundColor: palette.background.default,
     height: ({ playerHeight }) => (
       playerHeight
@@ -152,6 +150,9 @@ Post.propTypes = {
   showImages: PropTypes.bool,
   showVideos: PropTypes.bool,
   showNSFW: PropTypes.bool,
+  error: PropTypes.object,
+  classes: PropTypes.object,
+  dispatch: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {

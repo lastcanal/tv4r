@@ -18,6 +18,7 @@ import {
 export const handleKeyboardAction = event => (dispatch, getState) => {
   const { config } = getState()
   if (!config.keyboardControls) return
+  if (event.metaKey) return
   switch (event.key) {
     case '.':
     case '>':

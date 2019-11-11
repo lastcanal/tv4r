@@ -16,6 +16,7 @@ const styles = ({ palette, spacing }) => ({
   commentBody: {
     margin: spacing(1),
     marginBottom: spacing(2),
+    overflowWrap: 'break-word',
   },
   selfPostBody: {
     margin: spacing(1),

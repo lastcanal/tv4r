@@ -14,28 +14,24 @@ import CommentTree from './CommentTree'
 const styles = ({ spacing, palette, shape }) => ({
   root: {
     borderRadius: shape.borderRadius,
-    flexGrow: 1,
   },
   comments: {
     borderRadius: shape.borderRadius,
-    flexGrow: 1,
     minHeight: ({ height }) => (height),
   },
   loading: {
     borderRadius: shape.borderRadius,
     backgroundColor: palette.background.default,
-    flexGrow: 1,
     minHeight: ({ height }) => (height),
   },
   menuButton: {
     marginRight: spacing(2),
   },
   title: {
-    flexGrow: 1,
     color: palette.text.contrastText,
   },
   spacerBottom: {
-    minHeight: ({ menuHeight }) => (menuHeight - spacing(1)),
+    minHeight: ({ menuHeight }) => (menuHeight + spacing(1)),
     paddingBottom: 1,
   },
 })

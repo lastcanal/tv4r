@@ -11,8 +11,11 @@ import {
   loadSubreddit,
 } from '../actions'
 
-const useStyles = makeStyles(({ palette, spacing }) => ({
+const useStyles = makeStyles(({ palette, spacing, breakpoints }) => ({
   container: {
+    [breakpoints.up('md')]: {
+      minWidth: 250,
+    },
     display: 'block',
     backgroundColor: palette.background.default,
     margin: spacing(1),

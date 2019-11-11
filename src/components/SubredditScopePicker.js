@@ -13,8 +13,11 @@ import {
 
 import { makeSelectStyles } from './Picker'
 
-const useStyles = makeStyles(({ palette, spacing }) => ({
+const useStyles = makeStyles(({ palette, spacing, breakpoints }) => ({
   container: {
+    [breakpoints.up('md')]: {
+      minWidth: 150,
+    },
     display: 'block',
     backgroundColor: palette.background.default,
     margin: spacing(1),
