@@ -55,35 +55,23 @@ const classNameForTile = (selected, post, classes) => {
   }
 }
 
+const style = {
+  height: THUMBNAIL_HEIGHT / 2,
+  width: THUMBNAIL_WIDTH,
+}
+
 const Thumbnail = ({ post }) => {
-  if (post && post.thumbnail) {
+  if (post) {
     // eslint-disable-next-line camelcase
     const { thumbnail, title, over_18 } = post
-
-    if (thumbnail === 'self') {
-      return <ChromeReaderModeIcon
-        fontSize="large"
-        style={{
-          height: THUMBNAIL_HEIGHT / 2,
-          width: THUMBNAIL_WIDTH,
-        }}
-      />
+    if (thumbnail === '') {
+      return <ChromeReaderModeIcon fontSize="large" style={style} />
+    } else if (thumbnail === 'self') {
+      return <ChromeReaderModeIcon fontSize="large" style={style} />
     } else if (thumbnail === 'image') {
-      return <ChromeReaderModeIcon
-        fontSize="large"
-        style={{
-          height: THUMBNAIL_HEIGHT / 2,
-          width: THUMBNAIL_WIDTH,
-        }}
-      />
+      return <ChromeReaderModeIcon fontSize="large" style={style} />
     } else if (thumbnail === 'default') {
-      return <ChromeReaderModeIcon
-        fontSize="large"
-        style={{
-          height: THUMBNAIL_HEIGHT / 2,
-          width: THUMBNAIL_WIDTH,
-        }}
-      />
+      return <ChromeReaderModeIcon fontSize="large" style={style} />
     // eslint-disable-next-line camelcase
     } else if (over_18) {
       return <h2>**** NSFW ****</h2>
