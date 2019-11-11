@@ -11,6 +11,7 @@ import SubredditPicker from './Picker'
 import SubredditScopePicker from './SubredditScopePicker'
 import Controls from './Controls'
 import Title from './Title'
+import Help from './Help'
 
 const styles = ({ palette, spacing, shape }) => ({
   root: {
@@ -45,6 +46,7 @@ const Menu = ({
       <Posts />
       <ToolBar>
         <Title post={post} />
+        <Help />
       </ToolBar>
     </Container>
   )
