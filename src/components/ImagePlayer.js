@@ -47,7 +47,7 @@ const styles = ({ palette }) => ({
 const ImagePlayer = ({
   height,
   post,
-  isAutoPlay,
+  isAutoAdvance,
   isMediaFallback,
   dispatch,
   classes,
@@ -55,14 +55,17 @@ const ImagePlayer = ({
 
   const [loading, setLoading] = useState(true)
   const [url, setUrl] = useState(post.thumbnail)
+  const [imgRef, setImgRef] = useState(null)
+  const [imageWidth, setImageWidth] = useState(null)
+  const [imageHeight, setImageHeight] = useState(height)
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      if (isAutoPlay) dispatch(nextPost())
+      if (isAutoAdvance) dispatch(nextPost())
     }, 5000)
 
     return () => clearTimeout(timeout)
-  }, [post, isAutoPlay])
+  }, [post, isAutoAdvance])
 
   const onLoad = () => {
     let decodedUrl = null
@@ -80,7 +83,6 @@ const ImagePlayer = ({
     const target = decodedUrl || post.url
 
     setUrl(target)
-    setLoading(target !== url)
   }
 
   const onError = (error) => {
@@ -88,10 +90,34 @@ const ImagePlayer = ({
     dispatch(mediaFallback(error))
   }
 
+  const onImageChange = () => {
+    if (!imgRef) return
+    setLoading(false)
+
+    const width = window.innerWidth
+    if (imgRef.width > width) {
+      setImageWidth(width)
+      setImageHeight(null)
+    } else if (imgRef.height / height) {
+      setImageWidth(null)
+      setImageHeight(height)
+    } else if (imgRef.height / imgRef.width >= height / width) {
+      setImageWidth(width)
+      setImageHeight(null)
+    } else {
+      setImageWidth(null)
+      setImageHeight(height)
+    }
+  }
+
   useEffect(() => {
     setLoading(true)
     onLoad()
   }, [post])
+
+  useEffect(() => {
+    onImageChange()
+  }, [height])
 
   if (isMediaFallback) {
     return <div className={classes.error}>
@@ -105,13 +131,15 @@ const ImagePlayer = ({
 
   return <div className={classes.playerWrapper}>
     <img
+      ref={setImgRef}
       src={url}
-      height={height}
+      height={imageHeight}
+      width={imageWidth}
       style={{
         opacity: loading ? 0.5 : 1,
         transition: 'opacity 1s',
       }}
-      onLoad={onLoad}
+      onLoad={onImageChange}
       onError={onError}
     />
   </div>
@@ -123,14 +151,14 @@ ImagePlayer.propTypes = {
   error: PropTypes.object,
   isFetching: PropTypes.bool,
   isMediaFallback: PropTypes.bool,
-  isAutoPlay: PropTypes.bool,
+  isAutoAdvance: PropTypes.bool,
   height: PropTypes.number,
   post: PropTypes.object,
 }
 
 const mapStateToProps = state => {
   const { dispatch, selectedSubreddit, postsBySubreddit, config } = state
-  const { isFullsceen, isAutoPlay } = config
+  const { isFullsceen, isAutoAdvance } = config
   const selectedPost = postsBySubreddit.cursor || {}
   const { isFetching } = postsBySubreddit[selectedSubreddit] || {
     isFetching: false,
@@ -142,7 +170,7 @@ const mapStateToProps = state => {
     post: selectedPost.post,
     isMediaFallback: selectedPost.media_fallback,
     isFullsceen,
-    isAutoPlay,
+    isAutoAdvance,
   }
 }
 

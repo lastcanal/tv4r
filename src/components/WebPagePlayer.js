@@ -37,18 +37,18 @@ const styles = ({ palette }) => ({
 const WebPagePlayer = ({
   height,
   post,
-  isAutoPlay,
+  isAutoAdvance,
   dispatch,
   classes,
 }) => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      if (isAutoPlay) dispatch(nextPost())
+      if (isAutoAdvance) dispatch(nextPost())
     }, 5000)
 
     return () => clearTimeout(timeout)
-  }, [post, isAutoPlay])
+  }, [post, isAutoAdvance])
 
   return <div className={classes.playerWrapper}>
     <iframe
@@ -65,14 +65,14 @@ WebPagePlayer.propTypes = {
   dispatch: PropTypes.func,
   error: PropTypes.object,
   isFetching: PropTypes.bool,
-  isAutoPlay: PropTypes.bool,
+  isAutoAdvance: PropTypes.bool,
   height: PropTypes.number,
   post: PropTypes.object,
 }
 
 const mapStateToProps = state => {
   const { dispatch, selectedSubreddit, postsBySubreddit, config } = state
-  const { isFullsceen, isAutoPlay } = config
+  const { isFullsceen, isAutoAdvance } = config
   const selectedPost = postsBySubreddit.cursor || {}
   const { isFetching } = postsBySubreddit[selectedSubreddit] || {
     isFetching: false,
@@ -83,7 +83,7 @@ const mapStateToProps = state => {
     isFetching,
     post: selectedPost.post,
     isFullsceen,
-    isAutoPlay,
+    isAutoAdvance,
   }
 }
 

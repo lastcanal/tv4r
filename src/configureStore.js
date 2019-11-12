@@ -14,7 +14,7 @@ const devtools = window.__REDUX_DEVTOOLS_EXTENSION__
   : noop => noop
 
 const persistConfig = {
-  key: 'rtv',
+  key: 'tvr',
   storage,
   whitelist: ['subreddits', 'config'],
 }
