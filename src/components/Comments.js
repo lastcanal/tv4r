@@ -4,6 +4,7 @@ import Box from '@material-ui/core/Box'
 import PropTypes from 'prop-types'
 import { useTheme, withStyles } from '@material-ui/core/styles'
 import LinearProgress from '@material-ui/core/LinearProgress'
+import { mediaSelector } from '../selectors'
 
 import {
   fetchCommentsIfNeeded,
@@ -127,7 +128,8 @@ Comments.propTypes = {
   post: PropTypes.object,
 }
 
-const mapStateToProps = ({ postsBySubreddit, selectedSubreddit }) => {
+const mapStateToProps = ({ postsBySubreddit, selectedSubreddit, config }) => {
+  const { showVideos, showImages, showNSFW } = config
   const { cursor } = postsBySubreddit
   const subreddit = postsBySubreddit[selectedSubreddit]
   const {
@@ -136,7 +138,8 @@ const mapStateToProps = ({ postsBySubreddit, selectedSubreddit }) => {
     scope,
   } = subreddit
 
-  const items = subreddit[scope]
+  const posts = subreddit[scope]
+  const items = mediaSelector({ posts, showVideos, showImages, showNSFW })
   const post = items[cursor.index]
   const commentsForPost = comments?.[post?.id]
 

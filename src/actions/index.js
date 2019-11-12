@@ -215,14 +215,16 @@ const fetchComments = (post, selectedSubreddit) => dispatch => {
 }
 
 export const fetchCommentsIfNeeded = () => (dispatch, getState) => {
-  const { postsBySubreddit, selectedSubreddit } = getState()
+  const { postsBySubreddit, selectedSubreddit, config } = getState()
+  const { showVideos, showImages, showNSFW } = config
   const { index } = postsBySubreddit.cursor
   const subreddit = postsBySubreddit[selectedSubreddit]
   const comments = subreddit.comments
-  const items = subreddit[subreddit.scope]
+  const posts = subreddit[subreddit.scope]
+  const items = mediaSelector({ posts, showVideos, showImages, showNSFW })
   const post = items[index]
   if (!comments?.[post?.id]) {
-    dispatch(fetchComments(items[index], selectedSubreddit))
+    dispatch(fetchComments(post, selectedSubreddit))
   }
 }
 
