@@ -14,18 +14,11 @@ const styles = () => ({
     zIndex: 40,
   },
   playerWrapper: {
-    height: ({ height }) => (
-      height
-    ),
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    top: 0,
-    left: 0,
-    backgroundColor: 'black',
     transform: 'translate3d(0,0,1px)',
-    transition: 'height 1s, width 1s',
   },
 })
 

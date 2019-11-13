@@ -7,23 +7,19 @@ import { nextPost } from '../actions'
 
 const styles = ({ palette }) => ({
   playerWrapper: {
-    height: ({ height }) => (
-      height
-    ),
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
+    overflow: 'hidden',
     top: 0,
     left: 0,
-    backgroundColor: 'black',
     transform: 'translate3d(0,0,1px)',
-    transition: 'height 1s, width 1s',
+    '& iframe': {
+      border: 0,
+    },
   },
   error: {
-    height: ({ height }) => (
-      height
-    ),
     backgroundColor: palette.background.default,
     top: 0,
     botton: 0,

@@ -34,7 +34,7 @@ const App = ({
 }) => {
 
   const theme = useAppTheme({ themeMode })
-  const [playerHeight, menuHeight, menuRef] =
+  const { playerHeight, menuHeight, menuRef } =
     useLayoutDimensionTracker({ isFullscreen, isFetching })
   useForceWindowFocus()
   useKeyboardController({ dispatch })

@@ -20,7 +20,6 @@ const styles = ({ palette }) => ({
     flexDirection: 'column',
     top: 0,
     left: 0,
-    backgroundColor: 'black',
     transform: 'translate3d(0,0,1px)',
     transition: 'height 0.39s, width 0.39s',
   },
@@ -105,8 +104,9 @@ const ImagePlayer = ({
     return () => clearTimeout(timeout)
   }, [post, isAutoAdvance])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setLoading(true)
+    setUrl(post.thumbnail)
     enhance()
   }, [post])
 

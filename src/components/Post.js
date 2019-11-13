@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
@@ -26,25 +26,43 @@ import {
   configToggleNSFW,
 } from '../actions'
 
-const styles = ({ palette, spacing }) => ({
+const miniPlayerWidth = () =>
+  Math.min(480, window.innerWidth * (0.39))
+
+const miniPlayerHeight = () =>
+  miniPlayerWidth() * (9 / 16)
+
+const styles = ({ palette, spacing, breakpoints }) => ({
   root: {
+    height: ({ height }) => (
+      height
+    ),
     margin: 0,
     padding: 0,
     overflow: 'hidden',
     scrollY: 'disabled',
+    backgroundColor: 'black',
+  },
+  miniPlayer: {
+    position: 'fixed',
+    bottom: ({ menuHeight }) => menuHeight,
+    right: 0,
+    width: miniPlayerWidth,
+    backgroundColor: 'transparent',
+    opacity: 0.9,
+    [breakpoints.down('sm')]: {
+      display: 'none',
+    },
   },
   loading: {
     backgroundColor: palette.background.default,
     height: ({ playerHeight }) => (
       playerHeight
     ),
-    top: 0,
-    botton: 0,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    zIndex: 40,
   },
   controls: {
     display: 'flex',
@@ -66,15 +84,21 @@ const Post = ({
   showNSFW,
   dispatch,
 }) => {
+
+  const [showMiniPlayer, setShowMiniPlayer] = useState(false)
+
   const renderMedia = () => {
+    const height = showMiniPlayer
+      ? miniPlayerHeight()
+      : playerHeight
     if (isVideo(post)) {
-      return <VideoPlayer height={playerHeight} />
+      return <VideoPlayer height={height} />
     } else if (isImage(post)) {
-      return <ImagePlayer height={playerHeight} />
+      return <ImagePlayer height={height} />
     } else if (post.is_self) {
       return '' // show comments section if is_self
     } else {
-      return <WebPagePlayer height={playerHeight} />
+      return <WebPagePlayer height={height} />
     }
   }
 
@@ -123,6 +147,31 @@ const Post = ({
     </div>
   }
 
+  const isNSFW = useMemo(() => (
+    // eslint-disable-next-line camelcase
+    post?.over_18
+  ), [post])
+
+  const onScroll = () => {
+    if (
+      !showMiniPlayer &&
+      window.pageYOffset > 0 &&
+      window.pageYOffset > playerHeight
+    ) {
+      setShowMiniPlayer(isNSFW ? showNSFW : true)
+    } else if (
+      window.pageYOffset === 0 ||
+      (window.pageYOffset * 0.39) < (playerHeight)
+    ) {
+      setShowMiniPlayer(false)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll)
+    return () => (window.removeEventListener('scroll', onScroll))
+  }, [playerHeight, showNSFW, isNSFW])
+
   if (isFetching) {
     return renderLoading()
   } else if (error) {
@@ -130,14 +179,20 @@ const Post = ({
   } else if (!post || !post.url) {
     return renderEmpty()
   } else {
-    return (
-      <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-        <Container maxWidth={false} className={classes.root}>
-          {(post.over_18 && !showNSFW) ? renderNSFW() : renderMedia()}
-        </Container>
-        <Comments playerHeight={playerHeight} menuHeight={menuHeight} />
+    const className = showMiniPlayer
+      ? classes.miniPlayer : classes.root
+    return <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+      <div
+        className={classes.loading}
+        style={{ display: showMiniPlayer ? 'flex' : 'none' }}
+      >
+        <h2>Using Mini Player...</h2>
       </div>
-    )
+      <Container maxWidth={false} className={className}>
+        {(post.over_18 && !showNSFW) ? renderNSFW() : renderMedia()}
+      </Container>
+      <Comments playerHeight={playerHeight} menuHeight={menuHeight} />
+    </div>
   }
 
 }
