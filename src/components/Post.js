@@ -50,7 +50,7 @@ const styles = ({ palette, spacing, breakpoints }) => ({
     width: miniPlayerWidth,
     backgroundColor: 'transparent',
     opacity: 0.9,
-    [breakpoints.down('sm')]: {
+    [breakpoints.down('xs')]: {
       display: 'none',
     },
   },
@@ -154,7 +154,6 @@ const Post = ({
 
   const onScroll = () => {
     if (
-      !showMiniPlayer &&
       window.pageYOffset > 0 &&
       window.pageYOffset > playerHeight
     ) {
