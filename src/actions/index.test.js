@@ -138,6 +138,7 @@ describe('actions', () => {
         },
       },
       selectedSubreddit: 'foo',
+      config: {}
     })
 
     it('should check request post', () => {
@@ -152,7 +153,7 @@ describe('actions', () => {
             fetch.mockResponseOnce(JSON.stringify(objects))
             const post = { id: id, permalink }
             const dispatch = jest.fn((fn) => {
-              typeof (fn) === 'function' ? fn(dispatch) : null
+              typeof (fn) === 'function' ? fn(dispatch, () => state) : null
             })
             const getState = jest.fn(() => state(post))
             actions.fetchCommentsIfNeeded(post, subreddit)(dispatch, getState)
