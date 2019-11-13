@@ -17,7 +17,7 @@ describe('controls', () => {
       </Provider>
     )
 
-    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
+    expect(wrapper).toMatchSnapshot()
   })
 
   it('should render handle next post', () => {

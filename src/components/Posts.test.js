@@ -27,7 +27,7 @@ describe('posts', () => {
       </Provider>
     )
 
-    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
+    expect(wrapper).toMatchSnapshot()
   })
 
   it('should render Posts', () => {
@@ -50,7 +50,7 @@ describe('posts', () => {
       </Provider>
     )
 
-    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
+    expect(wrapper).toMatchSnapshot()
   })
 
   it('should navigate Posts', () => {
@@ -81,6 +81,6 @@ describe('posts', () => {
     wrapper.update()
 
     expect(dispatch).toHaveBeenCalled()
-    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
+    expect(wrapper).toMatchSnapshot()
   })
 })

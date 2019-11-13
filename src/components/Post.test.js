@@ -11,7 +11,7 @@ describe('post', () => {
       </Provider>
     )
 
-    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
+    expect(wrapper).toMatchSnapshot()
   })
 
   it('should render Post', () => {
@@ -39,7 +39,7 @@ describe('post', () => {
       </Provider>
     )
 
-    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
+    expect(wrapper).toMatchSnapshot()
   })
 
   it('should render media fallback', () => {
@@ -76,7 +76,7 @@ describe('post', () => {
       </Provider>
     )
 
-    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
+    expect(wrapper).toMatchSnapshot()
   })
 
   it('should not render media fallback for non-videos', () => {
@@ -109,7 +109,7 @@ describe('post', () => {
       </Provider>
     )
 
-    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
+    expect(wrapper).toMatchSnapshot()
   })
 
   it('should render Post is loading', () => {
@@ -132,7 +132,7 @@ describe('post', () => {
       </Provider>
     )
 
-    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
+    expect(wrapper).toMatchSnapshot()
   })
 
   it('should render next post', () => {
@@ -166,7 +166,7 @@ describe('post', () => {
     )
 
     store.dispatch(actions.nextPost())
-    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
+    expect(wrapper).toMatchSnapshot()
   })
 
   it('should show loading when isFetching', () => {
@@ -195,6 +195,6 @@ describe('post', () => {
     )
 
     store.dispatch(actions.nextPost())
-    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
+    expect(wrapper).toMatchSnapshot()
   })
 })

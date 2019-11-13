@@ -14,11 +14,11 @@ describe('Option', () => {
       </Provider>
     )
 
-    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
+    expect(wrapper).toMatchSnapshot()
     wrapper.find(RemoveCircleIcon).simulate('click')
-    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
+    expect(wrapper).toMatchSnapshot()
     wrapper.find(MenuItem).simulate('click')
-    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
+    expect(wrapper).toMatchSnapshot()
     expect(setValue).toHaveBeenCalledWith({ value })
   })
 })

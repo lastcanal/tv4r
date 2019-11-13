@@ -11,6 +11,6 @@ describe('picker', () => {
       </Provider>
     )
 
-    expect(wrapper).toMatchInlineSnapshot(`ShallowWrapper {}`)
+    expect(wrapper).toMatchSnapshot()
   })
 })

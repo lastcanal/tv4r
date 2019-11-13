@@ -10,7 +10,7 @@ describe('menu', () => {
       </Provider>
     )
 
-    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
+    expect(wrapper).toMatchSnapshot()
   })
 })
 
@@ -44,5 +44,5 @@ test('should render new subreddit', () => {
 
   wrapper.update()
 
-  expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
+  expect(wrapper).toMatchSnapshot()
 })

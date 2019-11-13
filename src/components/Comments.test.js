@@ -25,7 +25,7 @@ describe('comments', () => {
       </Provider>
     )
 
-    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
+    expect(wrapper).toMatchSnapshot()
   })
 
   it('should render Post', () => {
@@ -55,6 +55,6 @@ describe('comments', () => {
       </Provider>
     )
 
-    expect(wrapper).toMatchInlineSnapshot(`ReactWrapper {}`)
+    expect(wrapper).toMatchSnapshot()
   })
 })

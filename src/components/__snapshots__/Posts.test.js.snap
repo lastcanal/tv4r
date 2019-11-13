@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`posts should navigate Posts 1`] = `ReactWrapper {}`;
+
+exports[`posts should render Posts 1`] = `ReactWrapper {}`;
+
+exports[`posts should render empty Posts 1`] = `ReactWrapper {}`;

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Option should render Option 1`] = `ReactWrapper {}`;
+
+exports[`Option should render Option 2`] = `ReactWrapper {}`;
+
+exports[`Option should render Option 3`] = `ReactWrapper {}`;

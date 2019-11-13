@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`post should not render media fallback for non-videos 1`] = `ReactWrapper {}`;
+
+exports[`post should render Post 1`] = `ReactWrapper {}`;
+
+exports[`post should render Post is loading 1`] = `ReactWrapper {}`;
+
+exports[`post should render empty Post 1`] = `ReactWrapper {}`;
+
+exports[`post should render media fallback 1`] = `ReactWrapper {}`;
+
+exports[`post should render next post 1`] = `ReactWrapper {}`;
+
+exports[`post should show loading when isFetching 1`] = `ReactWrapper {}`;

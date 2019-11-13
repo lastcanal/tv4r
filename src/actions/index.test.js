@@ -138,7 +138,7 @@ describe('actions', () => {
         },
       },
       selectedSubreddit: 'foo',
-      config: {}
+      config: {},
     })
 
     it('should check request post', () => {
