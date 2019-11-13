@@ -31,7 +31,9 @@ const Option = ({
 
   const onClick = (e) => {
     e.stopPropagation()
+    e.preventDefault()
     setValue(data)
+    return false
   }
 
   const onRemove = (e) => {

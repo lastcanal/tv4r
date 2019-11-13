@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useLayoutEffect, useRef } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import debounce from 'lodash.debounce'
 
 const useLayoutDimensionTracker = ({ isFullscreen, isFetching }) => {
@@ -20,43 +20,36 @@ const useLayoutDimensionTracker = ({ isFullscreen, isFetching }) => {
     }
   }
 
-  useLayoutEffect(() => {
-    setMenuHeight(calculateMenuHeight())
-  }, [menuRef, orientation])
-
-  useEffect(() => {
-    const constrained = menuHeight * 1.61 > window.innerHeight
-    setMenuOffsetHeight(isFullscreen || constrained ? 0 : menuHeight)
-  }, [screenHeight, menuHeight, orientation])
-
   const calculateHeight = () => (
     window.innerHeight - menuOffsetHeight
   )
 
-  useLayoutEffect(() => {
-    setPlayerHeight(calculateHeight())
-  }, [isFullscreen, screenHeight, menuOffsetHeight, orientation])
-
-  const isMobile = useMemo(() => (
-    typeof window.orientation !== 'undefined' ||
-      navigator.userAgent.indexOf('IEMobile') !== -1
-  ), [])
-
   const onResize = debounce(() => {
-    // Prevent mobile browers resize-on-scroll due to system menu being hidden
-    const newHeight = window.innerHeight
-    const delta = Math.abs(screenHeight - newHeight)
-    if (!isMobile || (delta > 100)) {
-      setScreenHeight(newHeight)
-      setMenuHeight(calculateMenuHeight())
-    }
+    setScreenHeight(calculateHeight())
+    setMenuHeight(calculateMenuHeight())
   }, 10)
 
   const onOrientationChange = () => {
-    if (window.orientation) {
+    if (typeof window.orientation !== 'undefined') {
       setOrientation(window.orientation)
     }
   }
+  useLayoutEffect(() => {
+    setMenuHeight(calculateMenuHeight())
+  }, [menuRef])
+
+  useLayoutEffect(() => {
+    setPlayerHeight(calculateHeight())
+  }, [screenHeight, menuOffsetHeight])
+
+  useLayoutEffect(() => {
+    setMenuOffsetHeight(isFullscreen ? 0 : menuHeight)
+  }, [isFullscreen, screenHeight, menuHeight, orientation])
+
+  useLayoutEffect(() => {
+    setScreenHeight(window.innnerHeight)
+    setMenuHeight(calculateMenuHeight())
+  }, [isFullscreen, isFetching, orientation])
 
   useEffect(() => {
     window.addEventListener('resize', onResize)
@@ -69,11 +62,6 @@ const useLayoutDimensionTracker = ({ isFullscreen, isFetching }) => {
       window.removeEventListener('orientationchange', onOrientationChange)
     )
   }, [])
-
-  useEffect(() => {
-    setScreenHeight(window.innnerHeight)
-    setMenuHeight(calculateMenuHeight())
-  }, [isFullscreen, isFetching])
 
   return [playerHeight, menuHeight, menuRef]
 }

@@ -25,6 +25,7 @@ const styles = () => ({
     left: 0,
     backgroundColor: 'black',
     transform: 'translate3d(0,0,1px)',
+    transition: 'height 1s, width 1s',
   },
 })
 

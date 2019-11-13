@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useLayoutEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
@@ -22,6 +22,7 @@ const styles = ({ palette }) => ({
     left: 0,
     backgroundColor: 'black',
     transform: 'translate3d(0,0,1px)',
+    transition: 'height 0.39s, width 0.39s',
   },
   error: {
     height: ({ height }) => (
@@ -59,15 +60,28 @@ const ImagePlayer = ({
   const [imageWidth, setImageWidth] = useState(null)
   const [imageHeight, setImageHeight] = useState(height)
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (isAutoAdvance) dispatch(nextPost())
-    }, 5000)
+  const onError = (error) => {
+    setLoading(false)
+    dispatch(mediaFallback(error))
+  }
 
-    return () => clearTimeout(timeout)
-  }, [post, isAutoAdvance])
+  const onImageChange = () => {
+    if (!imgRef) return
 
-  const onLoad = () => {
+    setLoading(false)
+    const width = window.innerWidth
+    const screenRatio = width / height
+    const imageRatio = imgRef.width / imgRef.height
+    if (screenRatio > imageRatio) {
+      setImageWidth(null)
+      setImageHeight(height)
+    } else {
+      setImageWidth(width)
+      setImageHeight(null)
+    }
+  }
+
+  const enhance = () => {
     let decodedUrl = null
     if (post.preview?.enabled) {
       const parser = new DOMParser()
@@ -80,43 +94,25 @@ const ImagePlayer = ({
       }
     }
 
-    const target = decodedUrl || post.url
-
-    setUrl(target)
-  }
-
-  const onError = (error) => {
-    setLoading(false)
-    dispatch(mediaFallback(error))
-  }
-
-  const onImageChange = () => {
-    if (!imgRef) return
-    setLoading(false)
-
-    const width = window.innerWidth
-    if (imgRef.width > width) {
-      setImageWidth(width)
-      setImageHeight(null)
-    } else if (imgRef.height / height) {
-      setImageWidth(null)
-      setImageHeight(height)
-    } else if (imgRef.height / imgRef.width >= height / width) {
-      setImageWidth(width)
-      setImageHeight(null)
-    } else {
-      setImageWidth(null)
-      setImageHeight(height)
-    }
+    setUrl(decodedUrl || post.url)
   }
 
   useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (isAutoAdvance) dispatch(nextPost())
+    }, 5000)
+
+    return () => clearTimeout(timeout)
+  }, [post, isAutoAdvance])
+
+  useLayoutEffect(() => {
     setLoading(true)
-    onLoad()
+    enhance()
   }, [post])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     onImageChange()
+    enhance()
   }, [height])
 
   if (isMediaFallback) {

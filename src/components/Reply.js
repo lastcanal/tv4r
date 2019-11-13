@@ -9,6 +9,7 @@ import RemoveIcon from '@material-ui/icons/Remove'
 
 import { fetchRepliesIfNeeded } from '../actions'
 import { postURL } from '../helpers/reddit'
+import { mediaSelector } from '../selectors'
 
 import ReplyTree from './ReplyTree'
 
@@ -139,11 +140,18 @@ Reply.propTypes = {
   dispatch: PropTypes.func,
 }
 
-export const mapStateToProps = ({ postsBySubreddit, selectedSubreddit }) => {
+export const mapStateToProps = ({
+  postsBySubreddit,
+  selectedSubreddit,
+  config,
+}) => {
+  const { showVideos, showImages, showNSFW } = config
   const { cursor } = postsBySubreddit
   const subreddit = postsBySubreddit[selectedSubreddit]
   const comments = subreddit.comments || {}
-  const post = subreddit[subreddit.scope][cursor.index]
+  const posts = subreddit[subreddit.scope]
+  const items = mediaSelector({ posts, showVideos, showImages, showNSFW })
+  const post = items[cursor.index]
   const commentsForPost = comments[post?.id]
 
   return {
