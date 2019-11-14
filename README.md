@@ -1,7 +1,9 @@
-# TV4R: The TV of the Internet
+## TV4R: The TV of the Internet
 
 TV4R is a television interface for reddit, the front page of the internet.
 TV4R runs entirely in your browser and relies only on the reddit API.
+
+![TV4R](./public/tv4r.jpg)
 
 #### Description
 
@@ -101,3 +103,7 @@ GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+##### Extra
+
+[Watch the ramsey video pictured above](https://youtu.be/vBhyT5BJJaU)
