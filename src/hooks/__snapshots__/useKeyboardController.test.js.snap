@@ -1,0 +1,237 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useKeyboardController handle heydown events 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Connect(ConnectedRouterWithContext)
+    hashType="noslash"
+    history={
+      Object {
+        "action": "POP",
+        "go": [MockFunction],
+        "goBack": [MockFunction],
+        "goForward": [MockFunction],
+        "listen": [MockFunction] {
+          "calls": Array [
+            Array [
+              [Function],
+            ],
+            Array [
+              [Function],
+            ],
+          ],
+          "results": Array [
+            Object {
+              "type": "return",
+              "value": undefined,
+            },
+            Object {
+              "type": "return",
+              "value": undefined,
+            },
+          ],
+        },
+        "location": Object {},
+        "push": [MockFunction] {
+          "calls": Array [
+            Array [
+              Object {
+                "hash": "",
+                "pathname": "/",
+                "search": "",
+              },
+            ],
+          ],
+          "results": Array [
+            Object {
+              "type": "return",
+              "value": undefined,
+            },
+          ],
+        },
+        "replace": [MockFunction],
+      }
+    }
+  >
+    <ConnectedRouterWithContext
+      hashType="noslash"
+      history={
+        Object {
+          "action": "POP",
+          "go": [MockFunction],
+          "goBack": [MockFunction],
+          "goForward": [MockFunction],
+          "listen": [MockFunction] {
+            "calls": Array [
+              Array [
+                [Function],
+              ],
+              Array [
+                [Function],
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+            ],
+          },
+          "location": Object {},
+          "push": [MockFunction] {
+            "calls": Array [
+              Array [
+                Object {
+                  "hash": "",
+                  "pathname": "/",
+                  "search": "",
+                },
+              ],
+            ],
+            "results": Array [
+              Object {
+                "type": "return",
+                "value": undefined,
+              },
+            ],
+          },
+          "replace": [MockFunction],
+        }
+      }
+      onLocationChanged={[Function]}
+    >
+      <ConnectedRouter
+        hashType="noslash"
+        history={
+          Object {
+            "action": "POP",
+            "go": [MockFunction],
+            "goBack": [MockFunction],
+            "goForward": [MockFunction],
+            "listen": [MockFunction] {
+              "calls": Array [
+                Array [
+                  [Function],
+                ],
+                Array [
+                  [Function],
+                ],
+              ],
+              "results": Array [
+                Object {
+                  "type": "return",
+                  "value": undefined,
+                },
+                Object {
+                  "type": "return",
+                  "value": undefined,
+                },
+              ],
+            },
+            "location": Object {},
+            "push": [MockFunction] {
+              "calls": Array [
+                Array [
+                  Object {
+                    "hash": "",
+                    "pathname": "/",
+                    "search": "",
+                  },
+                ],
+              ],
+              "results": Array [
+                Object {
+                  "type": "return",
+                  "value": undefined,
+                },
+              ],
+            },
+            "replace": [MockFunction],
+          }
+        }
+        onLocationChanged={[Function]}
+        store={
+          Object {
+            "clearActions": [Function],
+            "dispatch": [Function],
+            "getActions": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+          }
+        }
+      >
+        <Router
+          history={
+            Object {
+              "action": "POP",
+              "go": [MockFunction],
+              "goBack": [MockFunction],
+              "goForward": [MockFunction],
+              "listen": [MockFunction] {
+                "calls": Array [
+                  Array [
+                    [Function],
+                  ],
+                  Array [
+                    [Function],
+                  ],
+                ],
+                "results": Array [
+                  Object {
+                    "type": "return",
+                    "value": undefined,
+                  },
+                  Object {
+                    "type": "return",
+                    "value": undefined,
+                  },
+                ],
+              },
+              "location": Object {},
+              "push": [MockFunction] {
+                "calls": Array [
+                  Array [
+                    Object {
+                      "hash": "",
+                      "pathname": "/",
+                      "search": "",
+                    },
+                  ],
+                ],
+                "results": Array [
+                  Object {
+                    "type": "return",
+                    "value": undefined,
+                  },
+                ],
+              },
+              "replace": [MockFunction],
+            }
+          }
+        >
+          <Wrapped
+            dispatch={[Function]}
+          >
+            <div />
+          </Wrapped>
+        </Router>
+      </ConnectedRouter>
+    </ConnectedRouterWithContext>
+  </Connect(ConnectedRouterWithContext)>
+</Provider>
+`;

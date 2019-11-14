@@ -120,11 +120,12 @@ exports[`comments should render Post 1`] = `
       <Comments
         classes={
           Object {
-            "comments": "Comments-comments-2 Comments-comments-12",
-            "loading": "Comments-loading-3 Comments-loading-13",
+            "comments": "Comments-comments-2 Comments-comments-13",
+            "loadComments": "Comments-loadComments-7",
+            "loading": "Comments-loading-3 Comments-loading-14",
             "menuButton": "Comments-menuButton-4",
             "root": "Comments-root-1",
-            "spacerBottom": "Comments-spacerBottom-6 Comments-spacerBottom-14",
+            "spacerBottom": "Comments-spacerBottom-6 Comments-spacerBottom-15",
             "title": "Comments-title-5",
           }
         }
@@ -232,12 +233,26 @@ exports[`comments should render Post 1`] = `
       >
         <div>
           <div
-            className="Comments-comments-2 Comments-comments-12"
+            className="Comments-comments-2 Comments-comments-13"
           >
             <div
               className="undefined Comments-root-1"
               id="comments"
             >
+              <LoadComments>
+                <div
+                  className="Comments-loadComments-7"
+                >
+                  <a
+                    onClick={[Function]}
+                  >
+                    <h2>
+                      Load
+                       Comments
+                    </h2>
+                  </a>
+                </div>
+              </LoadComments>
               <CommentTree
                 comments={
                   Object {
@@ -271,9 +286,9 @@ exports[`comments should render Post 1`] = `
                   <Comment
                     classes={
                       Object {
-                        "comment": "Comment-comment-15 Comment-comment-18",
-                        "comment_container": "Comment-comment_container-16",
-                        "comment_container_alt": "Comment-comment_container_alt-17",
+                        "comment": "Comment-comment-16 Comment-comment-19",
+                        "comment_container": "Comment-comment_container-17",
+                        "comment_container_alt": "Comment-comment_container_alt-18",
                       }
                     }
                     comment={
@@ -288,10 +303,10 @@ exports[`comments should render Post 1`] = `
                   >
                     <Styled(MuiBox)
                       boxShadow={1}
-                      className="Comment-comment-15 Comment-comment-18 Comment-comment_container-16"
+                      className="Comment-comment-16 Comment-comment-19 Comment-comment_container-17"
                     >
                       <div
-                        className="MuiBox-root MuiBox-root-19 Comment-comment-15 Comment-comment-18 Comment-comment_container-16"
+                        className="MuiBox-root MuiBox-root-20 Comment-comment-16 Comment-comment-19 Comment-comment_container-17"
                       >
                         <Connect(WithStyles(Reply))
                           depth={0}
@@ -413,10 +428,10 @@ exports[`comments should render Post 1`] = `
                             <Reply
                               classes={
                                 Object {
-                                  "commentAuthor": "Reply-commentAuthor-22",
-                                  "commentBody": "Reply-commentBody-20",
-                                  "postTitle": "Reply-postTitle-23",
-                                  "selfPostBody": "Reply-selfPostBody-21",
+                                  "commentAuthor": "Reply-commentAuthor-23",
+                                  "commentBody": "Reply-commentBody-21",
+                                  "postTitle": "Reply-postTitle-24",
+                                  "selfPostBody": "Reply-selfPostBody-22",
                                 }
                               }
                               comments={
@@ -525,10 +540,10 @@ exports[`comments should render Post 1`] = `
                               }
                             >
                               <div
-                                className="Reply-selfPostBody-21"
+                                className="Reply-selfPostBody-22"
                               >
                                 <a
-                                  className="Reply-postTitle-23"
+                                  className="Reply-postTitle-24"
                                   href={"https://www.reddit.com/.html"}
                                 >
                                   <h2>
@@ -614,9 +629,9 @@ exports[`comments should render Post 1`] = `
                   <Comment
                     classes={
                       Object {
-                        "comment": "Comment-comment-15 Comment-comment-24",
-                        "comment_container": "Comment-comment_container-16",
-                        "comment_container_alt": "Comment-comment_container_alt-17",
+                        "comment": "Comment-comment-16 Comment-comment-25",
+                        "comment_container": "Comment-comment_container-17",
+                        "comment_container_alt": "Comment-comment_container_alt-18",
                       }
                     }
                     comment={
@@ -648,10 +663,10 @@ exports[`comments should render Post 1`] = `
                   >
                     <Styled(MuiBox)
                       boxShadow={1}
-                      className="Comment-comment-15 Comment-comment-24 Comment-comment_container-16"
+                      className="Comment-comment-16 Comment-comment-25 Comment-comment_container-17"
                     >
                       <div
-                        className="MuiBox-root MuiBox-root-25 Comment-comment-15 Comment-comment-24 Comment-comment_container-16"
+                        className="MuiBox-root MuiBox-root-26 Comment-comment-16 Comment-comment-25 Comment-comment_container-17"
                       >
                         <Connect(WithStyles(Reply))
                           depth={0}
@@ -807,10 +822,10 @@ exports[`comments should render Post 1`] = `
                             <Reply
                               classes={
                                 Object {
-                                  "commentAuthor": "Reply-commentAuthor-22",
-                                  "commentBody": "Reply-commentBody-20",
-                                  "postTitle": "Reply-postTitle-23",
-                                  "selfPostBody": "Reply-selfPostBody-21",
+                                  "commentAuthor": "Reply-commentAuthor-23",
+                                  "commentBody": "Reply-commentBody-21",
+                                  "postTitle": "Reply-postTitle-24",
+                                  "selfPostBody": "Reply-selfPostBody-22",
                                 }
                               }
                               comments={
@@ -937,7 +952,7 @@ exports[`comments should render Post 1`] = `
                             >
                               <div>
                                 <a
-                                  className="Reply-commentAuthor-22"
+                                  className="Reply-commentAuthor-23"
                                   href={"https://www.reddit.com/.html"}
                                 />
                                 (
@@ -945,7 +960,7 @@ exports[`comments should render Post 1`] = `
                                 )
                               </div>
                               <div
-                                className="Reply-commentBody-20"
+                                className="Reply-commentBody-21"
                               >
                                 bar
                               </div>
@@ -989,9 +1004,9 @@ exports[`comments should render Post 1`] = `
                             <Comment
                               classes={
                                 Object {
-                                  "comment": "Comment-comment-15 Comment-comment-26",
-                                  "comment_container": "Comment-comment_container-16",
-                                  "comment_container_alt": "Comment-comment_container_alt-17",
+                                  "comment": "Comment-comment-16 Comment-comment-27",
+                                  "comment_container": "Comment-comment_container-17",
+                                  "comment_container_alt": "Comment-comment_container_alt-18",
                                 }
                               }
                               comment={
@@ -1006,10 +1021,10 @@ exports[`comments should render Post 1`] = `
                             >
                               <Styled(MuiBox)
                                 boxShadow={2}
-                                className="Comment-comment-15 Comment-comment-26 Comment-comment_container_alt-17"
+                                className="Comment-comment-16 Comment-comment-27 Comment-comment_container_alt-18"
                               >
                                 <div
-                                  className="MuiBox-root MuiBox-root-27 Comment-comment-15 Comment-comment-26 Comment-comment_container_alt-17"
+                                  className="MuiBox-root MuiBox-root-28 Comment-comment-16 Comment-comment-27 Comment-comment_container_alt-18"
                                 >
                                   <Connect(WithStyles(Reply))
                                     depth={1}
@@ -1131,10 +1146,10 @@ exports[`comments should render Post 1`] = `
                                       <Reply
                                         classes={
                                           Object {
-                                            "commentAuthor": "Reply-commentAuthor-22",
-                                            "commentBody": "Reply-commentBody-20",
-                                            "postTitle": "Reply-postTitle-23",
-                                            "selfPostBody": "Reply-selfPostBody-21",
+                                            "commentAuthor": "Reply-commentAuthor-23",
+                                            "commentBody": "Reply-commentBody-21",
+                                            "postTitle": "Reply-postTitle-24",
+                                            "selfPostBody": "Reply-selfPostBody-22",
                                           }
                                         }
                                         comments={
@@ -1264,9 +1279,9 @@ exports[`comments should render Post 1`] = `
                             <Comment
                               classes={
                                 Object {
-                                  "comment": "Comment-comment-15 Comment-comment-28",
-                                  "comment_container": "Comment-comment_container-16",
-                                  "comment_container_alt": "Comment-comment_container_alt-17",
+                                  "comment": "Comment-comment-16 Comment-comment-29",
+                                  "comment_container": "Comment-comment_container-17",
+                                  "comment_container_alt": "Comment-comment_container_alt-18",
                                 }
                               }
                               comment={
@@ -1279,10 +1294,10 @@ exports[`comments should render Post 1`] = `
                             >
                               <Styled(MuiBox)
                                 boxShadow={2}
-                                className="Comment-comment-15 Comment-comment-28 Comment-comment_container_alt-17"
+                                className="Comment-comment-16 Comment-comment-29 Comment-comment_container_alt-18"
                               >
                                 <div
-                                  className="MuiBox-root MuiBox-root-29 Comment-comment-15 Comment-comment-28 Comment-comment_container_alt-17"
+                                  className="MuiBox-root MuiBox-root-30 Comment-comment-16 Comment-comment-29 Comment-comment_container_alt-18"
                                 >
                                   <Connect(WithStyles(Reply))
                                     depth={1}
@@ -1400,10 +1415,10 @@ exports[`comments should render Post 1`] = `
                                       <Reply
                                         classes={
                                           Object {
-                                            "commentAuthor": "Reply-commentAuthor-22",
-                                            "commentBody": "Reply-commentBody-20",
-                                            "postTitle": "Reply-postTitle-23",
-                                            "selfPostBody": "Reply-selfPostBody-21",
+                                            "commentAuthor": "Reply-commentAuthor-23",
+                                            "commentBody": "Reply-commentBody-21",
+                                            "postTitle": "Reply-postTitle-24",
+                                            "selfPostBody": "Reply-selfPostBody-22",
                                           }
                                         }
                                         comments={
@@ -1573,7 +1588,7 @@ exports[`comments should render Post 1`] = `
             </div>
           </div>
           <div
-            className="Comments-spacerBottom-6 Comments-spacerBottom-14"
+            className="Comments-spacerBottom-6 Comments-spacerBottom-15"
           />
         </div>
       </Comments>
@@ -1602,11 +1617,12 @@ exports[`comments should render empty Comments 1`] = `
       <Comments
         classes={
           Object {
-            "comments": "Comments-comments-2 Comments-comments-7",
-            "loading": "Comments-loading-3 Comments-loading-8",
+            "comments": "Comments-comments-2 Comments-comments-8",
+            "loadComments": "Comments-loadComments-7",
+            "loading": "Comments-loading-3 Comments-loading-9",
             "menuButton": "Comments-menuButton-4",
             "root": "Comments-root-1",
-            "spacerBottom": "Comments-spacerBottom-6 Comments-spacerBottom-9",
+            "spacerBottom": "Comments-spacerBottom-6 Comments-spacerBottom-10",
             "title": "Comments-title-5",
           }
         }
@@ -1615,20 +1631,35 @@ exports[`comments should render empty Comments 1`] = `
         <div>
           <div>
             <div
-              className="Comments-loading-3 Comments-loading-8"
+              className="Comments-loading-3 Comments-loading-9"
               id="comments"
             >
               <Styled(MuiBox)
                 boxShadow={5}
               >
                 <div
-                  className="MuiBox-root MuiBox-root-11"
-                />
+                  className="MuiBox-root MuiBox-root-12"
+                >
+                  <LoadComments>
+                    <div
+                      className="Comments-loadComments-7"
+                    >
+                      <a
+                        onClick={[Function]}
+                      >
+                        <h2>
+                          Load
+                           Comments
+                        </h2>
+                      </a>
+                    </div>
+                  </LoadComments>
+                </div>
               </Styled(MuiBox)>
             </div>
           </div>
           <div
-            className="Comments-spacerBottom-6 Comments-spacerBottom-9"
+            className="Comments-spacerBottom-6 Comments-spacerBottom-10"
           />
         </div>
       </Comments>
