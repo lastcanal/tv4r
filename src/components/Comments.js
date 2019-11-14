@@ -158,9 +158,11 @@ const mapStateToProps = ({ postsBySubreddit, selectedSubreddit, config }) => {
     comments,
     isFetchingComments,
     scope,
-  } = subreddit
+  } = subreddit || {
+    comments: {},
+  }
 
-  const posts = subreddit[scope]
+  const posts = subreddit?.[scope] || []
   const items = mediaSelector({ posts, showVideos, showImages, showNSFW })
   const post = items[cursor.index]
   const commentsForPost = comments?.[post?.id]
