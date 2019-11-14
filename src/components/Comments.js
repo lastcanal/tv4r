@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import Box from '@material-ui/core/Box'
 import PropTypes from 'prop-types'
-import { useTheme, withStyles } from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/core/styles'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import { mediaSelector } from '../selectors'
 
@@ -35,6 +35,17 @@ const styles = ({ spacing, palette, shape }) => ({
     minHeight: ({ menuHeight }) => (menuHeight + spacing(1)),
     paddingBottom: 1,
   },
+  loadComments: {
+    display: 'flex',
+    width: '100%',
+    '& a': {
+      flex: 1,
+      textAlign: 'center',
+      color: palette.text.primary,
+      textDecoration: 'none',
+      cursor: 'pointer',
+    },
+  },
 })
 
 const Comments = ({
@@ -46,6 +57,7 @@ const Comments = ({
   classes,
 }) => {
   const [visible, setVisible] = useState(false)
+  const [fallback, setFallback] = useState(false)
 
   useEffect(() => {
     if (visible) {
@@ -53,18 +65,16 @@ const Comments = ({
     }
   }, [post, visible])
 
-  const { spacing } = useTheme()
-
   useEffect(() => {
     if (typeof IntersectionObserver === 'undefined') {
       // IntersectionObserver not supported (ie, node),
       // default to always visible and always loading
       // https://caniuse.com/#feat=intersectionobserver
-      setVisible(true)
+      setFallback(true)
       return
     } else {
       /* istanbul ignore next */
-      const rootMargin = (playerHeight - spacing(2)) || 0
+      const rootMargin = playerHeight
       const target = document.getElementById('scroll_beacon')
       const options = {
         rootMargin: `${rootMargin}px`,
@@ -86,13 +96,24 @@ const Comments = ({
     }
   }, [playerHeight])
 
+  const LoadComments = () => {
+    return fallback && <div className={classes.loadComments}>
+      <a onClick={() => setVisible(!visible)}>
+        <h2>{visible ? 'Stop Loading' : 'Load'} Comments</h2>
+      </a>
+    </div>
+  }
+
   if (!comments || isFetchingComments) {
     return (
       <div>
         <div className={classes.spacer}>
           <div id="comments" className={classes.loading}>
             <Box className={classes.selfPostBody} boxShadow={5}>
-              { isFetchingComments ? <LinearProgress /> : '' }
+              {isFetchingComments
+                ? <LinearProgress />
+                : <LoadComments />
+              }
             </Box>
           </div>
         </div>
@@ -108,6 +129,7 @@ const Comments = ({
           id="comments"
           className={`${classes.comment_container} ${classes.root}`}
         >
+          {fallback && <LoadComments />}
           {comments.root.map((comment, index) => (
             <CommentTree comments={comment} key={index} />
           ))}
