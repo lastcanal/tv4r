@@ -65,8 +65,8 @@ const TabPanel = (props) => {
 }
 
 TabPanel.propTypes = {
-  children: PropTypes.array,
-  value: PropTypes.string,
+  children: PropTypes.any,
+  value: PropTypes.number,
   index: PropTypes.number,
 }
 
