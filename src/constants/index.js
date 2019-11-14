@@ -49,6 +49,7 @@ export const DEFAULT_SUBREDDITS = [
   'documentaries',
   'politicalvideos',
   'artisanvideos',
+  'all',
 ]
 
 export const DEFAULT_SUBREDDIT = DEFAULT_SUBREDDITS[0]

@@ -87,7 +87,7 @@ export const didInvalidateSubredditFromPath = (state, action) => {
 export const translatePermalink = (permalink, selectedSubreddit) => {
   const match = matchRedditPath(permalink)
   if (match && selectedSubreddit === 'all') {
-    return permalink.toLowerCase().replace(match.params.subreddit, 'all')
+    return permalink.replace(match.params.subreddit, 'all')
   } else {
     return permalink
   }
