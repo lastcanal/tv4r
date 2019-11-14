@@ -35,6 +35,7 @@ exports[`post should not render media fallback for non-videos 1`] = `
         }
         dispatch={[Function]}
         isFetching={false}
+        isPlaying={false}
         post={
           Object {
             "id": 1,
@@ -230,6 +231,7 @@ exports[`post should render Image 1`] = `
         }
         dispatch={[Function]}
         isFetching={false}
+        isPlaying={false}
         post={
           Object {
             "id": 1,
@@ -450,6 +452,7 @@ exports[`post should render Post 1`] = `
         }
         dispatch={[Function]}
         isFetching={false}
+        isPlaying={false}
         post={
           Object {
             "id": 1,
@@ -635,6 +638,7 @@ exports[`post should render Post is loading 1`] = `
         }
         dispatch={[Function]}
         isFetching={true}
+        isPlaying={false}
       >
         <div
           className="Connect(Post)-loading-3 Connect(Post)-loading-109"
@@ -709,6 +713,7 @@ exports[`post should render Video 1`] = `
         }
         dispatch={[Function]}
         isFetching={false}
+        isPlaying={false}
         post={
           Object {
             "id": 1,
@@ -1217,6 +1222,7 @@ exports[`post should render empty Post 1`] = `
           }
         }
         dispatch={[Function]}
+        isPlaying={false}
       >
         <div
           className="Connect(Post)-loading-3 Connect(Post)-loading-7"
@@ -2024,6 +2030,7 @@ exports[`post should render media fallback 1`] = `
         }
         dispatch={[Function]}
         isFetching={false}
+        isPlaying={false}
         post={
           Object {
             "id": 1,
@@ -2230,6 +2237,7 @@ exports[`post should render next post 1`] = `
         }
         dispatch={[Function]}
         isFetching={false}
+        isPlaying={false}
         post={
           Object {
             "id": 1,
@@ -2415,6 +2423,7 @@ exports[`post should show loading when isFetching 1`] = `
         }
         dispatch={[Function]}
         isFetching={true}
+        isPlaying={false}
         post={
           Object {
             "id": 1,
