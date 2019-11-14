@@ -14,6 +14,9 @@ const useAppTheme = ({ themeMode }) => {
         type: themeMode || (prefersLightMode ? 'light' : 'dark'),
         primary: grey,
       },
+      typography: {
+        fontFamily: '"Noto Sans", Arial, sans-serif',
+      },
     })
   ), [themeMode, prefersLightMode])
 }
