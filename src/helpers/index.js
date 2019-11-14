@@ -46,6 +46,7 @@ export function filterVideoImage (posts) {
 }
 
 export function isVideo (post) {
+  if (!post) return false
   const media = post.secure_media || post.media
   return (
     post.is_video ||
@@ -54,6 +55,7 @@ export function isVideo (post) {
   )
 }
 export function isImage (post) {
+  if (!post) return false
   return !!(
     !isVideo(post) && !post.is_video && post.preview?.enabled
   )
