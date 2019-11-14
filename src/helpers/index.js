@@ -1,7 +1,11 @@
 import { matchPath } from 'react-router-dom'
 import ReactPlayer from 'react-player'
 
-import { MEDIA_VIDEO, MEDIA_IMAGE } from '../constants'
+import {
+  MEDIA_VIDEO,
+  MEDIA_IMAGE,
+  KNOWN_EMBED_REQUIRED_PROVIDERS,
+} from '../constants'
 
 import { mediaSelector } from '../selectors'
 
@@ -59,6 +63,12 @@ export function isImage (post) {
   return !!(
     !isVideo(post) && !post.is_video && post.preview?.enabled
   )
+}
+
+export const isKnownMediaEmbed = (post) => {
+  // eslint-disable-next-line camelcase
+  const name = post?.secure_media?.oembed?.provider_name
+  return name && KNOWN_EMBED_REQUIRED_PROVIDERS.indexOf(name) < 0
 }
 
 const matchSubredditPath = pathname => matchPath(pathname, '/r/:subreddit')

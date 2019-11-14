@@ -57,3 +57,6 @@ export const DEFAULT_SUBREDDIT = DEFAULT_SUBREDDITS[0]
 export const THUMBNAIL_WIDTH = 140
 export const THUMBNAIL_HEIGHT = 105
 
+export const KNOWN_EMBED_REQUIRED_PROVIDERS = [
+  'Gyfcat',
+]

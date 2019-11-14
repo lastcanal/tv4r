@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles'
 import ReactHtmlParser from 'react-html-parser'
 import ReactPlayer from 'react-player'
 
-import { isVideo } from '../helpers'
+import { isVideo, isKnownMediaEmbed } from '../helpers'
 import { nextPost, mediaFallback, playerScanAck, playerJumpAck } from '../actions'
 
 const styles = () => ({
@@ -107,11 +107,12 @@ const VideoPlayer = ({
         onEnded={onMediaEnded}
         onError={onMediaError}
         controls={true}
+        loop={false}
       />
     </div>
   }
 
-  if (isMediaFallback) {
+  if (isMediaFallback || isKnownMediaEmbed(post)) {
     return renderMediaEmbed()
   } else {
     return renderMediaPlayer()
