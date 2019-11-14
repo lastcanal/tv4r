@@ -87,7 +87,13 @@ Build a release
 
 TV4R is written using React and Redux. Install [Redux Devtools](https://extension.remotedev.io/) to see what is happening under the hood.
 
-Pull Requests Welcome!
+Pull requests, issues, bug reports and ideas are all welcome!
+
+There are 2 babel optional propoals in use in this app:
+
+Optional Chaining: Use whenever possible!
+
+Pipeline Operator: Use only when wrapping exported components with higher-order components (HOCs)
 
 #### Licence
 
