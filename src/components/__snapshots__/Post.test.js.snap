@@ -1,15 +1,2357 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`post should not render media fallback for non-videos 1`] = `ReactWrapper {}`;
+exports[`post should not render media fallback for non-videos 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <WithStyles(undefined)>
+    <Connect(Post)
+      classes={
+        Object {
+          "controls": "Connect(Post)-controls-4",
+          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-101",
+          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-100",
+          "root": "Connect(Post)-root-1 Connect(Post)-root-99",
+        }
+      }
+    >
+      <Post
+        classes={
+          Object {
+            "controls": "Connect(Post)-controls-4",
+            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-101",
+            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-100",
+            "root": "Connect(Post)-root-1 Connect(Post)-root-99",
+          }
+        }
+        dispatch={[Function]}
+        isFetching={false}
+        post={
+          Object {
+            "id": 1,
+            "media": Object {
+              "oembed": Object {
+                "type": "image",
+              },
+            },
+            "url": "https://example.com/video",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <div
+            className="Connect(Post)-loading-3 Connect(Post)-loading-101"
+            style={
+              Object {
+                "display": "none",
+              }
+            }
+          >
+            <h2>
+              Using Mini Player...
+            </h2>
+          </div>
+          <WithStyles(ForwardRef(Container))
+            className="Connect(Post)-root-1 Connect(Post)-root-99"
+            maxWidth={false}
+          >
+            <ForwardRef(Container)
+              className="Connect(Post)-root-1 Connect(Post)-root-99"
+              classes={
+                Object {
+                  "fixed": "MuiContainer-fixed",
+                  "maxWidthLg": "MuiContainer-maxWidthLg",
+                  "maxWidthMd": "MuiContainer-maxWidthMd",
+                  "maxWidthSm": "MuiContainer-maxWidthSm",
+                  "maxWidthXl": "MuiContainer-maxWidthXl",
+                  "maxWidthXs": "MuiContainer-maxWidthXs",
+                  "root": "MuiContainer-root",
+                }
+              }
+              maxWidth={false}
+            >
+              <div
+                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-99"
+              >
+                <WithStyles(undefined)>
+                  <Connect(WebPagePlayer)
+                    classes={
+                      Object {
+                        "error": "Connect(WebPagePlayer)-error-58",
+                        "playerWrapper": "Connect(WebPagePlayer)-playerWrapper-57",
+                      }
+                    }
+                  >
+                    <WebPagePlayer
+                      classes={
+                        Object {
+                          "error": "Connect(WebPagePlayer)-error-58",
+                          "playerWrapper": "Connect(WebPagePlayer)-playerWrapper-57",
+                        }
+                      }
+                      dispatch={[Function]}
+                      isFetching={false}
+                      post={
+                        Object {
+                          "id": 1,
+                          "media": Object {
+                            "oembed": Object {
+                              "type": "image",
+                            },
+                          },
+                          "url": "https://example.com/video",
+                        }
+                      }
+                    >
+                      <div
+                        className="Connect(WebPagePlayer)-playerWrapper-57"
+                      >
+                        <iframe
+                          sandbox="allow-scripts"
+                          src="https://example.com/video"
+                          width={1024}
+                        />
+                      </div>
+                    </WebPagePlayer>
+                  </Connect(WebPagePlayer)>
+                </WithStyles(undefined)>
+              </div>
+            </ForwardRef(Container)>
+          </WithStyles(ForwardRef(Container))>
+          <Connect(WithStyles(Comments))>
+            <WithStyles(Comments)
+              dispatch={[Function]}
+            >
+              <Comments
+                classes={
+                  Object {
+                    "comments": "Comments-comments-60 Comments-comments-102",
+                    "loading": "Comments-loading-61 Comments-loading-103",
+                    "menuButton": "Comments-menuButton-62",
+                    "root": "Comments-root-59",
+                    "spacerBottom": "Comments-spacerBottom-64 Comments-spacerBottom-104",
+                    "title": "Comments-title-63",
+                  }
+                }
+                dispatch={[Function]}
+              >
+                <div>
+                  <div>
+                    <div
+                      className="Comments-loading-61 Comments-loading-103"
+                      id="comments"
+                    >
+                      <Styled(MuiBox)
+                        boxShadow={5}
+                      >
+                        <div
+                          className="MuiBox-root MuiBox-root-105"
+                        />
+                      </Styled(MuiBox)>
+                    </div>
+                  </div>
+                  <div
+                    className="Comments-spacerBottom-64 Comments-spacerBottom-104"
+                  />
+                </div>
+              </Comments>
+            </WithStyles(Comments)>
+          </Connect(WithStyles(Comments))>
+        </div>
+      </Post>
+    </Connect(Post)>
+  </WithStyles(undefined)>
+</Provider>
+`;
 
-exports[`post should render Post 1`] = `ReactWrapper {}`;
+exports[`post should render Image 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <WithStyles(undefined)>
+    <Connect(Post)
+      classes={
+        Object {
+          "controls": "Connect(Post)-controls-4",
+          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-81",
+          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-80",
+          "root": "Connect(Post)-root-1 Connect(Post)-root-79",
+        }
+      }
+    >
+      <Post
+        classes={
+          Object {
+            "controls": "Connect(Post)-controls-4",
+            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-81",
+            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-80",
+            "root": "Connect(Post)-root-1 Connect(Post)-root-79",
+          }
+        }
+        dispatch={[Function]}
+        isFetching={false}
+        post={
+          Object {
+            "id": 1,
+            "preview": Object {
+              "enabled": true,
+              "images": Array [
+                Object {
+                  "resolutions": Array [],
+                },
+              ],
+              "thumbnail": "https://example.com/example.jpg",
+            },
+            "url": "https://example.com/example.jpg",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <div
+            className="Connect(Post)-loading-3 Connect(Post)-loading-81"
+            style={
+              Object {
+                "display": "none",
+              }
+            }
+          >
+            <h2>
+              Using Mini Player...
+            </h2>
+          </div>
+          <WithStyles(ForwardRef(Container))
+            className="Connect(Post)-root-1 Connect(Post)-root-79"
+            maxWidth={false}
+          >
+            <ForwardRef(Container)
+              className="Connect(Post)-root-1 Connect(Post)-root-79"
+              classes={
+                Object {
+                  "fixed": "MuiContainer-fixed",
+                  "maxWidthLg": "MuiContainer-maxWidthLg",
+                  "maxWidthMd": "MuiContainer-maxWidthMd",
+                  "maxWidthSm": "MuiContainer-maxWidthSm",
+                  "maxWidthXl": "MuiContainer-maxWidthXl",
+                  "maxWidthXs": "MuiContainer-maxWidthXs",
+                  "root": "MuiContainer-root",
+                }
+              }
+              maxWidth={false}
+            >
+              <div
+                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-79"
+              >
+                <WithStyles(undefined)>
+                  <Connect(ImagePlayer)
+                    classes={
+                      Object {
+                        "error": "Connect(ImagePlayer)-error-84 Connect(ImagePlayer)-error-87",
+                        "fallbackLink": "Connect(ImagePlayer)-fallbackLink-85",
+                        "playerWrapper": "Connect(ImagePlayer)-playerWrapper-83 Connect(ImagePlayer)-playerWrapper-86",
+                        "reactPlayer": "Connect(ImagePlayer)-reactPlayer-82",
+                      }
+                    }
+                  >
+                    <ImagePlayer
+                      classes={
+                        Object {
+                          "error": "Connect(ImagePlayer)-error-84 Connect(ImagePlayer)-error-87",
+                          "fallbackLink": "Connect(ImagePlayer)-fallbackLink-85",
+                          "playerWrapper": "Connect(ImagePlayer)-playerWrapper-83 Connect(ImagePlayer)-playerWrapper-86",
+                          "reactPlayer": "Connect(ImagePlayer)-reactPlayer-82",
+                        }
+                      }
+                      dispatch={[Function]}
+                      isFetching={false}
+                      post={
+                        Object {
+                          "id": 1,
+                          "preview": Object {
+                            "enabled": true,
+                            "images": Array [
+                              Object {
+                                "resolutions": Array [],
+                              },
+                            ],
+                            "thumbnail": "https://example.com/example.jpg",
+                          },
+                          "url": "https://example.com/example.jpg",
+                        }
+                      }
+                    >
+                      <div
+                        className="Connect(ImagePlayer)-playerWrapper-83 Connect(ImagePlayer)-playerWrapper-86"
+                      >
+                        <img
+                          onError={[Function]}
+                          onLoad={[Function]}
+                          style={
+                            Object {
+                              "filter": "blur(8px)",
+                            }
+                          }
+                          width={null}
+                        />
+                      </div>
+                    </ImagePlayer>
+                  </Connect(ImagePlayer)>
+                </WithStyles(undefined)>
+              </div>
+            </ForwardRef(Container)>
+          </WithStyles(ForwardRef(Container))>
+          <Connect(WithStyles(Comments))>
+            <WithStyles(Comments)
+              dispatch={[Function]}
+            >
+              <Comments
+                classes={
+                  Object {
+                    "comments": "Comments-comments-60 Comments-comments-88",
+                    "loading": "Comments-loading-61 Comments-loading-89",
+                    "menuButton": "Comments-menuButton-62",
+                    "root": "Comments-root-59",
+                    "spacerBottom": "Comments-spacerBottom-64 Comments-spacerBottom-90",
+                    "title": "Comments-title-63",
+                  }
+                }
+                dispatch={[Function]}
+              >
+                <div>
+                  <div>
+                    <div
+                      className="Comments-loading-61 Comments-loading-89"
+                      id="comments"
+                    >
+                      <Styled(MuiBox)
+                        boxShadow={5}
+                      >
+                        <div
+                          className="MuiBox-root MuiBox-root-91"
+                        />
+                      </Styled(MuiBox)>
+                    </div>
+                  </div>
+                  <div
+                    className="Comments-spacerBottom-64 Comments-spacerBottom-90"
+                  />
+                </div>
+              </Comments>
+            </WithStyles(Comments)>
+          </Connect(WithStyles(Comments))>
+        </div>
+      </Post>
+    </Connect(Post)>
+  </WithStyles(undefined)>
+</Provider>
+`;
 
-exports[`post should render Post is loading 1`] = `ReactWrapper {}`;
+exports[`post should render Post 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <WithStyles(undefined)>
+    <Connect(Post)
+      classes={
+        Object {
+          "controls": "Connect(Post)-controls-4",
+          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-49",
+          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-48",
+          "root": "Connect(Post)-root-1 Connect(Post)-root-47",
+        }
+      }
+    >
+      <Post
+        classes={
+          Object {
+            "controls": "Connect(Post)-controls-4",
+            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-49",
+            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-48",
+            "root": "Connect(Post)-root-1 Connect(Post)-root-47",
+          }
+        }
+        dispatch={[Function]}
+        isFetching={false}
+        post={
+          Object {
+            "id": 1,
+            "url": "https://example.com/",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <div
+            className="Connect(Post)-loading-3 Connect(Post)-loading-49"
+            style={
+              Object {
+                "display": "none",
+              }
+            }
+          >
+            <h2>
+              Using Mini Player...
+            </h2>
+          </div>
+          <WithStyles(ForwardRef(Container))
+            className="Connect(Post)-root-1 Connect(Post)-root-47"
+            maxWidth={false}
+          >
+            <ForwardRef(Container)
+              className="Connect(Post)-root-1 Connect(Post)-root-47"
+              classes={
+                Object {
+                  "fixed": "MuiContainer-fixed",
+                  "maxWidthLg": "MuiContainer-maxWidthLg",
+                  "maxWidthMd": "MuiContainer-maxWidthMd",
+                  "maxWidthSm": "MuiContainer-maxWidthSm",
+                  "maxWidthXl": "MuiContainer-maxWidthXl",
+                  "maxWidthXs": "MuiContainer-maxWidthXs",
+                  "root": "MuiContainer-root",
+                }
+              }
+              maxWidth={false}
+            >
+              <div
+                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-47"
+              >
+                <WithStyles(undefined)>
+                  <Connect(WebPagePlayer)
+                    classes={
+                      Object {
+                        "error": "Connect(WebPagePlayer)-error-58",
+                        "playerWrapper": "Connect(WebPagePlayer)-playerWrapper-57",
+                      }
+                    }
+                  >
+                    <WebPagePlayer
+                      classes={
+                        Object {
+                          "error": "Connect(WebPagePlayer)-error-58",
+                          "playerWrapper": "Connect(WebPagePlayer)-playerWrapper-57",
+                        }
+                      }
+                      dispatch={[Function]}
+                      isFetching={false}
+                      post={
+                        Object {
+                          "id": 1,
+                          "url": "https://example.com/",
+                        }
+                      }
+                    >
+                      <div
+                        className="Connect(WebPagePlayer)-playerWrapper-57"
+                      >
+                        <iframe
+                          sandbox="allow-scripts"
+                          src="https://example.com/"
+                          width={1024}
+                        />
+                      </div>
+                    </WebPagePlayer>
+                  </Connect(WebPagePlayer)>
+                </WithStyles(undefined)>
+              </div>
+            </ForwardRef(Container)>
+          </WithStyles(ForwardRef(Container))>
+          <Connect(WithStyles(Comments))>
+            <WithStyles(Comments)
+              dispatch={[Function]}
+            >
+              <Comments
+                classes={
+                  Object {
+                    "comments": "Comments-comments-60 Comments-comments-65",
+                    "loading": "Comments-loading-61 Comments-loading-66",
+                    "menuButton": "Comments-menuButton-62",
+                    "root": "Comments-root-59",
+                    "spacerBottom": "Comments-spacerBottom-64 Comments-spacerBottom-67",
+                    "title": "Comments-title-63",
+                  }
+                }
+                dispatch={[Function]}
+              >
+                <div>
+                  <div>
+                    <div
+                      className="Comments-loading-61 Comments-loading-66"
+                      id="comments"
+                    >
+                      <Styled(MuiBox)
+                        boxShadow={5}
+                      >
+                        <div
+                          className="MuiBox-root MuiBox-root-69"
+                        />
+                      </Styled(MuiBox)>
+                    </div>
+                  </div>
+                  <div
+                    className="Comments-spacerBottom-64 Comments-spacerBottom-67"
+                  />
+                </div>
+              </Comments>
+            </WithStyles(Comments)>
+          </Connect(WithStyles(Comments))>
+        </div>
+      </Post>
+    </Connect(Post)>
+  </WithStyles(undefined)>
+</Provider>
+`;
 
-exports[`post should render empty Post 1`] = `ReactWrapper {}`;
+exports[`post should render Post is loading 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <WithStyles(undefined)>
+    <Connect(Post)
+      classes={
+        Object {
+          "controls": "Connect(Post)-controls-4",
+          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-108",
+          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-107",
+          "root": "Connect(Post)-root-1 Connect(Post)-root-106",
+        }
+      }
+    >
+      <Post
+        classes={
+          Object {
+            "controls": "Connect(Post)-controls-4",
+            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-108",
+            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-107",
+            "root": "Connect(Post)-root-1 Connect(Post)-root-106",
+          }
+        }
+        dispatch={[Function]}
+        isFetching={true}
+      >
+        <div
+          className="Connect(Post)-loading-3 Connect(Post)-loading-108"
+        >
+          <WithStyles(ForwardRef(Skeleton))
+            height="100%"
+            width="100%"
+          >
+            <ForwardRef(Skeleton)
+              classes={
+                Object {
+                  "animate": "MuiSkeleton-animate",
+                  "circle": "MuiSkeleton-circle",
+                  "rect": "MuiSkeleton-rect",
+                  "root": "MuiSkeleton-root",
+                  "text": "MuiSkeleton-text",
+                }
+              }
+              height="100%"
+              width="100%"
+            >
+              <div
+                className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-animate"
+                style={
+                  Object {
+                    "height": "100%",
+                    "width": "100%",
+                  }
+                }
+              />
+            </ForwardRef(Skeleton)>
+          </WithStyles(ForwardRef(Skeleton))>
+        </div>
+      </Post>
+    </Connect(Post)>
+  </WithStyles(undefined)>
+</Provider>
+`;
 
-exports[`post should render media fallback 1`] = `ReactWrapper {}`;
+exports[`post should render Video 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <WithStyles(undefined)>
+    <Connect(Post)
+      classes={
+        Object {
+          "controls": "Connect(Post)-controls-4",
+          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-72",
+          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-71",
+          "root": "Connect(Post)-root-1 Connect(Post)-root-70",
+        }
+      }
+    >
+      <Post
+        classes={
+          Object {
+            "controls": "Connect(Post)-controls-4",
+            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-72",
+            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-71",
+            "root": "Connect(Post)-root-1 Connect(Post)-root-70",
+          }
+        }
+        dispatch={[Function]}
+        isFetching={false}
+        post={
+          Object {
+            "id": 1,
+            "is_video": true,
+            "url": "https://www.youtube.com/watch?v=oUFJJNQGwhk",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <div
+            className="Connect(Post)-loading-3 Connect(Post)-loading-72"
+            style={
+              Object {
+                "display": "none",
+              }
+            }
+          >
+            <h2>
+              Using Mini Player...
+            </h2>
+          </div>
+          <WithStyles(ForwardRef(Container))
+            className="Connect(Post)-root-1 Connect(Post)-root-70"
+            maxWidth={false}
+          >
+            <ForwardRef(Container)
+              className="Connect(Post)-root-1 Connect(Post)-root-70"
+              classes={
+                Object {
+                  "fixed": "MuiContainer-fixed",
+                  "maxWidthLg": "MuiContainer-maxWidthLg",
+                  "maxWidthMd": "MuiContainer-maxWidthMd",
+                  "maxWidthSm": "MuiContainer-maxWidthSm",
+                  "maxWidthXl": "MuiContainer-maxWidthXl",
+                  "maxWidthXs": "MuiContainer-maxWidthXs",
+                  "root": "MuiContainer-root",
+                }
+              }
+              maxWidth={false}
+            >
+              <div
+                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-70"
+              >
+                <WithStyles(undefined)>
+                  <Connect(VideoPlayer)
+                    classes={
+                      Object {
+                        "playerWrapper": "Connect(VideoPlayer)-playerWrapper-74",
+                        "reactPlayer": "Connect(VideoPlayer)-reactPlayer-73",
+                      }
+                    }
+                  >
+                    <VideoPlayer
+                      classes={
+                        Object {
+                          "playerWrapper": "Connect(VideoPlayer)-playerWrapper-74",
+                          "reactPlayer": "Connect(VideoPlayer)-reactPlayer-73",
+                        }
+                      }
+                      dispatch={[Function]}
+                      isFetching={false}
+                      isPlaying={false}
+                      post={
+                        Object {
+                          "id": 1,
+                          "is_video": true,
+                          "url": "https://www.youtube.com/watch?v=oUFJJNQGwhk",
+                        }
+                      }
+                    >
+                      <div
+                        className="Connect(VideoPlayer)-playerWrapper-74"
+                      >
+                        <ReactPlayer
+                          className="Connect(VideoPlayer)-reactPlayer-73"
+                          config={
+                            Object {
+                              "dailymotion": Object {
+                                "params": Object {
+                                  "api": 1,
+                                  "endscreen-enable": false,
+                                },
+                                "preload": false,
+                              },
+                              "facebook": Object {
+                                "appId": "1309697205772819",
+                              },
+                              "file": Object {
+                                "attributes": Object {},
+                                "dashVersion": "2.9.2",
+                                "forceAudio": false,
+                                "forceDASH": false,
+                                "forceHLS": false,
+                                "forceVideo": false,
+                                "hlsOptions": Object {},
+                                "hlsVersion": "0.10.1",
+                                "tracks": Array [],
+                              },
+                              "mixcloud": Object {
+                                "options": Object {
+                                  "hide_cover": 1,
+                                },
+                              },
+                              "soundcloud": Object {
+                                "options": Object {
+                                  "buying": false,
+                                  "download": false,
+                                  "liking": false,
+                                  "sharing": false,
+                                  "show_comments": false,
+                                  "show_playcount": false,
+                                  "visual": true,
+                                },
+                              },
+                              "twitch": Object {
+                                "options": Object {},
+                              },
+                              "vimeo": Object {
+                                "playerOptions": Object {
+                                  "autopause": false,
+                                  "byline": false,
+                                  "portrait": false,
+                                  "title": false,
+                                },
+                                "preload": false,
+                              },
+                              "wistia": Object {
+                                "options": Object {},
+                              },
+                              "youtube": Object {
+                                "embedOptions": Object {},
+                                "playerVars": Object {
+                                  "iv_load_policy": 3,
+                                  "modestbranding": 1,
+                                  "playsinline": 1,
+                                  "rel": 0,
+                                  "showinfo": 0,
+                                },
+                                "preload": false,
+                              },
+                            }
+                          }
+                          controls={true}
+                          height="360px"
+                          light={false}
+                          loop={false}
+                          muted={false}
+                          onBuffer={[Function]}
+                          onBufferEnd={[Function]}
+                          onDisablePIP={[Function]}
+                          onDuration={[Function]}
+                          onEnablePIP={[Function]}
+                          onEnded={[Function]}
+                          onError={[Function]}
+                          onPause={[Function]}
+                          onPlay={[Function]}
+                          onProgress={[Function]}
+                          onReady={[Function]}
+                          onSeek={[Function]}
+                          onStart={[Function]}
+                          pip={false}
+                          playbackRate={1}
+                          playing={false}
+                          playsinline={false}
+                          preload="true"
+                          progressInterval={1000}
+                          style={Object {}}
+                          url="https://www.youtube.com/watch?v=oUFJJNQGwhk"
+                          volume={null}
+                          width="100%"
+                          wrapper="div"
+                        >
+                          <div
+                            className="Connect(VideoPlayer)-reactPlayer-73"
+                            preload="true"
+                            style={
+                              Object {
+                                "height": "360px",
+                                "width": "100%",
+                              }
+                            }
+                          >
+                            <Player
+                              activePlayer={[Function]}
+                              className="Connect(VideoPlayer)-reactPlayer-73"
+                              config={
+                                Object {
+                                  "dailymotion": Object {
+                                    "params": Object {
+                                      "api": 1,
+                                      "endscreen-enable": false,
+                                    },
+                                    "preload": false,
+                                  },
+                                  "facebook": Object {
+                                    "appId": "1309697205772819",
+                                  },
+                                  "file": Object {
+                                    "attributes": Object {},
+                                    "dashVersion": "2.9.2",
+                                    "forceAudio": false,
+                                    "forceDASH": false,
+                                    "forceHLS": false,
+                                    "forceVideo": false,
+                                    "hlsOptions": Object {},
+                                    "hlsVersion": "0.10.1",
+                                    "tracks": Array [],
+                                  },
+                                  "mixcloud": Object {
+                                    "options": Object {
+                                      "hide_cover": 1,
+                                    },
+                                  },
+                                  "soundcloud": Object {
+                                    "options": Object {
+                                      "buying": false,
+                                      "download": false,
+                                      "liking": false,
+                                      "sharing": false,
+                                      "show_comments": false,
+                                      "show_playcount": false,
+                                      "visual": true,
+                                    },
+                                  },
+                                  "twitch": Object {
+                                    "options": Object {},
+                                  },
+                                  "vimeo": Object {
+                                    "playerOptions": Object {
+                                      "autopause": false,
+                                      "byline": false,
+                                      "portrait": false,
+                                      "title": false,
+                                    },
+                                    "preload": false,
+                                  },
+                                  "wistia": Object {
+                                    "options": Object {},
+                                  },
+                                  "youtube": Object {
+                                    "embedOptions": Object {},
+                                    "playerVars": Object {
+                                      "iv_load_policy": 3,
+                                      "modestbranding": 1,
+                                      "playsinline": 1,
+                                      "rel": 0,
+                                      "showinfo": 0,
+                                    },
+                                    "preload": false,
+                                  },
+                                }
+                              }
+                              controls={true}
+                              height="360px"
+                              key="YouTube"
+                              light={false}
+                              loop={false}
+                              muted={false}
+                              onBuffer={[Function]}
+                              onBufferEnd={[Function]}
+                              onDisablePIP={[Function]}
+                              onDuration={[Function]}
+                              onEnablePIP={[Function]}
+                              onEnded={[Function]}
+                              onError={[Function]}
+                              onPause={[Function]}
+                              onPlay={[Function]}
+                              onProgress={[Function]}
+                              onReady={[Function]}
+                              onSeek={[Function]}
+                              onStart={[Function]}
+                              pip={false}
+                              playbackRate={1}
+                              playing={false}
+                              playsinline={false}
+                              preload="true"
+                              progressInterval={1000}
+                              style={Object {}}
+                              url="https://www.youtube.com/watch?v=oUFJJNQGwhk"
+                              volume={null}
+                              width="100%"
+                              wrapper="div"
+                            >
+                              <YouTube
+                                activePlayer={[Function]}
+                                className="Connect(VideoPlayer)-reactPlayer-73"
+                                config={
+                                  Object {
+                                    "dailymotion": Object {
+                                      "params": Object {
+                                        "api": 1,
+                                        "endscreen-enable": false,
+                                      },
+                                      "preload": false,
+                                    },
+                                    "facebook": Object {
+                                      "appId": "1309697205772819",
+                                    },
+                                    "file": Object {
+                                      "attributes": Object {},
+                                      "dashVersion": "2.9.2",
+                                      "forceAudio": false,
+                                      "forceDASH": false,
+                                      "forceHLS": false,
+                                      "forceVideo": false,
+                                      "hlsOptions": Object {},
+                                      "hlsVersion": "0.10.1",
+                                      "tracks": Array [],
+                                    },
+                                    "mixcloud": Object {
+                                      "options": Object {
+                                        "hide_cover": 1,
+                                      },
+                                    },
+                                    "soundcloud": Object {
+                                      "options": Object {
+                                        "buying": false,
+                                        "download": false,
+                                        "liking": false,
+                                        "sharing": false,
+                                        "show_comments": false,
+                                        "show_playcount": false,
+                                        "visual": true,
+                                      },
+                                    },
+                                    "twitch": Object {
+                                      "options": Object {},
+                                    },
+                                    "vimeo": Object {
+                                      "playerOptions": Object {
+                                        "autopause": false,
+                                        "byline": false,
+                                        "portrait": false,
+                                        "title": false,
+                                      },
+                                      "preload": false,
+                                    },
+                                    "wistia": Object {
+                                      "options": Object {},
+                                    },
+                                    "youtube": Object {
+                                      "embedOptions": Object {},
+                                      "playerVars": Object {
+                                        "iv_load_policy": 3,
+                                        "modestbranding": 1,
+                                        "playsinline": 1,
+                                        "rel": 0,
+                                        "showinfo": 0,
+                                      },
+                                      "preload": false,
+                                    },
+                                  }
+                                }
+                                controls={true}
+                                height="360px"
+                                light={false}
+                                loop={false}
+                                muted={false}
+                                onBuffer={[Function]}
+                                onBufferEnd={[Function]}
+                                onDisablePIP={[Function]}
+                                onDuration={[Function]}
+                                onEnablePIP={[Function]}
+                                onEnded={[Function]}
+                                onError={[Function]}
+                                onLoaded={[Function]}
+                                onPause={[Function]}
+                                onPlay={[Function]}
+                                onProgress={[Function]}
+                                onReady={[Function]}
+                                onSeek={[Function]}
+                                onStart={[Function]}
+                                pip={false}
+                                playbackRate={1}
+                                playing={false}
+                                playsinline={false}
+                                preload="true"
+                                progressInterval={1000}
+                                style={Object {}}
+                                url="https://www.youtube.com/watch?v=oUFJJNQGwhk"
+                                volume={null}
+                                width="100%"
+                                wrapper="div"
+                              >
+                                <div
+                                  style={
+                                    Object {
+                                      "display": undefined,
+                                      "height": "100%",
+                                      "width": "100%",
+                                    }
+                                  }
+                                >
+                                  <div />
+                                </div>
+                              </YouTube>
+                            </Player>
+                          </div>
+                        </ReactPlayer>
+                      </div>
+                    </VideoPlayer>
+                  </Connect(VideoPlayer)>
+                </WithStyles(undefined)>
+              </div>
+            </ForwardRef(Container)>
+          </WithStyles(ForwardRef(Container))>
+          <Connect(WithStyles(Comments))>
+            <WithStyles(Comments)
+              dispatch={[Function]}
+            >
+              <Comments
+                classes={
+                  Object {
+                    "comments": "Comments-comments-60 Comments-comments-75",
+                    "loading": "Comments-loading-61 Comments-loading-76",
+                    "menuButton": "Comments-menuButton-62",
+                    "root": "Comments-root-59",
+                    "spacerBottom": "Comments-spacerBottom-64 Comments-spacerBottom-77",
+                    "title": "Comments-title-63",
+                  }
+                }
+                dispatch={[Function]}
+              >
+                <div>
+                  <div>
+                    <div
+                      className="Comments-loading-61 Comments-loading-76"
+                      id="comments"
+                    >
+                      <Styled(MuiBox)
+                        boxShadow={5}
+                      >
+                        <div
+                          className="MuiBox-root MuiBox-root-78"
+                        />
+                      </Styled(MuiBox)>
+                    </div>
+                  </div>
+                  <div
+                    className="Comments-spacerBottom-64 Comments-spacerBottom-77"
+                  />
+                </div>
+              </Comments>
+            </WithStyles(Comments)>
+          </Connect(WithStyles(Comments))>
+        </div>
+      </Post>
+    </Connect(Post)>
+  </WithStyles(undefined)>
+</Provider>
+`;
 
-exports[`post should render next post 1`] = `ReactWrapper {}`;
+exports[`post should render empty Post 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <WithStyles(undefined)>
+    <Connect(Post)
+      classes={
+        Object {
+          "controls": "Connect(Post)-controls-4",
+          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-7",
+          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-6",
+          "root": "Connect(Post)-root-1 Connect(Post)-root-5",
+        }
+      }
+    >
+      <Post
+        classes={
+          Object {
+            "controls": "Connect(Post)-controls-4",
+            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-7",
+            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-6",
+            "root": "Connect(Post)-root-1 Connect(Post)-root-5",
+          }
+        }
+        dispatch={[Function]}
+      >
+        <div
+          className="Connect(Post)-loading-3 Connect(Post)-loading-7"
+        >
+          <h2>
+            No TV Found.
+          </h2>
+          <h5>
+            Try changing some filters
+          </h5>
+          <div
+            className="Connect(Post)-controls-4"
+          >
+            <ShowImagesControl
+              onClick={[Function]}
+            >
+              <WithStyles(ForwardRef(Tooltip))
+                title="Filter Images"
+              >
+                <ForwardRef(Tooltip)
+                  classes={
+                    Object {
+                      "popper": "MuiTooltip-popper",
+                      "popperInteractive": "MuiTooltip-popperInteractive",
+                      "tooltip": "MuiTooltip-tooltip",
+                      "tooltipPlacementBottom": "MuiTooltip-tooltipPlacementBottom",
+                      "tooltipPlacementLeft": "MuiTooltip-tooltipPlacementLeft",
+                      "tooltipPlacementRight": "MuiTooltip-tooltipPlacementRight",
+                      "tooltipPlacementTop": "MuiTooltip-tooltipPlacementTop",
+                      "touch": "MuiTooltip-touch",
+                    }
+                  }
+                  title="Filter Images"
+                >
+                  <WithStyles(ForwardRef(IconButton))
+                    aria-describedby={null}
+                    aria-label="Filter Images"
+                    className=""
+                    color="inherit"
+                    onBlur={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseOver={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    title="Filter Images"
+                  >
+                    <ForwardRef(IconButton)
+                      aria-describedby={null}
+                      aria-label="Filter Images"
+                      className=""
+                      classes={
+                        Object {
+                          "colorInherit": "MuiIconButton-colorInherit",
+                          "colorPrimary": "MuiIconButton-colorPrimary",
+                          "colorSecondary": "MuiIconButton-colorSecondary",
+                          "disabled": "Mui-disabled",
+                          "edgeEnd": "MuiIconButton-edgeEnd",
+                          "edgeStart": "MuiIconButton-edgeStart",
+                          "label": "MuiIconButton-label",
+                          "root": "MuiIconButton-root",
+                          "sizeSmall": "MuiIconButton-sizeSmall",
+                        }
+                      }
+                      color="inherit"
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onMouseLeave={[Function]}
+                      onMouseOver={[Function]}
+                      onTouchEnd={[Function]}
+                      onTouchStart={[Function]}
+                      title="Filter Images"
+                    >
+                      <WithStyles(ForwardRef(ButtonBase))
+                        aria-describedby={null}
+                        aria-label="Filter Images"
+                        centerRipple={true}
+                        className="MuiIconButton-root MuiIconButton-colorInherit"
+                        disabled={false}
+                        focusRipple={true}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseOver={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchStart={[Function]}
+                        title="Filter Images"
+                      >
+                        <ForwardRef(ButtonBase)
+                          aria-describedby={null}
+                          aria-label="Filter Images"
+                          centerRipple={true}
+                          className="MuiIconButton-root MuiIconButton-colorInherit"
+                          classes={
+                            Object {
+                              "disabled": "Mui-disabled",
+                              "focusVisible": "Mui-focusVisible",
+                              "root": "MuiButtonBase-root",
+                            }
+                          }
+                          disabled={false}
+                          focusRipple={true}
+                          onBlur={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onMouseLeave={[Function]}
+                          onMouseOver={[Function]}
+                          onTouchEnd={[Function]}
+                          onTouchStart={[Function]}
+                          title="Filter Images"
+                        >
+                          <button
+                            aria-describedby={null}
+                            aria-label="Filter Images"
+                            className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                            disabled={false}
+                            onBlur={[Function]}
+                            onClick={[Function]}
+                            onDragLeave={[Function]}
+                            onFocus={[Function]}
+                            onKeyDown={[Function]}
+                            onKeyUp={[Function]}
+                            onMouseDown={[Function]}
+                            onMouseLeave={[Function]}
+                            onMouseOver={[Function]}
+                            onMouseUp={[Function]}
+                            onTouchEnd={[Function]}
+                            onTouchMove={[Function]}
+                            onTouchStart={[Function]}
+                            tabIndex={0}
+                            title="Filter Images"
+                            type="button"
+                          >
+                            <span
+                              className="MuiIconButton-label"
+                            >
+                              <ForwardRef
+                                style={
+                                  Object {
+                                    "opacity": 0.5,
+                                  }
+                                }
+                              >
+                                <WithStyles(ForwardRef(SvgIcon))
+                                  style={
+                                    Object {
+                                      "opacity": 0.5,
+                                    }
+                                  }
+                                >
+                                  <ForwardRef(SvgIcon)
+                                    classes={
+                                      Object {
+                                        "colorAction": "MuiSvgIcon-colorAction",
+                                        "colorDisabled": "MuiSvgIcon-colorDisabled",
+                                        "colorError": "MuiSvgIcon-colorError",
+                                        "colorPrimary": "MuiSvgIcon-colorPrimary",
+                                        "colorSecondary": "MuiSvgIcon-colorSecondary",
+                                        "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                                        "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                                        "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                                        "root": "MuiSvgIcon-root",
+                                      }
+                                    }
+                                    style={
+                                      Object {
+                                        "opacity": 0.5,
+                                      }
+                                    }
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      className="MuiSvgIcon-root"
+                                      focusable="false"
+                                      role="presentation"
+                                      style={
+                                        Object {
+                                          "opacity": 0.5,
+                                        }
+                                      }
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        d="M24 24H0V0h24v24z"
+                                        fill="none"
+                                      />
+                                      <path
+                                        d="M21 3H3C2 3 1 4 1 5v14c0 1.1.9 2 2 2h18c1 0 2-1 2-2V5c0-1-1-2-2-2zM5 17l3.5-4.5 2.5 3.01L14.5 11l4.5 6H5z"
+                                      />
+                                    </svg>
+                                  </ForwardRef(SvgIcon)>
+                                </WithStyles(ForwardRef(SvgIcon))>
+                              </ForwardRef>
+                            </span>
+                            <NoSsr>
+                              <WithStyles(undefined)
+                                center={true}
+                              >
+                                <ForwardRef(TouchRipple)
+                                  center={true}
+                                  classes={
+                                    Object {
+                                      "child": "MuiTouchRipple-child",
+                                      "childLeaving": "MuiTouchRipple-childLeaving",
+                                      "childPulsate": "MuiTouchRipple-childPulsate",
+                                      "ripple": "MuiTouchRipple-ripple",
+                                      "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                                      "rippleVisible": "MuiTouchRipple-rippleVisible",
+                                      "root": "MuiTouchRipple-root",
+                                    }
+                                  }
+                                >
+                                  <span
+                                    className="MuiTouchRipple-root"
+                                  >
+                                    <TransitionGroup
+                                      childFactory={[Function]}
+                                      component={null}
+                                      exit={true}
+                                    />
+                                  </span>
+                                </ForwardRef(TouchRipple)>
+                              </WithStyles(undefined)>
+                            </NoSsr>
+                          </button>
+                        </ForwardRef(ButtonBase)>
+                      </WithStyles(ForwardRef(ButtonBase))>
+                    </ForwardRef(IconButton)>
+                  </WithStyles(ForwardRef(IconButton))>
+                  <ForwardRef(Popper)
+                    anchorEl={
+                      <button
+                        aria-label="Filter Images"
+                        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                        tabindex="0"
+                        title="Filter Images"
+                        type="button"
+                      >
+                        <span
+                          class="MuiIconButton-label"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root"
+                            focusable="false"
+                            role="presentation"
+                            style="opacity: 0.5;"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M24 24H0V0h24v24z"
+                              fill="none"
+                            />
+                            <path
+                              d="M21 3H3C2 3 1 4 1 5v14c0 1.1.9 2 2 2h18c1 0 2-1 2-2V5c0-1-1-2-2-2zM5 17l3.5-4.5 2.5 3.01L14.5 11l4.5 6H5z"
+                            />
+                          </svg>
+                        </span>
+                        <span
+                          class="MuiTouchRipple-root"
+                        />
+                      </button>
+                    }
+                    className="MuiTooltip-popper"
+                    id={null}
+                    open={false}
+                    placement="bottom"
+                    transition={true}
+                  />
+                </ForwardRef(Tooltip)>
+              </WithStyles(ForwardRef(Tooltip))>
+            </ShowImagesControl>
+            <ShowVideosControl
+              onClick={[Function]}
+            >
+              <WithStyles(ForwardRef(Tooltip))
+                title="Filter Videos"
+              >
+                <ForwardRef(Tooltip)
+                  classes={
+                    Object {
+                      "popper": "MuiTooltip-popper",
+                      "popperInteractive": "MuiTooltip-popperInteractive",
+                      "tooltip": "MuiTooltip-tooltip",
+                      "tooltipPlacementBottom": "MuiTooltip-tooltipPlacementBottom",
+                      "tooltipPlacementLeft": "MuiTooltip-tooltipPlacementLeft",
+                      "tooltipPlacementRight": "MuiTooltip-tooltipPlacementRight",
+                      "tooltipPlacementTop": "MuiTooltip-tooltipPlacementTop",
+                      "touch": "MuiTooltip-touch",
+                    }
+                  }
+                  title="Filter Videos"
+                >
+                  <WithStyles(ForwardRef(IconButton))
+                    aria-describedby={null}
+                    aria-label="Filter Videos"
+                    className=""
+                    color="inherit"
+                    onBlur={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseOver={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    title="Filter Videos"
+                  >
+                    <ForwardRef(IconButton)
+                      aria-describedby={null}
+                      aria-label="Filter Videos"
+                      className=""
+                      classes={
+                        Object {
+                          "colorInherit": "MuiIconButton-colorInherit",
+                          "colorPrimary": "MuiIconButton-colorPrimary",
+                          "colorSecondary": "MuiIconButton-colorSecondary",
+                          "disabled": "Mui-disabled",
+                          "edgeEnd": "MuiIconButton-edgeEnd",
+                          "edgeStart": "MuiIconButton-edgeStart",
+                          "label": "MuiIconButton-label",
+                          "root": "MuiIconButton-root",
+                          "sizeSmall": "MuiIconButton-sizeSmall",
+                        }
+                      }
+                      color="inherit"
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onMouseLeave={[Function]}
+                      onMouseOver={[Function]}
+                      onTouchEnd={[Function]}
+                      onTouchStart={[Function]}
+                      title="Filter Videos"
+                    >
+                      <WithStyles(ForwardRef(ButtonBase))
+                        aria-describedby={null}
+                        aria-label="Filter Videos"
+                        centerRipple={true}
+                        className="MuiIconButton-root MuiIconButton-colorInherit"
+                        disabled={false}
+                        focusRipple={true}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseOver={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchStart={[Function]}
+                        title="Filter Videos"
+                      >
+                        <ForwardRef(ButtonBase)
+                          aria-describedby={null}
+                          aria-label="Filter Videos"
+                          centerRipple={true}
+                          className="MuiIconButton-root MuiIconButton-colorInherit"
+                          classes={
+                            Object {
+                              "disabled": "Mui-disabled",
+                              "focusVisible": "Mui-focusVisible",
+                              "root": "MuiButtonBase-root",
+                            }
+                          }
+                          disabled={false}
+                          focusRipple={true}
+                          onBlur={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onMouseLeave={[Function]}
+                          onMouseOver={[Function]}
+                          onTouchEnd={[Function]}
+                          onTouchStart={[Function]}
+                          title="Filter Videos"
+                        >
+                          <button
+                            aria-describedby={null}
+                            aria-label="Filter Videos"
+                            className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                            disabled={false}
+                            onBlur={[Function]}
+                            onClick={[Function]}
+                            onDragLeave={[Function]}
+                            onFocus={[Function]}
+                            onKeyDown={[Function]}
+                            onKeyUp={[Function]}
+                            onMouseDown={[Function]}
+                            onMouseLeave={[Function]}
+                            onMouseOver={[Function]}
+                            onMouseUp={[Function]}
+                            onTouchEnd={[Function]}
+                            onTouchMove={[Function]}
+                            onTouchStart={[Function]}
+                            tabIndex={0}
+                            title="Filter Videos"
+                            type="button"
+                          >
+                            <span
+                              className="MuiIconButton-label"
+                            >
+                              <ForwardRef
+                                style={
+                                  Object {
+                                    "opacity": 0.5,
+                                  }
+                                }
+                              >
+                                <WithStyles(ForwardRef(SvgIcon))
+                                  style={
+                                    Object {
+                                      "opacity": 0.5,
+                                    }
+                                  }
+                                >
+                                  <ForwardRef(SvgIcon)
+                                    classes={
+                                      Object {
+                                        "colorAction": "MuiSvgIcon-colorAction",
+                                        "colorDisabled": "MuiSvgIcon-colorDisabled",
+                                        "colorError": "MuiSvgIcon-colorError",
+                                        "colorPrimary": "MuiSvgIcon-colorPrimary",
+                                        "colorSecondary": "MuiSvgIcon-colorSecondary",
+                                        "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                                        "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                                        "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                                        "root": "MuiSvgIcon-root",
+                                      }
+                                    }
+                                    style={
+                                      Object {
+                                        "opacity": 0.5,
+                                      }
+                                    }
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      className="MuiSvgIcon-root"
+                                      focusable="false"
+                                      role="presentation"
+                                      style={
+                                        Object {
+                                          "opacity": 0.5,
+                                        }
+                                      }
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"
+                                      />
+                                    </svg>
+                                  </ForwardRef(SvgIcon)>
+                                </WithStyles(ForwardRef(SvgIcon))>
+                              </ForwardRef>
+                            </span>
+                            <NoSsr>
+                              <WithStyles(undefined)
+                                center={true}
+                              >
+                                <ForwardRef(TouchRipple)
+                                  center={true}
+                                  classes={
+                                    Object {
+                                      "child": "MuiTouchRipple-child",
+                                      "childLeaving": "MuiTouchRipple-childLeaving",
+                                      "childPulsate": "MuiTouchRipple-childPulsate",
+                                      "ripple": "MuiTouchRipple-ripple",
+                                      "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                                      "rippleVisible": "MuiTouchRipple-rippleVisible",
+                                      "root": "MuiTouchRipple-root",
+                                    }
+                                  }
+                                >
+                                  <span
+                                    className="MuiTouchRipple-root"
+                                  >
+                                    <TransitionGroup
+                                      childFactory={[Function]}
+                                      component={null}
+                                      exit={true}
+                                    />
+                                  </span>
+                                </ForwardRef(TouchRipple)>
+                              </WithStyles(undefined)>
+                            </NoSsr>
+                          </button>
+                        </ForwardRef(ButtonBase)>
+                      </WithStyles(ForwardRef(ButtonBase))>
+                    </ForwardRef(IconButton)>
+                  </WithStyles(ForwardRef(IconButton))>
+                  <ForwardRef(Popper)
+                    anchorEl={
+                      <button
+                        aria-label="Filter Videos"
+                        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                        tabindex="0"
+                        title="Filter Videos"
+                        type="button"
+                      >
+                        <span
+                          class="MuiIconButton-label"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root"
+                            focusable="false"
+                            role="presentation"
+                            style="opacity: 0.5;"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"
+                            />
+                          </svg>
+                        </span>
+                        <span
+                          class="MuiTouchRipple-root"
+                        />
+                      </button>
+                    }
+                    className="MuiTooltip-popper"
+                    id={null}
+                    open={false}
+                    placement="bottom"
+                    transition={true}
+                  />
+                </ForwardRef(Tooltip)>
+              </WithStyles(ForwardRef(Tooltip))>
+            </ShowVideosControl>
+          </div>
+          <div
+            className="Connect(Post)-controls-4"
+          >
+            <RefreshControl
+              onClick={[Function]}
+            >
+              <WithStyles(ForwardRef(Tooltip))
+                title="Refresh Subreddit"
+              >
+                <ForwardRef(Tooltip)
+                  classes={
+                    Object {
+                      "popper": "MuiTooltip-popper",
+                      "popperInteractive": "MuiTooltip-popperInteractive",
+                      "tooltip": "MuiTooltip-tooltip",
+                      "tooltipPlacementBottom": "MuiTooltip-tooltipPlacementBottom",
+                      "tooltipPlacementLeft": "MuiTooltip-tooltipPlacementLeft",
+                      "tooltipPlacementRight": "MuiTooltip-tooltipPlacementRight",
+                      "tooltipPlacementTop": "MuiTooltip-tooltipPlacementTop",
+                      "touch": "MuiTooltip-touch",
+                    }
+                  }
+                  title="Refresh Subreddit"
+                >
+                  <WithStyles(ForwardRef(IconButton))
+                    aria-describedby={null}
+                    aria-label="refresh content"
+                    className=""
+                    color="inherit"
+                    onBlur={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    onMouseLeave={[Function]}
+                    onMouseOver={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    title="Refresh Subreddit"
+                  >
+                    <ForwardRef(IconButton)
+                      aria-describedby={null}
+                      aria-label="refresh content"
+                      className=""
+                      classes={
+                        Object {
+                          "colorInherit": "MuiIconButton-colorInherit",
+                          "colorPrimary": "MuiIconButton-colorPrimary",
+                          "colorSecondary": "MuiIconButton-colorSecondary",
+                          "disabled": "Mui-disabled",
+                          "edgeEnd": "MuiIconButton-edgeEnd",
+                          "edgeStart": "MuiIconButton-edgeStart",
+                          "label": "MuiIconButton-label",
+                          "root": "MuiIconButton-root",
+                          "sizeSmall": "MuiIconButton-sizeSmall",
+                        }
+                      }
+                      color="inherit"
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      onMouseLeave={[Function]}
+                      onMouseOver={[Function]}
+                      onTouchEnd={[Function]}
+                      onTouchStart={[Function]}
+                      title="Refresh Subreddit"
+                    >
+                      <WithStyles(ForwardRef(ButtonBase))
+                        aria-describedby={null}
+                        aria-label="refresh content"
+                        centerRipple={true}
+                        className="MuiIconButton-root MuiIconButton-colorInherit"
+                        disabled={false}
+                        focusRipple={true}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseOver={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchStart={[Function]}
+                        title="Refresh Subreddit"
+                      >
+                        <ForwardRef(ButtonBase)
+                          aria-describedby={null}
+                          aria-label="refresh content"
+                          centerRipple={true}
+                          className="MuiIconButton-root MuiIconButton-colorInherit"
+                          classes={
+                            Object {
+                              "disabled": "Mui-disabled",
+                              "focusVisible": "Mui-focusVisible",
+                              "root": "MuiButtonBase-root",
+                            }
+                          }
+                          disabled={false}
+                          focusRipple={true}
+                          onBlur={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onMouseLeave={[Function]}
+                          onMouseOver={[Function]}
+                          onTouchEnd={[Function]}
+                          onTouchStart={[Function]}
+                          title="Refresh Subreddit"
+                        >
+                          <button
+                            aria-describedby={null}
+                            aria-label="refresh content"
+                            className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                            disabled={false}
+                            onBlur={[Function]}
+                            onClick={[Function]}
+                            onDragLeave={[Function]}
+                            onFocus={[Function]}
+                            onKeyDown={[Function]}
+                            onKeyUp={[Function]}
+                            onMouseDown={[Function]}
+                            onMouseLeave={[Function]}
+                            onMouseOver={[Function]}
+                            onMouseUp={[Function]}
+                            onTouchEnd={[Function]}
+                            onTouchMove={[Function]}
+                            onTouchStart={[Function]}
+                            tabIndex={0}
+                            title="Refresh Subreddit"
+                            type="button"
+                          >
+                            <span
+                              className="MuiIconButton-label"
+                            >
+                              <ForwardRef>
+                                <WithStyles(ForwardRef(SvgIcon))>
+                                  <ForwardRef(SvgIcon)
+                                    classes={
+                                      Object {
+                                        "colorAction": "MuiSvgIcon-colorAction",
+                                        "colorDisabled": "MuiSvgIcon-colorDisabled",
+                                        "colorError": "MuiSvgIcon-colorError",
+                                        "colorPrimary": "MuiSvgIcon-colorPrimary",
+                                        "colorSecondary": "MuiSvgIcon-colorSecondary",
+                                        "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                                        "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                                        "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                                        "root": "MuiSvgIcon-root",
+                                      }
+                                    }
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      className="MuiSvgIcon-root"
+                                      focusable="false"
+                                      role="presentation"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"
+                                      />
+                                    </svg>
+                                  </ForwardRef(SvgIcon)>
+                                </WithStyles(ForwardRef(SvgIcon))>
+                              </ForwardRef>
+                            </span>
+                            <NoSsr>
+                              <WithStyles(undefined)
+                                center={true}
+                              >
+                                <ForwardRef(TouchRipple)
+                                  center={true}
+                                  classes={
+                                    Object {
+                                      "child": "MuiTouchRipple-child",
+                                      "childLeaving": "MuiTouchRipple-childLeaving",
+                                      "childPulsate": "MuiTouchRipple-childPulsate",
+                                      "ripple": "MuiTouchRipple-ripple",
+                                      "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                                      "rippleVisible": "MuiTouchRipple-rippleVisible",
+                                      "root": "MuiTouchRipple-root",
+                                    }
+                                  }
+                                >
+                                  <span
+                                    className="MuiTouchRipple-root"
+                                  >
+                                    <TransitionGroup
+                                      childFactory={[Function]}
+                                      component={null}
+                                      exit={true}
+                                    />
+                                  </span>
+                                </ForwardRef(TouchRipple)>
+                              </WithStyles(undefined)>
+                            </NoSsr>
+                          </button>
+                        </ForwardRef(ButtonBase)>
+                      </WithStyles(ForwardRef(ButtonBase))>
+                    </ForwardRef(IconButton)>
+                  </WithStyles(ForwardRef(IconButton))>
+                  <ForwardRef(Popper)
+                    anchorEl={
+                      <button
+                        aria-label="refresh content"
+                        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                        tabindex="0"
+                        title="Refresh Subreddit"
+                        type="button"
+                      >
+                        <span
+                          class="MuiIconButton-label"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root"
+                            focusable="false"
+                            role="presentation"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"
+                            />
+                          </svg>
+                        </span>
+                        <span
+                          class="MuiTouchRipple-root"
+                        />
+                      </button>
+                    }
+                    className="MuiTooltip-popper"
+                    id={null}
+                    open={false}
+                    placement="bottom"
+                    transition={true}
+                  />
+                </ForwardRef(Tooltip)>
+              </WithStyles(ForwardRef(Tooltip))>
+            </RefreshControl>
+          </div>
+        </div>
+      </Post>
+    </Connect(Post)>
+  </WithStyles(undefined)>
+</Provider>
+`;
 
-exports[`post should show loading when isFetching 1`] = `ReactWrapper {}`;
+exports[`post should render media fallback 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <WithStyles(undefined)>
+    <Connect(Post)
+      classes={
+        Object {
+          "controls": "Connect(Post)-controls-4",
+          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-94",
+          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-93",
+          "root": "Connect(Post)-root-1 Connect(Post)-root-92",
+        }
+      }
+    >
+      <Post
+        classes={
+          Object {
+            "controls": "Connect(Post)-controls-4",
+            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-94",
+            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-93",
+            "root": "Connect(Post)-root-1 Connect(Post)-root-92",
+          }
+        }
+        dispatch={[Function]}
+        isFetching={false}
+        post={
+          Object {
+            "id": 1,
+            "media": Object {
+              "oembed": Object {
+                "type": "video",
+              },
+            },
+            "media_embed": Object {
+              "content": "&lt;iframe width=\\"600\\" height=\\"338\\" src=\\"https://example.com/video\\" frameborder=\\"0\\" allow=\\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\\" allowfullscreen&gt;&lt;/iframe&gt;",
+            },
+            "url": "https://example.com/video",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <div
+            className="Connect(Post)-loading-3 Connect(Post)-loading-94"
+            style={
+              Object {
+                "display": "none",
+              }
+            }
+          >
+            <h2>
+              Using Mini Player...
+            </h2>
+          </div>
+          <WithStyles(ForwardRef(Container))
+            className="Connect(Post)-root-1 Connect(Post)-root-92"
+            maxWidth={false}
+          >
+            <ForwardRef(Container)
+              className="Connect(Post)-root-1 Connect(Post)-root-92"
+              classes={
+                Object {
+                  "fixed": "MuiContainer-fixed",
+                  "maxWidthLg": "MuiContainer-maxWidthLg",
+                  "maxWidthMd": "MuiContainer-maxWidthMd",
+                  "maxWidthSm": "MuiContainer-maxWidthSm",
+                  "maxWidthXl": "MuiContainer-maxWidthXl",
+                  "maxWidthXs": "MuiContainer-maxWidthXs",
+                  "root": "MuiContainer-root",
+                }
+              }
+              maxWidth={false}
+            >
+              <div
+                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-92"
+              >
+                <WithStyles(undefined)>
+                  <Connect(VideoPlayer)
+                    classes={
+                      Object {
+                        "playerWrapper": "Connect(VideoPlayer)-playerWrapper-74",
+                        "reactPlayer": "Connect(VideoPlayer)-reactPlayer-73",
+                      }
+                    }
+                  >
+                    <VideoPlayer
+                      classes={
+                        Object {
+                          "playerWrapper": "Connect(VideoPlayer)-playerWrapper-74",
+                          "reactPlayer": "Connect(VideoPlayer)-reactPlayer-73",
+                        }
+                      }
+                      dispatch={[Function]}
+                      isFetching={false}
+                      isMediaFallback={true}
+                      isPlaying={false}
+                      post={
+                        Object {
+                          "id": 1,
+                          "media": Object {
+                            "oembed": Object {
+                              "type": "video",
+                            },
+                          },
+                          "media_embed": Object {
+                            "content": "&lt;iframe width=\\"600\\" height=\\"338\\" src=\\"https://example.com/video\\" frameborder=\\"0\\" allow=\\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\\" allowfullscreen&gt;&lt;/iframe&gt;",
+                          },
+                          "url": "https://example.com/video",
+                        }
+                      }
+                    >
+                      <div
+                        className="Connect(VideoPlayer)-playerWrapper-74"
+                      >
+                        <iframe
+                          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen="allowFullScreen"
+                          frameBorder="0"
+                          key="0"
+                          src="https://example.com/video"
+                          width="100%"
+                        />
+                      </div>
+                    </VideoPlayer>
+                  </Connect(VideoPlayer)>
+                </WithStyles(undefined)>
+              </div>
+            </ForwardRef(Container)>
+          </WithStyles(ForwardRef(Container))>
+          <Connect(WithStyles(Comments))>
+            <WithStyles(Comments)
+              dispatch={[Function]}
+            >
+              <Comments
+                classes={
+                  Object {
+                    "comments": "Comments-comments-60 Comments-comments-95",
+                    "loading": "Comments-loading-61 Comments-loading-96",
+                    "menuButton": "Comments-menuButton-62",
+                    "root": "Comments-root-59",
+                    "spacerBottom": "Comments-spacerBottom-64 Comments-spacerBottom-97",
+                    "title": "Comments-title-63",
+                  }
+                }
+                dispatch={[Function]}
+              >
+                <div>
+                  <div>
+                    <div
+                      className="Comments-loading-61 Comments-loading-96"
+                      id="comments"
+                    >
+                      <Styled(MuiBox)
+                        boxShadow={5}
+                      >
+                        <div
+                          className="MuiBox-root MuiBox-root-98"
+                        />
+                      </Styled(MuiBox)>
+                    </div>
+                  </div>
+                  <div
+                    className="Comments-spacerBottom-64 Comments-spacerBottom-97"
+                  />
+                </div>
+              </Comments>
+            </WithStyles(Comments)>
+          </Connect(WithStyles(Comments))>
+        </div>
+      </Post>
+    </Connect(Post)>
+  </WithStyles(undefined)>
+</Provider>
+`;
+
+exports[`post should render next post 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <WithStyles(undefined)>
+    <Connect(Post)
+      classes={
+        Object {
+          "controls": "Connect(Post)-controls-4",
+          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-117",
+          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-116",
+          "root": "Connect(Post)-root-1 Connect(Post)-root-115",
+        }
+      }
+    >
+      <Post
+        classes={
+          Object {
+            "controls": "Connect(Post)-controls-4",
+            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-117",
+            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-116",
+            "root": "Connect(Post)-root-1 Connect(Post)-root-115",
+          }
+        }
+        dispatch={[Function]}
+        isFetching={false}
+        post={
+          Object {
+            "id": 1,
+            "url": "https://example.com/video",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        >
+          <div
+            className="Connect(Post)-loading-3 Connect(Post)-loading-117"
+            style={
+              Object {
+                "display": "none",
+              }
+            }
+          >
+            <h2>
+              Using Mini Player...
+            </h2>
+          </div>
+          <WithStyles(ForwardRef(Container))
+            className="Connect(Post)-root-1 Connect(Post)-root-115"
+            maxWidth={false}
+          >
+            <ForwardRef(Container)
+              className="Connect(Post)-root-1 Connect(Post)-root-115"
+              classes={
+                Object {
+                  "fixed": "MuiContainer-fixed",
+                  "maxWidthLg": "MuiContainer-maxWidthLg",
+                  "maxWidthMd": "MuiContainer-maxWidthMd",
+                  "maxWidthSm": "MuiContainer-maxWidthSm",
+                  "maxWidthXl": "MuiContainer-maxWidthXl",
+                  "maxWidthXs": "MuiContainer-maxWidthXs",
+                  "root": "MuiContainer-root",
+                }
+              }
+              maxWidth={false}
+            >
+              <div
+                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-115"
+              >
+                <WithStyles(undefined)>
+                  <Connect(WebPagePlayer)
+                    classes={
+                      Object {
+                        "error": "Connect(WebPagePlayer)-error-58",
+                        "playerWrapper": "Connect(WebPagePlayer)-playerWrapper-57",
+                      }
+                    }
+                  >
+                    <WebPagePlayer
+                      classes={
+                        Object {
+                          "error": "Connect(WebPagePlayer)-error-58",
+                          "playerWrapper": "Connect(WebPagePlayer)-playerWrapper-57",
+                        }
+                      }
+                      dispatch={[Function]}
+                      isFetching={false}
+                      post={
+                        Object {
+                          "id": 1,
+                          "url": "https://example.com/video",
+                        }
+                      }
+                    >
+                      <div
+                        className="Connect(WebPagePlayer)-playerWrapper-57"
+                      >
+                        <iframe
+                          sandbox="allow-scripts"
+                          src="https://example.com/video"
+                          width={1024}
+                        />
+                      </div>
+                    </WebPagePlayer>
+                  </Connect(WebPagePlayer)>
+                </WithStyles(undefined)>
+              </div>
+            </ForwardRef(Container)>
+          </WithStyles(ForwardRef(Container))>
+          <Connect(WithStyles(Comments))>
+            <WithStyles(Comments)
+              dispatch={[Function]}
+            >
+              <Comments
+                classes={
+                  Object {
+                    "comments": "Comments-comments-60 Comments-comments-118",
+                    "loading": "Comments-loading-61 Comments-loading-119",
+                    "menuButton": "Comments-menuButton-62",
+                    "root": "Comments-root-59",
+                    "spacerBottom": "Comments-spacerBottom-64 Comments-spacerBottom-120",
+                    "title": "Comments-title-63",
+                  }
+                }
+                dispatch={[Function]}
+              >
+                <div>
+                  <div>
+                    <div
+                      className="Comments-loading-61 Comments-loading-119"
+                      id="comments"
+                    >
+                      <Styled(MuiBox)
+                        boxShadow={5}
+                      >
+                        <div
+                          className="MuiBox-root MuiBox-root-121"
+                        />
+                      </Styled(MuiBox)>
+                    </div>
+                  </div>
+                  <div
+                    className="Comments-spacerBottom-64 Comments-spacerBottom-120"
+                  />
+                </div>
+              </Comments>
+            </WithStyles(Comments)>
+          </Connect(WithStyles(Comments))>
+        </div>
+      </Post>
+    </Connect(Post)>
+  </WithStyles(undefined)>
+</Provider>
+`;
+
+exports[`post should show loading when isFetching 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <WithStyles(undefined)>
+    <Connect(Post)
+      classes={
+        Object {
+          "controls": "Connect(Post)-controls-4",
+          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-124",
+          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-123",
+          "root": "Connect(Post)-root-1 Connect(Post)-root-122",
+        }
+      }
+    >
+      <Post
+        classes={
+          Object {
+            "controls": "Connect(Post)-controls-4",
+            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-124",
+            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-123",
+            "root": "Connect(Post)-root-1 Connect(Post)-root-122",
+          }
+        }
+        dispatch={[Function]}
+        isFetching={true}
+        post={
+          Object {
+            "id": 1,
+            "url": "https://example.com/video",
+          }
+        }
+      >
+        <div
+          className="Connect(Post)-loading-3 Connect(Post)-loading-124"
+        >
+          <WithStyles(ForwardRef(Skeleton))
+            height="100%"
+            width="100%"
+          >
+            <ForwardRef(Skeleton)
+              classes={
+                Object {
+                  "animate": "MuiSkeleton-animate",
+                  "circle": "MuiSkeleton-circle",
+                  "rect": "MuiSkeleton-rect",
+                  "root": "MuiSkeleton-root",
+                  "text": "MuiSkeleton-text",
+                }
+              }
+              height="100%"
+              width="100%"
+            >
+              <div
+                className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-animate"
+                style={
+                  Object {
+                    "height": "100%",
+                    "width": "100%",
+                  }
+                }
+              />
+            </ForwardRef(Skeleton)>
+          </WithStyles(ForwardRef(Skeleton))>
+        </div>
+      </Post>
+    </Connect(Post)>
+  </WithStyles(undefined)>
+</Provider>
+`;

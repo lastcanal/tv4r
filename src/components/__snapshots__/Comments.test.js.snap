@@ -1,5 +1,1638 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`comments should render Post 1`] = `ReactWrapper {}`;
+exports[`comments should render Post 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Connect(WithStyles(Comments))>
+    <WithStyles(Comments)
+      comments={
+        Object {
+          "bar": Array [
+            Object {
+              "data": Object {
+                "children": Array [
+                  Object {
+                    "data": Object {
+                      "title": "foo",
+                    },
+                    "kind": "t3",
+                  },
+                ],
+              },
+              "kind": "Listing",
+            },
+            Object {
+              "data": Object {
+                "children": Array [
+                  Object {
+                    "data": Object {
+                      "body": "bar",
+                      "replies": Object {
+                        "data": Object {
+                          "children": Array [
+                            Object {
+                              "data": Object {
+                                "body": "baz",
+                              },
+                              "kind": "t2",
+                            },
+                            Object {
+                              "data": "baz",
+                              "kind": "more",
+                            },
+                          ],
+                        },
+                        "kind": "Listing",
+                      },
+                    },
+                    "kind": "t1",
+                  },
+                ],
+              },
+              "kind": "Listing",
+            },
+          ],
+          "root": Array [
+            Object {
+              "data": Object {
+                "children": Array [
+                  Object {
+                    "data": Object {
+                      "title": "foo",
+                    },
+                    "kind": "t3",
+                  },
+                ],
+              },
+              "kind": "Listing",
+            },
+            Object {
+              "data": Object {
+                "children": Array [
+                  Object {
+                    "data": Object {
+                      "body": "bar",
+                      "replies": Object {
+                        "data": Object {
+                          "children": Array [
+                            Object {
+                              "data": Object {
+                                "body": "baz",
+                              },
+                              "kind": "t2",
+                            },
+                            Object {
+                              "data": "bar",
+                              "kind": "more",
+                            },
+                          ],
+                        },
+                        "kind": "Listing",
+                      },
+                    },
+                    "kind": "t1",
+                  },
+                ],
+              },
+              "kind": "Listing",
+            },
+          ],
+        }
+      }
+      dispatch={[Function]}
+      post={
+        Object {
+          "id": "foo",
+          "url": "https://example.com/foo",
+        }
+      }
+    >
+      <Comments
+        classes={
+          Object {
+            "comments": "Comments-comments-2 Comments-comments-12",
+            "loading": "Comments-loading-3 Comments-loading-13",
+            "menuButton": "Comments-menuButton-4",
+            "root": "Comments-root-1",
+            "spacerBottom": "Comments-spacerBottom-6 Comments-spacerBottom-14",
+            "title": "Comments-title-5",
+          }
+        }
+        comments={
+          Object {
+            "bar": Array [
+              Object {
+                "data": Object {
+                  "children": Array [
+                    Object {
+                      "data": Object {
+                        "title": "foo",
+                      },
+                      "kind": "t3",
+                    },
+                  ],
+                },
+                "kind": "Listing",
+              },
+              Object {
+                "data": Object {
+                  "children": Array [
+                    Object {
+                      "data": Object {
+                        "body": "bar",
+                        "replies": Object {
+                          "data": Object {
+                            "children": Array [
+                              Object {
+                                "data": Object {
+                                  "body": "baz",
+                                },
+                                "kind": "t2",
+                              },
+                              Object {
+                                "data": "baz",
+                                "kind": "more",
+                              },
+                            ],
+                          },
+                          "kind": "Listing",
+                        },
+                      },
+                      "kind": "t1",
+                    },
+                  ],
+                },
+                "kind": "Listing",
+              },
+            ],
+            "root": Array [
+              Object {
+                "data": Object {
+                  "children": Array [
+                    Object {
+                      "data": Object {
+                        "title": "foo",
+                      },
+                      "kind": "t3",
+                    },
+                  ],
+                },
+                "kind": "Listing",
+              },
+              Object {
+                "data": Object {
+                  "children": Array [
+                    Object {
+                      "data": Object {
+                        "body": "bar",
+                        "replies": Object {
+                          "data": Object {
+                            "children": Array [
+                              Object {
+                                "data": Object {
+                                  "body": "baz",
+                                },
+                                "kind": "t2",
+                              },
+                              Object {
+                                "data": "bar",
+                                "kind": "more",
+                              },
+                            ],
+                          },
+                          "kind": "Listing",
+                        },
+                      },
+                      "kind": "t1",
+                    },
+                  ],
+                },
+                "kind": "Listing",
+              },
+            ],
+          }
+        }
+        dispatch={[Function]}
+        post={
+          Object {
+            "id": "foo",
+            "url": "https://example.com/foo",
+          }
+        }
+      >
+        <div>
+          <div
+            className="Comments-comments-2 Comments-comments-12"
+          >
+            <div
+              className="undefined Comments-root-1"
+              id="comments"
+            >
+              <CommentTree
+                comments={
+                  Object {
+                    "data": Object {
+                      "children": Array [
+                        Object {
+                          "data": Object {
+                            "title": "foo",
+                          },
+                          "kind": "t3",
+                        },
+                      ],
+                    },
+                    "kind": "Listing",
+                  }
+                }
+                key="0"
+              >
+                <WithStyles(Comment)
+                  comment={
+                    Object {
+                      "data": Object {
+                        "title": "foo",
+                      },
+                      "kind": "t3",
+                    }
+                  }
+                  depth={0}
+                  key="0"
+                >
+                  <Comment
+                    classes={
+                      Object {
+                        "comment": "Comment-comment-15 Comment-comment-18",
+                        "comment_container": "Comment-comment_container-16",
+                        "comment_container_alt": "Comment-comment_container_alt-17",
+                      }
+                    }
+                    comment={
+                      Object {
+                        "data": Object {
+                          "title": "foo",
+                        },
+                        "kind": "t3",
+                      }
+                    }
+                    depth={0}
+                  >
+                    <Styled(MuiBox)
+                      boxShadow={1}
+                      className="Comment-comment-15 Comment-comment-18 Comment-comment_container-16"
+                    >
+                      <div
+                        className="MuiBox-root MuiBox-root-19 Comment-comment-15 Comment-comment-18 Comment-comment_container-16"
+                      >
+                        <Connect(WithStyles(Reply))
+                          depth={0}
+                          reply={
+                            Object {
+                              "data": Object {
+                                "title": "foo",
+                              },
+                              "kind": "t3",
+                            }
+                          }
+                        >
+                          <WithStyles(Reply)
+                            comments={
+                              Object {
+                                "bar": Array [
+                                  Object {
+                                    "data": Object {
+                                      "children": Array [
+                                        Object {
+                                          "data": Object {
+                                            "title": "foo",
+                                          },
+                                          "kind": "t3",
+                                        },
+                                      ],
+                                    },
+                                    "kind": "Listing",
+                                  },
+                                  Object {
+                                    "data": Object {
+                                      "children": Array [
+                                        Object {
+                                          "data": Object {
+                                            "body": "bar",
+                                            "replies": Object {
+                                              "data": Object {
+                                                "children": Array [
+                                                  Object {
+                                                    "data": Object {
+                                                      "body": "baz",
+                                                    },
+                                                    "kind": "t2",
+                                                  },
+                                                  Object {
+                                                    "data": "baz",
+                                                    "kind": "more",
+                                                  },
+                                                ],
+                                              },
+                                              "kind": "Listing",
+                                            },
+                                          },
+                                          "kind": "t1",
+                                        },
+                                      ],
+                                    },
+                                    "kind": "Listing",
+                                  },
+                                ],
+                                "root": Array [
+                                  Object {
+                                    "data": Object {
+                                      "children": Array [
+                                        Object {
+                                          "data": Object {
+                                            "title": "foo",
+                                          },
+                                          "kind": "t3",
+                                        },
+                                      ],
+                                    },
+                                    "kind": "Listing",
+                                  },
+                                  Object {
+                                    "data": Object {
+                                      "children": Array [
+                                        Object {
+                                          "data": Object {
+                                            "body": "bar",
+                                            "replies": Object {
+                                              "data": Object {
+                                                "children": Array [
+                                                  Object {
+                                                    "data": Object {
+                                                      "body": "baz",
+                                                    },
+                                                    "kind": "t2",
+                                                  },
+                                                  Object {
+                                                    "data": "bar",
+                                                    "kind": "more",
+                                                  },
+                                                ],
+                                              },
+                                              "kind": "Listing",
+                                            },
+                                          },
+                                          "kind": "t1",
+                                        },
+                                      ],
+                                    },
+                                    "kind": "Listing",
+                                  },
+                                ],
+                              }
+                            }
+                            depth={0}
+                            dispatch={[Function]}
+                            reply={
+                              Object {
+                                "data": Object {
+                                  "title": "foo",
+                                },
+                                "kind": "t3",
+                              }
+                            }
+                          >
+                            <Reply
+                              classes={
+                                Object {
+                                  "commentAuthor": "Reply-commentAuthor-22",
+                                  "commentBody": "Reply-commentBody-20",
+                                  "postTitle": "Reply-postTitle-23",
+                                  "selfPostBody": "Reply-selfPostBody-21",
+                                }
+                              }
+                              comments={
+                                Object {
+                                  "bar": Array [
+                                    Object {
+                                      "data": Object {
+                                        "children": Array [
+                                          Object {
+                                            "data": Object {
+                                              "title": "foo",
+                                            },
+                                            "kind": "t3",
+                                          },
+                                        ],
+                                      },
+                                      "kind": "Listing",
+                                    },
+                                    Object {
+                                      "data": Object {
+                                        "children": Array [
+                                          Object {
+                                            "data": Object {
+                                              "body": "bar",
+                                              "replies": Object {
+                                                "data": Object {
+                                                  "children": Array [
+                                                    Object {
+                                                      "data": Object {
+                                                        "body": "baz",
+                                                      },
+                                                      "kind": "t2",
+                                                    },
+                                                    Object {
+                                                      "data": "baz",
+                                                      "kind": "more",
+                                                    },
+                                                  ],
+                                                },
+                                                "kind": "Listing",
+                                              },
+                                            },
+                                            "kind": "t1",
+                                          },
+                                        ],
+                                      },
+                                      "kind": "Listing",
+                                    },
+                                  ],
+                                  "root": Array [
+                                    Object {
+                                      "data": Object {
+                                        "children": Array [
+                                          Object {
+                                            "data": Object {
+                                              "title": "foo",
+                                            },
+                                            "kind": "t3",
+                                          },
+                                        ],
+                                      },
+                                      "kind": "Listing",
+                                    },
+                                    Object {
+                                      "data": Object {
+                                        "children": Array [
+                                          Object {
+                                            "data": Object {
+                                              "body": "bar",
+                                              "replies": Object {
+                                                "data": Object {
+                                                  "children": Array [
+                                                    Object {
+                                                      "data": Object {
+                                                        "body": "baz",
+                                                      },
+                                                      "kind": "t2",
+                                                    },
+                                                    Object {
+                                                      "data": "bar",
+                                                      "kind": "more",
+                                                    },
+                                                  ],
+                                                },
+                                                "kind": "Listing",
+                                              },
+                                            },
+                                            "kind": "t1",
+                                          },
+                                        ],
+                                      },
+                                      "kind": "Listing",
+                                    },
+                                  ],
+                                }
+                              }
+                              depth={0}
+                              dispatch={[Function]}
+                              reply={
+                                Object {
+                                  "data": Object {
+                                    "title": "foo",
+                                  },
+                                  "kind": "t3",
+                                }
+                              }
+                            >
+                              <div
+                                className="Reply-selfPostBody-21"
+                              >
+                                <a
+                                  className="Reply-postTitle-23"
+                                  href={"https://www.reddit.com/.html"}
+                                >
+                                  <h2>
+                                    foo
+                                  </h2>
+                                </a>
+                              </div>
+                            </Reply>
+                          </WithStyles(Reply)>
+                        </Connect(WithStyles(Reply))>
+                        <ReplyTree
+                          depth={1}
+                        />
+                      </div>
+                    </Styled(MuiBox)>
+                  </Comment>
+                </WithStyles(Comment)>
+              </CommentTree>
+              <CommentTree
+                comments={
+                  Object {
+                    "data": Object {
+                      "children": Array [
+                        Object {
+                          "data": Object {
+                            "body": "bar",
+                            "replies": Object {
+                              "data": Object {
+                                "children": Array [
+                                  Object {
+                                    "data": Object {
+                                      "body": "baz",
+                                    },
+                                    "kind": "t2",
+                                  },
+                                  Object {
+                                    "data": "bar",
+                                    "kind": "more",
+                                  },
+                                ],
+                              },
+                              "kind": "Listing",
+                            },
+                          },
+                          "kind": "t1",
+                        },
+                      ],
+                    },
+                    "kind": "Listing",
+                  }
+                }
+                key="1"
+              >
+                <WithStyles(Comment)
+                  comment={
+                    Object {
+                      "data": Object {
+                        "body": "bar",
+                        "replies": Object {
+                          "data": Object {
+                            "children": Array [
+                              Object {
+                                "data": Object {
+                                  "body": "baz",
+                                },
+                                "kind": "t2",
+                              },
+                              Object {
+                                "data": "bar",
+                                "kind": "more",
+                              },
+                            ],
+                          },
+                          "kind": "Listing",
+                        },
+                      },
+                      "kind": "t1",
+                    }
+                  }
+                  depth={0}
+                  key="0"
+                >
+                  <Comment
+                    classes={
+                      Object {
+                        "comment": "Comment-comment-15 Comment-comment-24",
+                        "comment_container": "Comment-comment_container-16",
+                        "comment_container_alt": "Comment-comment_container_alt-17",
+                      }
+                    }
+                    comment={
+                      Object {
+                        "data": Object {
+                          "body": "bar",
+                          "replies": Object {
+                            "data": Object {
+                              "children": Array [
+                                Object {
+                                  "data": Object {
+                                    "body": "baz",
+                                  },
+                                  "kind": "t2",
+                                },
+                                Object {
+                                  "data": "bar",
+                                  "kind": "more",
+                                },
+                              ],
+                            },
+                            "kind": "Listing",
+                          },
+                        },
+                        "kind": "t1",
+                      }
+                    }
+                    depth={0}
+                  >
+                    <Styled(MuiBox)
+                      boxShadow={1}
+                      className="Comment-comment-15 Comment-comment-24 Comment-comment_container-16"
+                    >
+                      <div
+                        className="MuiBox-root MuiBox-root-25 Comment-comment-15 Comment-comment-24 Comment-comment_container-16"
+                      >
+                        <Connect(WithStyles(Reply))
+                          depth={0}
+                          reply={
+                            Object {
+                              "data": Object {
+                                "body": "bar",
+                                "replies": Object {
+                                  "data": Object {
+                                    "children": Array [
+                                      Object {
+                                        "data": Object {
+                                          "body": "baz",
+                                        },
+                                        "kind": "t2",
+                                      },
+                                      Object {
+                                        "data": "bar",
+                                        "kind": "more",
+                                      },
+                                    ],
+                                  },
+                                  "kind": "Listing",
+                                },
+                              },
+                              "kind": "t1",
+                            }
+                          }
+                        >
+                          <WithStyles(Reply)
+                            comments={
+                              Object {
+                                "bar": Array [
+                                  Object {
+                                    "data": Object {
+                                      "children": Array [
+                                        Object {
+                                          "data": Object {
+                                            "title": "foo",
+                                          },
+                                          "kind": "t3",
+                                        },
+                                      ],
+                                    },
+                                    "kind": "Listing",
+                                  },
+                                  Object {
+                                    "data": Object {
+                                      "children": Array [
+                                        Object {
+                                          "data": Object {
+                                            "body": "bar",
+                                            "replies": Object {
+                                              "data": Object {
+                                                "children": Array [
+                                                  Object {
+                                                    "data": Object {
+                                                      "body": "baz",
+                                                    },
+                                                    "kind": "t2",
+                                                  },
+                                                  Object {
+                                                    "data": "baz",
+                                                    "kind": "more",
+                                                  },
+                                                ],
+                                              },
+                                              "kind": "Listing",
+                                            },
+                                          },
+                                          "kind": "t1",
+                                        },
+                                      ],
+                                    },
+                                    "kind": "Listing",
+                                  },
+                                ],
+                                "root": Array [
+                                  Object {
+                                    "data": Object {
+                                      "children": Array [
+                                        Object {
+                                          "data": Object {
+                                            "title": "foo",
+                                          },
+                                          "kind": "t3",
+                                        },
+                                      ],
+                                    },
+                                    "kind": "Listing",
+                                  },
+                                  Object {
+                                    "data": Object {
+                                      "children": Array [
+                                        Object {
+                                          "data": Object {
+                                            "body": "bar",
+                                            "replies": Object {
+                                              "data": Object {
+                                                "children": Array [
+                                                  Object {
+                                                    "data": Object {
+                                                      "body": "baz",
+                                                    },
+                                                    "kind": "t2",
+                                                  },
+                                                  Object {
+                                                    "data": "bar",
+                                                    "kind": "more",
+                                                  },
+                                                ],
+                                              },
+                                              "kind": "Listing",
+                                            },
+                                          },
+                                          "kind": "t1",
+                                        },
+                                      ],
+                                    },
+                                    "kind": "Listing",
+                                  },
+                                ],
+                              }
+                            }
+                            depth={0}
+                            dispatch={[Function]}
+                            reply={
+                              Object {
+                                "data": Object {
+                                  "body": "bar",
+                                  "replies": Object {
+                                    "data": Object {
+                                      "children": Array [
+                                        Object {
+                                          "data": Object {
+                                            "body": "baz",
+                                          },
+                                          "kind": "t2",
+                                        },
+                                        Object {
+                                          "data": "bar",
+                                          "kind": "more",
+                                        },
+                                      ],
+                                    },
+                                    "kind": "Listing",
+                                  },
+                                },
+                                "kind": "t1",
+                              }
+                            }
+                          >
+                            <Reply
+                              classes={
+                                Object {
+                                  "commentAuthor": "Reply-commentAuthor-22",
+                                  "commentBody": "Reply-commentBody-20",
+                                  "postTitle": "Reply-postTitle-23",
+                                  "selfPostBody": "Reply-selfPostBody-21",
+                                }
+                              }
+                              comments={
+                                Object {
+                                  "bar": Array [
+                                    Object {
+                                      "data": Object {
+                                        "children": Array [
+                                          Object {
+                                            "data": Object {
+                                              "title": "foo",
+                                            },
+                                            "kind": "t3",
+                                          },
+                                        ],
+                                      },
+                                      "kind": "Listing",
+                                    },
+                                    Object {
+                                      "data": Object {
+                                        "children": Array [
+                                          Object {
+                                            "data": Object {
+                                              "body": "bar",
+                                              "replies": Object {
+                                                "data": Object {
+                                                  "children": Array [
+                                                    Object {
+                                                      "data": Object {
+                                                        "body": "baz",
+                                                      },
+                                                      "kind": "t2",
+                                                    },
+                                                    Object {
+                                                      "data": "baz",
+                                                      "kind": "more",
+                                                    },
+                                                  ],
+                                                },
+                                                "kind": "Listing",
+                                              },
+                                            },
+                                            "kind": "t1",
+                                          },
+                                        ],
+                                      },
+                                      "kind": "Listing",
+                                    },
+                                  ],
+                                  "root": Array [
+                                    Object {
+                                      "data": Object {
+                                        "children": Array [
+                                          Object {
+                                            "data": Object {
+                                              "title": "foo",
+                                            },
+                                            "kind": "t3",
+                                          },
+                                        ],
+                                      },
+                                      "kind": "Listing",
+                                    },
+                                    Object {
+                                      "data": Object {
+                                        "children": Array [
+                                          Object {
+                                            "data": Object {
+                                              "body": "bar",
+                                              "replies": Object {
+                                                "data": Object {
+                                                  "children": Array [
+                                                    Object {
+                                                      "data": Object {
+                                                        "body": "baz",
+                                                      },
+                                                      "kind": "t2",
+                                                    },
+                                                    Object {
+                                                      "data": "bar",
+                                                      "kind": "more",
+                                                    },
+                                                  ],
+                                                },
+                                                "kind": "Listing",
+                                              },
+                                            },
+                                            "kind": "t1",
+                                          },
+                                        ],
+                                      },
+                                      "kind": "Listing",
+                                    },
+                                  ],
+                                }
+                              }
+                              depth={0}
+                              dispatch={[Function]}
+                              reply={
+                                Object {
+                                  "data": Object {
+                                    "body": "bar",
+                                    "replies": Object {
+                                      "data": Object {
+                                        "children": Array [
+                                          Object {
+                                            "data": Object {
+                                              "body": "baz",
+                                            },
+                                            "kind": "t2",
+                                          },
+                                          Object {
+                                            "data": "bar",
+                                            "kind": "more",
+                                          },
+                                        ],
+                                      },
+                                      "kind": "Listing",
+                                    },
+                                  },
+                                  "kind": "t1",
+                                }
+                              }
+                            >
+                              <div>
+                                <a
+                                  className="Reply-commentAuthor-22"
+                                  href={"https://www.reddit.com/.html"}
+                                />
+                                (
+                                NaN
+                                )
+                              </div>
+                              <div
+                                className="Reply-commentBody-20"
+                              >
+                                bar
+                              </div>
+                            </Reply>
+                          </WithStyles(Reply)>
+                        </Connect(WithStyles(Reply))>
+                        <ReplyTree
+                          depth={1}
+                          replies={
+                            Object {
+                              "data": Object {
+                                "children": Array [
+                                  Object {
+                                    "data": Object {
+                                      "body": "baz",
+                                    },
+                                    "kind": "t2",
+                                  },
+                                  Object {
+                                    "data": "bar",
+                                    "kind": "more",
+                                  },
+                                ],
+                              },
+                              "kind": "Listing",
+                            }
+                          }
+                        >
+                          <WithStyles(Comment)
+                            comment={
+                              Object {
+                                "data": Object {
+                                  "body": "baz",
+                                },
+                                "kind": "t2",
+                              }
+                            }
+                            depth={1}
+                            key="0"
+                          >
+                            <Comment
+                              classes={
+                                Object {
+                                  "comment": "Comment-comment-15 Comment-comment-26",
+                                  "comment_container": "Comment-comment_container-16",
+                                  "comment_container_alt": "Comment-comment_container_alt-17",
+                                }
+                              }
+                              comment={
+                                Object {
+                                  "data": Object {
+                                    "body": "baz",
+                                  },
+                                  "kind": "t2",
+                                }
+                              }
+                              depth={1}
+                            >
+                              <Styled(MuiBox)
+                                boxShadow={2}
+                                className="Comment-comment-15 Comment-comment-26 Comment-comment_container_alt-17"
+                              >
+                                <div
+                                  className="MuiBox-root MuiBox-root-27 Comment-comment-15 Comment-comment-26 Comment-comment_container_alt-17"
+                                >
+                                  <Connect(WithStyles(Reply))
+                                    depth={1}
+                                    reply={
+                                      Object {
+                                        "data": Object {
+                                          "body": "baz",
+                                        },
+                                        "kind": "t2",
+                                      }
+                                    }
+                                  >
+                                    <WithStyles(Reply)
+                                      comments={
+                                        Object {
+                                          "bar": Array [
+                                            Object {
+                                              "data": Object {
+                                                "children": Array [
+                                                  Object {
+                                                    "data": Object {
+                                                      "title": "foo",
+                                                    },
+                                                    "kind": "t3",
+                                                  },
+                                                ],
+                                              },
+                                              "kind": "Listing",
+                                            },
+                                            Object {
+                                              "data": Object {
+                                                "children": Array [
+                                                  Object {
+                                                    "data": Object {
+                                                      "body": "bar",
+                                                      "replies": Object {
+                                                        "data": Object {
+                                                          "children": Array [
+                                                            Object {
+                                                              "data": Object {
+                                                                "body": "baz",
+                                                              },
+                                                              "kind": "t2",
+                                                            },
+                                                            Object {
+                                                              "data": "baz",
+                                                              "kind": "more",
+                                                            },
+                                                          ],
+                                                        },
+                                                        "kind": "Listing",
+                                                      },
+                                                    },
+                                                    "kind": "t1",
+                                                  },
+                                                ],
+                                              },
+                                              "kind": "Listing",
+                                            },
+                                          ],
+                                          "root": Array [
+                                            Object {
+                                              "data": Object {
+                                                "children": Array [
+                                                  Object {
+                                                    "data": Object {
+                                                      "title": "foo",
+                                                    },
+                                                    "kind": "t3",
+                                                  },
+                                                ],
+                                              },
+                                              "kind": "Listing",
+                                            },
+                                            Object {
+                                              "data": Object {
+                                                "children": Array [
+                                                  Object {
+                                                    "data": Object {
+                                                      "body": "bar",
+                                                      "replies": Object {
+                                                        "data": Object {
+                                                          "children": Array [
+                                                            Object {
+                                                              "data": Object {
+                                                                "body": "baz",
+                                                              },
+                                                              "kind": "t2",
+                                                            },
+                                                            Object {
+                                                              "data": "bar",
+                                                              "kind": "more",
+                                                            },
+                                                          ],
+                                                        },
+                                                        "kind": "Listing",
+                                                      },
+                                                    },
+                                                    "kind": "t1",
+                                                  },
+                                                ],
+                                              },
+                                              "kind": "Listing",
+                                            },
+                                          ],
+                                        }
+                                      }
+                                      depth={1}
+                                      dispatch={[Function]}
+                                      reply={
+                                        Object {
+                                          "data": Object {
+                                            "body": "baz",
+                                          },
+                                          "kind": "t2",
+                                        }
+                                      }
+                                    >
+                                      <Reply
+                                        classes={
+                                          Object {
+                                            "commentAuthor": "Reply-commentAuthor-22",
+                                            "commentBody": "Reply-commentBody-20",
+                                            "postTitle": "Reply-postTitle-23",
+                                            "selfPostBody": "Reply-selfPostBody-21",
+                                          }
+                                        }
+                                        comments={
+                                          Object {
+                                            "bar": Array [
+                                              Object {
+                                                "data": Object {
+                                                  "children": Array [
+                                                    Object {
+                                                      "data": Object {
+                                                        "title": "foo",
+                                                      },
+                                                      "kind": "t3",
+                                                    },
+                                                  ],
+                                                },
+                                                "kind": "Listing",
+                                              },
+                                              Object {
+                                                "data": Object {
+                                                  "children": Array [
+                                                    Object {
+                                                      "data": Object {
+                                                        "body": "bar",
+                                                        "replies": Object {
+                                                          "data": Object {
+                                                            "children": Array [
+                                                              Object {
+                                                                "data": Object {
+                                                                  "body": "baz",
+                                                                },
+                                                                "kind": "t2",
+                                                              },
+                                                              Object {
+                                                                "data": "baz",
+                                                                "kind": "more",
+                                                              },
+                                                            ],
+                                                          },
+                                                          "kind": "Listing",
+                                                        },
+                                                      },
+                                                      "kind": "t1",
+                                                    },
+                                                  ],
+                                                },
+                                                "kind": "Listing",
+                                              },
+                                            ],
+                                            "root": Array [
+                                              Object {
+                                                "data": Object {
+                                                  "children": Array [
+                                                    Object {
+                                                      "data": Object {
+                                                        "title": "foo",
+                                                      },
+                                                      "kind": "t3",
+                                                    },
+                                                  ],
+                                                },
+                                                "kind": "Listing",
+                                              },
+                                              Object {
+                                                "data": Object {
+                                                  "children": Array [
+                                                    Object {
+                                                      "data": Object {
+                                                        "body": "bar",
+                                                        "replies": Object {
+                                                          "data": Object {
+                                                            "children": Array [
+                                                              Object {
+                                                                "data": Object {
+                                                                  "body": "baz",
+                                                                },
+                                                                "kind": "t2",
+                                                              },
+                                                              Object {
+                                                                "data": "bar",
+                                                                "kind": "more",
+                                                              },
+                                                            ],
+                                                          },
+                                                          "kind": "Listing",
+                                                        },
+                                                      },
+                                                      "kind": "t1",
+                                                    },
+                                                  ],
+                                                },
+                                                "kind": "Listing",
+                                              },
+                                            ],
+                                          }
+                                        }
+                                        depth={1}
+                                        dispatch={[Function]}
+                                        reply={
+                                          Object {
+                                            "data": Object {
+                                              "body": "baz",
+                                            },
+                                            "kind": "t2",
+                                          }
+                                        }
+                                      />
+                                    </WithStyles(Reply)>
+                                  </Connect(WithStyles(Reply))>
+                                  <ReplyTree
+                                    depth={2}
+                                  />
+                                </div>
+                              </Styled(MuiBox)>
+                            </Comment>
+                          </WithStyles(Comment)>
+                          <WithStyles(Comment)
+                            comment={
+                              Object {
+                                "data": "bar",
+                                "kind": "more",
+                              }
+                            }
+                            depth={1}
+                            key="1"
+                          >
+                            <Comment
+                              classes={
+                                Object {
+                                  "comment": "Comment-comment-15 Comment-comment-28",
+                                  "comment_container": "Comment-comment_container-16",
+                                  "comment_container_alt": "Comment-comment_container_alt-17",
+                                }
+                              }
+                              comment={
+                                Object {
+                                  "data": "bar",
+                                  "kind": "more",
+                                }
+                              }
+                              depth={1}
+                            >
+                              <Styled(MuiBox)
+                                boxShadow={2}
+                                className="Comment-comment-15 Comment-comment-28 Comment-comment_container_alt-17"
+                              >
+                                <div
+                                  className="MuiBox-root MuiBox-root-29 Comment-comment-15 Comment-comment-28 Comment-comment_container_alt-17"
+                                >
+                                  <Connect(WithStyles(Reply))
+                                    depth={1}
+                                    reply={
+                                      Object {
+                                        "data": "bar",
+                                        "kind": "more",
+                                      }
+                                    }
+                                  >
+                                    <WithStyles(Reply)
+                                      comments={
+                                        Object {
+                                          "bar": Array [
+                                            Object {
+                                              "data": Object {
+                                                "children": Array [
+                                                  Object {
+                                                    "data": Object {
+                                                      "title": "foo",
+                                                    },
+                                                    "kind": "t3",
+                                                  },
+                                                ],
+                                              },
+                                              "kind": "Listing",
+                                            },
+                                            Object {
+                                              "data": Object {
+                                                "children": Array [
+                                                  Object {
+                                                    "data": Object {
+                                                      "body": "bar",
+                                                      "replies": Object {
+                                                        "data": Object {
+                                                          "children": Array [
+                                                            Object {
+                                                              "data": Object {
+                                                                "body": "baz",
+                                                              },
+                                                              "kind": "t2",
+                                                            },
+                                                            Object {
+                                                              "data": "baz",
+                                                              "kind": "more",
+                                                            },
+                                                          ],
+                                                        },
+                                                        "kind": "Listing",
+                                                      },
+                                                    },
+                                                    "kind": "t1",
+                                                  },
+                                                ],
+                                              },
+                                              "kind": "Listing",
+                                            },
+                                          ],
+                                          "root": Array [
+                                            Object {
+                                              "data": Object {
+                                                "children": Array [
+                                                  Object {
+                                                    "data": Object {
+                                                      "title": "foo",
+                                                    },
+                                                    "kind": "t3",
+                                                  },
+                                                ],
+                                              },
+                                              "kind": "Listing",
+                                            },
+                                            Object {
+                                              "data": Object {
+                                                "children": Array [
+                                                  Object {
+                                                    "data": Object {
+                                                      "body": "bar",
+                                                      "replies": Object {
+                                                        "data": Object {
+                                                          "children": Array [
+                                                            Object {
+                                                              "data": Object {
+                                                                "body": "baz",
+                                                              },
+                                                              "kind": "t2",
+                                                            },
+                                                            Object {
+                                                              "data": "bar",
+                                                              "kind": "more",
+                                                            },
+                                                          ],
+                                                        },
+                                                        "kind": "Listing",
+                                                      },
+                                                    },
+                                                    "kind": "t1",
+                                                  },
+                                                ],
+                                              },
+                                              "kind": "Listing",
+                                            },
+                                          ],
+                                        }
+                                      }
+                                      depth={1}
+                                      dispatch={[Function]}
+                                      reply={
+                                        Object {
+                                          "data": "bar",
+                                          "kind": "more",
+                                        }
+                                      }
+                                    >
+                                      <Reply
+                                        classes={
+                                          Object {
+                                            "commentAuthor": "Reply-commentAuthor-22",
+                                            "commentBody": "Reply-commentBody-20",
+                                            "postTitle": "Reply-postTitle-23",
+                                            "selfPostBody": "Reply-selfPostBody-21",
+                                          }
+                                        }
+                                        comments={
+                                          Object {
+                                            "bar": Array [
+                                              Object {
+                                                "data": Object {
+                                                  "children": Array [
+                                                    Object {
+                                                      "data": Object {
+                                                        "title": "foo",
+                                                      },
+                                                      "kind": "t3",
+                                                    },
+                                                  ],
+                                                },
+                                                "kind": "Listing",
+                                              },
+                                              Object {
+                                                "data": Object {
+                                                  "children": Array [
+                                                    Object {
+                                                      "data": Object {
+                                                        "body": "bar",
+                                                        "replies": Object {
+                                                          "data": Object {
+                                                            "children": Array [
+                                                              Object {
+                                                                "data": Object {
+                                                                  "body": "baz",
+                                                                },
+                                                                "kind": "t2",
+                                                              },
+                                                              Object {
+                                                                "data": "baz",
+                                                                "kind": "more",
+                                                              },
+                                                            ],
+                                                          },
+                                                          "kind": "Listing",
+                                                        },
+                                                      },
+                                                      "kind": "t1",
+                                                    },
+                                                  ],
+                                                },
+                                                "kind": "Listing",
+                                              },
+                                            ],
+                                            "root": Array [
+                                              Object {
+                                                "data": Object {
+                                                  "children": Array [
+                                                    Object {
+                                                      "data": Object {
+                                                        "title": "foo",
+                                                      },
+                                                      "kind": "t3",
+                                                    },
+                                                  ],
+                                                },
+                                                "kind": "Listing",
+                                              },
+                                              Object {
+                                                "data": Object {
+                                                  "children": Array [
+                                                    Object {
+                                                      "data": Object {
+                                                        "body": "bar",
+                                                        "replies": Object {
+                                                          "data": Object {
+                                                            "children": Array [
+                                                              Object {
+                                                                "data": Object {
+                                                                  "body": "baz",
+                                                                },
+                                                                "kind": "t2",
+                                                              },
+                                                              Object {
+                                                                "data": "bar",
+                                                                "kind": "more",
+                                                              },
+                                                            ],
+                                                          },
+                                                          "kind": "Listing",
+                                                        },
+                                                      },
+                                                      "kind": "t1",
+                                                    },
+                                                  ],
+                                                },
+                                                "kind": "Listing",
+                                              },
+                                            ],
+                                          }
+                                        }
+                                        depth={1}
+                                        dispatch={[Function]}
+                                        reply={
+                                          Object {
+                                            "data": "bar",
+                                            "kind": "more",
+                                          }
+                                        }
+                                      >
+                                        <MoreButton
+                                          onClick={[Function]}
+                                        >
+                                          <a
+                                            onClick={[Function]}
+                                            style={
+                                              Object {
+                                                "cursor": "pointer",
+                                                "display": "flex",
+                                              }
+                                            }
+                                          >
+                                            <ForwardRef>
+                                              <WithStyles(ForwardRef(SvgIcon))>
+                                                <ForwardRef(SvgIcon)
+                                                  classes={
+                                                    Object {
+                                                      "colorAction": "MuiSvgIcon-colorAction",
+                                                      "colorDisabled": "MuiSvgIcon-colorDisabled",
+                                                      "colorError": "MuiSvgIcon-colorError",
+                                                      "colorPrimary": "MuiSvgIcon-colorPrimary",
+                                                      "colorSecondary": "MuiSvgIcon-colorSecondary",
+                                                      "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                                                      "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                                                      "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                                                      "root": "MuiSvgIcon-root",
+                                                    }
+                                                  }
+                                                >
+                                                  <svg
+                                                    aria-hidden="true"
+                                                    className="MuiSvgIcon-root"
+                                                    focusable="false"
+                                                    role="presentation"
+                                                    viewBox="0 0 24 24"
+                                                  >
+                                                    <path
+                                                      d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+                                                    />
+                                                  </svg>
+                                                </ForwardRef(SvgIcon)>
+                                              </WithStyles(ForwardRef(SvgIcon))>
+                                            </ForwardRef>
+                                          </a>
+                                        </MoreButton>
+                                      </Reply>
+                                    </WithStyles(Reply)>
+                                  </Connect(WithStyles(Reply))>
+                                  <ReplyTree
+                                    depth={2}
+                                  />
+                                </div>
+                              </Styled(MuiBox)>
+                            </Comment>
+                          </WithStyles(Comment)>
+                        </ReplyTree>
+                      </div>
+                    </Styled(MuiBox)>
+                  </Comment>
+                </WithStyles(Comment)>
+              </CommentTree>
+            </div>
+          </div>
+          <div
+            className="Comments-spacerBottom-6 Comments-spacerBottom-14"
+          />
+        </div>
+      </Comments>
+    </WithStyles(Comments)>
+  </Connect(WithStyles(Comments))>
+</Provider>
+`;
 
-exports[`comments should render empty Comments 1`] = `ReactWrapper {}`;
+exports[`comments should render empty Comments 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Connect(WithStyles(Comments))>
+    <WithStyles(Comments)
+      dispatch={[Function]}
+    >
+      <Comments
+        classes={
+          Object {
+            "comments": "Comments-comments-2 Comments-comments-7",
+            "loading": "Comments-loading-3 Comments-loading-8",
+            "menuButton": "Comments-menuButton-4",
+            "root": "Comments-root-1",
+            "spacerBottom": "Comments-spacerBottom-6 Comments-spacerBottom-9",
+            "title": "Comments-title-5",
+          }
+        }
+        dispatch={[Function]}
+      >
+        <div>
+          <div>
+            <div
+              className="Comments-loading-3 Comments-loading-8"
+              id="comments"
+            >
+              <Styled(MuiBox)
+                boxShadow={5}
+              >
+                <div
+                  className="MuiBox-root MuiBox-root-11"
+                />
+              </Styled(MuiBox)>
+            </div>
+          </div>
+          <div
+            className="Comments-spacerBottom-6 Comments-spacerBottom-9"
+          />
+        </div>
+      </Comments>
+    </WithStyles(Comments)>
+  </Connect(WithStyles(Comments))>
+</Provider>
+`;

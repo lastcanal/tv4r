@@ -41,7 +41,6 @@ const styles = ({ palette }) => ({
     fontSize: 60,
     textDecoration: 'none',
   },
-
 })
 
 const ImagePlayer = ({
@@ -67,7 +66,6 @@ const ImagePlayer = ({
   const onImageChange = () => {
     if (!imgRef) return
 
-    setLoading(false)
     const width = window.innerWidth
     const screenRatio = width / height
     const imageRatio = imgRef.width / imgRef.height
@@ -78,6 +76,8 @@ const ImagePlayer = ({
       setImageWidth(width)
       setImageHeight(null)
     }
+
+    setLoading(url === post.thumbnail)
   }
 
   const enhance = () => {
@@ -107,7 +107,7 @@ const ImagePlayer = ({
   useEffect(() => {
     setLoading(true)
     setUrl(post.thumbnail)
-    enhance()
+    setImmediate(enhance)
   }, [post])
 
   useLayoutEffect(() => {
@@ -132,8 +132,7 @@ const ImagePlayer = ({
       height={imageHeight}
       width={imageWidth}
       style={{
-        opacity: loading ? 0.5 : 1,
-        transition: 'opacity 1s',
+        filter: loading ? `blur(8px)` : 'blur(0)',
       }}
       onLoad={onImageChange}
       onError={onError}
