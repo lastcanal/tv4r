@@ -19,6 +19,7 @@ const styles = () => ({
     justifyContent: 'center',
     flexDirection: 'column',
     transform: 'translate3d(0,0,1px)',
+    transition: 'height 0.39s, width 0.39s',
   },
 })
 

@@ -27,7 +27,7 @@ const useLayoutDimensionTracker = ({ isFullscreen, isFetching }) => {
   const onResize = debounce(() => {
     setScreenHeight(calculateHeight())
     setMenuHeight(calculateMenuHeight())
-  }, 10)
+  }, 610)
 
   const onOrientationChange = () => {
     if (typeof window.orientation !== 'undefined') {

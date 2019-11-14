@@ -14,6 +14,7 @@ const styles = ({ palette }) => ({
     overflow: 'hidden',
     top: 0,
     left: 0,
+    transition: 'height 0.39s, width 0.39s',
     transform: 'translate3d(0,0,1px)',
     '& iframe': {
       border: 0,
