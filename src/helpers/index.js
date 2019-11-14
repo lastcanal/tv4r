@@ -44,7 +44,7 @@ export function filterImage (posts) {
 }
 
 export function filterVideoImage (posts) {
-  return posts?.filter(function (post) {
+  return posts?.filter((post) => {
     return (isVideo(post) || isImage(post))
   })
 }
@@ -65,11 +65,19 @@ export function isImage (post) {
   )
 }
 
+export const isTwitter = (post) => (
+  post?.domain === 'twitter.com'
+)
+
 export const isKnownMediaEmbed = (post) => {
   // eslint-disable-next-line camelcase
   const name = post?.secure_media?.oembed?.provider_name
   return name && KNOWN_EMBED_REQUIRED_PROVIDERS.indexOf(name) < 0
 }
+
+export const urlToPathname = url => (
+  new URL(url).pathname
+)
 
 const matchSubredditPath = pathname => matchPath(pathname, '/r/:subreddit')
 
@@ -78,6 +86,16 @@ const matchPostPath = pathname =>
 
 export const matchRedditPath = pathname =>
   matchPostPath(pathname) || matchSubredditPath(pathname)
+
+const matchTwitterTimelinePath = pathname =>
+  matchPath(pathname, '/:name')
+
+const matchTwitterStatusPath = pathname =>
+  matchPath(pathname, '/:name/status/:id')
+
+export const matchTwitterPath = pathname =>
+  matchTwitterStatusPath(pathname) ||
+    matchTwitterTimelinePath(pathname)
 
 export const getNewSubredditFromPath = (selectedSubreddit, permalink) => {
   const match = matchRedditPath(permalink)
