@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import debounce from 'lodash.debounce'
 
 const useLayoutDimensionTracker = ({ isFullscreen, isFetching }) => {
@@ -34,13 +34,13 @@ const useLayoutDimensionTracker = ({ isFullscreen, isFetching }) => {
       setOrientation(window.orientation)
     }
   }
-  useLayoutEffect(() => {
+  useEffect(() => {
     setMenuHeight(calculateMenuHeight())
   }, [menuRef])
 
   useEffect(() => {
     setPlayerHeight(calculateHeight())
-  }, [menuOffsetHeight])
+  }, [screenHeight, isFullscreen, menuOffsetHeight])
 
   useEffect(() => {
     const constrained = menuHeight * 1.39 > window.innerHeight
