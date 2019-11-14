@@ -11,6 +11,7 @@ const styles = ({ palette }) => ({
     zIndex: 40,
   },
   playerWrapper: {
+    backgroundColor: 'black',
     height: ({ height }) => (
       height
     ),

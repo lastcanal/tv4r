@@ -44,7 +44,7 @@ describe('post', () => {
   })
 
   it('should render Video', () => {
-    jest.useFakeTimers();
+    jest.useFakeTimers()
 
     const post = {
       id: 1,
@@ -72,8 +72,8 @@ describe('post', () => {
     )
 
     act(() => {
-      jest.advanceTimersByTime(100);
-    });
+      jest.advanceTimersByTime(100)
+    })
 
     expect(wrapper).toMatchSnapshot()
   })
@@ -88,11 +88,11 @@ describe('post', () => {
         images: [
           {
             resolutions: [
-              { url: 'https://example.com/example.jpg' }
-            ]
-          }
-        ]
-      }
+              { url: 'https://example.com/example.jpg' },
+            ],
+          },
+        ],
+      },
     }
 
     const store = mockStore({

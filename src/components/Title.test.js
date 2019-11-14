@@ -1,8 +1,8 @@
-import Title from "./Title";
+import Title from './Title'
 
-describe("Title", () => {
-  it("should render Title", () => {
-    const enzymeWrapper = mount(<Title post={{ title: "hello" }} />);
+describe('Title', () => {
+  it('should render Title', () => {
+    const enzymeWrapper = mount(<Title post={{ title: 'hello' }} />)
 
     expect(enzymeWrapper).toMatchInlineSnapshot(`
       <Title
@@ -22,11 +22,11 @@ describe("Title", () => {
           </a>
         </div>
       </Title>
-    `);
-  });
+    `)
+  })
 
-  it("should render without title", () => {
-    const enzymeWrapper = mount(<Title post={{ title: undefined }} />);
+  it('should render without title', () => {
+    const enzymeWrapper = mount(<Title post={{ title: undefined }} />)
 
     expect(enzymeWrapper).toMatchInlineSnapshot(`
       <Title
@@ -68,12 +68,12 @@ describe("Title", () => {
           </a>
         </div>
       </Title>
-    `);
-  });
+    `)
+  })
 
-  it("should render without post", () => {
-    const enzymeWrapper = mount(<Title post={undefined} />);
+  it('should render without post', () => {
+    const enzymeWrapper = mount(<Title post={undefined} />)
 
-    expect(enzymeWrapper).toMatchInlineSnapshot(`<Title />`);
-  });
-});
+    expect(enzymeWrapper).toMatchInlineSnapshot(`<Title />`)
+  })
+})

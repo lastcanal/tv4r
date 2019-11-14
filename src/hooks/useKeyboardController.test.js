@@ -28,21 +28,21 @@ describe('useKeyboardController', () => {
 
 
   it('should only work if enabled', () => {
-    const store = makeStore({ config: { keyboardControls: false }})
+    const store = makeStore({ config: { keyboardControls: false } })
     store.clearActions()
     store.dispatch(handleKeyboardAction({ key: '.' }))
     expect(store.getActions()[0]).toEqual(undefined)
   })
 
   it('should not work if metakey pressed', () => {
-    const store = makeStore({ config: { keyboardControls: false }})
+    const store = makeStore({ config: { keyboardControls: false } })
     store.clearActions()
     store.dispatch(handleKeyboardAction({ key: '.', metaKey: true }))
     expect(store.getActions()[0]).toEqual(undefined)
   })
 
   const testKeyboardAction = (key, action, extra = {}) => {
-    const store = makeStore({ config: { keyboardControls: true }})
+    const store = makeStore({ config: { keyboardControls: true } })
     store.clearActions()
     store.dispatch(handleKeyboardAction({ ...extra, key }))
     store.dispatch(action)
