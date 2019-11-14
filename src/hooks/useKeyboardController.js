@@ -36,7 +36,7 @@ export const handleKeyboardAction = event => (dispatch, getState) => {
     case 'Space':
     case 'Enter':
     case 'k':
-      // if (!event.shiftKey) event.preventDefault()
+      if (!event.shiftKey) event.preventDefault()
       return dispatch(configTogglePlay())
     case 'a':
       return dispatch(configToggleAutoAdvance())
@@ -49,10 +49,10 @@ export const handleKeyboardAction = event => (dispatch, getState) => {
     case 'ArrowRight':
       return dispatch(playerScanForwards(10))
     case 'ArrowUp':
-      // if (!event.shiftKey) event.preventDefault()
+      if (!event.shiftKey) event.preventDefault()
       return dispatch(playerVolumeUp())
     case 'ArrowDown':
-      // if (!event.shiftKey) event.preventDefault()
+      if (!event.shiftKey) event.preventDefault()
       return dispatch(playerVolumeDown())
     case '0':
     case '1':

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Skeleton from '@material-ui/lab/Skeleton'
+import throttle from 'lodash.throttle'
 
 import { isVideo, isImage } from '../helpers'
 
@@ -81,6 +82,7 @@ const Post = ({
   menuHeight,
   showImages,
   showVideos,
+  isPlaying,
   showNSFW,
   dispatch,
 }) => {
@@ -152,24 +154,30 @@ const Post = ({
     post?.over_18
   ), [post])
 
-  const onScroll = () => {
-    if (
-      window.pageYOffset > 0 &&
-      window.pageYOffset > playerHeight
+  const showMiniPlayerIfNeeded = throttle(() => {
+    if (!isPlaying) {
+      setShowMiniPlayer(false)
+    } else if (
+      isVideo(post) &&
+      window.pageYOffset > 0 && playerHeight > 0 &&
+      window.pageYOffset >= playerHeight
     ) {
       setShowMiniPlayer(isNSFW ? showNSFW : true)
     } else if (
       window.pageYOffset === 0 ||
-      (window.pageYOffset * 0.39) < (playerHeight)
+      window.pageYOffset < (playerHeight)
     ) {
       setShowMiniPlayer(false)
     }
-  }
+  }, 100)
 
   useEffect(() => {
-    window.addEventListener('scroll', onScroll)
-    return () => (window.removeEventListener('scroll', onScroll))
-  }, [playerHeight, showNSFW, isNSFW])
+    showMiniPlayerIfNeeded()
+    window.addEventListener('scroll', showMiniPlayerIfNeeded)
+    return () => (
+      window.removeEventListener('scroll', showMiniPlayerIfNeeded)
+    )
+  }, [playerHeight, showNSFW, isNSFW, isPlaying])
 
   if (isFetching) {
     return renderLoading()
@@ -211,7 +219,7 @@ Post.propTypes = {
 
 const mapStateToProps = state => {
   const { selectedSubreddit, postsBySubreddit, config } = state
-  const { showImages, showVideos, showNSFW } = config
+  const { showImages, showVideos, showNSFW, isPlaying } = config
   const selectedPost = postsBySubreddit.cursor || {}
   const { isFetching } = postsBySubreddit[selectedSubreddit] || {
     isFetching: false,
@@ -223,6 +231,7 @@ const mapStateToProps = state => {
     showImages,
     showVideos,
     showNSFW,
+    isPlaying,
   }
 }
 
