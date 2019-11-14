@@ -1,13 +1,13 @@
-# TVR: The TV of the Internet
+# TV4R: The TV of the Internet
 
-TVR is a television interface for reddit, the front page of the internet.
-TVR runs entirely in your browser, only relying on the reddit API.
+TV4R is a television interface for reddit, the front page of the internet.
+TV4R runs entirely in your browser and relies only on the reddit API.
 
 #### Description
 
-TVR lets you watch the latest videos from any subreddit and play them 
-back-to-back without interuptions. Load up your favorite subreddit then 
-sit back and enjoy what the internet is watching. 
+Watch the latest videos from any subreddit, played back-to-back without interuptions.
+You can also view images, gifs, embedded webpages, twitter posts, and maybe more!
+Load up your favorite subreddit and enjoy what the internet is watching.
 
 #### Common Shortcuts
 
@@ -40,17 +40,20 @@ sit back and enjoy what the internet is watching.
 
 - [x] Watch reddit videos
 - [x] Read reddit comments
-- [x] Look at reddit images and gifs
-- [ ] Read from new, controversial, top, and rising
+- [x] Look at reddit images and gifs, webpages, selfposts, twitter
+- [x] Read from new, controversial, top, and rising
 - [ ] Load all videos by 'domain' (e.g. youtube.com)
+
+#### Maybe Goals
+
 - [ ] Load subreddits from authenticated reddit profile
 - [ ] Vote on reddit posts and comments
 - [ ] Write reddit comments
 
 #### Non Goals
 
-- [x] Source content from non-reddit sources
-- [x] Override native players
+- [ ] Source content from non-reddit sources
+- [ ] Override native players
 
 #### Running locally
 
@@ -70,14 +73,31 @@ Run the tests
 
 `$ yarn test`
 
+Auto-fix linter errors
+
+`$ yarn fix`
+
 Build a release
 
 `$ yarn build`
 
 #### Contributing
 
-TVR is written using React and Redux. Install [Redux Devtools](https://extension.remotedev.io/) to see what is happening under the hood. 
+TV4R is written using React and Redux. Install [Redux Devtools](https://extension.remotedev.io/) to see what is happening under the hood.
+
+Pull Requests Welcome!
 
 #### Licence
 
-MIT
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
