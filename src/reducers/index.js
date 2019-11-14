@@ -55,7 +55,7 @@ export const selectedSubreddit = (state = DEFAULT_SUBREDDIT, action) => {
     case SELECT_SUBREDDIT:
       return action.subreddit
     case LOCATION_CHANGE:
-      return getNewSubredditFromPath(state, action)
+      return getNewSubredditFromPath(state, action.payload.location.pathname)
     default:
       return state
   }
@@ -274,7 +274,9 @@ export const postsBySubreddit = (state = { cursor: {} }, action) => {
         cursor: selectedPost(state.cursor || {}, action),
       }
     case LOCATION_CHANGE:
-      const subreddit = getNewSubredditFromPath(null, action)
+      const subreddit = getNewSubredditFromPath(
+        null, action.payload.location.pathname
+      )
       const scope = state.scope || 'hot'
       const posts = state[subreddit] ? state[subreddit][scope] : []
       if (subreddit) {

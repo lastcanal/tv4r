@@ -69,12 +69,12 @@ const matchPostPath = pathname =>
 export const matchRedditPath = pathname =>
   matchPostPath(pathname) || matchSubredditPath(pathname)
 
-export const getNewSubredditFromPath = (state, action) => {
-  const match = matchRedditPath(action.payload.location.pathname)
+export const getNewSubredditFromPath = (selectedSubreddit, permalink) => {
+  const match = matchRedditPath(permalink)
 
-  return match?.isExact && state !== match.params.subreddit
+  return match?.isExact && selectedSubreddit !== match.params.subreddit
     ? match.params.subreddit.toLowerCase()
-    : state
+    : selectedSubreddit
 }
 
 export const didInvalidateSubredditFromPath = (state, action) => {
@@ -82,6 +82,15 @@ export const didInvalidateSubredditFromPath = (state, action) => {
 
   return match?.isExact &&
     state !== match.params.subreddit.toLowerCase()
+}
+
+export const translatePermalink = (permalink, selectedSubreddit) => {
+  const match = matchRedditPath(permalink)
+  if (match && selectedSubreddit === 'all') {
+    return permalink.toLowerCase().replace(match.params.subreddit, 'all')
+  } else {
+    return permalink
+  }
 }
 
 export const findPostById = (postId, posts) => {
