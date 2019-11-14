@@ -44,7 +44,9 @@ describe('useKeyboardController', () => {
   const testKeyboardAction = (key, action, extra = {}) => {
     const store = makeStore({ config: { keyboardControls: true } })
     store.clearActions()
-    store.dispatch(handleKeyboardAction({ ...extra, key }))
+    store.dispatch(handleKeyboardAction(
+      { ...extra, key, preventDefault: () => {} }
+    ))
     store.dispatch(action)
     const [a, b] = store.getActions()
     expect(a).toEqual(b)
