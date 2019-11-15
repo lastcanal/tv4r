@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 
 import { nextPost, mediaFallback } from '../actions'
+import { getPostImage, getImageDimensions } from '../helpers'
 
 const styles = ({ palette }) => ({
   reactPlayer: {
@@ -64,37 +65,18 @@ const ImagePlayer = ({
     dispatch(mediaFallback(error))
   }
 
-  const onImageChange = () => {
-    if (!imgRef) return
+  const onImageChange = (ref = imgRef) => {
+    if (!ref) return
+    const image =
+      getImageDimensions(ref, height, window.innerWidth)
 
-    const width = window.innerWidth
-    const screenRatio = width / height
-    const imageRatio = imgRef.width / imgRef.height
-    if (screenRatio > imageRatio) {
-      setImageWidth(null)
-      setImageHeight(height)
-    } else {
-      setImageWidth(width)
-      setImageHeight(null)
-    }
-
-    setLoading(url === post.thumbnail)
+    setImageWidth(image.width)
+    setImageHeight(image.height)
   }
 
   const enhance = () => {
-    let decodedUrl = null
-    if (post.preview?.enabled) {
-      const parser = new DOMParser()
-      const images = post.preview.images[0].resolutions
-      const selectedImage = images.find((image) => image.height >= height) || {}
-      const newUrl = selectedImage.url || images[images.length - 1]?.url
-      if (newUrl) {
-        decodedUrl = parser.parseFromString(newUrl, 'text/html')
-          .body.textContent
-      }
-    }
-
-    setUrl(decodedUrl || post.url)
+    const imageUrl = getPostImage(post, height)
+    setUrl(imageUrl || post.url)
   }
 
   useEffect(() => {
@@ -107,8 +89,8 @@ const ImagePlayer = ({
 
   useEffect(() => {
     setLoading(true)
-    setUrl(post.thumbnail)
-    setImmediate(enhance)
+    onImageChange(post.secure_media_embed || post.media_embed)
+    enhance()
   }, [post])
 
   useLayoutEffect(() => {
@@ -135,7 +117,7 @@ const ImagePlayer = ({
       style={{
         filter: loading ? `blur(8px)` : 'blur(0)',
       }}
-      onLoad={onImageChange}
+      onLoad={() => setLoading(false)}
       onError={onError}
     />
   </div>

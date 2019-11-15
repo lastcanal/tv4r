@@ -36,8 +36,8 @@ const miniPlayerHeight = () =>
 
 const styles = ({ palette, spacing, breakpoints }) => ({
   root: {
-    height: ({ height }) => (
-      height
+    height: ({ playerHeight }) => (
+      playerHeight
     ),
     margin: 0,
     padding: 0,

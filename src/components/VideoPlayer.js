@@ -1,11 +1,12 @@
-import React, { useEffect, useRef, useMemo } from 'react'
+import React, { useEffect, useRef, useMemo, useState } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import ReactHtmlParser from 'react-html-parser'
 import ReactPlayer from 'react-player'
+import throttle from 'lodash.throttle'
 
-import { isVideo, isKnownMediaEmbed } from '../helpers'
+import { isVideo, isKnownMediaEmbed, getVideoDimensions } from '../helpers'
 import { nextPost, mediaFallback, playerScanAck, playerJumpAck } from '../actions'
 
 const styles = () => ({
@@ -36,6 +37,8 @@ const VideoPlayer = ({
   jump,
 }) => {
   const playerRef = useRef()
+  const [playerHeight, setPlayerHeight] = useState(height)
+  const [playerWidth, setPlayerWidth] = useState(window.innerWidth)
 
   const onMediaEnded = () => {
     if (isAutoAdvance) dispatch(nextPost())
@@ -56,10 +59,11 @@ const VideoPlayer = ({
     if (post && isVideo(post)) {
       const transform = (node, _index) => {
         if (node.type === 'tag' && node.name === 'iframe') {
-          node.attribs.height = height
-          node.attribs.width = '100%'
+          node.attribs.width = playerHeight || height
+          node.attribs.height = playerWidth || '100%'
         }
       }
+
       return (
         <div className={classes.playerWrapper}>
           {ReactHtmlParser(mediaEmbedContent(), { transform })}
@@ -94,6 +98,13 @@ const VideoPlayer = ({
       .replace(/\.gifv/, '.mp4')
   ), [post])
 
+  useEffect(throttle(() => {
+    const oEmbed = post.secure_media_embed || post.media_embed
+    const img = getVideoDimensions(oEmbed, height, window.innerWidth)
+    setPlayerWidth(img.width)
+    setPlayerHeight(img.height)
+  }, 100), [post, height, window.innerWidth])
+
   const renderMediaPlayer = () => {
     return <div className={classes.playerWrapper}>
       <ReactPlayer
@@ -103,8 +114,8 @@ const VideoPlayer = ({
         preload="true"
         url={url}
         className={classes.reactPlayer}
-        height={height}
-        width="100%"
+        height={playerHeight || height}
+        width={playerWidth || '100%'}
         onEnded={onMediaEnded}
         onError={onMediaError}
         controls={true}

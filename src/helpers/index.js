@@ -72,7 +72,11 @@ export const isTwitter = (post) => (
 export const isKnownMediaEmbed = (post) => {
   // eslint-disable-next-line camelcase
   const name = post?.secure_media?.oembed?.provider_name
-  return name && KNOWN_EMBED_REQUIRED_PROVIDERS.indexOf(name) < 0
+  if (name) {
+    return KNOWN_EMBED_REQUIRED_PROVIDERS.indexOf(name) >= 0
+  } else {
+    return false
+  }
 }
 
 export const urlToPathname = url => (
@@ -113,7 +117,7 @@ export const didInvalidateSubredditFromPath = (state, action) => {
 }
 
 export const translatePermalink = (permalink, selectedSubreddit) => {
-  const match = matchRedditPath(permalink)
+  const match = matchPostPath(permalink)
   if (match && selectedSubreddit === 'all') {
     return permalink.replace(match.params.subreddit, 'all')
   } else {
@@ -146,6 +150,33 @@ export const extractPost = (state, action) => {
   } else {
     return { index: -1, post: null }
   }
+}
+
+export const getPostImage = (post, height) => {
+  if (post.preview?.enabled) {
+    const parser = new DOMParser()
+    const images = post.preview.images[0].resolutions
+    const selectedImage = images.find((image) => image.height >= height) || {}
+    const newUrl = selectedImage.url || images[images.length - 1]?.url
+    if (newUrl) {
+      return parser.parseFromString(newUrl, 'text/html')
+        .body.textContent
+    }
+  }
+}
+
+export const getImageDimensions = (imgRef, height, width) => {
+  if (!imgRef) { return { width: null, height: null }}
+  if (imgRef.width > imgRef.height) {
+    return { width, height: null }
+  } else {
+    return { height, width: null }
+  }
+}
+
+export const getVideoDimensions = (imgRef, height, _width) => {
+  if (!imgRef) { return { width: '100%', height: '100%' }}
+  return { height, width: (height * (imgRef.width / imgRef.height)) }
 }
 
 export const translateVolume = (volume, change) => (

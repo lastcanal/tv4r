@@ -9156,10 +9156,10 @@ react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-player@^1.12.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/react-player/-/react-player-1.13.0.tgz#074c19195aadd413eb1243e953f6562c7e04b911"
-  integrity sha512-3Ti5ncYCPZ/Xqtm2KH+FadQtTZXwOguKypjYxYvu2EmYRECCoXutbC/He2Z7uBrb/7tzNEvqoHfZLj/1RPNTKg==
+react-player@^1.14.1:
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/react-player/-/react-player-1.14.1.tgz#7fb57239daa7a539bbc1954cd14a537f0bd1244c"
+  integrity sha512-8tZ6P2YMRviEAtsD0E5kF03IXAyc7SlRwu6BUuu0NAkPjIqwEdXcRRh3JWp/m5mOsSsMH3KiGsKSieFraSMgtw==
   dependencies:
     deepmerge "^4.0.0"
     load-script "^1.0.0"

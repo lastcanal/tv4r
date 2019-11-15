@@ -13,7 +13,10 @@ exports[`post should not render media fallback for non-videos 1`] = `
     }
   }
 >
-  <WithStyles(undefined)>
+  <WithStyles(undefined)
+    menuHeight={100}
+    playerHeight={100}
+  >
     <Connect(Post)
       classes={
         Object {
@@ -23,6 +26,8 @@ exports[`post should not render media fallback for non-videos 1`] = `
           "root": "Connect(Post)-root-1 Connect(Post)-root-100",
         }
       }
+      menuHeight={100}
+      playerHeight={100}
     >
       <Post
         classes={
@@ -36,6 +41,8 @@ exports[`post should not render media fallback for non-videos 1`] = `
         dispatch={[Function]}
         isFetching={false}
         isPlaying={false}
+        menuHeight={100}
+        playerHeight={100}
         post={
           Object {
             "id": 1,
@@ -89,7 +96,9 @@ exports[`post should not render media fallback for non-videos 1`] = `
               <div
                 className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-100"
               >
-                <WithStyles(undefined)>
+                <WithStyles(undefined)
+                  height={100}
+                >
                   <Connect(WebPagePlayer)
                     classes={
                       Object {
@@ -97,6 +106,7 @@ exports[`post should not render media fallback for non-videos 1`] = `
                         "playerWrapper": "Connect(WebPagePlayer)-playerWrapper-57",
                       }
                     }
+                    height={100}
                   >
                     <WebPagePlayer
                       classes={
@@ -106,6 +116,7 @@ exports[`post should not render media fallback for non-videos 1`] = `
                         }
                       }
                       dispatch={[Function]}
+                      height={100}
                       isFetching={false}
                       post={
                         Object {
@@ -123,6 +134,7 @@ exports[`post should not render media fallback for non-videos 1`] = `
                         className="Connect(WebPagePlayer)-playerWrapper-57"
                       >
                         <iframe
+                          height={100}
                           sandbox="allow-scripts"
                           src="https://example.com/video"
                           width={1024}
@@ -134,9 +146,14 @@ exports[`post should not render media fallback for non-videos 1`] = `
               </div>
             </ForwardRef(Container)>
           </WithStyles(ForwardRef(Container))>
-          <Connect(WithStyles(Comments))>
+          <Connect(WithStyles(Comments))
+            menuHeight={100}
+            playerHeight={100}
+          >
             <WithStyles(Comments)
               dispatch={[Function]}
+              menuHeight={100}
+              playerHeight={100}
             >
               <Comments
                 classes={
@@ -151,6 +168,8 @@ exports[`post should not render media fallback for non-videos 1`] = `
                   }
                 }
                 dispatch={[Function]}
+                menuHeight={100}
+                playerHeight={100}
               >
                 <div>
                   <div>
@@ -209,7 +228,10 @@ exports[`post should render Image 1`] = `
     }
   }
 >
-  <WithStyles(undefined)>
+  <WithStyles(undefined)
+    menuHeight={100}
+    playerHeight={100}
+  >
     <Connect(Post)
       classes={
         Object {
@@ -219,6 +241,8 @@ exports[`post should render Image 1`] = `
           "root": "Connect(Post)-root-1 Connect(Post)-root-80",
         }
       }
+      menuHeight={100}
+      playerHeight={100}
     >
       <Post
         classes={
@@ -232,6 +256,8 @@ exports[`post should render Image 1`] = `
         dispatch={[Function]}
         isFetching={false}
         isPlaying={false}
+        menuHeight={100}
+        playerHeight={100}
         post={
           Object {
             "id": 1,
@@ -293,7 +319,9 @@ exports[`post should render Image 1`] = `
               <div
                 className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-80"
               >
-                <WithStyles(undefined)>
+                <WithStyles(undefined)
+                  height={100}
+                >
                   <Connect(ImagePlayer)
                     classes={
                       Object {
@@ -303,6 +331,7 @@ exports[`post should render Image 1`] = `
                         "reactPlayer": "Connect(ImagePlayer)-reactPlayer-83",
                       }
                     }
+                    height={100}
                   >
                     <ImagePlayer
                       classes={
@@ -314,6 +343,7 @@ exports[`post should render Image 1`] = `
                         }
                       }
                       dispatch={[Function]}
+                      height={100}
                       isFetching={false}
                       post={
                         Object {
@@ -339,8 +369,10 @@ exports[`post should render Image 1`] = `
                         className="Connect(ImagePlayer)-playerWrapper-84 Connect(ImagePlayer)-playerWrapper-87"
                       >
                         <img
+                          height={100}
                           onError={[Function]}
                           onLoad={[Function]}
+                          src="https://example.com/example.jpg"
                           style={
                             Object {
                               "filter": "blur(8px)",
@@ -355,9 +387,14 @@ exports[`post should render Image 1`] = `
               </div>
             </ForwardRef(Container)>
           </WithStyles(ForwardRef(Container))>
-          <Connect(WithStyles(Comments))>
+          <Connect(WithStyles(Comments))
+            menuHeight={100}
+            playerHeight={100}
+          >
             <WithStyles(Comments)
               dispatch={[Function]}
+              menuHeight={100}
+              playerHeight={100}
             >
               <Comments
                 classes={
@@ -372,6 +409,8 @@ exports[`post should render Image 1`] = `
                   }
                 }
                 dispatch={[Function]}
+                menuHeight={100}
+                playerHeight={100}
               >
                 <div>
                   <div>
@@ -430,7 +469,10 @@ exports[`post should render Post 1`] = `
     }
   }
 >
-  <WithStyles(undefined)>
+  <WithStyles(undefined)
+    menuHeight={100}
+    playerHeight={100}
+  >
     <Connect(Post)
       classes={
         Object {
@@ -440,6 +482,8 @@ exports[`post should render Post 1`] = `
           "root": "Connect(Post)-root-1 Connect(Post)-root-47",
         }
       }
+      menuHeight={100}
+      playerHeight={100}
     >
       <Post
         classes={
@@ -453,6 +497,8 @@ exports[`post should render Post 1`] = `
         dispatch={[Function]}
         isFetching={false}
         isPlaying={false}
+        menuHeight={100}
+        playerHeight={100}
         post={
           Object {
             "id": 1,
@@ -501,7 +547,9 @@ exports[`post should render Post 1`] = `
               <div
                 className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-47"
               >
-                <WithStyles(undefined)>
+                <WithStyles(undefined)
+                  height={100}
+                >
                   <Connect(WebPagePlayer)
                     classes={
                       Object {
@@ -509,6 +557,7 @@ exports[`post should render Post 1`] = `
                         "playerWrapper": "Connect(WebPagePlayer)-playerWrapper-57",
                       }
                     }
+                    height={100}
                   >
                     <WebPagePlayer
                       classes={
@@ -518,6 +567,7 @@ exports[`post should render Post 1`] = `
                         }
                       }
                       dispatch={[Function]}
+                      height={100}
                       isFetching={false}
                       post={
                         Object {
@@ -530,6 +580,7 @@ exports[`post should render Post 1`] = `
                         className="Connect(WebPagePlayer)-playerWrapper-57"
                       >
                         <iframe
+                          height={100}
                           sandbox="allow-scripts"
                           src="https://example.com/"
                           width={1024}
@@ -541,9 +592,14 @@ exports[`post should render Post 1`] = `
               </div>
             </ForwardRef(Container)>
           </WithStyles(ForwardRef(Container))>
-          <Connect(WithStyles(Comments))>
+          <Connect(WithStyles(Comments))
+            menuHeight={100}
+            playerHeight={100}
+          >
             <WithStyles(Comments)
               dispatch={[Function]}
+              menuHeight={100}
+              playerHeight={100}
             >
               <Comments
                 classes={
@@ -558,6 +614,8 @@ exports[`post should render Post 1`] = `
                   }
                 }
                 dispatch={[Function]}
+                menuHeight={100}
+                playerHeight={100}
               >
                 <div>
                   <div>
@@ -616,7 +674,10 @@ exports[`post should render Post is loading 1`] = `
     }
   }
 >
-  <WithStyles(undefined)>
+  <WithStyles(undefined)
+    menuHeight={100}
+    playerHeight={100}
+  >
     <Connect(Post)
       classes={
         Object {
@@ -626,6 +687,8 @@ exports[`post should render Post is loading 1`] = `
           "root": "Connect(Post)-root-1 Connect(Post)-root-107",
         }
       }
+      menuHeight={100}
+      playerHeight={100}
     >
       <Post
         classes={
@@ -639,6 +702,8 @@ exports[`post should render Post is loading 1`] = `
         dispatch={[Function]}
         isFetching={true}
         isPlaying={false}
+        menuHeight={100}
+        playerHeight={100}
       >
         <div
           className="Connect(Post)-loading-3 Connect(Post)-loading-109"
@@ -691,7 +756,10 @@ exports[`post should render Video 1`] = `
     }
   }
 >
-  <WithStyles(undefined)>
+  <WithStyles(undefined)
+    menuHeight={100}
+    playerHeight={100}
+  >
     <Connect(Post)
       classes={
         Object {
@@ -701,6 +769,8 @@ exports[`post should render Video 1`] = `
           "root": "Connect(Post)-root-1 Connect(Post)-root-71",
         }
       }
+      menuHeight={100}
+      playerHeight={100}
     >
       <Post
         classes={
@@ -714,6 +784,8 @@ exports[`post should render Video 1`] = `
         dispatch={[Function]}
         isFetching={false}
         isPlaying={false}
+        menuHeight={100}
+        playerHeight={100}
         post={
           Object {
             "id": 1,
@@ -763,7 +835,9 @@ exports[`post should render Video 1`] = `
               <div
                 className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-71"
               >
-                <WithStyles(undefined)>
+                <WithStyles(undefined)
+                  height={100}
+                >
                   <Connect(VideoPlayer)
                     classes={
                       Object {
@@ -771,6 +845,7 @@ exports[`post should render Video 1`] = `
                         "reactPlayer": "Connect(VideoPlayer)-reactPlayer-74",
                       }
                     }
+                    height={100}
                   >
                     <VideoPlayer
                       classes={
@@ -780,6 +855,7 @@ exports[`post should render Video 1`] = `
                         }
                       }
                       dispatch={[Function]}
+                      height={100}
                       isFetching={false}
                       isPlaying={false}
                       post={
@@ -863,7 +939,7 @@ exports[`post should render Video 1`] = `
                             }
                           }
                           controls={true}
-                          height="360px"
+                          height="100%"
                           light={false}
                           loop={false}
                           muted={false}
@@ -897,7 +973,7 @@ exports[`post should render Video 1`] = `
                             preload="true"
                             style={
                               Object {
-                                "height": "360px",
+                                "height": "100%",
                                 "width": "100%",
                               }
                             }
@@ -973,7 +1049,7 @@ exports[`post should render Video 1`] = `
                                 }
                               }
                               controls={true}
-                              height="360px"
+                              height="100%"
                               key="YouTube"
                               light={false}
                               loop={false}
@@ -1074,7 +1150,7 @@ exports[`post should render Video 1`] = `
                                   }
                                 }
                                 controls={true}
-                                height="360px"
+                                height="100%"
                                 light={false}
                                 loop={false}
                                 muted={false}
@@ -1126,9 +1202,14 @@ exports[`post should render Video 1`] = `
               </div>
             </ForwardRef(Container)>
           </WithStyles(ForwardRef(Container))>
-          <Connect(WithStyles(Comments))>
+          <Connect(WithStyles(Comments))
+            menuHeight={100}
+            playerHeight={100}
+          >
             <WithStyles(Comments)
               dispatch={[Function]}
+              menuHeight={100}
+              playerHeight={100}
             >
               <Comments
                 classes={
@@ -1143,6 +1224,8 @@ exports[`post should render Video 1`] = `
                   }
                 }
                 dispatch={[Function]}
+                menuHeight={100}
+                playerHeight={100}
               >
                 <div>
                   <div>
@@ -2008,7 +2091,10 @@ exports[`post should render media fallback 1`] = `
     }
   }
 >
-  <WithStyles(undefined)>
+  <WithStyles(undefined)
+    menuHeight={100}
+    playerHeight={100}
+  >
     <Connect(Post)
       classes={
         Object {
@@ -2018,6 +2104,8 @@ exports[`post should render media fallback 1`] = `
           "root": "Connect(Post)-root-1 Connect(Post)-root-93",
         }
       }
+      menuHeight={100}
+      playerHeight={100}
     >
       <Post
         classes={
@@ -2031,6 +2119,8 @@ exports[`post should render media fallback 1`] = `
         dispatch={[Function]}
         isFetching={false}
         isPlaying={false}
+        menuHeight={100}
+        playerHeight={100}
         post={
           Object {
             "id": 1,
@@ -2087,7 +2177,9 @@ exports[`post should render media fallback 1`] = `
               <div
                 className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-93"
               >
-                <WithStyles(undefined)>
+                <WithStyles(undefined)
+                  height={100}
+                >
                   <Connect(VideoPlayer)
                     classes={
                       Object {
@@ -2095,6 +2187,7 @@ exports[`post should render media fallback 1`] = `
                         "reactPlayer": "Connect(VideoPlayer)-reactPlayer-74",
                       }
                     }
+                    height={100}
                   >
                     <VideoPlayer
                       classes={
@@ -2104,6 +2197,7 @@ exports[`post should render media fallback 1`] = `
                         }
                       }
                       dispatch={[Function]}
+                      height={100}
                       isFetching={false}
                       isMediaFallback={true}
                       isPlaying={false}
@@ -2129,9 +2223,10 @@ exports[`post should render media fallback 1`] = `
                           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen="allowFullScreen"
                           frameBorder="0"
+                          height="100%"
                           key="0"
                           src="https://example.com/video"
-                          width="100%"
+                          width={100}
                         />
                       </div>
                     </VideoPlayer>
@@ -2140,9 +2235,14 @@ exports[`post should render media fallback 1`] = `
               </div>
             </ForwardRef(Container)>
           </WithStyles(ForwardRef(Container))>
-          <Connect(WithStyles(Comments))>
+          <Connect(WithStyles(Comments))
+            menuHeight={100}
+            playerHeight={100}
+          >
             <WithStyles(Comments)
               dispatch={[Function]}
+              menuHeight={100}
+              playerHeight={100}
             >
               <Comments
                 classes={
@@ -2157,6 +2257,8 @@ exports[`post should render media fallback 1`] = `
                   }
                 }
                 dispatch={[Function]}
+                menuHeight={100}
+                playerHeight={100}
               >
                 <div>
                   <div>
@@ -2215,7 +2317,10 @@ exports[`post should render next post 1`] = `
     }
   }
 >
-  <WithStyles(undefined)>
+  <WithStyles(undefined)
+    menuHeight={100}
+    playerHeight={100}
+  >
     <Connect(Post)
       classes={
         Object {
@@ -2225,6 +2330,8 @@ exports[`post should render next post 1`] = `
           "root": "Connect(Post)-root-1 Connect(Post)-root-116",
         }
       }
+      menuHeight={100}
+      playerHeight={100}
     >
       <Post
         classes={
@@ -2238,6 +2345,8 @@ exports[`post should render next post 1`] = `
         dispatch={[Function]}
         isFetching={false}
         isPlaying={false}
+        menuHeight={100}
+        playerHeight={100}
         post={
           Object {
             "id": 1,
@@ -2286,7 +2395,9 @@ exports[`post should render next post 1`] = `
               <div
                 className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-116"
               >
-                <WithStyles(undefined)>
+                <WithStyles(undefined)
+                  height={100}
+                >
                   <Connect(WebPagePlayer)
                     classes={
                       Object {
@@ -2294,6 +2405,7 @@ exports[`post should render next post 1`] = `
                         "playerWrapper": "Connect(WebPagePlayer)-playerWrapper-57",
                       }
                     }
+                    height={100}
                   >
                     <WebPagePlayer
                       classes={
@@ -2303,6 +2415,7 @@ exports[`post should render next post 1`] = `
                         }
                       }
                       dispatch={[Function]}
+                      height={100}
                       isFetching={false}
                       post={
                         Object {
@@ -2315,6 +2428,7 @@ exports[`post should render next post 1`] = `
                         className="Connect(WebPagePlayer)-playerWrapper-57"
                       >
                         <iframe
+                          height={100}
                           sandbox="allow-scripts"
                           src="https://example.com/video"
                           width={1024}
@@ -2326,9 +2440,14 @@ exports[`post should render next post 1`] = `
               </div>
             </ForwardRef(Container)>
           </WithStyles(ForwardRef(Container))>
-          <Connect(WithStyles(Comments))>
+          <Connect(WithStyles(Comments))
+            menuHeight={100}
+            playerHeight={100}
+          >
             <WithStyles(Comments)
               dispatch={[Function]}
+              menuHeight={100}
+              playerHeight={100}
             >
               <Comments
                 classes={
@@ -2343,6 +2462,8 @@ exports[`post should render next post 1`] = `
                   }
                 }
                 dispatch={[Function]}
+                menuHeight={100}
+                playerHeight={100}
               >
                 <div>
                   <div>
@@ -2401,7 +2522,10 @@ exports[`post should show loading when isFetching 1`] = `
     }
   }
 >
-  <WithStyles(undefined)>
+  <WithStyles(undefined)
+    menuHeight={100}
+    playerHeight={100}
+  >
     <Connect(Post)
       classes={
         Object {
@@ -2411,6 +2535,8 @@ exports[`post should show loading when isFetching 1`] = `
           "root": "Connect(Post)-root-1 Connect(Post)-root-123",
         }
       }
+      menuHeight={100}
+      playerHeight={100}
     >
       <Post
         classes={
@@ -2424,6 +2550,8 @@ exports[`post should show loading when isFetching 1`] = `
         dispatch={[Function]}
         isFetching={true}
         isPlaying={false}
+        menuHeight={100}
+        playerHeight={100}
         post={
           Object {
             "id": 1,

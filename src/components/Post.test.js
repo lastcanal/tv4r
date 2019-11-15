@@ -36,7 +36,7 @@ describe('post', () => {
 
     const wrapper = mount(
       <Provider store={store}>
-        <Post />
+        <Post playerHeight={100} menuHeight={100} />
       </Provider>
     )
 
@@ -67,7 +67,7 @@ describe('post', () => {
 
     const wrapper = mount(
       <Provider store={store}>
-        <Post />
+        <Post playerHeight={100} menuHeight={100} />
       </Provider>
     )
 
@@ -110,7 +110,7 @@ describe('post', () => {
 
     const wrapper = mount(
       <Provider store={store}>
-        <Post />
+        <Post playerHeight={100} menuHeight={100} />
       </Provider>
     )
 
@@ -148,7 +148,7 @@ describe('post', () => {
 
     const wrapper = mount(
       <Provider store={store}>
-        <Post />
+        <Post playerHeight={100} menuHeight={100} />
       </Provider>
     )
 
@@ -181,7 +181,7 @@ describe('post', () => {
 
     const wrapper = mount(
       <Provider store={store}>
-        <Post />
+        <Post playerHeight={100} menuHeight={100} />
       </Provider>
     )
 
@@ -204,7 +204,7 @@ describe('post', () => {
 
     const wrapper = mount(
       <Provider store={store}>
-        <Post />
+        <Post playerHeight={100} menuHeight={100} />
       </Provider>
     )
 
@@ -237,7 +237,7 @@ describe('post', () => {
 
     const wrapper = mount(
       <Provider store={store}>
-        <Post />
+        <Post playerHeight={100} menuHeight={100} />
       </Provider>
     )
 
@@ -266,7 +266,7 @@ describe('post', () => {
 
     const wrapper = mount(
       <Provider store={store}>
-        <Post />
+        <Post playerHeight={100} menuHeight={100} />
       </Provider>
     )
 
