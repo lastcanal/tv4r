@@ -59,8 +59,8 @@ const VideoPlayer = ({
     if (post && isVideo(post)) {
       const transform = (node, _index) => {
         if (node.type === 'tag' && node.name === 'iframe') {
-          node.attribs.width = playerHeight || height
-          node.attribs.height = playerWidth || '100%'
+          node.attribs.height = playerHeight || height
+          node.attribs.width = playerWidth || '100%'
         }
       }
 
