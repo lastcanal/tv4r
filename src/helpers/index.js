@@ -166,7 +166,7 @@ export const getPostImage = (post, height) => {
 }
 
 export const getImageDimensions = (imgRef, height, width) => {
-  if (!imgRef) { return { width: null, height: null }}
+  if (!imgRef) { return { width: null, height: null } }
   if (imgRef.width > imgRef.height) {
     return { width, height: null }
   } else {
@@ -175,7 +175,7 @@ export const getImageDimensions = (imgRef, height, width) => {
 }
 
 export const getVideoDimensions = (imgRef, height, _width) => {
-  if (!imgRef) { return { width: '100%', height: '100%' }}
+  if (!imgRef) { return { width: '100%', height: '100%' } }
   return { height, width: (height * (imgRef.width / imgRef.height)) }
 }
 
