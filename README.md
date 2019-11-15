@@ -3,7 +3,7 @@
 TV4R is a television interface for reddit, the front page of the internet.
 TV4R runs entirely in your browser and relies only on the reddit API.
 
-![TV4R](./public/tv4r.jpg)
+![TV4R](./public/top.jpg)
 
 #### Description
 
@@ -112,4 +112,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ##### Extra
 
-[Watch the ramsey video pictured above](https://youtu.be/vBhyT5BJJaU)
+[Watch the Ramsay video pictured above](https://youtu.be/vBhyT5BJJaU)
