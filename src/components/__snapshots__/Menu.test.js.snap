@@ -3772,7 +3772,7 @@ exports[`menu should render empty menu 1`] = `
                             onClick={[Function]}
                           >
                             <WithStyles(ForwardRef(Tooltip))
-                              title="Turn OFF Not Safe For Work (NSFW)"
+                              title="SHOW Not Safe For Work (NSFW) Content"
                             >
                               <ForwardRef(Tooltip)
                                 classes={
@@ -3787,11 +3787,11 @@ exports[`menu should render empty menu 1`] = `
                                     "touch": "MuiTooltip-touch",
                                   }
                                 }
-                                title="Turn OFF Not Safe For Work (NSFW)"
+                                title="SHOW Not Safe For Work (NSFW) Content"
                               >
                                 <WithStyles(ForwardRef(IconButton))
                                   aria-describedby={null}
-                                  aria-label="Turn OFF Not Safe For Work (NSFW)"
+                                  aria-label="SHOW Not Safe For Work (NSFW) Content"
                                   className=""
                                   color="inherit"
                                   onBlur={[Function]}
@@ -3801,11 +3801,11 @@ exports[`menu should render empty menu 1`] = `
                                   onMouseOver={[Function]}
                                   onTouchEnd={[Function]}
                                   onTouchStart={[Function]}
-                                  title="Turn OFF Not Safe For Work (NSFW)"
+                                  title="SHOW Not Safe For Work (NSFW) Content"
                                 >
                                   <ForwardRef(IconButton)
                                     aria-describedby={null}
-                                    aria-label="Turn OFF Not Safe For Work (NSFW)"
+                                    aria-label="SHOW Not Safe For Work (NSFW) Content"
                                     className=""
                                     classes={
                                       Object {
@@ -3828,11 +3828,11 @@ exports[`menu should render empty menu 1`] = `
                                     onMouseOver={[Function]}
                                     onTouchEnd={[Function]}
                                     onTouchStart={[Function]}
-                                    title="Turn OFF Not Safe For Work (NSFW)"
+                                    title="SHOW Not Safe For Work (NSFW) Content"
                                   >
                                     <WithStyles(ForwardRef(ButtonBase))
                                       aria-describedby={null}
-                                      aria-label="Turn OFF Not Safe For Work (NSFW)"
+                                      aria-label="SHOW Not Safe For Work (NSFW) Content"
                                       centerRipple={true}
                                       className="MuiIconButton-root MuiIconButton-colorInherit"
                                       disabled={false}
@@ -3844,11 +3844,11 @@ exports[`menu should render empty menu 1`] = `
                                       onMouseOver={[Function]}
                                       onTouchEnd={[Function]}
                                       onTouchStart={[Function]}
-                                      title="Turn OFF Not Safe For Work (NSFW)"
+                                      title="SHOW Not Safe For Work (NSFW) Content"
                                     >
                                       <ForwardRef(ButtonBase)
                                         aria-describedby={null}
-                                        aria-label="Turn OFF Not Safe For Work (NSFW)"
+                                        aria-label="SHOW Not Safe For Work (NSFW) Content"
                                         centerRipple={true}
                                         className="MuiIconButton-root MuiIconButton-colorInherit"
                                         classes={
@@ -3867,11 +3867,11 @@ exports[`menu should render empty menu 1`] = `
                                         onMouseOver={[Function]}
                                         onTouchEnd={[Function]}
                                         onTouchStart={[Function]}
-                                        title="Turn OFF Not Safe For Work (NSFW)"
+                                        title="SHOW Not Safe For Work (NSFW) Content"
                                       >
                                         <button
                                           aria-describedby={null}
-                                          aria-label="Turn OFF Not Safe For Work (NSFW)"
+                                          aria-label="SHOW Not Safe For Work (NSFW) Content"
                                           className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
                                           disabled={false}
                                           onBlur={[Function]}
@@ -3888,7 +3888,7 @@ exports[`menu should render empty menu 1`] = `
                                           onTouchMove={[Function]}
                                           onTouchStart={[Function]}
                                           tabIndex={0}
-                                          title="Turn OFF Not Safe For Work (NSFW)"
+                                          title="SHOW Not Safe For Work (NSFW) Content"
                                           type="button"
                                         >
                                           <span
@@ -3986,10 +3986,10 @@ exports[`menu should render empty menu 1`] = `
                                 <ForwardRef(Popper)
                                   anchorEl={
                                     <button
-                                      aria-label="Turn OFF Not Safe For Work (NSFW)"
+                                      aria-label="SHOW Not Safe For Work (NSFW) Content"
                                       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
                                       tabindex="0"
-                                      title="Turn OFF Not Safe For Work (NSFW)"
+                                      title="SHOW Not Safe For Work (NSFW) Content"
                                       type="button"
                                     >
                                       <span
@@ -5176,55 +5176,32 @@ exports[`menu should render empty menu 1`] = `
                               />
                             </ForwardRef(Tooltip)>
                           </WithStyles(ForwardRef(Tooltip))>
-                          <WithStyles(ForwardRef(Tooltip))
-                            title="Stop Playing Video"
+                          <TogglePlayControl
+                            isPlaying={false}
+                            onClick={[Function]}
                           >
-                            <ForwardRef(Tooltip)
-                              classes={
-                                Object {
-                                  "popper": "MuiTooltip-popper",
-                                  "popperInteractive": "MuiTooltip-popperInteractive",
-                                  "tooltip": "MuiTooltip-tooltip",
-                                  "tooltipPlacementBottom": "MuiTooltip-tooltipPlacementBottom",
-                                  "tooltipPlacementLeft": "MuiTooltip-tooltipPlacementLeft",
-                                  "tooltipPlacementRight": "MuiTooltip-tooltipPlacementRight",
-                                  "tooltipPlacementTop": "MuiTooltip-tooltipPlacementTop",
-                                  "touch": "MuiTooltip-touch",
-                                }
-                              }
-                              title="Stop Playing Video"
+                            <WithStyles(ForwardRef(Tooltip))
+                              title="Start Playing"
                             >
-                              <WithStyles(ForwardRef(IconButton))
-                                aria-describedby={null}
-                                aria-label="Play"
-                                className=""
-                                color="inherit"
-                                onBlur={[Function]}
-                                onClick={[Function]}
-                                onFocus={[Function]}
-                                onMouseLeave={[Function]}
-                                onMouseOver={[Function]}
-                                onTouchEnd={[Function]}
-                                onTouchStart={[Function]}
-                                title="Stop Playing Video"
-                              >
-                                <ForwardRef(IconButton)
-                                  aria-describedby={null}
-                                  aria-label="Play"
-                                  className=""
-                                  classes={
-                                    Object {
-                                      "colorInherit": "MuiIconButton-colorInherit",
-                                      "colorPrimary": "MuiIconButton-colorPrimary",
-                                      "colorSecondary": "MuiIconButton-colorSecondary",
-                                      "disabled": "Mui-disabled",
-                                      "edgeEnd": "MuiIconButton-edgeEnd",
-                                      "edgeStart": "MuiIconButton-edgeStart",
-                                      "label": "MuiIconButton-label",
-                                      "root": "MuiIconButton-root",
-                                      "sizeSmall": "MuiIconButton-sizeSmall",
-                                    }
+                              <ForwardRef(Tooltip)
+                                classes={
+                                  Object {
+                                    "popper": "MuiTooltip-popper",
+                                    "popperInteractive": "MuiTooltip-popperInteractive",
+                                    "tooltip": "MuiTooltip-tooltip",
+                                    "tooltipPlacementBottom": "MuiTooltip-tooltipPlacementBottom",
+                                    "tooltipPlacementLeft": "MuiTooltip-tooltipPlacementLeft",
+                                    "tooltipPlacementRight": "MuiTooltip-tooltipPlacementRight",
+                                    "tooltipPlacementTop": "MuiTooltip-tooltipPlacementTop",
+                                    "touch": "MuiTooltip-touch",
                                   }
+                                }
+                                title="Start Playing"
+                              >
+                                <WithStyles(ForwardRef(IconButton))
+                                  aria-describedby={null}
+                                  aria-label="Start Playing"
+                                  className=""
                                   color="inherit"
                                   onBlur={[Function]}
                                   onClick={[Function]}
@@ -5233,15 +5210,26 @@ exports[`menu should render empty menu 1`] = `
                                   onMouseOver={[Function]}
                                   onTouchEnd={[Function]}
                                   onTouchStart={[Function]}
-                                  title="Stop Playing Video"
+                                  title="Start Playing"
                                 >
-                                  <WithStyles(ForwardRef(ButtonBase))
+                                  <ForwardRef(IconButton)
                                     aria-describedby={null}
-                                    aria-label="Play"
-                                    centerRipple={true}
-                                    className="MuiIconButton-root MuiIconButton-colorInherit"
-                                    disabled={false}
-                                    focusRipple={true}
+                                    aria-label="Start Playing"
+                                    className=""
+                                    classes={
+                                      Object {
+                                        "colorInherit": "MuiIconButton-colorInherit",
+                                        "colorPrimary": "MuiIconButton-colorPrimary",
+                                        "colorSecondary": "MuiIconButton-colorSecondary",
+                                        "disabled": "Mui-disabled",
+                                        "edgeEnd": "MuiIconButton-edgeEnd",
+                                        "edgeStart": "MuiIconButton-edgeStart",
+                                        "label": "MuiIconButton-label",
+                                        "root": "MuiIconButton-root",
+                                        "sizeSmall": "MuiIconButton-sizeSmall",
+                                      }
+                                    }
+                                    color="inherit"
                                     onBlur={[Function]}
                                     onClick={[Function]}
                                     onFocus={[Function]}
@@ -5249,20 +5237,13 @@ exports[`menu should render empty menu 1`] = `
                                     onMouseOver={[Function]}
                                     onTouchEnd={[Function]}
                                     onTouchStart={[Function]}
-                                    title="Stop Playing Video"
+                                    title="Start Playing"
                                   >
-                                    <ForwardRef(ButtonBase)
+                                    <WithStyles(ForwardRef(ButtonBase))
                                       aria-describedby={null}
-                                      aria-label="Play"
+                                      aria-label="Start Playing"
                                       centerRipple={true}
                                       className="MuiIconButton-root MuiIconButton-colorInherit"
-                                      classes={
-                                        Object {
-                                          "disabled": "Mui-disabled",
-                                          "focusVisible": "Mui-focusVisible",
-                                          "root": "MuiButtonBase-root",
-                                        }
-                                      }
                                       disabled={false}
                                       focusRipple={true}
                                       onBlur={[Function]}
@@ -5272,137 +5253,161 @@ exports[`menu should render empty menu 1`] = `
                                       onMouseOver={[Function]}
                                       onTouchEnd={[Function]}
                                       onTouchStart={[Function]}
-                                      title="Stop Playing Video"
+                                      title="Start Playing"
                                     >
-                                      <button
+                                      <ForwardRef(ButtonBase)
                                         aria-describedby={null}
-                                        aria-label="Play"
-                                        className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                                        aria-label="Start Playing"
+                                        centerRipple={true}
+                                        className="MuiIconButton-root MuiIconButton-colorInherit"
+                                        classes={
+                                          Object {
+                                            "disabled": "Mui-disabled",
+                                            "focusVisible": "Mui-focusVisible",
+                                            "root": "MuiButtonBase-root",
+                                          }
+                                        }
                                         disabled={false}
+                                        focusRipple={true}
                                         onBlur={[Function]}
                                         onClick={[Function]}
-                                        onDragLeave={[Function]}
                                         onFocus={[Function]}
-                                        onKeyDown={[Function]}
-                                        onKeyUp={[Function]}
-                                        onMouseDown={[Function]}
                                         onMouseLeave={[Function]}
                                         onMouseOver={[Function]}
-                                        onMouseUp={[Function]}
                                         onTouchEnd={[Function]}
-                                        onTouchMove={[Function]}
                                         onTouchStart={[Function]}
-                                        tabIndex={0}
-                                        title="Stop Playing Video"
-                                        type="button"
+                                        title="Start Playing"
                                       >
-                                        <span
-                                          className="MuiIconButton-label"
+                                        <button
+                                          aria-describedby={null}
+                                          aria-label="Start Playing"
+                                          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                                          disabled={false}
+                                          onBlur={[Function]}
+                                          onClick={[Function]}
+                                          onDragLeave={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          onKeyUp={[Function]}
+                                          onMouseDown={[Function]}
+                                          onMouseLeave={[Function]}
+                                          onMouseOver={[Function]}
+                                          onMouseUp={[Function]}
+                                          onTouchEnd={[Function]}
+                                          onTouchMove={[Function]}
+                                          onTouchStart={[Function]}
+                                          tabIndex={0}
+                                          title="Start Playing"
+                                          type="button"
                                         >
-                                          <ForwardRef>
-                                            <WithStyles(ForwardRef(SvgIcon))>
-                                              <ForwardRef(SvgIcon)
+                                          <span
+                                            className="MuiIconButton-label"
+                                          >
+                                            <ForwardRef>
+                                              <WithStyles(ForwardRef(SvgIcon))>
+                                                <ForwardRef(SvgIcon)
+                                                  classes={
+                                                    Object {
+                                                      "colorAction": "MuiSvgIcon-colorAction",
+                                                      "colorDisabled": "MuiSvgIcon-colorDisabled",
+                                                      "colorError": "MuiSvgIcon-colorError",
+                                                      "colorPrimary": "MuiSvgIcon-colorPrimary",
+                                                      "colorSecondary": "MuiSvgIcon-colorSecondary",
+                                                      "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                                                      "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                                                      "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                                                      "root": "MuiSvgIcon-root",
+                                                    }
+                                                  }
+                                                >
+                                                  <svg
+                                                    aria-hidden="true"
+                                                    className="MuiSvgIcon-root"
+                                                    focusable="false"
+                                                    role="presentation"
+                                                    viewBox="0 0 24 24"
+                                                  >
+                                                    <path
+                                                      d="M8 5v14l11-7z"
+                                                    />
+                                                  </svg>
+                                                </ForwardRef(SvgIcon)>
+                                              </WithStyles(ForwardRef(SvgIcon))>
+                                            </ForwardRef>
+                                          </span>
+                                          <NoSsr>
+                                            <WithStyles(undefined)
+                                              center={true}
+                                            >
+                                              <ForwardRef(TouchRipple)
+                                                center={true}
                                                 classes={
                                                   Object {
-                                                    "colorAction": "MuiSvgIcon-colorAction",
-                                                    "colorDisabled": "MuiSvgIcon-colorDisabled",
-                                                    "colorError": "MuiSvgIcon-colorError",
-                                                    "colorPrimary": "MuiSvgIcon-colorPrimary",
-                                                    "colorSecondary": "MuiSvgIcon-colorSecondary",
-                                                    "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
-                                                    "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
-                                                    "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
-                                                    "root": "MuiSvgIcon-root",
+                                                    "child": "MuiTouchRipple-child",
+                                                    "childLeaving": "MuiTouchRipple-childLeaving",
+                                                    "childPulsate": "MuiTouchRipple-childPulsate",
+                                                    "ripple": "MuiTouchRipple-ripple",
+                                                    "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                                                    "rippleVisible": "MuiTouchRipple-rippleVisible",
+                                                    "root": "MuiTouchRipple-root",
                                                   }
                                                 }
                                               >
-                                                <svg
-                                                  aria-hidden="true"
-                                                  className="MuiSvgIcon-root"
-                                                  focusable="false"
-                                                  role="presentation"
-                                                  viewBox="0 0 24 24"
+                                                <span
+                                                  className="MuiTouchRipple-root"
                                                 >
-                                                  <path
-                                                    d="M8 5v14l11-7z"
+                                                  <TransitionGroup
+                                                    childFactory={[Function]}
+                                                    component={null}
+                                                    exit={true}
                                                   />
-                                                </svg>
-                                              </ForwardRef(SvgIcon)>
-                                            </WithStyles(ForwardRef(SvgIcon))>
-                                          </ForwardRef>
-                                        </span>
-                                        <NoSsr>
-                                          <WithStyles(undefined)
-                                            center={true}
-                                          >
-                                            <ForwardRef(TouchRipple)
-                                              center={true}
-                                              classes={
-                                                Object {
-                                                  "child": "MuiTouchRipple-child",
-                                                  "childLeaving": "MuiTouchRipple-childLeaving",
-                                                  "childPulsate": "MuiTouchRipple-childPulsate",
-                                                  "ripple": "MuiTouchRipple-ripple",
-                                                  "ripplePulsate": "MuiTouchRipple-ripplePulsate",
-                                                  "rippleVisible": "MuiTouchRipple-rippleVisible",
-                                                  "root": "MuiTouchRipple-root",
-                                                }
-                                              }
-                                            >
-                                              <span
-                                                className="MuiTouchRipple-root"
-                                              >
-                                                <TransitionGroup
-                                                  childFactory={[Function]}
-                                                  component={null}
-                                                  exit={true}
-                                                />
-                                              </span>
-                                            </ForwardRef(TouchRipple)>
-                                          </WithStyles(undefined)>
-                                        </NoSsr>
-                                      </button>
-                                    </ForwardRef(ButtonBase)>
-                                  </WithStyles(ForwardRef(ButtonBase))>
-                                </ForwardRef(IconButton)>
-                              </WithStyles(ForwardRef(IconButton))>
-                              <ForwardRef(Popper)
-                                anchorEl={
-                                  <button
-                                    aria-label="Play"
-                                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
-                                    tabindex="0"
-                                    title="Stop Playing Video"
-                                    type="button"
-                                  >
-                                    <span
-                                      class="MuiIconButton-label"
+                                                </span>
+                                              </ForwardRef(TouchRipple)>
+                                            </WithStyles(undefined)>
+                                          </NoSsr>
+                                        </button>
+                                      </ForwardRef(ButtonBase)>
+                                    </WithStyles(ForwardRef(ButtonBase))>
+                                  </ForwardRef(IconButton)>
+                                </WithStyles(ForwardRef(IconButton))>
+                                <ForwardRef(Popper)
+                                  anchorEl={
+                                    <button
+                                      aria-label="Start Playing"
+                                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                                      tabindex="0"
+                                      title="Start Playing"
+                                      type="button"
                                     >
-                                      <svg
-                                        aria-hidden="true"
-                                        class="MuiSvgIcon-root"
-                                        focusable="false"
-                                        role="presentation"
-                                        viewBox="0 0 24 24"
+                                      <span
+                                        class="MuiIconButton-label"
                                       >
-                                        <path
-                                          d="M8 5v14l11-7z"
-                                        />
-                                      </svg>
-                                    </span>
-                                    <span
-                                      class="MuiTouchRipple-root"
-                                    />
-                                  </button>
-                                }
-                                className="MuiTooltip-popper"
-                                id={null}
-                                open={false}
-                                placement="bottom"
-                                transition={true}
-                              />
-                            </ForwardRef(Tooltip)>
-                          </WithStyles(ForwardRef(Tooltip))>
+                                        <svg
+                                          aria-hidden="true"
+                                          class="MuiSvgIcon-root"
+                                          focusable="false"
+                                          role="presentation"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <path
+                                            d="M8 5v14l11-7z"
+                                          />
+                                        </svg>
+                                      </span>
+                                      <span
+                                        class="MuiTouchRipple-root"
+                                      />
+                                    </button>
+                                  }
+                                  className="MuiTooltip-popper"
+                                  id={null}
+                                  open={false}
+                                  placement="bottom"
+                                  transition={true}
+                                />
+                              </ForwardRef(Tooltip)>
+                            </WithStyles(ForwardRef(Tooltip))>
+                          </TogglePlayControl>
                           <WithStyles(ForwardRef(Tooltip))
                             title="Play Next"
                           >
@@ -11732,7 +11737,7 @@ exports[`should render new subreddit 1`] = `
                             onClick={[Function]}
                           >
                             <WithStyles(ForwardRef(Tooltip))
-                              title="Turn OFF Not Safe For Work (NSFW)"
+                              title="SHOW Not Safe For Work (NSFW) Content"
                             >
                               <ForwardRef(Tooltip)
                                 classes={
@@ -11747,11 +11752,11 @@ exports[`should render new subreddit 1`] = `
                                     "touch": "MuiTooltip-touch",
                                   }
                                 }
-                                title="Turn OFF Not Safe For Work (NSFW)"
+                                title="SHOW Not Safe For Work (NSFW) Content"
                               >
                                 <WithStyles(ForwardRef(IconButton))
                                   aria-describedby={null}
-                                  aria-label="Turn OFF Not Safe For Work (NSFW)"
+                                  aria-label="SHOW Not Safe For Work (NSFW) Content"
                                   className=""
                                   color="inherit"
                                   onBlur={[Function]}
@@ -11761,11 +11766,11 @@ exports[`should render new subreddit 1`] = `
                                   onMouseOver={[Function]}
                                   onTouchEnd={[Function]}
                                   onTouchStart={[Function]}
-                                  title="Turn OFF Not Safe For Work (NSFW)"
+                                  title="SHOW Not Safe For Work (NSFW) Content"
                                 >
                                   <ForwardRef(IconButton)
                                     aria-describedby={null}
-                                    aria-label="Turn OFF Not Safe For Work (NSFW)"
+                                    aria-label="SHOW Not Safe For Work (NSFW) Content"
                                     className=""
                                     classes={
                                       Object {
@@ -11788,11 +11793,11 @@ exports[`should render new subreddit 1`] = `
                                     onMouseOver={[Function]}
                                     onTouchEnd={[Function]}
                                     onTouchStart={[Function]}
-                                    title="Turn OFF Not Safe For Work (NSFW)"
+                                    title="SHOW Not Safe For Work (NSFW) Content"
                                   >
                                     <WithStyles(ForwardRef(ButtonBase))
                                       aria-describedby={null}
-                                      aria-label="Turn OFF Not Safe For Work (NSFW)"
+                                      aria-label="SHOW Not Safe For Work (NSFW) Content"
                                       centerRipple={true}
                                       className="MuiIconButton-root MuiIconButton-colorInherit"
                                       disabled={false}
@@ -11804,11 +11809,11 @@ exports[`should render new subreddit 1`] = `
                                       onMouseOver={[Function]}
                                       onTouchEnd={[Function]}
                                       onTouchStart={[Function]}
-                                      title="Turn OFF Not Safe For Work (NSFW)"
+                                      title="SHOW Not Safe For Work (NSFW) Content"
                                     >
                                       <ForwardRef(ButtonBase)
                                         aria-describedby={null}
-                                        aria-label="Turn OFF Not Safe For Work (NSFW)"
+                                        aria-label="SHOW Not Safe For Work (NSFW) Content"
                                         centerRipple={true}
                                         className="MuiIconButton-root MuiIconButton-colorInherit"
                                         classes={
@@ -11827,11 +11832,11 @@ exports[`should render new subreddit 1`] = `
                                         onMouseOver={[Function]}
                                         onTouchEnd={[Function]}
                                         onTouchStart={[Function]}
-                                        title="Turn OFF Not Safe For Work (NSFW)"
+                                        title="SHOW Not Safe For Work (NSFW) Content"
                                       >
                                         <button
                                           aria-describedby={null}
-                                          aria-label="Turn OFF Not Safe For Work (NSFW)"
+                                          aria-label="SHOW Not Safe For Work (NSFW) Content"
                                           className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
                                           disabled={false}
                                           onBlur={[Function]}
@@ -11848,7 +11853,7 @@ exports[`should render new subreddit 1`] = `
                                           onTouchMove={[Function]}
                                           onTouchStart={[Function]}
                                           tabIndex={0}
-                                          title="Turn OFF Not Safe For Work (NSFW)"
+                                          title="SHOW Not Safe For Work (NSFW) Content"
                                           type="button"
                                         >
                                           <span
@@ -11946,10 +11951,10 @@ exports[`should render new subreddit 1`] = `
                                 <ForwardRef(Popper)
                                   anchorEl={
                                     <button
-                                      aria-label="Turn OFF Not Safe For Work (NSFW)"
+                                      aria-label="SHOW Not Safe For Work (NSFW) Content"
                                       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
                                       tabindex="0"
-                                      title="Turn OFF Not Safe For Work (NSFW)"
+                                      title="SHOW Not Safe For Work (NSFW) Content"
                                       type="button"
                                     >
                                       <span
@@ -13136,55 +13141,32 @@ exports[`should render new subreddit 1`] = `
                               />
                             </ForwardRef(Tooltip)>
                           </WithStyles(ForwardRef(Tooltip))>
-                          <WithStyles(ForwardRef(Tooltip))
-                            title="Stop Playing Video"
+                          <TogglePlayControl
+                            isPlaying={false}
+                            onClick={[Function]}
                           >
-                            <ForwardRef(Tooltip)
-                              classes={
-                                Object {
-                                  "popper": "MuiTooltip-popper",
-                                  "popperInteractive": "MuiTooltip-popperInteractive",
-                                  "tooltip": "MuiTooltip-tooltip",
-                                  "tooltipPlacementBottom": "MuiTooltip-tooltipPlacementBottom",
-                                  "tooltipPlacementLeft": "MuiTooltip-tooltipPlacementLeft",
-                                  "tooltipPlacementRight": "MuiTooltip-tooltipPlacementRight",
-                                  "tooltipPlacementTop": "MuiTooltip-tooltipPlacementTop",
-                                  "touch": "MuiTooltip-touch",
-                                }
-                              }
-                              title="Stop Playing Video"
+                            <WithStyles(ForwardRef(Tooltip))
+                              title="Start Playing"
                             >
-                              <WithStyles(ForwardRef(IconButton))
-                                aria-describedby={null}
-                                aria-label="Play"
-                                className=""
-                                color="inherit"
-                                onBlur={[Function]}
-                                onClick={[Function]}
-                                onFocus={[Function]}
-                                onMouseLeave={[Function]}
-                                onMouseOver={[Function]}
-                                onTouchEnd={[Function]}
-                                onTouchStart={[Function]}
-                                title="Stop Playing Video"
-                              >
-                                <ForwardRef(IconButton)
-                                  aria-describedby={null}
-                                  aria-label="Play"
-                                  className=""
-                                  classes={
-                                    Object {
-                                      "colorInherit": "MuiIconButton-colorInherit",
-                                      "colorPrimary": "MuiIconButton-colorPrimary",
-                                      "colorSecondary": "MuiIconButton-colorSecondary",
-                                      "disabled": "Mui-disabled",
-                                      "edgeEnd": "MuiIconButton-edgeEnd",
-                                      "edgeStart": "MuiIconButton-edgeStart",
-                                      "label": "MuiIconButton-label",
-                                      "root": "MuiIconButton-root",
-                                      "sizeSmall": "MuiIconButton-sizeSmall",
-                                    }
+                              <ForwardRef(Tooltip)
+                                classes={
+                                  Object {
+                                    "popper": "MuiTooltip-popper",
+                                    "popperInteractive": "MuiTooltip-popperInteractive",
+                                    "tooltip": "MuiTooltip-tooltip",
+                                    "tooltipPlacementBottom": "MuiTooltip-tooltipPlacementBottom",
+                                    "tooltipPlacementLeft": "MuiTooltip-tooltipPlacementLeft",
+                                    "tooltipPlacementRight": "MuiTooltip-tooltipPlacementRight",
+                                    "tooltipPlacementTop": "MuiTooltip-tooltipPlacementTop",
+                                    "touch": "MuiTooltip-touch",
                                   }
+                                }
+                                title="Start Playing"
+                              >
+                                <WithStyles(ForwardRef(IconButton))
+                                  aria-describedby={null}
+                                  aria-label="Start Playing"
+                                  className=""
                                   color="inherit"
                                   onBlur={[Function]}
                                   onClick={[Function]}
@@ -13193,15 +13175,26 @@ exports[`should render new subreddit 1`] = `
                                   onMouseOver={[Function]}
                                   onTouchEnd={[Function]}
                                   onTouchStart={[Function]}
-                                  title="Stop Playing Video"
+                                  title="Start Playing"
                                 >
-                                  <WithStyles(ForwardRef(ButtonBase))
+                                  <ForwardRef(IconButton)
                                     aria-describedby={null}
-                                    aria-label="Play"
-                                    centerRipple={true}
-                                    className="MuiIconButton-root MuiIconButton-colorInherit"
-                                    disabled={false}
-                                    focusRipple={true}
+                                    aria-label="Start Playing"
+                                    className=""
+                                    classes={
+                                      Object {
+                                        "colorInherit": "MuiIconButton-colorInherit",
+                                        "colorPrimary": "MuiIconButton-colorPrimary",
+                                        "colorSecondary": "MuiIconButton-colorSecondary",
+                                        "disabled": "Mui-disabled",
+                                        "edgeEnd": "MuiIconButton-edgeEnd",
+                                        "edgeStart": "MuiIconButton-edgeStart",
+                                        "label": "MuiIconButton-label",
+                                        "root": "MuiIconButton-root",
+                                        "sizeSmall": "MuiIconButton-sizeSmall",
+                                      }
+                                    }
+                                    color="inherit"
                                     onBlur={[Function]}
                                     onClick={[Function]}
                                     onFocus={[Function]}
@@ -13209,20 +13202,13 @@ exports[`should render new subreddit 1`] = `
                                     onMouseOver={[Function]}
                                     onTouchEnd={[Function]}
                                     onTouchStart={[Function]}
-                                    title="Stop Playing Video"
+                                    title="Start Playing"
                                   >
-                                    <ForwardRef(ButtonBase)
+                                    <WithStyles(ForwardRef(ButtonBase))
                                       aria-describedby={null}
-                                      aria-label="Play"
+                                      aria-label="Start Playing"
                                       centerRipple={true}
                                       className="MuiIconButton-root MuiIconButton-colorInherit"
-                                      classes={
-                                        Object {
-                                          "disabled": "Mui-disabled",
-                                          "focusVisible": "Mui-focusVisible",
-                                          "root": "MuiButtonBase-root",
-                                        }
-                                      }
                                       disabled={false}
                                       focusRipple={true}
                                       onBlur={[Function]}
@@ -13232,137 +13218,161 @@ exports[`should render new subreddit 1`] = `
                                       onMouseOver={[Function]}
                                       onTouchEnd={[Function]}
                                       onTouchStart={[Function]}
-                                      title="Stop Playing Video"
+                                      title="Start Playing"
                                     >
-                                      <button
+                                      <ForwardRef(ButtonBase)
                                         aria-describedby={null}
-                                        aria-label="Play"
-                                        className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                                        aria-label="Start Playing"
+                                        centerRipple={true}
+                                        className="MuiIconButton-root MuiIconButton-colorInherit"
+                                        classes={
+                                          Object {
+                                            "disabled": "Mui-disabled",
+                                            "focusVisible": "Mui-focusVisible",
+                                            "root": "MuiButtonBase-root",
+                                          }
+                                        }
                                         disabled={false}
+                                        focusRipple={true}
                                         onBlur={[Function]}
                                         onClick={[Function]}
-                                        onDragLeave={[Function]}
                                         onFocus={[Function]}
-                                        onKeyDown={[Function]}
-                                        onKeyUp={[Function]}
-                                        onMouseDown={[Function]}
                                         onMouseLeave={[Function]}
                                         onMouseOver={[Function]}
-                                        onMouseUp={[Function]}
                                         onTouchEnd={[Function]}
-                                        onTouchMove={[Function]}
                                         onTouchStart={[Function]}
-                                        tabIndex={0}
-                                        title="Stop Playing Video"
-                                        type="button"
+                                        title="Start Playing"
                                       >
-                                        <span
-                                          className="MuiIconButton-label"
+                                        <button
+                                          aria-describedby={null}
+                                          aria-label="Start Playing"
+                                          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                                          disabled={false}
+                                          onBlur={[Function]}
+                                          onClick={[Function]}
+                                          onDragLeave={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          onKeyUp={[Function]}
+                                          onMouseDown={[Function]}
+                                          onMouseLeave={[Function]}
+                                          onMouseOver={[Function]}
+                                          onMouseUp={[Function]}
+                                          onTouchEnd={[Function]}
+                                          onTouchMove={[Function]}
+                                          onTouchStart={[Function]}
+                                          tabIndex={0}
+                                          title="Start Playing"
+                                          type="button"
                                         >
-                                          <ForwardRef>
-                                            <WithStyles(ForwardRef(SvgIcon))>
-                                              <ForwardRef(SvgIcon)
+                                          <span
+                                            className="MuiIconButton-label"
+                                          >
+                                            <ForwardRef>
+                                              <WithStyles(ForwardRef(SvgIcon))>
+                                                <ForwardRef(SvgIcon)
+                                                  classes={
+                                                    Object {
+                                                      "colorAction": "MuiSvgIcon-colorAction",
+                                                      "colorDisabled": "MuiSvgIcon-colorDisabled",
+                                                      "colorError": "MuiSvgIcon-colorError",
+                                                      "colorPrimary": "MuiSvgIcon-colorPrimary",
+                                                      "colorSecondary": "MuiSvgIcon-colorSecondary",
+                                                      "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                                                      "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                                                      "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                                                      "root": "MuiSvgIcon-root",
+                                                    }
+                                                  }
+                                                >
+                                                  <svg
+                                                    aria-hidden="true"
+                                                    className="MuiSvgIcon-root"
+                                                    focusable="false"
+                                                    role="presentation"
+                                                    viewBox="0 0 24 24"
+                                                  >
+                                                    <path
+                                                      d="M8 5v14l11-7z"
+                                                    />
+                                                  </svg>
+                                                </ForwardRef(SvgIcon)>
+                                              </WithStyles(ForwardRef(SvgIcon))>
+                                            </ForwardRef>
+                                          </span>
+                                          <NoSsr>
+                                            <WithStyles(undefined)
+                                              center={true}
+                                            >
+                                              <ForwardRef(TouchRipple)
+                                                center={true}
                                                 classes={
                                                   Object {
-                                                    "colorAction": "MuiSvgIcon-colorAction",
-                                                    "colorDisabled": "MuiSvgIcon-colorDisabled",
-                                                    "colorError": "MuiSvgIcon-colorError",
-                                                    "colorPrimary": "MuiSvgIcon-colorPrimary",
-                                                    "colorSecondary": "MuiSvgIcon-colorSecondary",
-                                                    "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
-                                                    "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
-                                                    "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
-                                                    "root": "MuiSvgIcon-root",
+                                                    "child": "MuiTouchRipple-child",
+                                                    "childLeaving": "MuiTouchRipple-childLeaving",
+                                                    "childPulsate": "MuiTouchRipple-childPulsate",
+                                                    "ripple": "MuiTouchRipple-ripple",
+                                                    "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                                                    "rippleVisible": "MuiTouchRipple-rippleVisible",
+                                                    "root": "MuiTouchRipple-root",
                                                   }
                                                 }
                                               >
-                                                <svg
-                                                  aria-hidden="true"
-                                                  className="MuiSvgIcon-root"
-                                                  focusable="false"
-                                                  role="presentation"
-                                                  viewBox="0 0 24 24"
+                                                <span
+                                                  className="MuiTouchRipple-root"
                                                 >
-                                                  <path
-                                                    d="M8 5v14l11-7z"
+                                                  <TransitionGroup
+                                                    childFactory={[Function]}
+                                                    component={null}
+                                                    exit={true}
                                                   />
-                                                </svg>
-                                              </ForwardRef(SvgIcon)>
-                                            </WithStyles(ForwardRef(SvgIcon))>
-                                          </ForwardRef>
-                                        </span>
-                                        <NoSsr>
-                                          <WithStyles(undefined)
-                                            center={true}
-                                          >
-                                            <ForwardRef(TouchRipple)
-                                              center={true}
-                                              classes={
-                                                Object {
-                                                  "child": "MuiTouchRipple-child",
-                                                  "childLeaving": "MuiTouchRipple-childLeaving",
-                                                  "childPulsate": "MuiTouchRipple-childPulsate",
-                                                  "ripple": "MuiTouchRipple-ripple",
-                                                  "ripplePulsate": "MuiTouchRipple-ripplePulsate",
-                                                  "rippleVisible": "MuiTouchRipple-rippleVisible",
-                                                  "root": "MuiTouchRipple-root",
-                                                }
-                                              }
-                                            >
-                                              <span
-                                                className="MuiTouchRipple-root"
-                                              >
-                                                <TransitionGroup
-                                                  childFactory={[Function]}
-                                                  component={null}
-                                                  exit={true}
-                                                />
-                                              </span>
-                                            </ForwardRef(TouchRipple)>
-                                          </WithStyles(undefined)>
-                                        </NoSsr>
-                                      </button>
-                                    </ForwardRef(ButtonBase)>
-                                  </WithStyles(ForwardRef(ButtonBase))>
-                                </ForwardRef(IconButton)>
-                              </WithStyles(ForwardRef(IconButton))>
-                              <ForwardRef(Popper)
-                                anchorEl={
-                                  <button
-                                    aria-label="Play"
-                                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
-                                    tabindex="0"
-                                    title="Stop Playing Video"
-                                    type="button"
-                                  >
-                                    <span
-                                      class="MuiIconButton-label"
+                                                </span>
+                                              </ForwardRef(TouchRipple)>
+                                            </WithStyles(undefined)>
+                                          </NoSsr>
+                                        </button>
+                                      </ForwardRef(ButtonBase)>
+                                    </WithStyles(ForwardRef(ButtonBase))>
+                                  </ForwardRef(IconButton)>
+                                </WithStyles(ForwardRef(IconButton))>
+                                <ForwardRef(Popper)
+                                  anchorEl={
+                                    <button
+                                      aria-label="Start Playing"
+                                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                                      tabindex="0"
+                                      title="Start Playing"
+                                      type="button"
                                     >
-                                      <svg
-                                        aria-hidden="true"
-                                        class="MuiSvgIcon-root"
-                                        focusable="false"
-                                        role="presentation"
-                                        viewBox="0 0 24 24"
+                                      <span
+                                        class="MuiIconButton-label"
                                       >
-                                        <path
-                                          d="M8 5v14l11-7z"
-                                        />
-                                      </svg>
-                                    </span>
-                                    <span
-                                      class="MuiTouchRipple-root"
-                                    />
-                                  </button>
-                                }
-                                className="MuiTooltip-popper"
-                                id={null}
-                                open={false}
-                                placement="bottom"
-                                transition={true}
-                              />
-                            </ForwardRef(Tooltip)>
-                          </WithStyles(ForwardRef(Tooltip))>
+                                        <svg
+                                          aria-hidden="true"
+                                          class="MuiSvgIcon-root"
+                                          focusable="false"
+                                          role="presentation"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <path
+                                            d="M8 5v14l11-7z"
+                                          />
+                                        </svg>
+                                      </span>
+                                      <span
+                                        class="MuiTouchRipple-root"
+                                      />
+                                    </button>
+                                  }
+                                  className="MuiTooltip-popper"
+                                  id={null}
+                                  open={false}
+                                  placement="bottom"
+                                  transition={true}
+                                />
+                              </ForwardRef(Tooltip)>
+                            </WithStyles(ForwardRef(Tooltip))>
+                          </TogglePlayControl>
                           <WithStyles(ForwardRef(Tooltip))
                             title="Play Next"
                           >

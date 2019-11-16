@@ -21,9 +21,9 @@ exports[`post should not render media fallback for non-videos 1`] = `
       classes={
         Object {
           "controls": "Connect(Post)-controls-4",
-          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-107",
-          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-106",
-          "root": "Connect(Post)-root-1 Connect(Post)-root-105",
+          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-109",
+          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-108",
+          "root": "Connect(Post)-root-1 Connect(Post)-root-107",
         }
       }
       menuHeight={100}
@@ -33,9 +33,9 @@ exports[`post should not render media fallback for non-videos 1`] = `
         classes={
           Object {
             "controls": "Connect(Post)-controls-4",
-            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-107",
-            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-106",
-            "root": "Connect(Post)-root-1 Connect(Post)-root-105",
+            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-109",
+            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-108",
+            "root": "Connect(Post)-root-1 Connect(Post)-root-107",
           }
         }
         dispatch={[Function]}
@@ -63,7 +63,7 @@ exports[`post should not render media fallback for non-videos 1`] = `
           }
         >
           <div
-            className="Connect(Post)-loading-3 Connect(Post)-loading-107"
+            className="Connect(Post)-loading-3 Connect(Post)-loading-109"
             style={
               Object {
                 "display": "none",
@@ -75,11 +75,11 @@ exports[`post should not render media fallback for non-videos 1`] = `
             </h2>
           </div>
           <WithStyles(ForwardRef(Container))
-            className="Connect(Post)-root-1 Connect(Post)-root-105"
+            className="Connect(Post)-root-1 Connect(Post)-root-107"
             maxWidth={false}
           >
             <ForwardRef(Container)
-              className="Connect(Post)-root-1 Connect(Post)-root-105"
+              className="Connect(Post)-root-1 Connect(Post)-root-107"
               classes={
                 Object {
                   "fixed": "MuiContainer-fixed",
@@ -94,7 +94,7 @@ exports[`post should not render media fallback for non-videos 1`] = `
               maxWidth={false}
             >
               <div
-                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-105"
+                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-107"
               >
                 <WithStyles(undefined)
                   height={100}
@@ -102,7 +102,8 @@ exports[`post should not render media fallback for non-videos 1`] = `
                   <Connect(WebPagePlayer)
                     classes={
                       Object {
-                        "error": "Connect(WebPagePlayer)-error-58",
+                        "controls": "Connect(WebPagePlayer)-controls-59",
+                        "load": "Connect(WebPagePlayer)-load-58 Connect(WebPagePlayer)-load-110",
                         "playerWrapper": "Connect(WebPagePlayer)-playerWrapper-57",
                       }
                     }
@@ -111,13 +112,15 @@ exports[`post should not render media fallback for non-videos 1`] = `
                     <WebPagePlayer
                       classes={
                         Object {
-                          "error": "Connect(WebPagePlayer)-error-58",
+                          "controls": "Connect(WebPagePlayer)-controls-59",
+                          "load": "Connect(WebPagePlayer)-load-58 Connect(WebPagePlayer)-load-110",
                           "playerWrapper": "Connect(WebPagePlayer)-playerWrapper-57",
                         }
                       }
                       dispatch={[Function]}
                       height={100}
                       isFetching={false}
+                      isPlaying={false}
                       post={
                         Object {
                           "id": 1,
@@ -131,14 +134,255 @@ exports[`post should not render media fallback for non-videos 1`] = `
                       }
                     >
                       <div
-                        className="Connect(WebPagePlayer)-playerWrapper-57"
+                        className="Connect(WebPagePlayer)-load-58 Connect(WebPagePlayer)-load-110"
                       >
-                        <iframe
-                          height={100}
-                          sandbox="allow-scripts"
-                          src="https://example.com/video"
-                          width={1024}
-                        />
+                        <h2>
+                           Embedded WebPage 
+                        </h2>
+                        <a
+                          href="https://example.com/video"
+                        >
+                          Direct Link
+                        </a>
+                        <h5>
+                          via 
+                        </h5>
+                        <div
+                          className="Connect(WebPagePlayer)-controls-59"
+                        >
+                          <TogglePlayControl
+                            isPlaying={false}
+                            onClick={[Function]}
+                          >
+                            <WithStyles(ForwardRef(Tooltip))
+                              title="Start Playing"
+                            >
+                              <ForwardRef(Tooltip)
+                                classes={
+                                  Object {
+                                    "popper": "MuiTooltip-popper",
+                                    "popperInteractive": "MuiTooltip-popperInteractive",
+                                    "tooltip": "MuiTooltip-tooltip",
+                                    "tooltipPlacementBottom": "MuiTooltip-tooltipPlacementBottom",
+                                    "tooltipPlacementLeft": "MuiTooltip-tooltipPlacementLeft",
+                                    "tooltipPlacementRight": "MuiTooltip-tooltipPlacementRight",
+                                    "tooltipPlacementTop": "MuiTooltip-tooltipPlacementTop",
+                                    "touch": "MuiTooltip-touch",
+                                  }
+                                }
+                                title="Start Playing"
+                              >
+                                <WithStyles(ForwardRef(IconButton))
+                                  aria-describedby={null}
+                                  aria-label="Start Playing"
+                                  className=""
+                                  color="inherit"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onMouseOver={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchStart={[Function]}
+                                  title="Start Playing"
+                                >
+                                  <ForwardRef(IconButton)
+                                    aria-describedby={null}
+                                    aria-label="Start Playing"
+                                    className=""
+                                    classes={
+                                      Object {
+                                        "colorInherit": "MuiIconButton-colorInherit",
+                                        "colorPrimary": "MuiIconButton-colorPrimary",
+                                        "colorSecondary": "MuiIconButton-colorSecondary",
+                                        "disabled": "Mui-disabled",
+                                        "edgeEnd": "MuiIconButton-edgeEnd",
+                                        "edgeStart": "MuiIconButton-edgeStart",
+                                        "label": "MuiIconButton-label",
+                                        "root": "MuiIconButton-root",
+                                        "sizeSmall": "MuiIconButton-sizeSmall",
+                                      }
+                                    }
+                                    color="inherit"
+                                    onBlur={[Function]}
+                                    onClick={[Function]}
+                                    onFocus={[Function]}
+                                    onMouseLeave={[Function]}
+                                    onMouseOver={[Function]}
+                                    onTouchEnd={[Function]}
+                                    onTouchStart={[Function]}
+                                    title="Start Playing"
+                                  >
+                                    <WithStyles(ForwardRef(ButtonBase))
+                                      aria-describedby={null}
+                                      aria-label="Start Playing"
+                                      centerRipple={true}
+                                      className="MuiIconButton-root MuiIconButton-colorInherit"
+                                      disabled={false}
+                                      focusRipple={true}
+                                      onBlur={[Function]}
+                                      onClick={[Function]}
+                                      onFocus={[Function]}
+                                      onMouseLeave={[Function]}
+                                      onMouseOver={[Function]}
+                                      onTouchEnd={[Function]}
+                                      onTouchStart={[Function]}
+                                      title="Start Playing"
+                                    >
+                                      <ForwardRef(ButtonBase)
+                                        aria-describedby={null}
+                                        aria-label="Start Playing"
+                                        centerRipple={true}
+                                        className="MuiIconButton-root MuiIconButton-colorInherit"
+                                        classes={
+                                          Object {
+                                            "disabled": "Mui-disabled",
+                                            "focusVisible": "Mui-focusVisible",
+                                            "root": "MuiButtonBase-root",
+                                          }
+                                        }
+                                        disabled={false}
+                                        focusRipple={true}
+                                        onBlur={[Function]}
+                                        onClick={[Function]}
+                                        onFocus={[Function]}
+                                        onMouseLeave={[Function]}
+                                        onMouseOver={[Function]}
+                                        onTouchEnd={[Function]}
+                                        onTouchStart={[Function]}
+                                        title="Start Playing"
+                                      >
+                                        <button
+                                          aria-describedby={null}
+                                          aria-label="Start Playing"
+                                          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                                          disabled={false}
+                                          onBlur={[Function]}
+                                          onClick={[Function]}
+                                          onDragLeave={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          onKeyUp={[Function]}
+                                          onMouseDown={[Function]}
+                                          onMouseLeave={[Function]}
+                                          onMouseOver={[Function]}
+                                          onMouseUp={[Function]}
+                                          onTouchEnd={[Function]}
+                                          onTouchMove={[Function]}
+                                          onTouchStart={[Function]}
+                                          tabIndex={0}
+                                          title="Start Playing"
+                                          type="button"
+                                        >
+                                          <span
+                                            className="MuiIconButton-label"
+                                          >
+                                            <ForwardRef>
+                                              <WithStyles(ForwardRef(SvgIcon))>
+                                                <ForwardRef(SvgIcon)
+                                                  classes={
+                                                    Object {
+                                                      "colorAction": "MuiSvgIcon-colorAction",
+                                                      "colorDisabled": "MuiSvgIcon-colorDisabled",
+                                                      "colorError": "MuiSvgIcon-colorError",
+                                                      "colorPrimary": "MuiSvgIcon-colorPrimary",
+                                                      "colorSecondary": "MuiSvgIcon-colorSecondary",
+                                                      "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                                                      "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                                                      "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                                                      "root": "MuiSvgIcon-root",
+                                                    }
+                                                  }
+                                                >
+                                                  <svg
+                                                    aria-hidden="true"
+                                                    className="MuiSvgIcon-root"
+                                                    focusable="false"
+                                                    role="presentation"
+                                                    viewBox="0 0 24 24"
+                                                  >
+                                                    <path
+                                                      d="M8 5v14l11-7z"
+                                                    />
+                                                  </svg>
+                                                </ForwardRef(SvgIcon)>
+                                              </WithStyles(ForwardRef(SvgIcon))>
+                                            </ForwardRef>
+                                          </span>
+                                          <NoSsr>
+                                            <WithStyles(undefined)
+                                              center={true}
+                                            >
+                                              <ForwardRef(TouchRipple)
+                                                center={true}
+                                                classes={
+                                                  Object {
+                                                    "child": "MuiTouchRipple-child",
+                                                    "childLeaving": "MuiTouchRipple-childLeaving",
+                                                    "childPulsate": "MuiTouchRipple-childPulsate",
+                                                    "ripple": "MuiTouchRipple-ripple",
+                                                    "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                                                    "rippleVisible": "MuiTouchRipple-rippleVisible",
+                                                    "root": "MuiTouchRipple-root",
+                                                  }
+                                                }
+                                              >
+                                                <span
+                                                  className="MuiTouchRipple-root"
+                                                >
+                                                  <TransitionGroup
+                                                    childFactory={[Function]}
+                                                    component={null}
+                                                    exit={true}
+                                                  />
+                                                </span>
+                                              </ForwardRef(TouchRipple)>
+                                            </WithStyles(undefined)>
+                                          </NoSsr>
+                                        </button>
+                                      </ForwardRef(ButtonBase)>
+                                    </WithStyles(ForwardRef(ButtonBase))>
+                                  </ForwardRef(IconButton)>
+                                </WithStyles(ForwardRef(IconButton))>
+                                <ForwardRef(Popper)
+                                  anchorEl={
+                                    <button
+                                      aria-label="Start Playing"
+                                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                                      tabindex="0"
+                                      title="Start Playing"
+                                      type="button"
+                                    >
+                                      <span
+                                        class="MuiIconButton-label"
+                                      >
+                                        <svg
+                                          aria-hidden="true"
+                                          class="MuiSvgIcon-root"
+                                          focusable="false"
+                                          role="presentation"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <path
+                                            d="M8 5v14l11-7z"
+                                          />
+                                        </svg>
+                                      </span>
+                                      <span
+                                        class="MuiTouchRipple-root"
+                                      />
+                                    </button>
+                                  }
+                                  className="MuiTooltip-popper"
+                                  id={null}
+                                  open={false}
+                                  placement="bottom"
+                                  transition={true}
+                                />
+                              </ForwardRef(Tooltip)>
+                            </WithStyles(ForwardRef(Tooltip))>
+                          </TogglePlayControl>
+                        </div>
                       </div>
                     </WebPagePlayer>
                   </Connect(WebPagePlayer)>
@@ -158,13 +402,13 @@ exports[`post should not render media fallback for non-videos 1`] = `
               <Comments
                 classes={
                   Object {
-                    "comments": "Comments-comments-60 Comments-comments-108",
-                    "loadComments": "Comments-loadComments-65",
-                    "loading": "Comments-loading-61 Comments-loading-109",
-                    "menuButton": "Comments-menuButton-62",
-                    "root": "Comments-root-59",
-                    "spacerBottom": "Comments-spacerBottom-64 Comments-spacerBottom-110",
-                    "title": "Comments-title-63",
+                    "comments": "Comments-comments-62 Comments-comments-111",
+                    "loadComments": "Comments-loadComments-67",
+                    "loading": "Comments-loading-63 Comments-loading-112",
+                    "menuButton": "Comments-menuButton-64",
+                    "root": "Comments-root-61",
+                    "spacerBottom": "Comments-spacerBottom-66 Comments-spacerBottom-113",
+                    "title": "Comments-title-65",
                   }
                 }
                 dispatch={[Function]}
@@ -174,18 +418,18 @@ exports[`post should not render media fallback for non-videos 1`] = `
                 <div>
                   <div>
                     <div
-                      className="Comments-loading-61 Comments-loading-109"
+                      className="Comments-loading-63 Comments-loading-112"
                       id="comments"
                     >
                       <Styled(MuiBox)
                         boxShadow={5}
                       >
                         <div
-                          className="MuiBox-root MuiBox-root-111"
+                          className="MuiBox-root MuiBox-root-114"
                         >
                           <LoadComments>
                             <div
-                              className="Comments-loadComments-65"
+                              className="Comments-loadComments-67"
                             >
                               <a
                                 onClick={[Function]}
@@ -202,7 +446,7 @@ exports[`post should not render media fallback for non-videos 1`] = `
                     </div>
                   </div>
                   <div
-                    className="Comments-spacerBottom-64 Comments-spacerBottom-110"
+                    className="Comments-spacerBottom-66 Comments-spacerBottom-113"
                   />
                 </div>
               </Comments>
@@ -236,9 +480,9 @@ exports[`post should render Image 1`] = `
       classes={
         Object {
           "controls": "Connect(Post)-controls-4",
-          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-82",
-          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-81",
-          "root": "Connect(Post)-root-1 Connect(Post)-root-80",
+          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-84",
+          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-83",
+          "root": "Connect(Post)-root-1 Connect(Post)-root-82",
         }
       }
       menuHeight={100}
@@ -248,9 +492,9 @@ exports[`post should render Image 1`] = `
         classes={
           Object {
             "controls": "Connect(Post)-controls-4",
-            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-82",
-            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-81",
-            "root": "Connect(Post)-root-1 Connect(Post)-root-80",
+            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-84",
+            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-83",
+            "root": "Connect(Post)-root-1 Connect(Post)-root-82",
           }
         }
         dispatch={[Function]}
@@ -286,7 +530,7 @@ exports[`post should render Image 1`] = `
           }
         >
           <div
-            className="Connect(Post)-loading-3 Connect(Post)-loading-82"
+            className="Connect(Post)-loading-3 Connect(Post)-loading-84"
             style={
               Object {
                 "display": "none",
@@ -298,11 +542,11 @@ exports[`post should render Image 1`] = `
             </h2>
           </div>
           <WithStyles(ForwardRef(Container))
-            className="Connect(Post)-root-1 Connect(Post)-root-80"
+            className="Connect(Post)-root-1 Connect(Post)-root-82"
             maxWidth={false}
           >
             <ForwardRef(Container)
-              className="Connect(Post)-root-1 Connect(Post)-root-80"
+              className="Connect(Post)-root-1 Connect(Post)-root-82"
               classes={
                 Object {
                   "fixed": "MuiContainer-fixed",
@@ -317,7 +561,7 @@ exports[`post should render Image 1`] = `
               maxWidth={false}
             >
               <div
-                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-80"
+                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-82"
               >
                 <WithStyles(undefined)
                   height={100}
@@ -325,9 +569,9 @@ exports[`post should render Image 1`] = `
                   <Connect(ImagePlayer)
                     classes={
                       Object {
-                        "error": "Connect(ImagePlayer)-error-84 Connect(ImagePlayer)-error-87",
-                        "fallbackLink": "Connect(ImagePlayer)-fallbackLink-85",
-                        "playerWrapper": "Connect(ImagePlayer)-playerWrapper-83 Connect(ImagePlayer)-playerWrapper-86",
+                        "error": "Connect(ImagePlayer)-error-86 Connect(ImagePlayer)-error-89",
+                        "fallbackLink": "Connect(ImagePlayer)-fallbackLink-87",
+                        "playerWrapper": "Connect(ImagePlayer)-playerWrapper-85 Connect(ImagePlayer)-playerWrapper-88",
                       }
                     }
                     height={100}
@@ -335,9 +579,9 @@ exports[`post should render Image 1`] = `
                     <ImagePlayer
                       classes={
                         Object {
-                          "error": "Connect(ImagePlayer)-error-84 Connect(ImagePlayer)-error-87",
-                          "fallbackLink": "Connect(ImagePlayer)-fallbackLink-85",
-                          "playerWrapper": "Connect(ImagePlayer)-playerWrapper-83 Connect(ImagePlayer)-playerWrapper-86",
+                          "error": "Connect(ImagePlayer)-error-86 Connect(ImagePlayer)-error-89",
+                          "fallbackLink": "Connect(ImagePlayer)-fallbackLink-87",
+                          "playerWrapper": "Connect(ImagePlayer)-playerWrapper-85 Connect(ImagePlayer)-playerWrapper-88",
                         }
                       }
                       dispatch={[Function]}
@@ -364,7 +608,7 @@ exports[`post should render Image 1`] = `
                       }
                     >
                       <div
-                        className="Connect(ImagePlayer)-playerWrapper-83 Connect(ImagePlayer)-playerWrapper-86"
+                        className="Connect(ImagePlayer)-playerWrapper-85 Connect(ImagePlayer)-playerWrapper-88"
                       >
                         <img
                           height={0}
@@ -422,13 +666,13 @@ exports[`post should render Image 1`] = `
               <Comments
                 classes={
                   Object {
-                    "comments": "Comments-comments-60 Comments-comments-94",
-                    "loadComments": "Comments-loadComments-65",
-                    "loading": "Comments-loading-61 Comments-loading-95",
-                    "menuButton": "Comments-menuButton-62",
-                    "root": "Comments-root-59",
-                    "spacerBottom": "Comments-spacerBottom-64 Comments-spacerBottom-96",
-                    "title": "Comments-title-63",
+                    "comments": "Comments-comments-62 Comments-comments-96",
+                    "loadComments": "Comments-loadComments-67",
+                    "loading": "Comments-loading-63 Comments-loading-97",
+                    "menuButton": "Comments-menuButton-64",
+                    "root": "Comments-root-61",
+                    "spacerBottom": "Comments-spacerBottom-66 Comments-spacerBottom-98",
+                    "title": "Comments-title-65",
                   }
                 }
                 dispatch={[Function]}
@@ -438,18 +682,18 @@ exports[`post should render Image 1`] = `
                 <div>
                   <div>
                     <div
-                      className="Comments-loading-61 Comments-loading-95"
+                      className="Comments-loading-63 Comments-loading-97"
                       id="comments"
                     >
                       <Styled(MuiBox)
                         boxShadow={5}
                       >
                         <div
-                          className="MuiBox-root MuiBox-root-97"
+                          className="MuiBox-root MuiBox-root-99"
                         >
                           <LoadComments>
                             <div
-                              className="Comments-loadComments-65"
+                              className="Comments-loadComments-67"
                             >
                               <a
                                 onClick={[Function]}
@@ -466,7 +710,7 @@ exports[`post should render Image 1`] = `
                     </div>
                   </div>
                   <div
-                    className="Comments-spacerBottom-64 Comments-spacerBottom-96"
+                    className="Comments-spacerBottom-66 Comments-spacerBottom-98"
                   />
                 </div>
               </Comments>
@@ -576,7 +820,8 @@ exports[`post should render Post 1`] = `
                   <Connect(WebPagePlayer)
                     classes={
                       Object {
-                        "error": "Connect(WebPagePlayer)-error-58",
+                        "controls": "Connect(WebPagePlayer)-controls-59",
+                        "load": "Connect(WebPagePlayer)-load-58 Connect(WebPagePlayer)-load-60",
                         "playerWrapper": "Connect(WebPagePlayer)-playerWrapper-57",
                       }
                     }
@@ -585,13 +830,15 @@ exports[`post should render Post 1`] = `
                     <WebPagePlayer
                       classes={
                         Object {
-                          "error": "Connect(WebPagePlayer)-error-58",
+                          "controls": "Connect(WebPagePlayer)-controls-59",
+                          "load": "Connect(WebPagePlayer)-load-58 Connect(WebPagePlayer)-load-60",
                           "playerWrapper": "Connect(WebPagePlayer)-playerWrapper-57",
                         }
                       }
                       dispatch={[Function]}
                       height={100}
                       isFetching={false}
+                      isPlaying={false}
                       post={
                         Object {
                           "id": 1,
@@ -600,14 +847,255 @@ exports[`post should render Post 1`] = `
                       }
                     >
                       <div
-                        className="Connect(WebPagePlayer)-playerWrapper-57"
+                        className="Connect(WebPagePlayer)-load-58 Connect(WebPagePlayer)-load-60"
                       >
-                        <iframe
-                          height={100}
-                          sandbox="allow-scripts"
-                          src="https://example.com/"
-                          width={1024}
-                        />
+                        <h2>
+                           Embedded WebPage 
+                        </h2>
+                        <a
+                          href="https://example.com/"
+                        >
+                          Direct Link
+                        </a>
+                        <h5>
+                          via 
+                        </h5>
+                        <div
+                          className="Connect(WebPagePlayer)-controls-59"
+                        >
+                          <TogglePlayControl
+                            isPlaying={false}
+                            onClick={[Function]}
+                          >
+                            <WithStyles(ForwardRef(Tooltip))
+                              title="Start Playing"
+                            >
+                              <ForwardRef(Tooltip)
+                                classes={
+                                  Object {
+                                    "popper": "MuiTooltip-popper",
+                                    "popperInteractive": "MuiTooltip-popperInteractive",
+                                    "tooltip": "MuiTooltip-tooltip",
+                                    "tooltipPlacementBottom": "MuiTooltip-tooltipPlacementBottom",
+                                    "tooltipPlacementLeft": "MuiTooltip-tooltipPlacementLeft",
+                                    "tooltipPlacementRight": "MuiTooltip-tooltipPlacementRight",
+                                    "tooltipPlacementTop": "MuiTooltip-tooltipPlacementTop",
+                                    "touch": "MuiTooltip-touch",
+                                  }
+                                }
+                                title="Start Playing"
+                              >
+                                <WithStyles(ForwardRef(IconButton))
+                                  aria-describedby={null}
+                                  aria-label="Start Playing"
+                                  className=""
+                                  color="inherit"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onMouseOver={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchStart={[Function]}
+                                  title="Start Playing"
+                                >
+                                  <ForwardRef(IconButton)
+                                    aria-describedby={null}
+                                    aria-label="Start Playing"
+                                    className=""
+                                    classes={
+                                      Object {
+                                        "colorInherit": "MuiIconButton-colorInherit",
+                                        "colorPrimary": "MuiIconButton-colorPrimary",
+                                        "colorSecondary": "MuiIconButton-colorSecondary",
+                                        "disabled": "Mui-disabled",
+                                        "edgeEnd": "MuiIconButton-edgeEnd",
+                                        "edgeStart": "MuiIconButton-edgeStart",
+                                        "label": "MuiIconButton-label",
+                                        "root": "MuiIconButton-root",
+                                        "sizeSmall": "MuiIconButton-sizeSmall",
+                                      }
+                                    }
+                                    color="inherit"
+                                    onBlur={[Function]}
+                                    onClick={[Function]}
+                                    onFocus={[Function]}
+                                    onMouseLeave={[Function]}
+                                    onMouseOver={[Function]}
+                                    onTouchEnd={[Function]}
+                                    onTouchStart={[Function]}
+                                    title="Start Playing"
+                                  >
+                                    <WithStyles(ForwardRef(ButtonBase))
+                                      aria-describedby={null}
+                                      aria-label="Start Playing"
+                                      centerRipple={true}
+                                      className="MuiIconButton-root MuiIconButton-colorInherit"
+                                      disabled={false}
+                                      focusRipple={true}
+                                      onBlur={[Function]}
+                                      onClick={[Function]}
+                                      onFocus={[Function]}
+                                      onMouseLeave={[Function]}
+                                      onMouseOver={[Function]}
+                                      onTouchEnd={[Function]}
+                                      onTouchStart={[Function]}
+                                      title="Start Playing"
+                                    >
+                                      <ForwardRef(ButtonBase)
+                                        aria-describedby={null}
+                                        aria-label="Start Playing"
+                                        centerRipple={true}
+                                        className="MuiIconButton-root MuiIconButton-colorInherit"
+                                        classes={
+                                          Object {
+                                            "disabled": "Mui-disabled",
+                                            "focusVisible": "Mui-focusVisible",
+                                            "root": "MuiButtonBase-root",
+                                          }
+                                        }
+                                        disabled={false}
+                                        focusRipple={true}
+                                        onBlur={[Function]}
+                                        onClick={[Function]}
+                                        onFocus={[Function]}
+                                        onMouseLeave={[Function]}
+                                        onMouseOver={[Function]}
+                                        onTouchEnd={[Function]}
+                                        onTouchStart={[Function]}
+                                        title="Start Playing"
+                                      >
+                                        <button
+                                          aria-describedby={null}
+                                          aria-label="Start Playing"
+                                          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                                          disabled={false}
+                                          onBlur={[Function]}
+                                          onClick={[Function]}
+                                          onDragLeave={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          onKeyUp={[Function]}
+                                          onMouseDown={[Function]}
+                                          onMouseLeave={[Function]}
+                                          onMouseOver={[Function]}
+                                          onMouseUp={[Function]}
+                                          onTouchEnd={[Function]}
+                                          onTouchMove={[Function]}
+                                          onTouchStart={[Function]}
+                                          tabIndex={0}
+                                          title="Start Playing"
+                                          type="button"
+                                        >
+                                          <span
+                                            className="MuiIconButton-label"
+                                          >
+                                            <ForwardRef>
+                                              <WithStyles(ForwardRef(SvgIcon))>
+                                                <ForwardRef(SvgIcon)
+                                                  classes={
+                                                    Object {
+                                                      "colorAction": "MuiSvgIcon-colorAction",
+                                                      "colorDisabled": "MuiSvgIcon-colorDisabled",
+                                                      "colorError": "MuiSvgIcon-colorError",
+                                                      "colorPrimary": "MuiSvgIcon-colorPrimary",
+                                                      "colorSecondary": "MuiSvgIcon-colorSecondary",
+                                                      "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                                                      "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                                                      "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                                                      "root": "MuiSvgIcon-root",
+                                                    }
+                                                  }
+                                                >
+                                                  <svg
+                                                    aria-hidden="true"
+                                                    className="MuiSvgIcon-root"
+                                                    focusable="false"
+                                                    role="presentation"
+                                                    viewBox="0 0 24 24"
+                                                  >
+                                                    <path
+                                                      d="M8 5v14l11-7z"
+                                                    />
+                                                  </svg>
+                                                </ForwardRef(SvgIcon)>
+                                              </WithStyles(ForwardRef(SvgIcon))>
+                                            </ForwardRef>
+                                          </span>
+                                          <NoSsr>
+                                            <WithStyles(undefined)
+                                              center={true}
+                                            >
+                                              <ForwardRef(TouchRipple)
+                                                center={true}
+                                                classes={
+                                                  Object {
+                                                    "child": "MuiTouchRipple-child",
+                                                    "childLeaving": "MuiTouchRipple-childLeaving",
+                                                    "childPulsate": "MuiTouchRipple-childPulsate",
+                                                    "ripple": "MuiTouchRipple-ripple",
+                                                    "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                                                    "rippleVisible": "MuiTouchRipple-rippleVisible",
+                                                    "root": "MuiTouchRipple-root",
+                                                  }
+                                                }
+                                              >
+                                                <span
+                                                  className="MuiTouchRipple-root"
+                                                >
+                                                  <TransitionGroup
+                                                    childFactory={[Function]}
+                                                    component={null}
+                                                    exit={true}
+                                                  />
+                                                </span>
+                                              </ForwardRef(TouchRipple)>
+                                            </WithStyles(undefined)>
+                                          </NoSsr>
+                                        </button>
+                                      </ForwardRef(ButtonBase)>
+                                    </WithStyles(ForwardRef(ButtonBase))>
+                                  </ForwardRef(IconButton)>
+                                </WithStyles(ForwardRef(IconButton))>
+                                <ForwardRef(Popper)
+                                  anchorEl={
+                                    <button
+                                      aria-label="Start Playing"
+                                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                                      tabindex="0"
+                                      title="Start Playing"
+                                      type="button"
+                                    >
+                                      <span
+                                        class="MuiIconButton-label"
+                                      >
+                                        <svg
+                                          aria-hidden="true"
+                                          class="MuiSvgIcon-root"
+                                          focusable="false"
+                                          role="presentation"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <path
+                                            d="M8 5v14l11-7z"
+                                          />
+                                        </svg>
+                                      </span>
+                                      <span
+                                        class="MuiTouchRipple-root"
+                                      />
+                                    </button>
+                                  }
+                                  className="MuiTooltip-popper"
+                                  id={null}
+                                  open={false}
+                                  placement="bottom"
+                                  transition={true}
+                                />
+                              </ForwardRef(Tooltip)>
+                            </WithStyles(ForwardRef(Tooltip))>
+                          </TogglePlayControl>
+                        </div>
                       </div>
                     </WebPagePlayer>
                   </Connect(WebPagePlayer)>
@@ -627,13 +1115,13 @@ exports[`post should render Post 1`] = `
               <Comments
                 classes={
                   Object {
-                    "comments": "Comments-comments-60 Comments-comments-66",
-                    "loadComments": "Comments-loadComments-65",
-                    "loading": "Comments-loading-61 Comments-loading-67",
-                    "menuButton": "Comments-menuButton-62",
-                    "root": "Comments-root-59",
-                    "spacerBottom": "Comments-spacerBottom-64 Comments-spacerBottom-68",
-                    "title": "Comments-title-63",
+                    "comments": "Comments-comments-62 Comments-comments-68",
+                    "loadComments": "Comments-loadComments-67",
+                    "loading": "Comments-loading-63 Comments-loading-69",
+                    "menuButton": "Comments-menuButton-64",
+                    "root": "Comments-root-61",
+                    "spacerBottom": "Comments-spacerBottom-66 Comments-spacerBottom-70",
+                    "title": "Comments-title-65",
                   }
                 }
                 dispatch={[Function]}
@@ -643,18 +1131,18 @@ exports[`post should render Post 1`] = `
                 <div>
                   <div>
                     <div
-                      className="Comments-loading-61 Comments-loading-67"
+                      className="Comments-loading-63 Comments-loading-69"
                       id="comments"
                     >
                       <Styled(MuiBox)
                         boxShadow={5}
                       >
                         <div
-                          className="MuiBox-root MuiBox-root-70"
+                          className="MuiBox-root MuiBox-root-72"
                         >
                           <LoadComments>
                             <div
-                              className="Comments-loadComments-65"
+                              className="Comments-loadComments-67"
                             >
                               <a
                                 onClick={[Function]}
@@ -671,7 +1159,7 @@ exports[`post should render Post 1`] = `
                     </div>
                   </div>
                   <div
-                    className="Comments-spacerBottom-64 Comments-spacerBottom-68"
+                    className="Comments-spacerBottom-66 Comments-spacerBottom-70"
                   />
                 </div>
               </Comments>
@@ -705,9 +1193,9 @@ exports[`post should render Post is loading 1`] = `
       classes={
         Object {
           "controls": "Connect(Post)-controls-4",
-          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-114",
-          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-113",
-          "root": "Connect(Post)-root-1 Connect(Post)-root-112",
+          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-117",
+          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-116",
+          "root": "Connect(Post)-root-1 Connect(Post)-root-115",
         }
       }
       menuHeight={100}
@@ -717,9 +1205,9 @@ exports[`post should render Post is loading 1`] = `
         classes={
           Object {
             "controls": "Connect(Post)-controls-4",
-            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-114",
-            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-113",
-            "root": "Connect(Post)-root-1 Connect(Post)-root-112",
+            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-117",
+            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-116",
+            "root": "Connect(Post)-root-1 Connect(Post)-root-115",
           }
         }
         dispatch={[Function]}
@@ -729,7 +1217,7 @@ exports[`post should render Post is loading 1`] = `
         playerHeight={100}
       >
         <div
-          className="Connect(Post)-loading-3 Connect(Post)-loading-114"
+          className="Connect(Post)-loading-3 Connect(Post)-loading-117"
         >
           <WithStyles(ForwardRef(Skeleton))
             height="100%"
@@ -787,9 +1275,9 @@ exports[`post should render Video 1`] = `
       classes={
         Object {
           "controls": "Connect(Post)-controls-4",
-          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-73",
-          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-72",
-          "root": "Connect(Post)-root-1 Connect(Post)-root-71",
+          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-75",
+          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-74",
+          "root": "Connect(Post)-root-1 Connect(Post)-root-73",
         }
       }
       menuHeight={100}
@@ -799,9 +1287,9 @@ exports[`post should render Video 1`] = `
         classes={
           Object {
             "controls": "Connect(Post)-controls-4",
-            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-73",
-            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-72",
-            "root": "Connect(Post)-root-1 Connect(Post)-root-71",
+            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-75",
+            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-74",
+            "root": "Connect(Post)-root-1 Connect(Post)-root-73",
           }
         }
         dispatch={[Function]}
@@ -825,7 +1313,7 @@ exports[`post should render Video 1`] = `
           }
         >
           <div
-            className="Connect(Post)-loading-3 Connect(Post)-loading-73"
+            className="Connect(Post)-loading-3 Connect(Post)-loading-75"
             style={
               Object {
                 "display": "none",
@@ -837,11 +1325,11 @@ exports[`post should render Video 1`] = `
             </h2>
           </div>
           <WithStyles(ForwardRef(Container))
-            className="Connect(Post)-root-1 Connect(Post)-root-71"
+            className="Connect(Post)-root-1 Connect(Post)-root-73"
             maxWidth={false}
           >
             <ForwardRef(Container)
-              className="Connect(Post)-root-1 Connect(Post)-root-71"
+              className="Connect(Post)-root-1 Connect(Post)-root-73"
               classes={
                 Object {
                   "fixed": "MuiContainer-fixed",
@@ -856,7 +1344,7 @@ exports[`post should render Video 1`] = `
               maxWidth={false}
             >
               <div
-                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-71"
+                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-73"
               >
                 <WithStyles(undefined)
                   height={100}
@@ -864,8 +1352,8 @@ exports[`post should render Video 1`] = `
                   <Connect(VideoPlayer)
                     classes={
                       Object {
-                        "playerWrapper": "Connect(VideoPlayer)-playerWrapper-75",
-                        "reactPlayer": "Connect(VideoPlayer)-reactPlayer-74",
+                        "playerWrapper": "Connect(VideoPlayer)-playerWrapper-77",
+                        "reactPlayer": "Connect(VideoPlayer)-reactPlayer-76",
                       }
                     }
                     height={100}
@@ -873,8 +1361,8 @@ exports[`post should render Video 1`] = `
                     <VideoPlayer
                       classes={
                         Object {
-                          "playerWrapper": "Connect(VideoPlayer)-playerWrapper-75",
-                          "reactPlayer": "Connect(VideoPlayer)-reactPlayer-74",
+                          "playerWrapper": "Connect(VideoPlayer)-playerWrapper-77",
+                          "reactPlayer": "Connect(VideoPlayer)-reactPlayer-76",
                         }
                       }
                       dispatch={[Function]}
@@ -890,10 +1378,10 @@ exports[`post should render Video 1`] = `
                       }
                     >
                       <div
-                        className="Connect(VideoPlayer)-playerWrapper-75"
+                        className="Connect(VideoPlayer)-playerWrapper-77"
                       >
                         <ReactPlayer
-                          className="Connect(VideoPlayer)-reactPlayer-74"
+                          className="Connect(VideoPlayer)-reactPlayer-76"
                           config={
                             Object {
                               "dailymotion": Object {
@@ -992,7 +1480,7 @@ exports[`post should render Video 1`] = `
                           wrapper="div"
                         >
                           <div
-                            className="Connect(VideoPlayer)-reactPlayer-74"
+                            className="Connect(VideoPlayer)-reactPlayer-76"
                             preload="true"
                             style={
                               Object {
@@ -1003,7 +1491,7 @@ exports[`post should render Video 1`] = `
                           >
                             <Player
                               activePlayer={[Function]}
-                              className="Connect(VideoPlayer)-reactPlayer-74"
+                              className="Connect(VideoPlayer)-reactPlayer-76"
                               config={
                                 Object {
                                   "dailymotion": Object {
@@ -1104,7 +1592,7 @@ exports[`post should render Video 1`] = `
                             >
                               <YouTube
                                 activePlayer={[Function]}
-                                className="Connect(VideoPlayer)-reactPlayer-74"
+                                className="Connect(VideoPlayer)-reactPlayer-76"
                                 config={
                                   Object {
                                     "dailymotion": Object {
@@ -1237,13 +1725,13 @@ exports[`post should render Video 1`] = `
               <Comments
                 classes={
                   Object {
-                    "comments": "Comments-comments-60 Comments-comments-76",
-                    "loadComments": "Comments-loadComments-65",
-                    "loading": "Comments-loading-61 Comments-loading-77",
-                    "menuButton": "Comments-menuButton-62",
-                    "root": "Comments-root-59",
-                    "spacerBottom": "Comments-spacerBottom-64 Comments-spacerBottom-78",
-                    "title": "Comments-title-63",
+                    "comments": "Comments-comments-62 Comments-comments-78",
+                    "loadComments": "Comments-loadComments-67",
+                    "loading": "Comments-loading-63 Comments-loading-79",
+                    "menuButton": "Comments-menuButton-64",
+                    "root": "Comments-root-61",
+                    "spacerBottom": "Comments-spacerBottom-66 Comments-spacerBottom-80",
+                    "title": "Comments-title-65",
                   }
                 }
                 dispatch={[Function]}
@@ -1253,18 +1741,18 @@ exports[`post should render Video 1`] = `
                 <div>
                   <div>
                     <div
-                      className="Comments-loading-61 Comments-loading-77"
+                      className="Comments-loading-63 Comments-loading-79"
                       id="comments"
                     >
                       <Styled(MuiBox)
                         boxShadow={5}
                       >
                         <div
-                          className="MuiBox-root MuiBox-root-79"
+                          className="MuiBox-root MuiBox-root-81"
                         >
                           <LoadComments>
                             <div
-                              className="Comments-loadComments-65"
+                              className="Comments-loadComments-67"
                             >
                               <a
                                 onClick={[Function]}
@@ -1281,7 +1769,7 @@ exports[`post should render Video 1`] = `
                     </div>
                   </div>
                   <div
-                    className="Comments-spacerBottom-64 Comments-spacerBottom-78"
+                    className="Comments-spacerBottom-66 Comments-spacerBottom-80"
                   />
                 </div>
               </Comments>
@@ -2122,9 +2610,9 @@ exports[`post should render media fallback 1`] = `
       classes={
         Object {
           "controls": "Connect(Post)-controls-4",
-          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-100",
-          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-99",
-          "root": "Connect(Post)-root-1 Connect(Post)-root-98",
+          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-102",
+          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-101",
+          "root": "Connect(Post)-root-1 Connect(Post)-root-100",
         }
       }
       menuHeight={100}
@@ -2134,9 +2622,9 @@ exports[`post should render media fallback 1`] = `
         classes={
           Object {
             "controls": "Connect(Post)-controls-4",
-            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-100",
-            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-99",
-            "root": "Connect(Post)-root-1 Connect(Post)-root-98",
+            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-102",
+            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-101",
+            "root": "Connect(Post)-root-1 Connect(Post)-root-100",
           }
         }
         dispatch={[Function]}
@@ -2167,7 +2655,7 @@ exports[`post should render media fallback 1`] = `
           }
         >
           <div
-            className="Connect(Post)-loading-3 Connect(Post)-loading-100"
+            className="Connect(Post)-loading-3 Connect(Post)-loading-102"
             style={
               Object {
                 "display": "none",
@@ -2179,11 +2667,11 @@ exports[`post should render media fallback 1`] = `
             </h2>
           </div>
           <WithStyles(ForwardRef(Container))
-            className="Connect(Post)-root-1 Connect(Post)-root-98"
+            className="Connect(Post)-root-1 Connect(Post)-root-100"
             maxWidth={false}
           >
             <ForwardRef(Container)
-              className="Connect(Post)-root-1 Connect(Post)-root-98"
+              className="Connect(Post)-root-1 Connect(Post)-root-100"
               classes={
                 Object {
                   "fixed": "MuiContainer-fixed",
@@ -2198,7 +2686,7 @@ exports[`post should render media fallback 1`] = `
               maxWidth={false}
             >
               <div
-                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-98"
+                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-100"
               >
                 <WithStyles(undefined)
                   height={100}
@@ -2206,8 +2694,8 @@ exports[`post should render media fallback 1`] = `
                   <Connect(VideoPlayer)
                     classes={
                       Object {
-                        "playerWrapper": "Connect(VideoPlayer)-playerWrapper-75",
-                        "reactPlayer": "Connect(VideoPlayer)-reactPlayer-74",
+                        "playerWrapper": "Connect(VideoPlayer)-playerWrapper-77",
+                        "reactPlayer": "Connect(VideoPlayer)-reactPlayer-76",
                       }
                     }
                     height={100}
@@ -2215,8 +2703,8 @@ exports[`post should render media fallback 1`] = `
                     <VideoPlayer
                       classes={
                         Object {
-                          "playerWrapper": "Connect(VideoPlayer)-playerWrapper-75",
-                          "reactPlayer": "Connect(VideoPlayer)-reactPlayer-74",
+                          "playerWrapper": "Connect(VideoPlayer)-playerWrapper-77",
+                          "reactPlayer": "Connect(VideoPlayer)-reactPlayer-76",
                         }
                       }
                       dispatch={[Function]}
@@ -2240,7 +2728,7 @@ exports[`post should render media fallback 1`] = `
                       }
                     >
                       <div
-                        className="Connect(VideoPlayer)-playerWrapper-75"
+                        className="Connect(VideoPlayer)-playerWrapper-77"
                       >
                         <iframe
                           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -2270,13 +2758,13 @@ exports[`post should render media fallback 1`] = `
               <Comments
                 classes={
                   Object {
-                    "comments": "Comments-comments-60 Comments-comments-101",
-                    "loadComments": "Comments-loadComments-65",
-                    "loading": "Comments-loading-61 Comments-loading-102",
-                    "menuButton": "Comments-menuButton-62",
-                    "root": "Comments-root-59",
-                    "spacerBottom": "Comments-spacerBottom-64 Comments-spacerBottom-103",
-                    "title": "Comments-title-63",
+                    "comments": "Comments-comments-62 Comments-comments-103",
+                    "loadComments": "Comments-loadComments-67",
+                    "loading": "Comments-loading-63 Comments-loading-104",
+                    "menuButton": "Comments-menuButton-64",
+                    "root": "Comments-root-61",
+                    "spacerBottom": "Comments-spacerBottom-66 Comments-spacerBottom-105",
+                    "title": "Comments-title-65",
                   }
                 }
                 dispatch={[Function]}
@@ -2286,18 +2774,18 @@ exports[`post should render media fallback 1`] = `
                 <div>
                   <div>
                     <div
-                      className="Comments-loading-61 Comments-loading-102"
+                      className="Comments-loading-63 Comments-loading-104"
                       id="comments"
                     >
                       <Styled(MuiBox)
                         boxShadow={5}
                       >
                         <div
-                          className="MuiBox-root MuiBox-root-104"
+                          className="MuiBox-root MuiBox-root-106"
                         >
                           <LoadComments>
                             <div
-                              className="Comments-loadComments-65"
+                              className="Comments-loadComments-67"
                             >
                               <a
                                 onClick={[Function]}
@@ -2314,7 +2802,7 @@ exports[`post should render media fallback 1`] = `
                     </div>
                   </div>
                   <div
-                    className="Comments-spacerBottom-64 Comments-spacerBottom-103"
+                    className="Comments-spacerBottom-66 Comments-spacerBottom-105"
                   />
                 </div>
               </Comments>
@@ -2348,9 +2836,9 @@ exports[`post should render next post 1`] = `
       classes={
         Object {
           "controls": "Connect(Post)-controls-4",
-          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-117",
-          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-116",
-          "root": "Connect(Post)-root-1 Connect(Post)-root-115",
+          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-120",
+          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-119",
+          "root": "Connect(Post)-root-1 Connect(Post)-root-118",
         }
       }
       menuHeight={100}
@@ -2360,9 +2848,9 @@ exports[`post should render next post 1`] = `
         classes={
           Object {
             "controls": "Connect(Post)-controls-4",
-            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-117",
-            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-116",
-            "root": "Connect(Post)-root-1 Connect(Post)-root-115",
+            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-120",
+            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-119",
+            "root": "Connect(Post)-root-1 Connect(Post)-root-118",
           }
         }
         dispatch={[Function]}
@@ -2385,7 +2873,7 @@ exports[`post should render next post 1`] = `
           }
         >
           <div
-            className="Connect(Post)-loading-3 Connect(Post)-loading-117"
+            className="Connect(Post)-loading-3 Connect(Post)-loading-120"
             style={
               Object {
                 "display": "none",
@@ -2397,11 +2885,11 @@ exports[`post should render next post 1`] = `
             </h2>
           </div>
           <WithStyles(ForwardRef(Container))
-            className="Connect(Post)-root-1 Connect(Post)-root-115"
+            className="Connect(Post)-root-1 Connect(Post)-root-118"
             maxWidth={false}
           >
             <ForwardRef(Container)
-              className="Connect(Post)-root-1 Connect(Post)-root-115"
+              className="Connect(Post)-root-1 Connect(Post)-root-118"
               classes={
                 Object {
                   "fixed": "MuiContainer-fixed",
@@ -2416,7 +2904,7 @@ exports[`post should render next post 1`] = `
               maxWidth={false}
             >
               <div
-                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-115"
+                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-118"
               >
                 <WithStyles(undefined)
                   height={100}
@@ -2424,7 +2912,8 @@ exports[`post should render next post 1`] = `
                   <Connect(WebPagePlayer)
                     classes={
                       Object {
-                        "error": "Connect(WebPagePlayer)-error-58",
+                        "controls": "Connect(WebPagePlayer)-controls-59",
+                        "load": "Connect(WebPagePlayer)-load-58 Connect(WebPagePlayer)-load-121",
                         "playerWrapper": "Connect(WebPagePlayer)-playerWrapper-57",
                       }
                     }
@@ -2433,13 +2922,15 @@ exports[`post should render next post 1`] = `
                     <WebPagePlayer
                       classes={
                         Object {
-                          "error": "Connect(WebPagePlayer)-error-58",
+                          "controls": "Connect(WebPagePlayer)-controls-59",
+                          "load": "Connect(WebPagePlayer)-load-58 Connect(WebPagePlayer)-load-121",
                           "playerWrapper": "Connect(WebPagePlayer)-playerWrapper-57",
                         }
                       }
                       dispatch={[Function]}
                       height={100}
                       isFetching={false}
+                      isPlaying={false}
                       post={
                         Object {
                           "id": 1,
@@ -2448,14 +2939,255 @@ exports[`post should render next post 1`] = `
                       }
                     >
                       <div
-                        className="Connect(WebPagePlayer)-playerWrapper-57"
+                        className="Connect(WebPagePlayer)-load-58 Connect(WebPagePlayer)-load-121"
                       >
-                        <iframe
-                          height={100}
-                          sandbox="allow-scripts"
-                          src="https://example.com/video"
-                          width={1024}
-                        />
+                        <h2>
+                           Embedded WebPage 
+                        </h2>
+                        <a
+                          href="https://example.com/video"
+                        >
+                          Direct Link
+                        </a>
+                        <h5>
+                          via 
+                        </h5>
+                        <div
+                          className="Connect(WebPagePlayer)-controls-59"
+                        >
+                          <TogglePlayControl
+                            isPlaying={false}
+                            onClick={[Function]}
+                          >
+                            <WithStyles(ForwardRef(Tooltip))
+                              title="Start Playing"
+                            >
+                              <ForwardRef(Tooltip)
+                                classes={
+                                  Object {
+                                    "popper": "MuiTooltip-popper",
+                                    "popperInteractive": "MuiTooltip-popperInteractive",
+                                    "tooltip": "MuiTooltip-tooltip",
+                                    "tooltipPlacementBottom": "MuiTooltip-tooltipPlacementBottom",
+                                    "tooltipPlacementLeft": "MuiTooltip-tooltipPlacementLeft",
+                                    "tooltipPlacementRight": "MuiTooltip-tooltipPlacementRight",
+                                    "tooltipPlacementTop": "MuiTooltip-tooltipPlacementTop",
+                                    "touch": "MuiTooltip-touch",
+                                  }
+                                }
+                                title="Start Playing"
+                              >
+                                <WithStyles(ForwardRef(IconButton))
+                                  aria-describedby={null}
+                                  aria-label="Start Playing"
+                                  className=""
+                                  color="inherit"
+                                  onBlur={[Function]}
+                                  onClick={[Function]}
+                                  onFocus={[Function]}
+                                  onMouseLeave={[Function]}
+                                  onMouseOver={[Function]}
+                                  onTouchEnd={[Function]}
+                                  onTouchStart={[Function]}
+                                  title="Start Playing"
+                                >
+                                  <ForwardRef(IconButton)
+                                    aria-describedby={null}
+                                    aria-label="Start Playing"
+                                    className=""
+                                    classes={
+                                      Object {
+                                        "colorInherit": "MuiIconButton-colorInherit",
+                                        "colorPrimary": "MuiIconButton-colorPrimary",
+                                        "colorSecondary": "MuiIconButton-colorSecondary",
+                                        "disabled": "Mui-disabled",
+                                        "edgeEnd": "MuiIconButton-edgeEnd",
+                                        "edgeStart": "MuiIconButton-edgeStart",
+                                        "label": "MuiIconButton-label",
+                                        "root": "MuiIconButton-root",
+                                        "sizeSmall": "MuiIconButton-sizeSmall",
+                                      }
+                                    }
+                                    color="inherit"
+                                    onBlur={[Function]}
+                                    onClick={[Function]}
+                                    onFocus={[Function]}
+                                    onMouseLeave={[Function]}
+                                    onMouseOver={[Function]}
+                                    onTouchEnd={[Function]}
+                                    onTouchStart={[Function]}
+                                    title="Start Playing"
+                                  >
+                                    <WithStyles(ForwardRef(ButtonBase))
+                                      aria-describedby={null}
+                                      aria-label="Start Playing"
+                                      centerRipple={true}
+                                      className="MuiIconButton-root MuiIconButton-colorInherit"
+                                      disabled={false}
+                                      focusRipple={true}
+                                      onBlur={[Function]}
+                                      onClick={[Function]}
+                                      onFocus={[Function]}
+                                      onMouseLeave={[Function]}
+                                      onMouseOver={[Function]}
+                                      onTouchEnd={[Function]}
+                                      onTouchStart={[Function]}
+                                      title="Start Playing"
+                                    >
+                                      <ForwardRef(ButtonBase)
+                                        aria-describedby={null}
+                                        aria-label="Start Playing"
+                                        centerRipple={true}
+                                        className="MuiIconButton-root MuiIconButton-colorInherit"
+                                        classes={
+                                          Object {
+                                            "disabled": "Mui-disabled",
+                                            "focusVisible": "Mui-focusVisible",
+                                            "root": "MuiButtonBase-root",
+                                          }
+                                        }
+                                        disabled={false}
+                                        focusRipple={true}
+                                        onBlur={[Function]}
+                                        onClick={[Function]}
+                                        onFocus={[Function]}
+                                        onMouseLeave={[Function]}
+                                        onMouseOver={[Function]}
+                                        onTouchEnd={[Function]}
+                                        onTouchStart={[Function]}
+                                        title="Start Playing"
+                                      >
+                                        <button
+                                          aria-describedby={null}
+                                          aria-label="Start Playing"
+                                          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                                          disabled={false}
+                                          onBlur={[Function]}
+                                          onClick={[Function]}
+                                          onDragLeave={[Function]}
+                                          onFocus={[Function]}
+                                          onKeyDown={[Function]}
+                                          onKeyUp={[Function]}
+                                          onMouseDown={[Function]}
+                                          onMouseLeave={[Function]}
+                                          onMouseOver={[Function]}
+                                          onMouseUp={[Function]}
+                                          onTouchEnd={[Function]}
+                                          onTouchMove={[Function]}
+                                          onTouchStart={[Function]}
+                                          tabIndex={0}
+                                          title="Start Playing"
+                                          type="button"
+                                        >
+                                          <span
+                                            className="MuiIconButton-label"
+                                          >
+                                            <ForwardRef>
+                                              <WithStyles(ForwardRef(SvgIcon))>
+                                                <ForwardRef(SvgIcon)
+                                                  classes={
+                                                    Object {
+                                                      "colorAction": "MuiSvgIcon-colorAction",
+                                                      "colorDisabled": "MuiSvgIcon-colorDisabled",
+                                                      "colorError": "MuiSvgIcon-colorError",
+                                                      "colorPrimary": "MuiSvgIcon-colorPrimary",
+                                                      "colorSecondary": "MuiSvgIcon-colorSecondary",
+                                                      "fontSizeInherit": "MuiSvgIcon-fontSizeInherit",
+                                                      "fontSizeLarge": "MuiSvgIcon-fontSizeLarge",
+                                                      "fontSizeSmall": "MuiSvgIcon-fontSizeSmall",
+                                                      "root": "MuiSvgIcon-root",
+                                                    }
+                                                  }
+                                                >
+                                                  <svg
+                                                    aria-hidden="true"
+                                                    className="MuiSvgIcon-root"
+                                                    focusable="false"
+                                                    role="presentation"
+                                                    viewBox="0 0 24 24"
+                                                  >
+                                                    <path
+                                                      d="M8 5v14l11-7z"
+                                                    />
+                                                  </svg>
+                                                </ForwardRef(SvgIcon)>
+                                              </WithStyles(ForwardRef(SvgIcon))>
+                                            </ForwardRef>
+                                          </span>
+                                          <NoSsr>
+                                            <WithStyles(undefined)
+                                              center={true}
+                                            >
+                                              <ForwardRef(TouchRipple)
+                                                center={true}
+                                                classes={
+                                                  Object {
+                                                    "child": "MuiTouchRipple-child",
+                                                    "childLeaving": "MuiTouchRipple-childLeaving",
+                                                    "childPulsate": "MuiTouchRipple-childPulsate",
+                                                    "ripple": "MuiTouchRipple-ripple",
+                                                    "ripplePulsate": "MuiTouchRipple-ripplePulsate",
+                                                    "rippleVisible": "MuiTouchRipple-rippleVisible",
+                                                    "root": "MuiTouchRipple-root",
+                                                  }
+                                                }
+                                              >
+                                                <span
+                                                  className="MuiTouchRipple-root"
+                                                >
+                                                  <TransitionGroup
+                                                    childFactory={[Function]}
+                                                    component={null}
+                                                    exit={true}
+                                                  />
+                                                </span>
+                                              </ForwardRef(TouchRipple)>
+                                            </WithStyles(undefined)>
+                                          </NoSsr>
+                                        </button>
+                                      </ForwardRef(ButtonBase)>
+                                    </WithStyles(ForwardRef(ButtonBase))>
+                                  </ForwardRef(IconButton)>
+                                </WithStyles(ForwardRef(IconButton))>
+                                <ForwardRef(Popper)
+                                  anchorEl={
+                                    <button
+                                      aria-label="Start Playing"
+                                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit"
+                                      tabindex="0"
+                                      title="Start Playing"
+                                      type="button"
+                                    >
+                                      <span
+                                        class="MuiIconButton-label"
+                                      >
+                                        <svg
+                                          aria-hidden="true"
+                                          class="MuiSvgIcon-root"
+                                          focusable="false"
+                                          role="presentation"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <path
+                                            d="M8 5v14l11-7z"
+                                          />
+                                        </svg>
+                                      </span>
+                                      <span
+                                        class="MuiTouchRipple-root"
+                                      />
+                                    </button>
+                                  }
+                                  className="MuiTooltip-popper"
+                                  id={null}
+                                  open={false}
+                                  placement="bottom"
+                                  transition={true}
+                                />
+                              </ForwardRef(Tooltip)>
+                            </WithStyles(ForwardRef(Tooltip))>
+                          </TogglePlayControl>
+                        </div>
                       </div>
                     </WebPagePlayer>
                   </Connect(WebPagePlayer)>
@@ -2475,13 +3207,13 @@ exports[`post should render next post 1`] = `
               <Comments
                 classes={
                   Object {
-                    "comments": "Comments-comments-60 Comments-comments-118",
-                    "loadComments": "Comments-loadComments-65",
-                    "loading": "Comments-loading-61 Comments-loading-119",
-                    "menuButton": "Comments-menuButton-62",
-                    "root": "Comments-root-59",
-                    "spacerBottom": "Comments-spacerBottom-64 Comments-spacerBottom-120",
-                    "title": "Comments-title-63",
+                    "comments": "Comments-comments-62 Comments-comments-122",
+                    "loadComments": "Comments-loadComments-67",
+                    "loading": "Comments-loading-63 Comments-loading-123",
+                    "menuButton": "Comments-menuButton-64",
+                    "root": "Comments-root-61",
+                    "spacerBottom": "Comments-spacerBottom-66 Comments-spacerBottom-124",
+                    "title": "Comments-title-65",
                   }
                 }
                 dispatch={[Function]}
@@ -2491,18 +3223,18 @@ exports[`post should render next post 1`] = `
                 <div>
                   <div>
                     <div
-                      className="Comments-loading-61 Comments-loading-119"
+                      className="Comments-loading-63 Comments-loading-123"
                       id="comments"
                     >
                       <Styled(MuiBox)
                         boxShadow={5}
                       >
                         <div
-                          className="MuiBox-root MuiBox-root-121"
+                          className="MuiBox-root MuiBox-root-125"
                         >
                           <LoadComments>
                             <div
-                              className="Comments-loadComments-65"
+                              className="Comments-loadComments-67"
                             >
                               <a
                                 onClick={[Function]}
@@ -2519,7 +3251,7 @@ exports[`post should render next post 1`] = `
                     </div>
                   </div>
                   <div
-                    className="Comments-spacerBottom-64 Comments-spacerBottom-120"
+                    className="Comments-spacerBottom-66 Comments-spacerBottom-124"
                   />
                 </div>
               </Comments>
@@ -2553,9 +3285,9 @@ exports[`post should show loading when isFetching 1`] = `
       classes={
         Object {
           "controls": "Connect(Post)-controls-4",
-          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-124",
-          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-123",
-          "root": "Connect(Post)-root-1 Connect(Post)-root-122",
+          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-128",
+          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-127",
+          "root": "Connect(Post)-root-1 Connect(Post)-root-126",
         }
       }
       menuHeight={100}
@@ -2565,9 +3297,9 @@ exports[`post should show loading when isFetching 1`] = `
         classes={
           Object {
             "controls": "Connect(Post)-controls-4",
-            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-124",
-            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-123",
-            "root": "Connect(Post)-root-1 Connect(Post)-root-122",
+            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-128",
+            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-127",
+            "root": "Connect(Post)-root-1 Connect(Post)-root-126",
           }
         }
         dispatch={[Function]}
@@ -2583,7 +3315,7 @@ exports[`post should show loading when isFetching 1`] = `
         }
       >
         <div
-          className="Connect(Post)-loading-3 Connect(Post)-loading-124"
+          className="Connect(Post)-loading-3 Connect(Post)-loading-128"
         >
           <WithStyles(ForwardRef(Skeleton))
             height="100%"
