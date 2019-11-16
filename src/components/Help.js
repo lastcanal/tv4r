@@ -198,6 +198,8 @@ const Help = ({ classes }) => {
             <li><a href="https://www.npmjs.com/package/remote-redux-devtools">remote-redux-devtools</a></li>
             <li><a href="https://www.npmjs.com/package/reselect">reselect</a></li>
           </ul>
+          <img height="192px" src="/logo192.png" />
+          <div>TV Icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
         </TabPanel>
       </Box>
     </Popover>

@@ -59,9 +59,9 @@ Load up your favorite subreddit and enjoy what the internet is watching.
 
 #### Running locally
 
-To get started running TVR locally, start by cloning this repo:
+To get started running TV4R locally, start by cloning this repo:
 
-`$ git clone https://github.com/lastcanal/tvr`
+`$ git clone https://github.com/lastcanal/TV4R`
 
 Install the dependancies
 
