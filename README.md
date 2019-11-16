@@ -1,9 +1,9 @@
-## TV4R: The TV of the Internet
+## TVR: The TV of the Internet
 
-TV4R is a television interface for reddit, the front page of the internet.
-TV4R runs entirely in your browser and relies only on the reddit API.
+TVR is a television interface for reddit, the front page of the internet.
+TVR runs entirely in your browser and relies only on the reddit API.
 
-![TV4R](./public/top.jpg)
+![TVR](./public/top.jpg)
 
 #### Description
 
@@ -44,7 +44,6 @@ Load up your favorite subreddit and enjoy what the internet is watching.
 - [x] Read reddit comments
 - [x] Look at reddit images and gifs, webpages, selfposts, twitter
 - [x] Read from new, controversial, top, and rising
-- [ ] Load all videos by 'domain' (e.g. youtube.com)
 
 #### Maybe Goals
 
@@ -59,9 +58,9 @@ Load up your favorite subreddit and enjoy what the internet is watching.
 
 #### Running locally
 
-To get started running TV4R locally, start by cloning this repo:
+To get started running TVR locally, start by cloning this repo:
 
-`$ git clone https://github.com/lastcanal/TV4R`
+`$ git clone https://github.com/lastcanal/TVR`
 
 Install the dependancies
 
@@ -85,7 +84,7 @@ Build a release
 
 #### Contributing
 
-TV4R is written using React and Redux. Install [Redux Devtools](https://extension.remotedev.io/) to see what is happening under the hood.
+TVR is written using React and Redux. Install [Redux Devtools](https://extension.remotedev.io/) to see what is happening under the hood.
 
 Pull requests, issues, bug reports and ideas are all welcome!
 
