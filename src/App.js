@@ -4,6 +4,7 @@ import { withStyles, MuiThemeProvider } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import { connect } from 'react-redux'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import useFullscreen from './hooks/useFullscreen'
 
 import Menu from './components/Menu'
 import Post from './components/Post'
@@ -38,6 +39,7 @@ const App = ({
   useForceWindowFocus()
   useKeyboardController({ dispatch })
   useRouteTracker({ dispatch, postsBySubreddit, selectedSubreddit, router })
+  useFullscreen({ dispatch, isFullscreen })
 
   return (
     <MuiThemeProvider theme={theme}>
