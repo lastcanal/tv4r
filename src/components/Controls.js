@@ -107,10 +107,28 @@ RefreshControl.propTypes = {
   onClick: PropTypes.func,
 }
 
-export const ShowNSFWControl = ({ onClick, showNSFW }) => (
-  <Tooltip title={`Turn ${showNSFW ? 'ON' : 'OFF'} Not Safe For Work (NSFW)`}>
+export const TogglePlayControl = ({ onClick, isPlaying }) => {
+  const title = `${isPlaying ? 'Stop' : 'Start'} Playing`
+  return <Tooltip title={title}>
     <IconButton
-      aria-label={`Turn ${showNSFW ? 'ON' : 'OFF'} Not Safe For Work (NSFW)`}
+      aria-label={title} color="inherit"
+      onClick={onClick}
+    >
+      {isPlaying ? <StopIcon /> : <PlayArrowIcon />}
+    </IconButton>
+  </Tooltip>
+}
+
+TogglePlayControl.propTypes = {
+  isPlaying: PropTypes.bool,
+  onClick: PropTypes.func,
+}
+
+export const ShowNSFWControl = ({ onClick, showNSFW }) => {
+  const title = `${showNSFW ? 'HIDE' : 'SHOW'} Not Safe For Work (NSFW) Content`
+  return <Tooltip title={title}>
+    <IconButton
+      aria-label={title}
       color="inherit"
       onClick={onClick}
     >
@@ -119,7 +137,7 @@ export const ShowNSFWControl = ({ onClick, showNSFW }) => (
       />
     </IconButton>
   </Tooltip>
-)
+}
 
 ShowNSFWControl.propTypes = {
   onClick: PropTypes.func,
@@ -191,14 +209,10 @@ const Controls = ({
           <SkipPreviousIcon />
         </IconButton>
       </Tooltip>
-      <Tooltip title={`${isAutoAdvance ? 'Start' : 'Stop'} Playing Video`}>
-        <IconButton
-          aria-label={isPlaying ? 'Stop' : 'Play'} color="inherit"
-          onClick={() => dispatch(configTogglePlay())}
-        >
-          {isPlaying ? <StopIcon /> : <PlayArrowIcon />}
-        </IconButton>
-      </Tooltip>
+      <TogglePlayControl
+        isPlaying={isPlaying}
+        onClick={() => dispatch(configTogglePlay())}
+      />
       <Tooltip title="Play Next">
         <IconButton
           aria-label="play next"

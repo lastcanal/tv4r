@@ -17,7 +17,6 @@ const styles = () => ({
   playerWrapper: {
     objectFit: 'contain',
     backgroundColor: 'black',
-    width: '100vw',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

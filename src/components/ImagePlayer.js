@@ -38,7 +38,7 @@ const styles = ({ palette }) => ({
   },
   fallbackLink: {
     color: palette.text.primary,
-    fontSize: 60,
+    fontSize: 30,
     textDecoration: 'none',
   },
 })
@@ -74,7 +74,7 @@ const ImagePlayer = ({
   const enhance = () => {
     const image = getPostImage(post, height)
     setUrl(image.url || post.url)
-    onImageChange(image)
+    onImageChange(imgRef || image)
   }
 
   useEffect(() => {
@@ -93,11 +93,11 @@ const ImagePlayer = ({
 
   useLayoutEffect(() => {
     enhance()
-  }, [height])
+  }, [height, window.innerWidth])
 
   if (isMediaFallback) {
     return <div className={classes.error}>
-      <h2>  Loading Embedded Image </h2>
+      <h2> Loading Embedded Image </h2>
       <a className={classes.fallbackLink} href={post.url}>
         Direct Link
       </a>
@@ -112,10 +112,7 @@ const ImagePlayer = ({
       height={loading ? 0 : imageHeight}
       width={loading ? 0 : imageWidth}
       onError={onError}
-      onLoad={() => {
-        onImageChange()
-        setLoading(false)
-      }}
+      onLoad={() => setLoading(false)}
     />
     <Skeleton
       variant="rect"

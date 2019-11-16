@@ -194,7 +194,7 @@ const Post = ({
     return <div style={{ opacity: isFetching ? 0.5 : 1 }}>
       <div
         className={classes.loading}
-        style={{ display: showMiniPlayer ? 'flex' : 'none' }}
+        style={{ display: showMiniPlayer ? 'block' : 'none' }}
       >
         <h2>Using Mini Player...</h2>
       </div>
