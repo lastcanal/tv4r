@@ -164,42 +164,52 @@ const Help = ({ classes }) => {
           </Grid>
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Typography>Hello! This will be more helpful later.</Typography>
+          <Grid container>
+            <Grid item>
+              <Typography>Hello! This will be more helpful later.</Typography>
+            </Grid>
+          </Grid>
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <Typography variant="h7">
-          This app relies on the following packages:
-          </Typography>
-
-          <ul>
-            <li><a href="https://www.npmjs.com/package/connected-react-router">connected-react-router</a></li>
-            <li><a href="https://www.npmjs.com/package/es6-promise">es6-promise</a></li>
-            <li><a href="https://www.npmjs.com/package/isomorphic-fetch">isomorphic-fetch</a></li>
-            <li><a href="https://www.npmjs.com/package/lodash.debounce">lodash.debounce</a></li>
-            <li><a href="https://www.npmjs.com/package/lodash.throttle">lodash.throttle</a></li>
-            <li><a href="https://www.npmjs.com/package/loglevel">loglevel</a></li>
-            <li><a href="https://www.npmjs.com/package/pretty">pretty</a></li>
-            <li><a href="https://www.npmjs.com/package/prop-types">prop-types</a></li>
-            <li><a href="https://www.npmjs.com/package/react">react</a></li>
-            <li><a href="https://www.npmjs.com/package/react-dom">react-dom</a></li>
-            <li><a href="https://www.npmjs.com/package/react-html-parser">react-html-parser</a></li>
-            <li><a href="https://www.npmjs.com/package/react-player">react-player</a></li>
-            <li><a href="https://www.npmjs.com/package/react-redux">react-redux</a></li>
-            <li><a href="https://www.npmjs.com/package/react-router-dom">react-router-dom</a></li>
-            <li><a href="https://www.npmjs.com/package/react-scripts">react-scripts</a></li>
-            <li><a href="https://www.npmjs.com/package/react-select">react-select</a></li>
-            <li><a href="https://www.npmjs.com/package/react-twitter-widgets">react-twitter-widgets</a></li>
-            <li><a href="https://www.npmjs.com/package/recompose">recompose</a></li>
-            <li><a href="https://www.npmjs.com/package/redux">redux</a></li>
-            <li><a href="https://www.npmjs.com/package/redux-devtools-extension">redux-devtools-extension</a></li>
-            <li><a href="https://www.npmjs.com/package/redux-logger">redux-logger</a></li>
-            <li><a href="https://www.npmjs.com/package/redux-persist">redux-persist</a></li>
-            <li><a href="https://www.npmjs.com/package/redux-thunk">redux-thunk</a></li>
-            <li><a href="https://www.npmjs.com/package/remote-redux-devtools">remote-redux-devtools</a></li>
-            <li><a href="https://www.npmjs.com/package/reselect">reselect</a></li>
-          </ul>
-          <img height="192px" src="/logo192.png" />
-          <div>TV Icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+          <Grid container>
+            <Grid item>
+              <Typography variant="h7">
+              This app relies on the following packages:
+              </Typography>
+              <ul>
+                <li><a href="https://www.npmjs.com/package/connected-react-router">connected-react-router</a></li>
+                <li><a href="https://www.npmjs.com/package/es6-promise">es6-promise</a></li>
+                <li><a href="https://www.npmjs.com/package/isomorphic-fetch">isomorphic-fetch</a></li>
+                <li><a href="https://www.npmjs.com/package/lodash.debounce">lodash.debounce</a></li>
+                <li><a href="https://www.npmjs.com/package/lodash.throttle">lodash.throttle</a></li>
+                <li><a href="https://www.npmjs.com/package/loglevel">loglevel</a></li>
+                <li><a href="https://www.npmjs.com/package/pretty">pretty</a></li>
+                <li><a href="https://www.npmjs.com/package/prop-types">prop-types</a></li>
+                <li><a href="https://www.npmjs.com/package/react">react</a></li>
+                <li><a href="https://www.npmjs.com/package/react-dom">react-dom</a></li>
+                <li><a href="https://www.npmjs.com/package/react-html-parser">react-html-parser</a></li>
+                <li><a href="https://www.npmjs.com/package/react-player">react-player</a></li>
+                <li><a href="https://www.npmjs.com/package/react-redux">react-redux</a></li>
+                <li><a href="https://www.npmjs.com/package/react-router-dom">react-router-dom</a></li>
+                <li><a href="https://www.npmjs.com/package/react-scripts">react-scripts</a></li>
+                <li><a href="https://www.npmjs.com/package/react-select">react-select</a></li>
+                <li><a href="https://www.npmjs.com/package/react-twitter-widgets">react-twitter-widgets</a></li>
+                <li><a href="https://www.npmjs.com/package/recompose">recompose</a></li>
+                <li><a href="https://www.npmjs.com/package/redux">redux</a></li>
+                <li><a href="https://www.npmjs.com/package/redux-devtools-extension">redux-devtools-extension</a></li>
+                <li><a href="https://www.npmjs.com/package/redux-logger">redux-logger</a></li>
+                <li><a href="https://www.npmjs.com/package/redux-persist">redux-persist</a></li>
+                <li><a href="https://www.npmjs.com/package/redux-thunk">redux-thunk</a></li>
+                <li><a href="https://www.npmjs.com/package/remote-redux-devtools">remote-redux-devtools</a></li>
+                <li><a href="https://www.npmjs.com/package/reselect">reselect</a></li>
+                <li><a href="https://www.npmjs.com/package/snudown-js">snudown-js</a></li>
+              </ul>
+            </Grid>
+            <Grid item>
+              <img height="192px" src="/logo192.png" />
+              <div>TV Icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+            </Grid>
+          </Grid>
         </TabPanel>
       </Box>
     </Popover>
