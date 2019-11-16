@@ -65,10 +65,6 @@ export function isImage (post) {
   )
 }
 
-export const isTwitter = (post) => (
-  post?.domain === 'twitter.com'
-)
-
 export const isKnownMediaEmbed = (post) => {
   // eslint-disable-next-line camelcase
   const name = post?.secure_media?.oembed?.provider_name

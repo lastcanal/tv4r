@@ -6,13 +6,12 @@ import Container from '@material-ui/core/Container'
 import Skeleton from '@material-ui/lab/Skeleton'
 import throttle from 'lodash.throttle'
 
-import { isVideo, isImage, isTwitter } from '../helpers'
+import { isVideo, isImage } from '../helpers'
 
 import Comments from './Comments'
 import VideoPlayer from './VideoPlayer'
 import ImagePlayer from './ImagePlayer'
 import WebPagePlayer from './WebPagePlayer'
-import TwitterPlayer from './TwitterPlayer'
 
 import {
   ShowVideosControl,
@@ -98,8 +97,6 @@ const Post = ({
       return <VideoPlayer height={height} />
     } else if (isImage(post)) {
       return <ImagePlayer height={height} />
-    } else if (isTwitter(post)) {
-      return <TwitterPlayer height={height} />
     } else if (post.is_self) {
       return '' // show comments section if is_self
     } else {

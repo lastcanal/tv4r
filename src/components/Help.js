@@ -193,7 +193,6 @@ const Help = ({ classes }) => {
                 <li><a href="https://www.npmjs.com/package/react-router-dom">react-router-dom</a></li>
                 <li><a href="https://www.npmjs.com/package/react-scripts">react-scripts</a></li>
                 <li><a href="https://www.npmjs.com/package/react-select">react-select</a></li>
-                <li><a href="https://www.npmjs.com/package/react-twitter-widgets">react-twitter-widgets</a></li>
                 <li><a href="https://www.npmjs.com/package/recompose">recompose</a></li>
                 <li><a href="https://www.npmjs.com/package/redux">redux</a></li>
                 <li><a href="https://www.npmjs.com/package/redux-devtools-extension">redux-devtools-extension</a></li>
