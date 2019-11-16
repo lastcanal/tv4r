@@ -7,11 +7,8 @@ import { nextPost, mediaFallback } from '../actions'
 import { getPostImage, getImageDimensions } from '../helpers'
 
 const styles = ({ palette }) => ({
-  reactPlayer: {
-    backgroundColor: 'black',
-    zIndex: 40,
-  },
   playerWrapper: {
+    objectFit: 'contain',
     backgroundColor: 'black',
     height: ({ height }) => (
       height
@@ -66,7 +63,6 @@ const ImagePlayer = ({
   }
 
   const onImageChange = (ref = imgRef) => {
-    if (!ref) return
     const image =
       getImageDimensions(ref, height, window.innerWidth)
 
@@ -75,8 +71,9 @@ const ImagePlayer = ({
   }
 
   const enhance = () => {
-    const imageUrl = getPostImage(post, height)
-    setUrl(imageUrl || post.url)
+    const image = getPostImage(post, height)
+    setUrl(image.url || post.url)
+    onImageChange(image)
   }
 
   useEffect(() => {
@@ -89,12 +86,11 @@ const ImagePlayer = ({
 
   useEffect(() => {
     setLoading(true)
-    onImageChange(post.secure_media_embed || post.media_embed)
+    setImgRef(null)
     enhance()
   }, [post])
 
   useLayoutEffect(() => {
-    onImageChange()
     enhance()
   }, [height])
 
@@ -117,7 +113,10 @@ const ImagePlayer = ({
       style={{
         filter: loading ? `blur(8px)` : 'blur(0)',
       }}
-      onLoad={() => setLoading(false)}
+      onLoad={() => {
+        onImageChange()
+        setLoading(false)
+      }}
       onError={onError}
     />
   </div>

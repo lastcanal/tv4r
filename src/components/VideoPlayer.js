@@ -15,6 +15,7 @@ const styles = () => ({
     zIndex: 40,
   },
   playerWrapper: {
+    objectFit: 'contain',
     backgroundColor: 'black',
     width: '100vw',
     display: 'flex',

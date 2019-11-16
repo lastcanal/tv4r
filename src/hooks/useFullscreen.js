@@ -6,10 +6,12 @@ import { configEnableFullscreen, configDisableFullscreen } from '../actions'
 const useFullscreen = ({ dispatch, isFullscreen }) => {
 
   useEffect(() => {
-    if (isFullscreen) {
-      screenfull.request().catch(() => {})
-    } else {
-      screenfull.exit()
+    if (screenfull.isEnabled) {
+      if (isFullscreen) {
+        screenfull.request().catch(() => {})
+      } else {
+        screenfull.exit().catch(() => {})
+      }
     }
   }, [isFullscreen])
 

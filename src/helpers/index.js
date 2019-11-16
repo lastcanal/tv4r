@@ -156,18 +156,21 @@ export const getPostImage = (post, height) => {
   if (post.preview?.enabled) {
     const parser = new DOMParser()
     const images = post.preview.images[0].resolutions
-    const selectedImage = images.find((image) => image.height >= height) || {}
-    const newUrl = selectedImage.url || images[images.length - 1]?.url
-    if (newUrl) {
-      return parser.parseFromString(newUrl, 'text/html')
+    const selectedImage = images.find((image) => image.height >= height) ||
+      images[images.length - 1]
+    if (selectedImage && selectedImage.url) {
+      const url = parser.parseFromString(selectedImage.url, 'text/html')
         .body.textContent
+      return {
+        ...selectedImage,
+        url,
+      }
     }
   }
 }
 
 export const getImageDimensions = (imgRef, height, width) => {
-  if (!imgRef) { return { width: null, height: null } }
-  if (imgRef.width > imgRef.height) {
+  if (imgRef && imgRef.width > imgRef.height) {
     return { width, height: null }
   } else {
     return { height, width: null }
