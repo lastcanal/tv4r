@@ -1,4 +1,3 @@
-import { matchRedditPath } from './index'
 
 const REDDIT_API_HOST = 'https://www.reddit.com'
 
@@ -14,16 +13,10 @@ export const postURL = (permalink, extention = 'json') => (
 )
 
 export const replyURL = (
-  subreddit, permalink, parentId = '', extention = 'json'
+  permalink, parentId = '', extention = 'json'
 ) => {
-  let uri = chompTrailingSlash(permalink)
-  const match = matchRedditPath(uri)
-  if (match) {
-    uri = uri.replace(match.subreddit, subreddit)
-  }
-
   return new URL(
-    encodeURI(`${uri}/${parentId}.${extention}`),
+    encodeURI(`${chompTrailingSlash(permalink)}/${parentId}.${extention}`),
     REDDIT_API_HOST
   )
 }
@@ -45,8 +38,8 @@ export const fetchPost = ({ permalink }) => (
   fetch(postURL(permalink).href)
 )
 
-export const fetchReplies = ({ permalink, subreddit }, parentId) => (
-  fetch(replyURL(subreddit, permalink, parentId).href)
+export const fetchReplies = ({ permalink }, parentId) => (
+  fetch(replyURL(permalink, parentId).href)
 )
 
 export default { fetchPosts, fetchPost, fetchReplies, postURL, replyURL }
