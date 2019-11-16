@@ -11,7 +11,7 @@ import ChromeReaderModeIcon from '@material-ui/icons/ChromeReaderMode'
 import BlockIcon from '@material-ui/icons/Block'
 
 import { selectPost } from '../actions'
-import { contrastColor } from '../helpers'
+import { contrastColor, decodeHTMLEntity } from '../helpers'
 import { mediaSelector } from '../selectors'
 
 import { THUMBNAIL_HEIGHT, THUMBNAIL_WIDTH } from '../constants'
@@ -149,7 +149,10 @@ const Posts = ({ posts, selected, showNSFW, classes, dispatch }) => {
           >
             <Thumbnail post={post} showNSFW={showNSFW}/>
             <GridListTileBar
-              title={post ? post.title : <Skeleton />}
+              title={post
+                ? decodeHTMLEntity(post.title)
+                : <Skeleton />
+              }
               classes={{
                 root: classes.titleBar,
                 title: classes.title,

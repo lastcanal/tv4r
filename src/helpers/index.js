@@ -125,6 +125,11 @@ export const translatePermalink = (permalink, selectedSubreddit) => {
   }
 }
 
+export const decodeHTMLEntity = (html, mime = 'text/html') => (
+  new DOMParser().parseFromString(html, mime)
+    .documentElement.textContent
+)
+
 export const findPostById = (postId, posts) => {
   const index = posts.findIndex(post => post.id === postId)
 

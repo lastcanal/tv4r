@@ -6,7 +6,12 @@ import ReactHtmlParser from 'react-html-parser'
 import ReactPlayer from 'react-player'
 import throttle from 'lodash.throttle'
 
-import { isVideo, isKnownMediaEmbed, getVideoDimensions } from '../helpers'
+import {
+  isVideo,
+  isKnownMediaEmbed,
+  getVideoDimensions,
+  decodeHTMLEntity,
+} from '../helpers'
 import { nextPost, mediaFallback, playerScanAck, playerJumpAck } from '../actions'
 
 const styles = () => ({
@@ -50,13 +55,6 @@ const VideoPlayer = ({
     dispatch(mediaFallback(error))
   }
 
-  const mediaEmbedContent = () => {
-    return new DOMParser().parseFromString(
-      post.media_embed.content,
-      'text/html',
-    ).documentElement.textContent
-  }
-
   const renderMediaEmbed = () => {
     if (post && isVideo(post)) {
       const transform = (node, _index) => {
@@ -66,9 +64,10 @@ const VideoPlayer = ({
         }
       }
 
+      const content = decodeHTMLEntity(post.media_embed.content)
       return (
         <div className={classes.playerWrapper}>
-          {ReactHtmlParser(mediaEmbedContent(), { transform })}
+          {ReactHtmlParser(content, { transform })}
         </div>
       )
     } else {

@@ -4367,6 +4367,11 @@ eslint@^6.1.0, eslint@^6.5.1:
     text-table "^0.2.0"
     v8-compile-cache "^2.0.3"
 
+esm@^3.0.28:
+  version "3.2.25"
+  resolved "https://registry.yarnpkg.com/esm/-/esm-3.2.25.tgz#342c18c29d56157688ba5ce31f8431fbb795cc10"
+  integrity sha512-U1suiZ2oDVWv4zPO56S0NcR5QriEahGtdN2OR6FiOG4WJvcjBVFB0qI4+eKoWFH483PKGuLuu6V8Z4T5g63UVA==
+
 espree@^6.1.1:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/espree/-/espree-6.1.1.tgz#7f80e5f7257fc47db450022d723e356daeb1e5de"
@@ -10177,6 +10182,13 @@ snapdragon@^0.8.1:
     source-map "^0.5.6"
     source-map-resolve "^0.5.0"
     use "^3.1.0"
+
+snudown-js@^3.1.8:
+  version "3.1.8"
+  resolved "https://registry.yarnpkg.com/snudown-js/-/snudown-js-3.1.8.tgz#72f6591f4e8a40131e7afa7ac5696a10e7542d1c"
+  integrity sha512-Av8H9UP+CEYKGeCLutVTTSKXXjgyv7OWU460iPPWLKvdhUS8yWAQBJggHVfxXuLD66oUiWKw/1cOQItGd4liqw==
+  dependencies:
+    esm "^3.0.28"
 
 socketcluster-client@^14.2.1:
   version "14.3.1"

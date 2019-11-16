@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import ReactHtmlParser from 'react-html-parser'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -9,6 +9,9 @@ import RemoveIcon from '@material-ui/icons/Remove'
 
 import { fetchRepliesIfNeeded } from '../actions'
 import { postURL } from '../helpers/reddit'
+import { markdown } from 'snudown-js'
+
+import { decodeHTMLEntity } from '../helpers'
 import { mediaSelector } from '../selectors'
 
 import ReplyTree from './ReplyTree'
@@ -18,6 +21,9 @@ const styles = ({ palette, spacing }) => ({
     margin: spacing(1),
     marginBottom: spacing(2),
     overflowWrap: 'break-word',
+    '& a': {
+      color: palette.text.secondary,
+    },
   },
   selfPostBody: {
     margin: spacing(1),
@@ -70,15 +76,16 @@ const Reply = ({ reply, depth, dispatch, comments, classes }) => {
 
   const selfTextContent = () => {
     if (!data.selftext_html) return ''
-    return new DOMParser().parseFromString(
-      data.selftext_html,
-      'text/html',
-    ).documentElement.textContent
+    return decodeHTMLEntity(data.selftext_html)
   }
 
-  const renderSelfText = () => {
-    return ReactHtmlParser(selfTextContent())
-  }
+  const renderSelfText = () => (
+    ReactHtmlParser(selfTextContent())
+  )
+
+  const body = useMemo(() => (
+    ReactHtmlParser(markdown(data.body, { nofollow: true, target: 'TVRLINK' }))
+  ), [reply])
 
   switch (reply.kind) {
     case 'more':
@@ -115,7 +122,7 @@ const Reply = ({ reply, depth, dispatch, comments, classes }) => {
             </a>
             ({voteTotal > 0 ? `+${voteTotal}` : voteTotal})
           </div>
-          <div className={classes.commentBody}>{data.body}</div>
+          <div className={classes.commentBody}>{body}</div>
         </>
       )
     case 't3':
@@ -124,7 +131,7 @@ const Reply = ({ reply, depth, dispatch, comments, classes }) => {
           className={classes.postTitle}
           href={postURL(reply.data.permalink, 'html')}
         >
-          <h2>{data.title}</h2>
+          <h2>{decodeHTMLEntity(data.title)}</h2>
         </a>
         {renderSelfText()}
         {data.selfText}

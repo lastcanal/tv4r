@@ -2,6 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import Skeleton from '@material-ui/lab/Skeleton'
+import { decodeHTMLEntity } from '../helpers'
 
 const useStyles = makeStyles(({ palette }) => ({
   root: {
@@ -26,7 +27,10 @@ const Title = ({ post }) => {
   return (
     <div className={classes.root}>
       {post && <a className={classes.title} href={post.url}>
-        {post.title ? post.title : <Skeleton />}
+        {post.title
+          ? decodeHTMLEntity(post.title)
+          : <Skeleton />
+        }
       </a>
       }
     </div>
