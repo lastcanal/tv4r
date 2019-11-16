@@ -169,12 +169,11 @@ export const getPostImage = (post, height) => {
   }
 }
 
-export const getImageDimensions = (imgRef, height, width) => {
-  if (imgRef && imgRef.width > imgRef.height) {
-    return { width, height: null }
-  } else {
-    return { height, width: null }
-  }
+export const getImageDimensions = (img, maxHeight, maxWidth, minRatio = 1) => {
+  if (!img) return { height: null, width: null }
+  const { width, height } = img
+  const ratio = Math.min(minRatio, maxWidth / width, maxHeight / height)
+  return { width: width * ratio, height: height * ratio }
 }
 
 export const getVideoDimensions = (imgRef, height, width) => {
