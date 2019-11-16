@@ -15,6 +15,8 @@ const styles = () => ({
     zIndex: 40,
   },
   playerWrapper: {
+    backgroundColor: 'black',
+    width: '100vw',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
