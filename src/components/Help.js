@@ -197,7 +197,6 @@ const Help = ({ classes }) => {
             <li><a href="https://www.npmjs.com/package/redux-thunk">redux-thunk</a></li>
             <li><a href="https://www.npmjs.com/package/remote-redux-devtools">remote-redux-devtools</a></li>
             <li><a href="https://www.npmjs.com/package/reselect">reselect</a></li>
-            <li><a href="https://www.npmjs.com/package/screenfull">screenfull</a></li>
           </ul>
         </TabPanel>
       </Box>

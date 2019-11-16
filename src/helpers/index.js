@@ -174,9 +174,10 @@ export const getImageDimensions = (imgRef, height, width) => {
   }
 }
 
-export const getVideoDimensions = (imgRef, height, _width) => {
-  if (!imgRef) { return { width: '100%', height: '100%' } }
-  return { height, width: (height * (imgRef.width / imgRef.height)) }
+export const getVideoDimensions = (imgRef, height, width) => {
+  if (!imgRef) { return { width: '100%', height: height } }
+  const newWidth = height * (imgRef.width / imgRef.height)
+  return { height, width: newWidth <= width ? newWidth : '100%' }
 }
 
 export const translateVolume = (volume, change) => (

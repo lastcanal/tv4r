@@ -13,7 +13,6 @@ import useLayoutDimensionTracker from './hooks/useLayoutDimensionTracker'
 import useForceWindowFocus from './hooks/useForceWindowFocus'
 import useRouteTracker from './hooks/useRouteTracker'
 import useAppTheme from './hooks/useAppTheme'
-import useFullscreen from './hooks/useFullscreen'
 
 const styles = () => ({
   root: {
@@ -39,7 +38,6 @@ const App = ({
   useForceWindowFocus()
   useKeyboardController({ dispatch })
   useRouteTracker({ dispatch, postsBySubreddit, selectedSubreddit, router })
-  useFullscreen({ dispatch, isFullscreen })
 
   return (
     <MuiThemeProvider theme={theme}>
