@@ -21,9 +21,9 @@ exports[`post should not render media fallback for non-videos 1`] = `
       classes={
         Object {
           "controls": "Connect(Post)-controls-4",
-          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-101",
-          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-100",
-          "root": "Connect(Post)-root-1 Connect(Post)-root-99",
+          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-107",
+          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-106",
+          "root": "Connect(Post)-root-1 Connect(Post)-root-105",
         }
       }
       menuHeight={100}
@@ -33,9 +33,9 @@ exports[`post should not render media fallback for non-videos 1`] = `
         classes={
           Object {
             "controls": "Connect(Post)-controls-4",
-            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-101",
-            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-100",
-            "root": "Connect(Post)-root-1 Connect(Post)-root-99",
+            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-107",
+            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-106",
+            "root": "Connect(Post)-root-1 Connect(Post)-root-105",
           }
         }
         dispatch={[Function]}
@@ -63,7 +63,7 @@ exports[`post should not render media fallback for non-videos 1`] = `
           }
         >
           <div
-            className="Connect(Post)-loading-3 Connect(Post)-loading-101"
+            className="Connect(Post)-loading-3 Connect(Post)-loading-107"
             style={
               Object {
                 "display": "none",
@@ -75,11 +75,11 @@ exports[`post should not render media fallback for non-videos 1`] = `
             </h2>
           </div>
           <WithStyles(ForwardRef(Container))
-            className="Connect(Post)-root-1 Connect(Post)-root-99"
+            className="Connect(Post)-root-1 Connect(Post)-root-105"
             maxWidth={false}
           >
             <ForwardRef(Container)
-              className="Connect(Post)-root-1 Connect(Post)-root-99"
+              className="Connect(Post)-root-1 Connect(Post)-root-105"
               classes={
                 Object {
                   "fixed": "MuiContainer-fixed",
@@ -94,7 +94,7 @@ exports[`post should not render media fallback for non-videos 1`] = `
               maxWidth={false}
             >
               <div
-                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-99"
+                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-105"
               >
                 <WithStyles(undefined)
                   height={100}
@@ -158,12 +158,12 @@ exports[`post should not render media fallback for non-videos 1`] = `
               <Comments
                 classes={
                   Object {
-                    "comments": "Comments-comments-60 Comments-comments-102",
+                    "comments": "Comments-comments-60 Comments-comments-108",
                     "loadComments": "Comments-loadComments-65",
-                    "loading": "Comments-loading-61 Comments-loading-103",
+                    "loading": "Comments-loading-61 Comments-loading-109",
                     "menuButton": "Comments-menuButton-62",
                     "root": "Comments-root-59",
-                    "spacerBottom": "Comments-spacerBottom-64 Comments-spacerBottom-104",
+                    "spacerBottom": "Comments-spacerBottom-64 Comments-spacerBottom-110",
                     "title": "Comments-title-63",
                   }
                 }
@@ -174,14 +174,14 @@ exports[`post should not render media fallback for non-videos 1`] = `
                 <div>
                   <div>
                     <div
-                      className="Comments-loading-61 Comments-loading-103"
+                      className="Comments-loading-61 Comments-loading-109"
                       id="comments"
                     >
                       <Styled(MuiBox)
                         boxShadow={5}
                       >
                         <div
-                          className="MuiBox-root MuiBox-root-105"
+                          className="MuiBox-root MuiBox-root-111"
                         >
                           <LoadComments>
                             <div
@@ -202,7 +202,7 @@ exports[`post should not render media fallback for non-videos 1`] = `
                     </div>
                   </div>
                   <div
-                    className="Comments-spacerBottom-64 Comments-spacerBottom-104"
+                    className="Comments-spacerBottom-64 Comments-spacerBottom-110"
                   />
                 </div>
               </Comments>
@@ -367,15 +367,42 @@ exports[`post should render Image 1`] = `
                         className="Connect(ImagePlayer)-playerWrapper-83 Connect(ImagePlayer)-playerWrapper-86"
                       >
                         <img
+                          height={0}
                           onError={[Function]}
                           onLoad={[Function]}
                           src="https://example.com/example.jpg"
-                          style={
-                            Object {
-                              "filter": "blur(8px)",
-                            }
-                          }
+                          width={0}
                         />
+                        <WithStyles(ForwardRef(Skeleton))
+                          height={100}
+                          variant="rect"
+                          width={1024}
+                        >
+                          <ForwardRef(Skeleton)
+                            classes={
+                              Object {
+                                "animate": "MuiSkeleton-animate",
+                                "circle": "MuiSkeleton-circle",
+                                "rect": "MuiSkeleton-rect",
+                                "root": "MuiSkeleton-root",
+                                "text": "MuiSkeleton-text",
+                              }
+                            }
+                            height={100}
+                            variant="rect"
+                            width={1024}
+                          >
+                            <div
+                              className="MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-animate"
+                              style={
+                                Object {
+                                  "height": 100,
+                                  "width": 1024,
+                                }
+                              }
+                            />
+                          </ForwardRef(Skeleton)>
+                        </WithStyles(ForwardRef(Skeleton))>
                       </div>
                     </ImagePlayer>
                   </Connect(ImagePlayer)>
@@ -395,12 +422,12 @@ exports[`post should render Image 1`] = `
               <Comments
                 classes={
                   Object {
-                    "comments": "Comments-comments-60 Comments-comments-88",
+                    "comments": "Comments-comments-60 Comments-comments-94",
                     "loadComments": "Comments-loadComments-65",
-                    "loading": "Comments-loading-61 Comments-loading-89",
+                    "loading": "Comments-loading-61 Comments-loading-95",
                     "menuButton": "Comments-menuButton-62",
                     "root": "Comments-root-59",
-                    "spacerBottom": "Comments-spacerBottom-64 Comments-spacerBottom-90",
+                    "spacerBottom": "Comments-spacerBottom-64 Comments-spacerBottom-96",
                     "title": "Comments-title-63",
                   }
                 }
@@ -411,14 +438,14 @@ exports[`post should render Image 1`] = `
                 <div>
                   <div>
                     <div
-                      className="Comments-loading-61 Comments-loading-89"
+                      className="Comments-loading-61 Comments-loading-95"
                       id="comments"
                     >
                       <Styled(MuiBox)
                         boxShadow={5}
                       >
                         <div
-                          className="MuiBox-root MuiBox-root-91"
+                          className="MuiBox-root MuiBox-root-97"
                         >
                           <LoadComments>
                             <div
@@ -439,7 +466,7 @@ exports[`post should render Image 1`] = `
                     </div>
                   </div>
                   <div
-                    className="Comments-spacerBottom-64 Comments-spacerBottom-90"
+                    className="Comments-spacerBottom-64 Comments-spacerBottom-96"
                   />
                 </div>
               </Comments>
@@ -678,9 +705,9 @@ exports[`post should render Post is loading 1`] = `
       classes={
         Object {
           "controls": "Connect(Post)-controls-4",
-          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-108",
-          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-107",
-          "root": "Connect(Post)-root-1 Connect(Post)-root-106",
+          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-114",
+          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-113",
+          "root": "Connect(Post)-root-1 Connect(Post)-root-112",
         }
       }
       menuHeight={100}
@@ -690,9 +717,9 @@ exports[`post should render Post is loading 1`] = `
         classes={
           Object {
             "controls": "Connect(Post)-controls-4",
-            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-108",
-            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-107",
-            "root": "Connect(Post)-root-1 Connect(Post)-root-106",
+            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-114",
+            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-113",
+            "root": "Connect(Post)-root-1 Connect(Post)-root-112",
           }
         }
         dispatch={[Function]}
@@ -702,7 +729,7 @@ exports[`post should render Post is loading 1`] = `
         playerHeight={100}
       >
         <div
-          className="Connect(Post)-loading-3 Connect(Post)-loading-108"
+          className="Connect(Post)-loading-3 Connect(Post)-loading-114"
         >
           <WithStyles(ForwardRef(Skeleton))
             height="100%"
@@ -2095,9 +2122,9 @@ exports[`post should render media fallback 1`] = `
       classes={
         Object {
           "controls": "Connect(Post)-controls-4",
-          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-94",
-          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-93",
-          "root": "Connect(Post)-root-1 Connect(Post)-root-92",
+          "loading": "Connect(Post)-loading-3 Connect(Post)-loading-100",
+          "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-99",
+          "root": "Connect(Post)-root-1 Connect(Post)-root-98",
         }
       }
       menuHeight={100}
@@ -2107,9 +2134,9 @@ exports[`post should render media fallback 1`] = `
         classes={
           Object {
             "controls": "Connect(Post)-controls-4",
-            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-94",
-            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-93",
-            "root": "Connect(Post)-root-1 Connect(Post)-root-92",
+            "loading": "Connect(Post)-loading-3 Connect(Post)-loading-100",
+            "miniPlayer": "Connect(Post)-miniPlayer-2 Connect(Post)-miniPlayer-99",
+            "root": "Connect(Post)-root-1 Connect(Post)-root-98",
           }
         }
         dispatch={[Function]}
@@ -2140,7 +2167,7 @@ exports[`post should render media fallback 1`] = `
           }
         >
           <div
-            className="Connect(Post)-loading-3 Connect(Post)-loading-94"
+            className="Connect(Post)-loading-3 Connect(Post)-loading-100"
             style={
               Object {
                 "display": "none",
@@ -2152,11 +2179,11 @@ exports[`post should render media fallback 1`] = `
             </h2>
           </div>
           <WithStyles(ForwardRef(Container))
-            className="Connect(Post)-root-1 Connect(Post)-root-92"
+            className="Connect(Post)-root-1 Connect(Post)-root-98"
             maxWidth={false}
           >
             <ForwardRef(Container)
-              className="Connect(Post)-root-1 Connect(Post)-root-92"
+              className="Connect(Post)-root-1 Connect(Post)-root-98"
               classes={
                 Object {
                   "fixed": "MuiContainer-fixed",
@@ -2171,7 +2198,7 @@ exports[`post should render media fallback 1`] = `
               maxWidth={false}
             >
               <div
-                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-92"
+                className="MuiContainer-root Connect(Post)-root-1 Connect(Post)-root-98"
               >
                 <WithStyles(undefined)
                   height={100}
@@ -2243,12 +2270,12 @@ exports[`post should render media fallback 1`] = `
               <Comments
                 classes={
                   Object {
-                    "comments": "Comments-comments-60 Comments-comments-95",
+                    "comments": "Comments-comments-60 Comments-comments-101",
                     "loadComments": "Comments-loadComments-65",
-                    "loading": "Comments-loading-61 Comments-loading-96",
+                    "loading": "Comments-loading-61 Comments-loading-102",
                     "menuButton": "Comments-menuButton-62",
                     "root": "Comments-root-59",
-                    "spacerBottom": "Comments-spacerBottom-64 Comments-spacerBottom-97",
+                    "spacerBottom": "Comments-spacerBottom-64 Comments-spacerBottom-103",
                     "title": "Comments-title-63",
                   }
                 }
@@ -2259,14 +2286,14 @@ exports[`post should render media fallback 1`] = `
                 <div>
                   <div>
                     <div
-                      className="Comments-loading-61 Comments-loading-96"
+                      className="Comments-loading-61 Comments-loading-102"
                       id="comments"
                     >
                       <Styled(MuiBox)
                         boxShadow={5}
                       >
                         <div
-                          className="MuiBox-root MuiBox-root-98"
+                          className="MuiBox-root MuiBox-root-104"
                         >
                           <LoadComments>
                             <div
@@ -2287,7 +2314,7 @@ exports[`post should render media fallback 1`] = `
                     </div>
                   </div>
                   <div
-                    className="Comments-spacerBottom-64 Comments-spacerBottom-97"
+                    className="Comments-spacerBottom-64 Comments-spacerBottom-103"
                   />
                 </div>
               </Comments>

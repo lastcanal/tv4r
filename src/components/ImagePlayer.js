@@ -2,6 +2,7 @@ import React, { useEffect, useState, useLayoutEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
+import Skeleton from '@material-ui/lab/Skeleton'
 
 import { nextPost, mediaFallback } from '../actions'
 import { getPostImage, getImageDimensions } from '../helpers'
@@ -108,16 +109,18 @@ const ImagePlayer = ({
     <img
       ref={setImgRef}
       src={url}
-      height={imageHeight}
-      width={imageWidth}
-      style={{
-        filter: loading ? `blur(8px)` : 'blur(0)',
-      }}
+      height={loading ? 0 : imageHeight}
+      width={loading ? 0 : imageWidth}
+      onError={onError}
       onLoad={() => {
         onImageChange()
         setLoading(false)
       }}
-      onError={onError}
+    />
+    <Skeleton
+      variant="rect"
+      height={loading ? imageHeight || height : 0 }
+      width={loading ? imageWidth || window.innerWidth : 0}
     />
   </div>
 }
