@@ -120,7 +120,7 @@ const fetchPosts = subreddit => (dispatch, getState) => {
   const scope = postsBySubreddit?.[subreddit]?.scope || 'hot'
   dispatch(requestPosts(subreddit, scope))
   return reddit
-    .fetchPosts(subreddit, scope)
+    .fetchPosts({ subreddit, scope })
     .then(response => response.json())
     .then(response => dispatch(receivePosts(subreddit, scope, response)))
     .catch(error => dispatch(receivePostsError(subreddit, error)))
@@ -204,7 +204,7 @@ const fetchComments = (post, selectedSubreddit) => dispatch => {
   if (!post?.permalink) return
   dispatch(requestComments(post, selectedSubreddit))
   return reddit
-    .fetchPost(post.permalink)
+    .fetchPost(post)
     .then(response => response.json())
     .catch(error =>
       dispatch(receiveCommentsError(post, selectedSubreddit, error)),
@@ -254,7 +254,7 @@ const receiveRepliesError = (post, subreddit, parentId, error) => ({
 const fetchReplies = (post, selectedSubreddit, parentId) => dispatch => {
   dispatch(requestReplies(post, selectedSubreddit, parentId))
   return reddit
-    .fetchReplies(post.permalink, parentId)
+    .fetchReplies(post, parentId)
     .then(response => response.json())
     .catch(error =>
       dispatch(receiveRepliesError(post, selectedSubreddit, parentId, error)),
@@ -265,11 +265,15 @@ const fetchReplies = (post, selectedSubreddit, parentId) => dispatch => {
 }
 
 export const fetchRepliesIfNeeded = ({ data }) => (dispatch, getState) => {
-  const { postsBySubreddit, selectedSubreddit } = getState()
+  const { postsBySubreddit, selectedSubreddit, config } = getState()
+  const { showImages, showVideos, showNSFW } = config
   const { index } = postsBySubreddit.cursor
   const subreddit = postsBySubreddit[selectedSubreddit]
   const comments = subreddit.comments
-  const items = subreddit[subreddit.scope]
+  const items = mediaSelector({
+    posts: subreddit[subreddit.scope],
+    showImages, showVideos, showNSFW,
+  })
   const post = items[index]
   const commentsForPost = comments?.[post?.id] || {}
   const { groups: { parentId } } =

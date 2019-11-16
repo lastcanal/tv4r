@@ -148,26 +148,28 @@ const selectedPosts = (
     case REQUEST_REPLIES:
       return {
         ...state,
-        isFetchingReplies: true,
         error: null,
       }
     case RECEIVE_REPLIES:
-      const replies = action.comments[1].data.children[0].data.replies
-      return {
-        ...state,
-        isFetchingReplies: false,
-        comments: {
-          ...state.comments,
-          [action.post.id]: {
-            ...state.comments[action.post.id],
-            [`t1_${action.parentId}`]: replies,
+      if (action.comments) {
+        return {
+          ...state,
+          comments: {
+            ...state.comments,
+            [action.post.id]: {
+              ...state.comments[action.post.id],
+              [`t1_${action.parentId}`]: (
+                action.comments[1]?.data?.children?.[0]?.data?.replies || {}
+              ),
+            },
           },
-        },
+        }
+      } else {
+        return state
       }
     case RECEIVE_REPLIES_ERROR:
       return {
         ...state,
-        isFetchingReplies: false,
         error: action.error,
       }
 

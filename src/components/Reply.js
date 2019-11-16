@@ -58,6 +58,7 @@ const Reply = ({ reply, depth, dispatch, comments, classes }) => {
   const loadReplies = () => {
     setShow(true)
     setLoading(true)
+    setTimeout(() => { setLoading(false) }, 5000)
     dispatch(fetchRepliesIfNeeded(reply))
     return false
   }
