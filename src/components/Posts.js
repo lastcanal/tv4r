@@ -149,7 +149,7 @@ const Posts = ({ posts, selected, showNSFW, classes, dispatch }) => {
           >
             <Thumbnail post={post} showNSFW={showNSFW}/>
             <GridListTileBar
-              title={post
+              title={post && post.title
                 ? decodeHTMLEntity(post.title)
                 : <Skeleton />
               }

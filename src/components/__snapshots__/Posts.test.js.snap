@@ -201,6 +201,7 @@ exports[`posts should navigate Posts 1`] = `
                             }
                           }
                           key=".1"
+                          title={<ForwardRef(WithStyles) />}
                         >
                           <ForwardRef(GridListTileBar)
                             classes={
@@ -218,6 +219,7 @@ exports[`posts should navigate Posts 1`] = `
                                 "titleWrapActionPosRight": "MuiGridListTileBar-titleWrapActionPosRight",
                               }
                             }
+                            title={<ForwardRef(WithStyles) />}
                           >
                             <div
                               className="MuiGridListTileBar-root MuiGridListTileBar-titlePositionBottom"
@@ -227,7 +229,31 @@ exports[`posts should navigate Posts 1`] = `
                               >
                                 <div
                                   className="MuiGridListTileBar-title"
-                                />
+                                >
+                                  <WithStyles(ForwardRef(Skeleton))>
+                                    <ForwardRef(Skeleton)
+                                      classes={
+                                        Object {
+                                          "animate": "MuiSkeleton-animate",
+                                          "circle": "MuiSkeleton-circle",
+                                          "rect": "MuiSkeleton-rect",
+                                          "root": "MuiSkeleton-root",
+                                          "text": "MuiSkeleton-text",
+                                        }
+                                      }
+                                    >
+                                      <div
+                                        className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-animate"
+                                        style={
+                                          Object {
+                                            "height": undefined,
+                                            "width": undefined,
+                                          }
+                                        }
+                                      />
+                                    </ForwardRef(Skeleton)>
+                                  </WithStyles(ForwardRef(Skeleton))>
+                                </div>
                               </div>
                             </div>
                           </ForwardRef(GridListTileBar)>
@@ -301,6 +327,7 @@ exports[`posts should navigate Posts 1`] = `
                             }
                           }
                           key=".1"
+                          title={<ForwardRef(WithStyles) />}
                         >
                           <ForwardRef(GridListTileBar)
                             classes={
@@ -318,6 +345,7 @@ exports[`posts should navigate Posts 1`] = `
                                 "titleWrapActionPosRight": "MuiGridListTileBar-titleWrapActionPosRight",
                               }
                             }
+                            title={<ForwardRef(WithStyles) />}
                           >
                             <div
                               className="MuiGridListTileBar-root MuiGridListTileBar-titlePositionBottom"
@@ -327,7 +355,31 @@ exports[`posts should navigate Posts 1`] = `
                               >
                                 <div
                                   className="MuiGridListTileBar-title"
-                                />
+                                >
+                                  <WithStyles(ForwardRef(Skeleton))>
+                                    <ForwardRef(Skeleton)
+                                      classes={
+                                        Object {
+                                          "animate": "MuiSkeleton-animate",
+                                          "circle": "MuiSkeleton-circle",
+                                          "rect": "MuiSkeleton-rect",
+                                          "root": "MuiSkeleton-root",
+                                          "text": "MuiSkeleton-text",
+                                        }
+                                      }
+                                    >
+                                      <div
+                                        className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-animate"
+                                        style={
+                                          Object {
+                                            "height": undefined,
+                                            "width": undefined,
+                                          }
+                                        }
+                                      />
+                                    </ForwardRef(Skeleton)>
+                                  </WithStyles(ForwardRef(Skeleton))>
+                                </div>
                               </div>
                             </div>
                           </ForwardRef(GridListTileBar)>
@@ -489,6 +541,7 @@ exports[`posts should render Posts 1`] = `
                             }
                           }
                           key=".1"
+                          title={<ForwardRef(WithStyles) />}
                         >
                           <ForwardRef(GridListTileBar)
                             classes={
@@ -506,6 +559,7 @@ exports[`posts should render Posts 1`] = `
                                 "titleWrapActionPosRight": "MuiGridListTileBar-titleWrapActionPosRight",
                               }
                             }
+                            title={<ForwardRef(WithStyles) />}
                           >
                             <div
                               className="MuiGridListTileBar-root MuiGridListTileBar-titlePositionBottom"
@@ -515,7 +569,31 @@ exports[`posts should render Posts 1`] = `
                               >
                                 <div
                                   className="MuiGridListTileBar-title"
-                                />
+                                >
+                                  <WithStyles(ForwardRef(Skeleton))>
+                                    <ForwardRef(Skeleton)
+                                      classes={
+                                        Object {
+                                          "animate": "MuiSkeleton-animate",
+                                          "circle": "MuiSkeleton-circle",
+                                          "rect": "MuiSkeleton-rect",
+                                          "root": "MuiSkeleton-root",
+                                          "text": "MuiSkeleton-text",
+                                        }
+                                      }
+                                    >
+                                      <div
+                                        className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-animate"
+                                        style={
+                                          Object {
+                                            "height": undefined,
+                                            "width": undefined,
+                                          }
+                                        }
+                                      />
+                                    </ForwardRef(Skeleton)>
+                                  </WithStyles(ForwardRef(Skeleton))>
+                                </div>
                               </div>
                             </div>
                           </ForwardRef(GridListTileBar)>
@@ -589,6 +667,7 @@ exports[`posts should render Posts 1`] = `
                             }
                           }
                           key=".1"
+                          title={<ForwardRef(WithStyles) />}
                         >
                           <ForwardRef(GridListTileBar)
                             classes={
@@ -606,6 +685,7 @@ exports[`posts should render Posts 1`] = `
                                 "titleWrapActionPosRight": "MuiGridListTileBar-titleWrapActionPosRight",
                               }
                             }
+                            title={<ForwardRef(WithStyles) />}
                           >
                             <div
                               className="MuiGridListTileBar-root MuiGridListTileBar-titlePositionBottom"
@@ -615,7 +695,31 @@ exports[`posts should render Posts 1`] = `
                               >
                                 <div
                                   className="MuiGridListTileBar-title"
-                                />
+                                >
+                                  <WithStyles(ForwardRef(Skeleton))>
+                                    <ForwardRef(Skeleton)
+                                      classes={
+                                        Object {
+                                          "animate": "MuiSkeleton-animate",
+                                          "circle": "MuiSkeleton-circle",
+                                          "rect": "MuiSkeleton-rect",
+                                          "root": "MuiSkeleton-root",
+                                          "text": "MuiSkeleton-text",
+                                        }
+                                      }
+                                    >
+                                      <div
+                                        className="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-animate"
+                                        style={
+                                          Object {
+                                            "height": undefined,
+                                            "width": undefined,
+                                          }
+                                        }
+                                      />
+                                    </ForwardRef(Skeleton)>
+                                  </WithStyles(ForwardRef(Skeleton))>
+                                </div>
                               </div>
                             </div>
                           </ForwardRef(GridListTileBar)>

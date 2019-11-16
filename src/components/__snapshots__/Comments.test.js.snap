@@ -962,7 +962,11 @@ exports[`comments should render Post 1`] = `
                               <div
                                 className="Reply-commentBody-21"
                               >
-                                bar
+                                <p
+                                  key="0"
+                                >
+                                  bar
+                                </p>
                               </div>
                             </Reply>
                           </WithStyles(Reply)>
